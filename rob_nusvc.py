@@ -11,28 +11,6 @@ import time
 from sklearn.metrics import pairwise_kernels
 import pandas as pd
 
-## Linear kernel: k(x, y) = xy
-def linear_kernel():
-    def kernel(x, y): return np.dot(x, y)
-    return kernel
-# Polynomial kernel: k(x, y) = (xy + c)^d
-def polynomial_kernel(c, d):
-    def kernel(x, y): return (np.dot(x, y) + c)**d
-    return kernel
-# Gaussian kernel: k(x, y) = exp(- ||x-y||^2 / (2*sigma^2))
-def gaussian_kernel(sigma):
-    def kernel(x, y): return np.exp(- np.dot(x-y, x-y) / (2 * sigma**2))
-    return kernel
-
-# Calculate kernel matrix
-def kernel_matrix(x, kernel):
-    m, n = x.shape
-    kmat = np.zeros([m, m])
-    for i in xrange(m):
-        for j in xrange(i, m):
-            kmat[i,j] = kmat[j,i] = kernel(x[i], x[j])
-    return kmat
-    
 # Robust-nu-SVM using linear kernel
 def robust_linear_nusvm(x, y, nu, mu, w, b):
     MAX_ITR = 10
@@ -338,110 +316,124 @@ if __name__ == '__main__':
     ## names_w = ['w%s' % i for i in range(dim)]
     ## names_xi = ['xi%s' % i for i in range(num)]
     ## names_u = ['u%s' % i for i in range(num)]
-    
-    ## ###### Synthetic data set for one-class SVM #####
-    ## np.random.seed(0)
-    ## mean = [1,1]
-    ## cov = [[1,0],[0,1]]
-    ## num = 200
-    ## dim = 2
-    ## x = np.random.multivariate_normal(mean ,cov, num)
-    ## ##### Kernel function #####
-    ## kernel = 'linear'
-    ## ##### Hyper-parameters #####
-    ## trial = 30
-    ## nu_cand = np.arange(0.05, 1.0, 0.05)
-    ## mu_cand = np.arange(0.0, 1.0, 0.05)
-    ## kappa_cand = np.arange(10, 130, 10)
-    ## dist = []
-    ## for i in range(200):
-    ##     for j in range(i+1, 200):
-    ##         dist.append(np.linalg.norm(x[i] - x[j]))
-    ## dist = np.array(dist)
-    ## gamma = 1. / np.median(dist)**2
-    ## ##### Robust one-class SVM #####
-    ## df_result = pd.DataFrame(columns=['mu', 'nu', 'kappa', 'max_norm'])
-    ## ##### Loop for mu #####
-    ## for i in range(len(mu_cand)):
-    ##     mu = mu_cand[i]
-    ##     ##### Loop for nu #####
-    ##     for j in range(len(nu_cand)):
-    ##         nu = nu_cand[j]
-    ##         ##### Loop for kappa #####
-    ##         for k in range(len(kappa_cand)):
-    ##             num_ol = kappa_cand[k]
-    ##             ##### Initialize max_norm and max_rmse #####
-    ##             max_norm = max_rmse = -1e10
-    ##             for seed in range(trial):
-    ##                 x_train = np.array(x)
-    ##                 ## Generate noise
-    ##                 np.random.seed(seed)
-    ##                 ind_ol = np.random.choice(range(200), num_ol, replace=False)
-    ##                 x_train[ind_ol] += np.random.multivariate_normal(np.zeros(2) ,1e2*np.eye(2), num_ol)
-    ##                 if nu > mu:
-    ##                     res_oc, eta, kmat = robust_ocsvm(x_train, nu, mu, kernel, gamma=gamma)
-    ##                     alf = np.array(res_oc.solution.get_values())
-    ##                     norm = np.sqrt(np.dot(alf, np.dot(kmat, alf))) * (nu - mu) ###
-    ##                     max_norm = np.max([max_norm, norm])
-    ##                     ## ind_sv = np.where(alf != 0)[0]
-    ##                     ## print ind_ol
-    ##                     ## print alf
-    ##                     ## plt.plot(x_train[:,0], x_train[:,1], 'x')
-    ##                     ## plt.plot(x_train[ind_sv,0], x_train[ind_sv,1], 'o')
-    ##                     ## plt.grid()
-    ##                     ## plt.show()
-    ##             df_result = df_result.append(pd.Series([mu, nu-mu, num_ol, max_norm], index=['mu', 'nu', 'kappa', 'max_norm']), ignore_index=True)
 
-    ## tmp = 13 * 0
-    ## tmp2 = 'max_norm'
-    ## plt.plot( df_result['kappa'][0:12]/200., df_result[tmp2][tmp:(tmp+12)], label='(nu, mu) = (0.5, 0.3)')
-    ## plt.axvline(x=0.2, color='black')
-    ## plt.grid()
-    ## plt.xlabel('kappa/mu')
-    ## plt.ylabel(tmp2)
-    ## plt.legend()
-    ## plt.show()
+    '''
+    Numerical experiments for robust one-class SVM
+    '''
+    ###### Synthetic data set for one-class SVM #####
+    np.random.seed(0)
+    mean = [1,1]
+    cov = [[1,0],[0,1]]
+    num = 200
+    dim = 2
+    x = np.random.multivariate_normal(mean ,cov, num)
+    ##### Kernel function #####
+    kernel = 'linear'
+    ##### Hyper-parameters #####
+    trial = 30
+    nu_cand = np.arange(0.051, 1.0, 0.1)
+    mu_cand = np.arange(0.1, 0.5, 0.1)
+    kappa_cand = np.arange(10, 130, 20)
+    dist = []
+    for i in range(200):
+        for j in range(i+1, 200):
+            dist.append(np.linalg.norm(x[i] - x[j]))
+    dist = np.array(dist)
+    gamma = 1. / np.median(dist)**2
+    ##### Robust one-class SVM #####
+    df_result = pd.DataFrame(columns=['mu', 'nu', 'kappa', 'max_norm'])
+    ##### Loop for mu #####
+    for i in range(len(mu_cand)):
+        mu = mu_cand[i]
+        ##### Loop for nu #####
+        for j in range(len(nu_cand)):
+            nu = nu_cand[j]
+            ##### Loop for kappa #####
+            for k in range(len(kappa_cand)):
+                num_ol = kappa_cand[k]
+                ##### Initialize max_norm and max_rmse #####
+                max_norm = max_rmse = -1e10
+                for seed in range(trial):
+                    x_train = np.array(x)
+                    ## Generate noise
+                    np.random.seed(seed)
+                    ind_ol = np.random.choice(range(200), num_ol, replace=False)
+                    x_train[ind_ol] += np.random.multivariate_normal(np.zeros(2) ,1e2*np.eye(2), num_ol)
+                    if nu > mu:
+                        res_oc, eta, kmat = robust_ocsvm(x_train, nu, mu, kernel, gamma=gamma)
+                        alf = np.array(res_oc.solution.get_values())
+                        norm = np.sqrt(np.dot(alf, np.dot(kmat, alf))) * (nu - mu) ###
+                        max_norm = np.max([max_norm, norm])
+                        ## ind_sv = np.where(alf != 0)[0]
+                        ## print ind_ol
+                        ## print alf
+                        ## plt.plot(x_train[:,0], x_train[:,1], 'x')
+                        ## plt.plot(x_train[ind_sv,0], x_train[ind_sv,1], 'o')
+                        ## plt.grid()
+                        ## plt.show()
+                df_result = df_result.append(pd.Series([mu, nu-mu, num_ol, max_norm], index=['mu', 'nu', 'kappa', 'max_norm']), ignore_index=True)
+
+    tmp = 13 * 0
+    tmp2 = 'max_norm'
+    plt.plot( df_result['kappa'][0:12]/200., df_result[tmp2][tmp:(tmp+12)], label='(nu, mu) = (0.5, 0.3)')
+    plt.axvline(x=0.2, color='black')
+    plt.grid()
+    plt.xlabel('kappa/mu')
+    plt.ylabel(tmp2)
+    plt.legend()
+    plt.show()
 
 
+    '''
+    Numerical experiments comparing the global solution by MIP
+    and a local solution by DCA
+    '''
     ##### Synthetic data set #####
-    obj_dc, obj_mip = [], []
-    for s in range(10):
-        np.random.seed(s)
-        mu1 = [2,2]
-        mu2 = [1,1]
-        cov = [[1,0],[0,1]]
-        num_p = num_n = 20
-        x_p = np.random.multivariate_normal(mu1,cov,num_p)
-        x_n = np.random.multivariate_normal(mu2,cov,num_n)
-        x = np.vstack([x_p, x_n])
-        y = np.array([1.]*num_p + [-1.]*num_n)
-        num, dim = x.shape
-        ##### Hyper-parameters
-        nu, mu = 0.61, 0.1
-        ##### Names of variables #####
-        names_w = ['w%s' % i for i in range(dim)]
-        names_xi = ['xi%s' % i for i in range(num)]
-        names_u = ['u%s' % i for i in range(num)]
-        ##### Globally solve robust-nu-SVC #####
-        res_mip = rknsvc_mip(x, y, nu, mu)
-        print res_mip.solution.get_objective_value()
-        w_mip = np.array(res_mip.solution.get_values(names_w))
-        b_mip = res_mip.solution.get_values('b')
-        xi_mip = np.array(res_mip.solution.get_values(names_xi))
-        eta_mip = 1 - np.array(res_mip.solution.get_values(names_u))
-        rho_mip = res_mip.solution.get_values('rho')
-        obj_mip.append(res_mip.solution.get_objective_value())
-        ##### Solved by DCA #####
-        res_dc, b_dc, rho_dc, eta_dc = robust_nusvm(x, y, nu, mu, kernel='linear')
-        alf = np.array(res_dc.solution.get_values())
-        w_dc = np.dot(x.T, alf*y)
-        ## y_i (w x_i + b) >= rho - xi
-        xi_dc = rho_dc - y * (np.dot(x, w_dc) + b_dc)
-        xi_dc[xi_dc <= 0] = 0.
-        obj_dc.append(np.dot(eta_dc, xi_dc) / num + np.dot(w_dc, w_dc) / 2 - (nu-mu)*rho_dc)
-    obj_dc = np.array(obj_dc)
-    obj_mip = np.array(obj_mip)
-    ##### Plot #####
+    ## obj_dc, obj_mip = [], []
+    ## for s in range(10):
+    ##     np.random.seed(s)
+    ##     mu1 = [2,2]
+    ##     mu2 = [1,1]
+    ##     cov = [[1,0],[0,1]]
+    ##     num_p = num_n = 20
+    ##     x_p = np.random.multivariate_normal(mu1,cov,num_p)
+    ##     x_n = np.random.multivariate_normal(mu2,cov,num_n)
+    ##     x = np.vstack([x_p, x_n])
+    ##     y = np.array([1.]*num_p + [-1.]*num_n)
+    ##     num, dim = x.shape
+    ##     ##### Hyper-parameters
+    ##     nu, mu = 0.61, 0.1
+    ##     ##### Names of variables #####
+    ##     names_w = ['w%s' % i for i in range(dim)]
+    ##     names_xi = ['xi%s' % i for i in range(num)]
+    ##     names_u = ['u%s' % i for i in range(num)]
+    ##     ##### Globally solve robust-nu-SVC #####
+    ##     res_mip = rknsvc_mip(x, y, nu, mu)
+    ##     print res_mip.solution.get_objective_value()
+    ##     w_mip = np.array(res_mip.solution.get_values(names_w))
+    ##     b_mip = res_mip.solution.get_values('b')
+    ##     xi_mip = np.array(res_mip.solution.get_values(names_xi))
+    ##     eta_mip = 1 - np.array(res_mip.solution.get_values(names_u))
+    ##     rho_mip = res_mip.solution.get_values('rho')
+    ##     obj_mip.append(res_mip.solution.get_objective_value())
+    ##     ##### Solved by DCA #####
+    ##     res_dc, b_dc, rho_dc, eta_dc = robust_nusvm(x, y, nu, mu, kernel='linear')
+    ##     alf = np.array(res_dc.solution.get_values())
+    ##     w_dc = np.dot(x.T, alf*y)
+    ##     ## y_i (w x_i + b) >= rho - xi
+    ##     xi_dc = rho_dc - y * (np.dot(x, w_dc) + b_dc)
+    ##     xi_dc[xi_dc <= 0] = 0.
+    ##     obj_dc.append(np.dot(eta_dc, xi_dc) / num + np.dot(w_dc, w_dc) / 2 - (nu-mu)*rho_dc)
+    ## obj_dc = np.array(obj_dc)
+    ## obj_mip = np.array(obj_mip)
+    ## ##### Box plot #####
+    ## plt.boxplot(obj_dc/obj_mip)
+    ## plt.ylim([0.8, 1.01])
+    ## plt.xlabel('(nu, mu)')
+    ## plt.grid()
+    ## plt.xticks([1], ['(0.51, 0.10)'])
+    ## plt.show()
+    ##### Plot hyper plane #####
     ## memo w1 x1 + w2 x2 + b = 0
     ## yoko = np.array([-0., 3.])
     ## tate_dc = -yoko * w_dc[0] / w_dc[1] - b_dc / w_dc[1]
@@ -453,12 +445,3 @@ if __name__ == '__main__':
     ## plt.legend()
     ## plt.grid()
     ## plt.show()
-    ##### Plot 2 #####
-    plt.plot(obj_dc/obj_mip, label='DCA')
-    plt.boxplot(obj_dc/obj_mip)
-    plt.ylim([0.8, 1.01])
-    plt.xlabel('(nu, mu)')
-    plt.grid()
-    #ax.set_xticklabels(['(0.51, 0.10)'])
-    #plt.plot(obj_mip, label='MIP')
-    plt.show()
