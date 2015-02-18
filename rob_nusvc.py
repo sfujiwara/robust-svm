@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import cplex
 import time
 from sklearn.metrics import pairwise_kernels
+from sklearn import svm
 import pandas as pd
 
 # Robust-nu-SVM using linear kernel
@@ -214,10 +215,14 @@ def robust_ocsvm(dmat, nu, mu, kernel, gamma=1.0, coef0=0., degree=2):
     ##### Initial point #####
     eta = np.ones(NUM)
     ##### Compute kernel gram matrix #####
-    if kernel == 'linear': kmat = pairwise_kernels(dmat, metric='linear')
-    elif kernel == 'rbf': kmat = pairwise_kernels(dmat, metric='rbf', gamma=gamma)
-    elif kernel == 'polynomial': kmat = pairwise_kernels(dmat, metric='polynomial', coef0=coef0, degree=degree)
-    else: print 'Undefined Kernel!!'
+    if kernel == 'linear':
+        kmat = pairwise_kernels(dmat, metric='linear')
+    elif kernel == 'rbf':
+        kmat = pairwise_kernels(dmat, metric='rbf', gamma=gamma)
+    elif kernel == 'polynomial':
+        kmat = pairwise_kernels(dmat, metric='polynomial', coef0=coef0, degree=degree)
+    else:
+        print 'Undefined Kernel!!'
     kmat = np.round(kmat + 1e-8*np.eye(NUM), 10)
     ##### CPLEX object #####
     c = cplex.Cplex()
@@ -282,7 +287,7 @@ def rknsvc_mip(x, y, nu, mu):
     for i in xrange(num):
         linexpr = [[range(dim+2) + [dim+2+i] + [dim+num+2+i], [-1] + list(x[i]*y[i]) + [y[i]] + [1] + [bigM]]]
         c.linear_constraints.add(lin_expr = linexpr, senses='G')
-    c.write('test.lp')
+    ## c.write('test.lp')
     c.solve()
     print 'Status:', c.solution.get_status_string()
     print 'Objective Value:', c.solution.get_objective_value()
@@ -322,7 +327,8 @@ if __name__ == '__main__':
     '''
     ###### Synthetic data set for one-class SVM #####
     np.random.seed(0)
-    mean = [1,1]
+    ## mean = [1,1]
+    mean = [1, 1]
     cov = [[1,0],[0,1]]
     num = 200
     dim = 2
@@ -330,10 +336,12 @@ if __name__ == '__main__':
     ##### Kernel function #####
     kernel = 'linear'
     ##### Hyper-parameters #####
-    trial = 30
-    nu_cand = np.arange(0.051, 1.0, 0.1)
-    mu_cand = np.arange(0.1, 0.5, 0.1)
-    kappa_cand = np.arange(10, 130, 20)
+    trial = 1
+    ## nu_cand = np.arange(0.801, 0.9, 0.1)
+    ## mu_cand = np.arange(0.4, 0.5, 0.1)
+    nu_cand = np.array([0.505])
+    mu_cand = np.array([0.0])
+    kappa_cand = np.arange(10, 110, 10)
     dist = []
     for i in range(200):
         for j in range(i+1, 200):
@@ -358,11 +366,12 @@ if __name__ == '__main__':
                     ## Generate noise
                     np.random.seed(seed)
                     ind_ol = np.random.choice(range(200), num_ol, replace=False)
-                    x_train[ind_ol] += np.random.multivariate_normal(np.zeros(2) ,1e2*np.eye(2), num_ol)
+                    ## x_train[ind_ol] += np.random.multivariate_normal(np.zeros(2) ,1e2*np.eye(2), num_ol)
+                    x_train[ind_ol] += np.random.multivariate_normal(np.zeros(2) ,1e1*np.eye(2), num_ol)
                     if nu > mu:
                         res_oc, eta, kmat = robust_ocsvm(x_train, nu, mu, kernel, gamma=gamma)
                         alf = np.array(res_oc.solution.get_values())
-                        norm = np.sqrt(np.dot(alf, np.dot(kmat, alf))) * (nu - mu) ###
+                        norm = np.sqrt(np.dot(alf, np.dot(kmat, alf)))# * (nu - mu) ###
                         max_norm = np.max([max_norm, norm])
                         ## ind_sv = np.where(alf != 0)[0]
                         ## print ind_ol
@@ -371,11 +380,15 @@ if __name__ == '__main__':
                         ## plt.plot(x_train[ind_sv,0], x_train[ind_sv,1], 'o')
                         ## plt.grid()
                         ## plt.show()
+                        ##### Scikit-learn #####
+                        clf = svm.OneClassSVM(nu=nu, kernel="linear", gamma=0.1)
+                        clf.fit(x_train)
+                        print 'w:', -2*np.dot(x_train.T, alf), clf.coef_
                 df_result = df_result.append(pd.Series([mu, nu-mu, num_ol, max_norm], index=['mu', 'nu', 'kappa', 'max_norm']), ignore_index=True)
 
-    tmp = 13 * 0
+    #tmp = 5
     tmp2 = 'max_norm'
-    plt.plot( df_result['kappa'][0:12]/200., df_result[tmp2][tmp:(tmp+12)], label='(nu, mu) = (0.5, 0.3)')
+    plt.plot( df_result['kappa']/200., df_result['max_norm'], label='(nu, mu) = (0.5, 0.3)')
     plt.axvline(x=0.2, color='black')
     plt.grid()
     plt.xlabel('kappa/mu')
