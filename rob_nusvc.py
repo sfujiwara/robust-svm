@@ -339,8 +339,8 @@ if __name__ == '__main__':
     trial = 1
     ## nu_cand = np.arange(0.801, 0.9, 0.1)
     ## mu_cand = np.arange(0.4, 0.5, 0.1)
-    nu_cand = np.array([0.505])
-    mu_cand = np.array([0.0])
+    nu_cand = np.array([0.8])
+    mu_cand = np.array([0.2])
     kappa_cand = np.arange(10, 110, 10)
     dist = []
     for i in range(200):
@@ -367,7 +367,7 @@ if __name__ == '__main__':
                     np.random.seed(seed)
                     ind_ol = np.random.choice(range(200), num_ol, replace=False)
                     ## x_train[ind_ol] += np.random.multivariate_normal(np.zeros(2) ,1e2*np.eye(2), num_ol)
-                    x_train[ind_ol] += np.random.multivariate_normal(np.zeros(2) ,1e1*np.eye(2), num_ol)
+                    x_train[ind_ol] = np.random.multivariate_normal(10*np.ones(2) ,1e1*np.eye(2), num_ol)
                     if nu > mu:
                         res_oc, eta, kmat = robust_ocsvm(x_train, nu, mu, kernel, gamma=gamma)
                         alf = np.array(res_oc.solution.get_values())
