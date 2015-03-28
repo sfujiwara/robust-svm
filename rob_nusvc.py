@@ -144,13 +144,14 @@ def calc_eta(risks, mu):
     eta = 1 - eta
     return eta
 
-def robust_nusvm(dmat, y, nu, mu, kernel, gamma=1., coef0=0., degree=2):
+def robust_nusvm(dmat, y, nu, mu, kernel, eta='ones', gamma=1., coef0=0., degree=2):
     ##### Constant values #####
     EPS = 1e-3
     MAX_ITR = 15
     NUM, DIM = dmat.shape
     ##### Initial point #####
-    eta = np.ones(NUM)
+    if eta=='ones':
+        eta = np.ones(NUM)
     ##### Compute kernel gram matrix #####
     if kernel == 'linear':
         kmat = pairwise_kernels(x, metric='linear')
@@ -397,77 +398,218 @@ if __name__ == '__main__':
     ## plt.legend()
     ## plt.show()
 
+    '''
+    Numerical experiments comparing the global solution by MIP
+    and a local solution by DCA changing initial point
+    '''
+    ##### Hyper-parameters
+    nu = np.array([0.41, 0.51, 0.61, 0.71, 0.81])
+    mu = np.array([0.1, 0.1, 0.1, 0.1, 0.1])
+    num_glob1 = np.zeros(len(nu))
+    num_glob5 = np.zeros(len(nu))
+    num_glob10 = np.zeros(len(nu))
+    ##### Loop for hyper-parameters
+    for i in range(len(nu)):
+        ##### Loop for synthetic dataset #####
+        for j in range(100):
+            np.random.seed(j)
+            dim = 10
+            mean_p = np.ones(dim) * 3
+            mean_n = np.ones(dim)
+            cov = np.identity(dim) * 50
+            num_p = num_n = 20
+            x_p = np.random.multivariate_normal(mean_p, cov, num_p)
+            x_n = np.random.multivariate_normal(mean_n, cov, num_n)
+            x = np.vstack([x_p, x_n])
+            y = np.array([1.]*num_p + [-1.]*num_n)
+            num, dim = x.shape
+            ##### Globally solve robust-nu-SVC #####
+            res_mip = rknsvc_mip(x, y, nu[i], mu[i])
+            obj_mip = res_mip.solution.get_objective_value()
+            ##### Loop for initial points #####
+            obj_dc = np.zeros(10)
+            for k in range(10):
+                ##### Initial point #####
+                np.random.seed(k)
+                eta_init = np.ones(num)
+                eta_init[np.random.choice(range(num), 4, replace=False)] = 0.
+                ##### Solved by DCA #####
+                res_dc, b_dc, rho_dc, eta_dc = robust_nusvm(x, y, nu[i], mu[i], kernel='linear', eta=eta_init)
+                alf = np.array(res_dc.solution.get_values())
+                w_dc = np.dot(x.T, alf*y)
+                xi_dc = rho_dc - y * (np.dot(x, w_dc) + b_dc)
+                xi_dc[xi_dc <= 0] = 0.
+                obj_dc[k] = np.dot(eta_dc, xi_dc) / num + np.dot(w_dc, w_dc) / 2 - (nu[i]-mu[i])*rho_dc
+            if obj_dc[0] / obj_mip >= 0.97 or obj_dc[0] - obj_mip <= 1e-4:
+                num_glob1[i] += 1
+                num_glob5[i] += 1
+                num_glob10[i] += 1
+            elif min(obj_dc[:5]) / obj_mip >= 0.97 or min(obj_dc[:5]) - obj_mip <= 1e-4:
+                num_glob5[i] += 1
+                num_glob10[i] += 1
+            elif min(obj_dc) / obj_mip >= 0.97 or min(obj_dc) - obj_mip <= 1e-4:
+                num_glob10[i] += 1
+
+    ## ##### Loop for synthetic data set #####
+    ## test = []
+    ## for s in range(10):
+    ##     obj_dc = np.zeros([len(nu), trial])
+    ##     obj_mip = np.zeros(len(nu))
+    ##     dim = 2
+    ##     mu1 = np.ones(dim) * 3
+    ##     mu2 = np.ones(dim)
+    ##     cov = np.identity(dim) * 1
+    ##     num_p = num_n = 20
+    ##     np.random.seed(0)
+    ##     x_p = np.random.multivariate_normal(mu1,cov,num_p)
+    ##     x_n = np.random.multivariate_normal(mu2,cov,num_n)
+    ##     x = np.vstack([x_p, x_n])
+    ##     y = np.array([1.]*num_p + [-1.]*num_n)
+    ##     num, dim = x.shape
+    ##     ##### Names of variables #####
+    ##     names_w = ['w%s' % i for i in range(dim)]
+    ##     names_xi = ['xi%s' % i for i in range(num)]
+    ##     names_u = ['u%s' % i for i in range(num)]
+    ##     ##### Loop for hyper-parameters #####
+    ##     for i in range(len(nu)):
+    ##         ##### Globally solve robust-nu-SVC #####
+    ##         res_mip = rknsvc_mip(x, y, nu[i], mu[i])
+    ##         w_mip = np.array(res_mip.solution.get_values(names_w))
+    ##         b_mip = res_mip.solution.get_values('b')
+    ##         xi_mip = np.array(res_mip.solution.get_values(names_xi))
+    ##         eta_mip = 1 - np.array(res_mip.solution.get_values(names_u))
+    ##         rho_mip = res_mip.solution.get_values('rho')
+    ##         obj_mip[i] = res_mip.solution.get_objective_value()
+    ##         ##### Loop for initial eta #####
+    ##         for j in range(trial):
+    ##             ##### Initial point #####
+    ##             np.random.seed(j)
+    ##             eta_init = np.ones(num)
+    ##             eta_init[np.random.choice(range(num), 4, replace=False)] = 0.
+    ##             ##### Solved by DCA #####
+    ##             res_dc, b_dc, rho_dc, eta_dc = robust_nusvm(x, y, nu[i], mu[i], kernel='linear', eta=eta_init)
+    ##             alf = np.array(res_dc.solution.get_values())
+    ##             w_dc = np.dot(x.T, alf*y)
+    ##             ## y_i (w x_i + b) >= rho - xi
+    ##             xi_dc = rho_dc - y * (np.dot(x, w_dc) + b_dc)
+    ##             xi_dc[xi_dc <= 0] = 0.
+    ##             obj_dc[i, j] = np.dot(eta_dc, xi_dc) / num + np.dot(w_dc, w_dc) / 2 - (nu[i]-mu[i])*rho_dc
+    ##     num_glob = np.array([sum(obj_dc[i]/obj_mip[i] > 0.97) for i in range(5)])
+    ##     test.append(num_glob)
+
+    ##### Box plot #####
+    ## plt.boxplot([obj_dc[0]/obj_mip[0],
+    ##              obj_dc[1]/obj_mip[1],
+    ##              obj_dc[2]/obj_mip[2],
+    ##              obj_dc[3]/obj_mip[3],
+    ##              obj_dc[4]/obj_mip[4]], whis=500000)
+    ## plt.ylim([0.8, 1.01])
+    ## plt.xlabel('(nu, mu)')
+    ## plt.ylabel('obj(DCA) / obj(MIP)')
+    ## plt.grid()
+    ## plt.xticks(range(1,6), ['(0.4, 0.1)', '(0.5, 0.1)',
+    ##                        '(0.6, 0.1)', '(0.7, 0.1)', '(0.8, 0.1)'])
+    ## plt.show()
+
+    ## num_glob = np.array([sum(obj_dc[i]/obj_mip[i] > 1 - 1e-2) for i in range(5)])
+    ## plt.xticks(range(0,5), ['(0.4, 0.1)', '(0.5, 0.1)',
+    ##                        '(0.6, 0.1)', '(0.7, 0.1)', '(0.8, 0.1)'])
+    ## plt.plot(num_glob)
+    ## test = np.array(test)
+    ## plt.boxplot([test[:,0],
+    ##              test[:,1],
+    ##              test[:,2],
+    ##              test[:,3],
+    ##              test[:,4]], whis=500000)
+    ## plt.plot(test[0], 'x')
+    ## plt.plot(test[1], 'x')
+    ## plt.plot(test[2], 'x')
+    ## plt.plot(test[3], 'x')
+    ## plt.plot(test[4], 'x')
+    ## plt.plot([max(obj_dc[i]/obj_mip[i]) for i in range(5)], label='max')
+    ## plt.plot([np.mean(obj_dc[i]/obj_mip[i]) for i in range(5)], label='mean')
+    ## plt.plot([min(obj_dc[i]/obj_mip[i]) for i in range(5)], label='min')
+    ## plt.ylabel('#{obj(DCA) = obj(MIP)}')
+    ## plt.xlabel('(nu, mu)')
+    ## plt.ylim([0, 105])
+    ## plt.legend()
+    ## plt.grid()
+    ## plt.show()
+
+    ## plt.plot(x_p[:,0], x_p[:,1], 'o')
+    ## plt.plot(x_n[:,0], x_n[:,1], '^')
+    ## plt.show()
+
 
     '''
     Numerical experiments comparing the global solution by MIP
     and a local solution by DCA
     '''
-    ##### Hyper-parameters
-    ## nu, mu = 0.61, 0.1
-    nu = np.array([0.41, 0.51, 0.61, 0.71, 0.81])
-    mu = np.array([0.1, 0.1, 0.1, 0.1, 0.1])
-    trial = 200
-    ##### Synthetic data set #####
-    ## obj_dc, obj_mip = [], []
-    obj_dc = np.zeros([len(nu), trial])
-    obj_mip = np.zeros([len(nu), trial])
-    ##### Loop for seed #####
-    for s in range(trial):
-        np.random.seed(s)
-        mu1 = [2,2]
-        mu2 = [1,1]
-        cov = [[1,0],[0,1]]
-        num_p = num_n = 20
-        x_p = np.random.multivariate_normal(mu1,cov,num_p)
-        x_n = np.random.multivariate_normal(mu2,cov,num_n)
-        x = np.vstack([x_p, x_n])
-        y = np.array([1.]*num_p + [-1.]*num_n)
-        num, dim = x.shape
-        ##### Names of variables #####
-        names_w = ['w%s' % i for i in range(dim)]
-        names_xi = ['xi%s' % i for i in range(num)]
-        names_u = ['u%s' % i for i in range(num)]
-        ##### Loop for hyper-parameters #####
-        for i in range(len(nu)):
-            ##### Globally solve robust-nu-SVC #####
-            res_mip = rknsvc_mip(x, y, nu[i], mu[i])
-            ## print res_mip.solution.get_objective_value()
-            w_mip = np.array(res_mip.solution.get_values(names_w))
-            b_mip = res_mip.solution.get_values('b')
-            xi_mip = np.array(res_mip.solution.get_values(names_xi))
-            eta_mip = 1 - np.array(res_mip.solution.get_values(names_u))
-            rho_mip = res_mip.solution.get_values('rho')
-            ## obj_mip.append(res_mip.solution.get_objective_value())
-            obj_mip[i, s] = res_mip.solution.get_objective_value()
-            ##### Solved by DCA #####
-            res_dc, b_dc, rho_dc, eta_dc = robust_nusvm(x, y, nu[i], mu[i], kernel='linear')
-            alf = np.array(res_dc.solution.get_values())
-            w_dc = np.dot(x.T, alf*y)
-            ## y_i (w x_i + b) >= rho - xi
-            xi_dc = rho_dc - y * (np.dot(x, w_dc) + b_dc)
-            xi_dc[xi_dc <= 0] = 0.
-            ## obj_dc.append(np.dot(eta_dc, xi_dc) / num + np.dot(w_dc, w_dc) / 2 - (nu[i]-mu[i])*rho_dc)
-            obj_dc[i, s] = np.dot(eta_dc, xi_dc) / num + np.dot(w_dc, w_dc) / 2 - (nu[i]-mu[i])*rho_dc
-    ##### Box plot #####
-    ind_nonzero = [np.where(i < -1e-3)[0] for i in obj_mip]
-    plt.boxplot([obj_dc[0,ind_nonzero[0]]/obj_mip[0,ind_nonzero[0]],
-                 obj_dc[1,ind_nonzero[1]]/obj_mip[1,ind_nonzero[1]],
-                 obj_dc[2,ind_nonzero[2]]/obj_mip[2,ind_nonzero[2]],
-                 obj_dc[3,ind_nonzero[3]]/obj_mip[3,ind_nonzero[3]],
-                 obj_dc[4,ind_nonzero[4]]/obj_mip[4,ind_nonzero[4]]], whis=500)
-    ## plt.boxplot([obj_dc[0]/obj_mip[0], obj_dc[1]/obj_mip[1],
-    ##              obj_dc[2]/obj_mip[2], obj_dc[3]/obj_mip[3],
-    ##              obj_dc[4]/obj_mip[4]])
-    plt.ylim([0.8, 1.01])
-    plt.xlabel('(nu, mu)')
-    plt.ylabel('obj(DCA) / obj(MIP)')
-    plt.grid()
-    plt.xticks(range(1,6), ['(0.4, 0.1)', '(0.5, 0.1)',
-                           '(0.6, 0.1)', '(0.7, 0.1)', '(0.8, 0.1)'])
-    plt.show()
+    ## ##### Hyper-parameters
+    ## nu = np.array([0.41, 0.51, 0.61, 0.71, 0.81])
+    ## mu = np.array([0.1, 0.1, 0.1, 0.1, 0.1])
+    ## trial = 1
+    ## ##### Synthetic data set #####
+    ## ## obj_dc, obj_mip = [], []
+    ## obj_dc = np.zeros([len(nu), trial])
+    ## obj_mip = np.zeros([len(nu), trial])
+    ## ##### Loop for seed #####
+    ## for s in range(trial):
+    ##     np.random.seed(s)
+    ##     mu1 = [2,2]
+    ##     mu2 = [1,1]
+    ##     cov = [[1,0],[0,1]]
+    ##     num_p = num_n = 20
+    ##     x_p = np.random.multivariate_normal(mu1,cov,num_p)
+    ##     x_n = np.random.multivariate_normal(mu2,cov,num_n)
+    ##     x = np.vstack([x_p, x_n])
+    ##     y = np.array([1.]*num_p + [-1.]*num_n)
+    ##     num, dim = x.shape
+    ##     ##### Names of variables #####
+    ##     names_w = ['w%s' % i for i in range(dim)]
+    ##     names_xi = ['xi%s' % i for i in range(num)]
+    ##     names_u = ['u%s' % i for i in range(num)]
+    ##     ##### Loop for hyper-parameters #####
+    ##     for i in range(len(nu)):
+    ##         ##### Globally solve robust-nu-SVC #####
+    ##         res_mip = rknsvc_mip(x, y, nu[i], mu[i])
+    ##         ## print res_mip.solution.get_objective_value()
+    ##         w_mip = np.array(res_mip.solution.get_values(names_w))
+    ##         b_mip = res_mip.solution.get_values('b')
+    ##         xi_mip = np.array(res_mip.solution.get_values(names_xi))
+    ##         eta_mip = 1 - np.array(res_mip.solution.get_values(names_u))
+    ##         rho_mip = res_mip.solution.get_values('rho')
+    ##         ## obj_mip.append(res_mip.solution.get_objective_value())
+    ##         obj_mip[i, s] = res_mip.solution.get_objective_value()
+    ##         ##### Solved by DCA #####
+    ##         res_dc, b_dc, rho_dc, eta_dc = robust_nusvm(x, y, nu[i], mu[i], kernel='linear')
+    ##         alf = np.array(res_dc.solution.get_values())
+    ##         w_dc = np.dot(x.T, alf*y)
+    ##         ## y_i (w x_i + b) >= rho - xi
+    ##         xi_dc = rho_dc - y * (np.dot(x, w_dc) + b_dc)
+    ##         xi_dc[xi_dc <= 0] = 0.
+    ##         ## obj_dc.append(np.dot(eta_dc, xi_dc) / num + np.dot(w_dc, w_dc) / 2 - (nu[i]-mu[i])*rho_dc)
+    ##         obj_dc[i, s] = np.dot(eta_dc, xi_dc) / num + np.dot(w_dc, w_dc) / 2 - (nu[i]-mu[i])*rho_dc
+    ## ##### Box plot #####
+    ## ind_nonzero = [np.where(i < -1e-3)[0] for i in obj_mip]
+    ## plt.boxplot([obj_dc[0,ind_nonzero[0]]/obj_mip[0,ind_nonzero[0]],
+    ##              obj_dc[1,ind_nonzero[1]]/obj_mip[1,ind_nonzero[1]],
+    ##              obj_dc[2,ind_nonzero[2]]/obj_mip[2,ind_nonzero[2]],
+    ##              obj_dc[3,ind_nonzero[3]]/obj_mip[3,ind_nonzero[3]],
+    ##              obj_dc[4,ind_nonzero[4]]/obj_mip[4,ind_nonzero[4]]], whis=500)
+    ## ## plt.boxplot([obj_dc[0]/obj_mip[0], obj_dc[1]/obj_mip[1],
+    ## ##              obj_dc[2]/obj_mip[2], obj_dc[3]/obj_mip[3],
+    ## ##              obj_dc[4]/obj_mip[4]])
+    ## plt.ylim([0.8, 1.01])
+    ## plt.xlabel('(nu, mu)')
+    ## plt.ylabel('obj(DCA) / obj(MIP)')
+    ## plt.grid()
+    ## plt.xticks(range(1,6), ['(0.4, 0.1)', '(0.5, 0.1)',
+    ##                        '(0.6, 0.1)', '(0.7, 0.1)', '(0.8, 0.1)'])
+    ## plt.show()
 
-    np.savetxt('obj_dc.csv', obj_dc, fmt="%.15f", delimiter=',')
-    np.savetxt('obj_mip.csv', obj_mip, fmt="%.15f", delimiter=',')
+    ## np.savetxt('obj_dc.csv', obj_dc, fmt="%.15f", delimiter=',')
+    ## np.savetxt('obj_mip.csv', obj_mip, fmt="%.15f", delimiter=',')
 
     ##### Plot hyper plane #####
     ## ## memo w1 x1 + w2 x2 + b = 0
