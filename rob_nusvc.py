@@ -408,24 +408,36 @@ if __name__ == '__main__':
     num_glob1 = np.zeros(len(nu))
     num_glob5 = np.zeros(len(nu))
     num_glob10 = np.zeros(len(nu))
+    s_max = np.zeros(len(nu))
     ##### Loop for hyper-parameters
     for i in range(len(nu)):
         ##### Loop for synthetic dataset #####
+        s = 0
         for j in range(100):
-            np.random.seed(j)
-            dim = 10
-            mean_p = np.ones(dim) * 3
-            mean_n = np.ones(dim)
-            cov = np.identity(dim) * 50
-            num_p = num_n = 20
-            x_p = np.random.multivariate_normal(mean_p, cov, num_p)
-            x_n = np.random.multivariate_normal(mean_n, cov, num_n)
-            x = np.vstack([x_p, x_n])
-            y = np.array([1.]*num_p + [-1.]*num_n)
-            num, dim = x.shape
-            ##### Globally solve robust-nu-SVC #####
-            res_mip = rknsvc_mip(x, y, nu[i], mu[i])
-            obj_mip = res_mip.solution.get_objective_value()
+            while True:
+                np.random.seed(s)
+                dim = 10
+                mean_p = np.ones(dim) * 3
+                mean_n = np.ones(dim)
+                cov = np.identity(dim) * 50
+                num_p = num_n = 20
+                x_p = np.random.multivariate_normal(mean_p, cov, num_p)
+                x_n = np.random.multivariate_normal(mean_n, cov, num_n)
+                x = np.vstack([x_p, x_n])
+                y = np.array([1.]*num_p + [-1.]*num_n)
+                num, dim = x.shape
+                ##### Outliers #####
+                ind_ol = np.random.choice(range(num_p), 4, replace=False)
+                y[ind_ol] = y[ind_ol] * -1
+                ##### Globally solve robust-nu-SVC #####
+                res_mip = rknsvc_mip(x, y, nu[i], mu[i])
+                obj_mip = res_mip.solution.get_objective_value()
+                s += 1
+                if obj_mip <= -1e-4:
+                    break
+                else:
+                    print 'opt(MIP) =', obj_mip
+                    print '(nu, mu) =', (nu[i], mu[i])
             ##### Loop for initial points #####
             obj_dc = np.zeros(10)
             for k in range(10):
@@ -440,15 +452,16 @@ if __name__ == '__main__':
                 xi_dc = rho_dc - y * (np.dot(x, w_dc) + b_dc)
                 xi_dc[xi_dc <= 0] = 0.
                 obj_dc[k] = np.dot(eta_dc, xi_dc) / num + np.dot(w_dc, w_dc) / 2 - (nu[i]-mu[i])*rho_dc
-            if obj_dc[0] / obj_mip >= 0.97 or obj_dc[0] - obj_mip <= 1e-4:
+            if obj_dc[0] / obj_mip >= 0.97:# or obj_dc[0] - obj_mip <= 1e-4:
                 num_glob1[i] += 1
                 num_glob5[i] += 1
                 num_glob10[i] += 1
-            elif min(obj_dc[:5]) / obj_mip >= 0.97 or min(obj_dc[:5]) - obj_mip <= 1e-4:
+            elif min(obj_dc[:5]) / obj_mip >= 0.97:# or min(obj_dc[:5]) - obj_mip <= 1e-4:
                 num_glob5[i] += 1
                 num_glob10[i] += 1
-            elif min(obj_dc) / obj_mip >= 0.97 or min(obj_dc) - obj_mip <= 1e-4:
+            elif min(obj_dc) / obj_mip >= 0.97:# or min(obj_dc) - obj_mip <= 1e-4:
                 num_glob10[i] += 1
+        s_max[i] = s
 
     ## ##### Loop for synthetic data set #####
     ## test = []
