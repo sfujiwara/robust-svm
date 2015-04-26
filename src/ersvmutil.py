@@ -2,7 +2,7 @@
 
 ##### Compute nu_max #####
 def calc_nu_max(y):
-    np.double(len(y)-np.abs(np.sum(y))) / len(y)
+    return np.double(len(y)-np.abs(np.sum(y))) / len(y)
 
 ## -*- coding: utf-8 -*-
 
