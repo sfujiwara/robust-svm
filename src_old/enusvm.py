@@ -34,7 +34,7 @@ def calc_nu_min(xmat, y):
     return 2/(c.solution.get_values()[0]*m)
 
 ##### Training C-SVM using dual #####
-def csvm_dual(x, y, cost, kernel, gamma=1., coef0=0., degree=2):
+def csvm_dual(x, y, cost=1.0, kernel='linear', gamma=1., coef0=0., degree=2):
     eps = 1e-5
     m, n = x.shape
     ##### Compute kernel gram matrix #####
@@ -188,83 +188,10 @@ if __name__ == '__main__':
     import time
     
     # Dataset
-    dataset = np.loadtxt('Dataset/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
+    dataset = np.loadtxt('dataset/libsvm/liver-disorders/liver-disorders_scale.csv', delimiter=',')
     y = dataset[:,0]
-    y[np.where(y==2)] = -1.
+    ##y[np.where(y==2)] = -1.
     x = dataset[:,1:]
     num, dim = x.shape
-
-    # Synthetic data set including outliers
-    ## np.random.seed(0)
-    ## num_p, num_n = 1000, 1000
-    ## dim = 30
-    ## mu_p, mu_n = np.ones(dim), -np.ones(dim)
-    ## cov_p = np.eye(dim)
-    ## cov_n = np.eye(dim)
-    ## x_p = np.random.multivariate_normal(mu_p, cov_p, num_p)
-    ## x_n = np.random.multivariate_normal(mu_n, cov_n, num_n)
-    ## x = np.vstack([x_p, x_n])
-    ## y = np.array([1.]*num_p + [-1.]*(num_n))
-    ## num, dim = x.shape
-
-    ## # Toy problem 1
-    ## x = np.array([[2., 0.], [3., -1.], [0. ,2.], [-1., 3.]])
-    ## y = np.array([1., 1., -1., -1.])
-    ## num, dim = x.shape
-
-    ## # Toy problem 2
-    ## x = np.array([[2., 0.], [3., -1.], [-5, 7], [0. ,2.], [-1., 3.]])
-    ## y = np.array([1., 1., 1., -1., -1.])
-    ## num, dim = x.shape
-
-    ## # Toy problem 3
-    ## x = np.array([[2, 3], [2, 2], [1, 1.5], [1, 2.5], [1, 3]])
-    ## y = np. array([1, -1, 1, 1, -1])
-    ## num, dim = x.shape
-
-    # Toy problem 4
-    ## x = np.array([[2, 3], [2, 2], [1, 2], [1, 3]])
-    ## y = np. array([1, -1, 1, -1])
-    ## num, dim = x.shape
-    
-    ## plt.plot(x[:,0], x[:,1], 'x')
-    ## plt.grid()
-    ## plt.show()
-
-    # Compute nu_min
-    #nu_min = calc_nu_min(x, y)
-
-    # Names of variables
-    w_names = ['w'+'%s' % i for i in range(dim)]
-    xi_names = ['xi'+'%s' % i for i in range(num)]
-
-    # Hyper-parameter
-    cost = 10
-    # Kernel function
-    kernel = 'linear'
-    kmat = pairwise_kernels(x, metric='linear')
-    qmat = (kmat.T * y).T * y + 1e-8*np.eye(num)
-    
-    t1 = time.time()
-    res_primal = csvm_primal(x, y, cost, qpmethod=0)
-    t2 = time.time()
-    w_primal = np.array(res_primal.solution.get_values(w_names))
-    b_primal = res_primal.solution.get_values('b')
-    print 'TIME:', t2 - t1
-
-    t1 = time.time()
-    res_dual, b_dual, ind_sv, ind_mv = csvm_dual(x, y, cost, kernel=kernel)
-    t2 = time.time()
-    alpha = np.array(res_dual.solution.get_values())
-    print 'TIME:', t2 - t1
-
-    ## w1 = np.array(res_primal.solution.get_values(w_names))
-    ## ## print w1
-    ## print 'OBJ VAL:', res_primal.solution.get_objective_value()
-    ## print 'OBJ_VAL:', res_dual.solution.get_objective_value()
-    ## w2 = np.dot(alpha*y, x)
-    ## ## print w2
-
-    ## print 'alpha:', alpha
-    ## print 'w:', w1, w2
-    ## res_enusvm = enusvm(x, y, nu=0.2, w_init=np.ones(dim))
+    c, b, sv, mv = csvm_dual(x, y)
+    alpha = np.array(c.solution.get_values())

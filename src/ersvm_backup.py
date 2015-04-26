@@ -11,83 +11,74 @@ import cplex
 import time
 import enusvm
 
-class LinearPrimalERSVM():
-    def __init__(self):
-        self.max_itr = 100
-
-    def set_training_data(x, y):
-        self.x = x
-        self.y = y
-        self.num, self.dim = self.x.shape
-
-    def set_initial_point(initial_weight, initial_bias):
-        self.weight = initial_weight
-        self.b = initial_bias
-
-    ##### Minimize a difference of CVaR by DCA (using linear kernel) #####
-    def diff_cvar(nu, mu):
-        self.c = cplex.Cplex()
-        self.c.set_results_stream(None)
-        w_names = ['w%s' % i for i in range(dim)]
-        xi_names = ['xi%s' % i for i in range(num)]
-        self.t = []
-        ##########################################################################
-        ##### Initialize risk #####
+##### Minimize a difference of CVaR by DCA (using linear kernel) #####
+def diff_cvar(dmat, labels, weight, bias, nu, mu):
+    max_itr = 100
+    num, dim = dmat.shape
+    c = cplex.Cplex()
+    c.set_results_stream(None)
+    w_names = ['w' +'%s' % i for i in range(dim)]
+    xi_names = ['xi'+'%s' % i for i in range(num)]
+    coeffs_t = []
+    ##### Initialize risk #####
+    risks = - labels * (np.dot(dmat, weight) + bias)
+    ##### Initialize eta #####
+    eta = calc_eta(risks, mu)
+    eta_bef = calc_eta(risks, mu)
+    ##### Initialize t #####
+    obj_val_bef = num * (calc_cvar(risks, 1-nu)*nu - calc_cvar(risks, 1-mu)*mu)
+    t = max(0, obj_val_bef / 0.99)
+    coeffs_t.append(t)
+    print 't:\t\t', t
+    ##### Set variables and objective function #####
+    c.variables.add(names=w_names, lb=[-cplex.infinity]*dim, ub=[cplex.infinity]*dim)
+    c.variables.add(names=['b'], lb=[-cplex.infinity], ub=[cplex.infinity])
+    c.variables.add(names=xi_names, obj=[1.]*num, lb=[0.]*num, ub=[cplex.infinity]*num)
+    c.variables.add(names=['alpha'], obj=[nu*num], lb=[-cplex.infinity], ub=[cplex.infinity])
+    ##### Set quadratic constraint #####
+    c.quadratic_constraints.add(name='norm', quad_expr=[w_names, w_names, [1.]*dim], rhs=1., sense='L')
+    ##### Set linear constraints w*y_i*x_i + b*y_i + xi_i - alf >= 0 #####
+    linexpr = [[w_names+['b', 'xi%s' % i, 'alpha'], list(dmat[i]*labels[i])+[labels[i], 1., 1.]] for i in range(num)]
+    names = ['margin%s' % i for i in range(num)]
+    c.linear_constraints.add(names=names, senses='G'*num, lin_expr=linexpr)
+    ## for i in xrange(m):
+    ##     linexpr = [[w_names + ['b'] + ['xi%s' % i] + ['alpha'], list(dmat[i]*labels[i]) + [labels[i]] + [1.] + [1.]]]
+    ##     c.linear_constraints.add(names = ['margin%s' % i], senses = 'G', lin_expr = linexpr)
+    ##### Set QP optimization method #####
+    c.parameters.qpmethod.set(0)
+    ##### Iteration #####
+    for i in xrange(max_itr):
+        print '\nITERATION:\t', i+1
+        print '|w|:\t\t', np.linalg.norm(weight)
+        ##### Update objective function #####
+        c.objective.set_linear('b', np.dot(1-eta, labels))
+        c.objective.set_linear(zip(w_names, np.dot(labels*(1-eta), dmat) - 2*t*weight))        
+        ##### Solve subproblem #####
+        c.solve()
+        weight = np.array(c.solution.get_values(w_names))
+        xi = np.array(c.solution.get_values(xi_names))
+        bias = c.solution.get_values('b')
+        alpha = c.solution.get_values('alpha')
+        ##### Update risk #####
         risks = - labels * (np.dot(dmat, weight) + bias)
-        ##### Initialize eta #####
+        ##### Update eta #####
         eta = calc_eta(risks, mu)
-        eta_bef = calc_eta(risks, mu)
-        ##### Initialize t #####
-        obj_val_bef = num * (calc_cvar(risks, 1-nu)*nu - calc_cvar(risks, 1-mu)*mu)
-        t = max(0, obj_val_bef / 0.99)
+        ##### Objective Value #####
+        obj_val = num * (calc_cvar(risks, 1-nu) * nu - calc_cvar(risks, 1-mu) * mu)
+        ##### Update t #####
+        t = max(1e-5 + obj_val/0.999, 0.)
         coeffs_t.append(t)
+        print 'OBJCTIVE VALUE:\t', obj_val
         print 't:\t\t', t
-        ##### Set variables and objective function #####
-        c.variables.add(names=w_names, lb=[-cplex.infinity]*dim, ub=[cplex.infinity]*dim)
-        c.variables.add(names=['b'], lb=[-cplex.infinity], ub=[cplex.infinity])
-        c.variables.add(names=xi_names, obj=[1.]*num, lb=[0.]*num, ub=[cplex.infinity]*num)
-        c.variables.add(names=['alpha'], obj=[nu*num], lb=[-cplex.infinity], ub=[cplex.infinity])
-        ##### Set quadratic constraint #####
-        c.quadratic_constraints.add(name='norm', quad_expr=[w_names, w_names, [1.]*dim], rhs=1., sense='L')
-        ##### Set linear constraints w*y_i*x_i + b*y_i + xi_i - alf >= 0 #####
-        linexpr = [[w_names+['b', 'xi%s' % i, 'alpha'], list(dmat[i]*labels[i])+[labels[i], 1., 1.]] for i in range(num)]
-        names = ['margin%s' % i for i in range(num)]
-        c.linear_constraints.add(names=names, senses='G'*num, lin_expr=linexpr)
-        ##### Set QP optimization method #####
-        c.parameters.qpmethod.set(0)
-        ##### Iteration #####
-        for i in xrange(max_itr):
-            print '\nITERATION:\t', i+1
-            print '|w|:\t\t', np.linalg.norm(weight)
-            ##### Update objective function #####
-            c.objective.set_linear('b', np.dot(1-eta, labels))
-            c.objective.set_linear(zip(w_names, np.dot(labels*(1-eta), dmat) - 2*t*weight))        
-            ##### Solve subproblem #####
-            c.solve()
-            weight = np.array(c.solution.get_values(w_names))
-            xi = np.array(c.solution.get_values(xi_names))
-            bias = c.solution.get_values('b')
-            alpha = c.solution.get_values('alpha')
-            ##### Update risk #####
-            risks = - labels * (np.dot(dmat, weight) + bias)
-            ##### Update eta #####
-            eta = calc_eta(risks, mu)
-            ##### Objective Value #####
-            obj_val = num * (calc_cvar(risks, 1-nu) * nu - calc_cvar(risks, 1-mu) * mu)
-            ##### Update t #####
-            t = max(1e-5 + obj_val/0.999, 0.)
-            coeffs_t.append(t)
-            print 'OBJCTIVE VALUE:\t', obj_val
-            print 't:\t\t', t
-            ##### Termination #####
-            diff_obj = np.abs((obj_val_bef - obj_val))
-            print 'DIFF_OBJ:\t', diff_obj
-            if diff_obj < 1e-10: break
-            ## if np.all(eta == eta_bef): break
-            obj_val_bef = obj_val
-            eta_bef = eta
-        print 'OVER MAXIMUM ITERATION'
-        return c, eta
+        ##### Termination #####
+        diff_obj = np.abs((obj_val_bef - obj_val))
+        print 'DIFF_OBJ:\t', diff_obj
+        if diff_obj < 1e-10: break
+        ## if np.all(eta == eta_bef): break
+        obj_val_bef = obj_val
+        eta_bef = eta
+    print 'OVER MAXIMUM ITERATION'
+    return c, eta
 
 # Calculate beta-CVaR
 def cvar(weight, bias, beta, dmat, labels):
@@ -353,83 +344,21 @@ def heuristic_dr(xmat, y, nu, w_init, gamma=0.1, heuristics=False):
     return [result, w, b, active_set, nu_i]
 
 if __name__ == '__main__':
-    import pandas as pd
-    # Read a UCI dataset
-    ## dataset = np.loadtxt('Dataset/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
-    ## dataset = np.loadtxt('Dataset/LIBSVM/heart/heart_scale.csv', delimiter=',')
-    dataset = np.loadtxt('Dataset/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
-    ## dataset = np.loadtxt('Dataset/LIBSVM/sonar/sonar_scale.csv', delimiter=',')
+    ## Read a UCI dataset
+    dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
     num, dim = x.shape
-    ## dmat_test = dmat
-    ## labels_test = labels
-    
-    ##### Set parameters #####
-    ## nu_cand = np.arange(0.05, 0.6, 0.03)
-    nu_cand = np.arange(0.05, 0.65, 0.05)
-    nu_cand = np.array([0.2])
     ##### Names of variables #####
     w_names = ['w%s'  % i for i in range(dim)]
     xi_names = ['xi%s' % i for i in range(num)]
-
-    num_seed = 10
-    obj_h = np.zeros([num_seed, len(nu_cand)])
-    obj_dc = np.zeros([num_seed, len(nu_cand)])
-    mu_cand = np.zeros([num_seed, len(nu_cand)])
-    err_h = np.zeros([num_seed, len(nu_cand)])
-    err_dc = np.zeros([num_seed, len(nu_cand)])
-    for i in range(num_seed):
-        ##### Initial point #####
-        np.random.seed(i+75+3)
-        w_init = np.random.normal(0, 1, dim)
-        w_init /= np.linalg.norm(w_init)
-        b_init = np.random.normal(0, 1)
-        for j in range(len(nu_cand)):
-            nu = nu_cand[j]
-            ##### Heuristic algorithm #####
-            res_h, w_h, b_h, active_set, nu_i = heuristic_dr(x, y, nu, w_init, gamma = 0.03/nu, heuristics = True)
-            risks_h = - (np.dot(x, w_h) + b_h) * y
-            mu = 1 - len(active_set) / float(num)
-            mu_cand[i,j] = mu
-            obj_h[i,j] = nu * calc_cvar(risks_h, 1-nu) - mu * calc_cvar(risks_h, 1-mu)
-            err_h[i,j] = sum(y * (np.dot(x, w_h) + b_h) <= 0)
-
-            ##### Difference of CVaRs with linear kernel #####
-            result, eta = diff_cvar(x, y, w_init, b_init, nu, mu)
-            w_dc = np.array(result.solution.get_values(w_names))
-            xi     = np.array(result.solution.get_values(xi_names))
-            b_dc   = result.solution.get_values('b')
-            alpha = result.solution.get_values('alpha')
-            risks_dc = - y * (np.dot(x, w_dc) + b_dc)
-            obj_dc[i,j] = nu * calc_cvar(risks_dc, 1-nu) - mu * calc_cvar(risks_dc, 1-mu)
-            err_dc[i,j] = sum(y * (np.dot(x, w_dc) + b_dc) <= 0)
-
-    obj_diff = (obj_dc - obj_h) / abs(obj_dc)
-    diff_ave = np.array([np.mean(i) for i in obj_diff.T])
-    diff_max = np.array([np.max(i) for i in obj_diff.T])
-    diff_min = np.array([np.min(i) for i in obj_diff.T])
-    diff_sd = np.array([np.std(i) for i in obj_diff.T])
-    plt.errorbar(nu_cand, diff_ave, yerr=diff_sd, label='Mean')
-    #plt.plot(nu_cand, diff_max, label='Max')
-    #plt.plot(nu_cand, diff_min, label='Min')
-    plt.legend()
-    plt.grid()
-    plt.xlabel('nu')
-    plt.ylabel('[OBJ(DCA) - OBJ(Heuristics)] / |OBJ(DCA)|')
-    plt.show()
-
-    np.savetxt('obj_dc.csv', obj_dc, fmt='%0.9f', delimiter=',')
-    np.savetxt('obj_h.csv', obj_h, fmt='%0.9f', delimiter=',')
-    np.savetxt('err_dc.csv', err_dc, fmt='%0.9f', delimiter=',')
-    np.savetxt('err_h.csv', err_h, fmt='%0.9f', delimiter=',')
-
-    ## res, eta = diff_cvar(x, y, w_init, b_init, nu=0.5, mu=0.11)
-    ## w_dc = np.array(res.solution.get_values(w_names))
-    ## xi     = np.array(res.solution.get_values(xi_names))
-    ## b_dc   = res.solution.get_values('b')
-    ## alpha = res.solution.get_values('alpha')
-    ## r_dc = - y * (np.dot(x, w_dc) + b_dc)
-    ## ind_ol = np.where(eta != 1)[0]
-    ## print np.sort(r_dc[ind_ol])
-    ## print np.sort(r_dc)[305:]
+    initial_weight = np.ones(dim)
+    initial_bias = 0
+    nu = 0.6
+    mu = 0.1
+    time_start = time.time()
+    res, eta = diff_cvar(x, y, initial_weight, initial_bias, nu, mu)
+    time_end = time.time()
+    print 'time', time_end - time_start
+    w = res.solution.get_values(w_names)
+    b = res.solution.get_values('b')
