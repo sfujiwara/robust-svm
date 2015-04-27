@@ -29,7 +29,7 @@ class HeuristicLinearERSVM():
 
     def set_gamma(gamma):
         self.gamma = gamma
-        
+
     def solve_heuristics(self, x, y):
         num, dim = x.shape
         self.total_itr = 0

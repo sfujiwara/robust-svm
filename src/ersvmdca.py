@@ -158,3 +158,4 @@ if __name__ == '__main__':
     svm.set_constant_t(1.5)
     svm.solve_ersvm(x, y)
     svm.show_result(5)
+    
