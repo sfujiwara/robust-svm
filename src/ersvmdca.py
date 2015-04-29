@@ -35,7 +35,7 @@ class LinearPrimalERSVM():
     def set_mu(self, mu):
         self.mu = mu
 
-    def set_cplex_method(cplex_method):
+    def set_cplex_method(self, cplex_method):
         self.cplex_method = cplex_method
 
     def set_epsilon(self, eps):
@@ -70,7 +70,8 @@ class LinearPrimalERSVM():
         print '(nu, mu):\t', (self.nu, self.mu)
         print 'weight:\t\t', np.round(self.weight, d)
         print 'bias:\t\t', np.round(self.bias, d)
-        print 'obj val:\t\t', self.obj[-1]
+        print 'alpha:\t\t', np.round(self.alpha, d)
+        print 'obj val:\t', self.obj[-1]
         print 'itaration:\t', self.total_itr
         print 'time:\t\t', self.comp_time
         print 'accuracy:\t', sum(self.risks < 0) / float(len(self.risks))
@@ -82,8 +83,8 @@ class LinearPrimalERSVM():
         num, dim = x.shape
         c = cplex.Cplex()
         c.set_results_stream(None)
-        w_names = ['w%s' % i for i in range(dim)]
-        xi_names = ['xi%s' % i for i in range(num)]
+        w_names = ['w%s' % i for i in xrange(dim)]
+        xi_names = ['xi%s' % i for i in xrange(num)]
         ##### Initialize risk #####
         self.risks = - y * (np.dot(x, self.weight) + self.bias)
         ##### Initialize eta #####
@@ -98,14 +99,18 @@ class LinearPrimalERSVM():
         else:
             self.t.append(self.constant_t)
         ##### Set variables and objective function #####
-        c.variables.add(names=w_names, lb=[-cplex.infinity]*dim, ub=[cplex.infinity]*dim)
-        c.variables.add(names=['b'], lb=[-cplex.infinity], ub=[cplex.infinity])
+        c.variables.add(names=w_names,
+                        lb=[-cplex.infinity]*dim, ub=[cplex.infinity]*dim)
+        c.variables.add(names=['b'],
+                        lb=[-cplex.infinity], ub=[cplex.infinity])
         c.variables.add(names=xi_names, obj=[1.]*num,
                         lb=[0.]*num, ub=[cplex.infinity]*num)
         c.variables.add(names=['alpha'], obj=[self.nu * num],
                         lb=[-cplex.infinity], ub=[cplex.infinity])
         ##### Set quadratic constraint #####
-        c.quadratic_constraints.add(name='norm', quad_expr=[w_names, w_names, [1.]*dim], rhs=1., sense='L')
+        c.quadratic_constraints.add(name='norm',
+                                    quad_expr=[w_names, w_names, [1.]*dim],
+                                    rhs=1., sense='L')
         ##### Set linear constraints w*y_i*x_i + b*y_i + xi_i - alf >= 0 #####
         linexpr = [[w_names + ['b', 'xi%s' % i, 'alpha'],
                     list(x[i] * y[i])+[y[i], 1., 1.]] for i in range(num)]
@@ -122,6 +127,7 @@ class LinearPrimalERSVM():
                                        np.dot(y*(1-self.eta), x) - 2*self.t[-1]*self.weight))        
             ##### Solve subproblem #####
             c.solve()
+            print 'feasibility:', c.solution.is_primal_feasible()
             self.weight = np.array(c.solution.get_values(w_names))
             ## xi = np.array(c.solution.get_values(xi_names))
             self.bias = c.solution.get_values('b')
@@ -144,6 +150,7 @@ class LinearPrimalERSVM():
             eta_bef = self.eta
         time_end = time.time()
         self.comp_time = time_end - time_start
+        self.c = c
 
 if __name__ == '__main__':
     ## Read a UCI dataset

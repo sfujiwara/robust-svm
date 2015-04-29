@@ -1,2 +1,5 @@
 *.lp
 *.pyc
+
+src/*.csv
+datasets/LIBSVM/covtype

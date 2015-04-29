@@ -55,6 +55,7 @@ def diff_cvar(dmat, labels, weight, bias, nu, mu):
         c.objective.set_linear(zip(w_names, np.dot(labels*(1-eta), dmat) - 2*t*weight))        
         ##### Solve subproblem #####
         c.solve()
+        print 'feasibility:', c.solution.is_primal_feasible()
         weight = np.array(c.solution.get_values(w_names))
         xi = np.array(c.solution.get_values(xi_names))
         bias = c.solution.get_values('b')
