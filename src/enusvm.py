@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# Module for standard SVMs
 
-# Set path to CPLEX module
+'''
+todo: range -> xrange
+'''
+
 import sys
-sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux') # for Ubuntu 64bit
-sys.path.append('C:\Program Files (x86)\IBM\ILOG\CPLEX_Studio125\cplex\python\\x86_win32') # for Windows 32bit
-
-# Import libraries
+# for Ubuntu 64bit
+sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux')
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
@@ -26,6 +26,9 @@ class EnuSVM:
     def set_initial_weight(self, initial_weight):
         self.initial_weight = initial_weight
 
+    def set_nu(self, nu):
+        self.nu = nu
+
     ##### Convex case of Enu-SVM #####
     def solve_convex_primal(self, x, y):
         num, dim = x.shape
@@ -35,9 +38,9 @@ class EnuSVM:
         c.set_results_stream(None)
         ##### Set variables #####
         c.variables.add(names=['rho'], lb=[-cplex.infinity], obj=[-self.nu*num])
-        c.variables.add(names = w_names, lb = [- cplex.infinity] * dim)
-        c.variables.add(names = ['b'], lb = [- cplex.infinity])
-        c.variables.add(names = xi_names, obj = [1.] * num)
+        c.variables.add(names=w_names, lb=[-cplex.infinity]*dim)
+        c.variables.add(names=['b'], lb=[- cplex.infinity])
+        c.variables.add(names=xi_names, obj=[1.]*num)
         ##### Set quadratic constraint #####
         qexpr = [range(1,dim+1), range(1,dim+1), [1]*dim]
         c.quadratic_constraints.add(quad_expr=qexpr, rhs=1, sense='L', name='norm')
@@ -82,7 +85,7 @@ class EnuSVM:
             self.weight = np.array(c.solution.get_values(w_names))
             # Termination
             if np.linalg.norm(self.weight - w_tilde) < 1e-5:
-                break
+                return c
             # Update norm constraint
             if self.update_rule == 'projection':
                 w_tilde = self.weight / np.linalg.norm(self.weight)
@@ -97,16 +100,36 @@ class EnuSVM:
 
     # Training Enu-SVM
     def solve_enusvm(self, x, y):
+        start = time.time()
         num, dim = x.shape
-        result_convex = self.solve_convex_primal(x, y)
-        if -1e-5 < result_convex.solution.get_objective_value() < 1e-5:
+        w_names = ['w%s' % i for i in range(dim)]
+        xi_names = ['xi%s' % i for i in range(num)]
+        result = self.solve_convex_primal(x, y)
+        if -1e-5 < result.solution.get_objective_value() < 1e-5:
+            result = self.solve_nonconvex(x, y)
             self.convexity = False
-            result_nonconvex = self.solve_nonconvex(x, y)
-            return result_nonconvex
         else:
             self.convexity = True
-            return result_convex
+        end = time.time()
+        self.comp_time = end - start
+        self.weight = np.array(result.solution.get_values(w_names))
+        self.xi = np.array(result.solution.get_values(xi_names))
+        self.bias = result.solution.get_values('b')
+        self.rho = result.solution.get_values('rho')
 
+    ## ===== To be public method ======================================
+    def show_result(self, d=5):
+        print '===== RESULT ==============='
+        print 'nu:\t\t\t', self.nu
+        print 'weight:\t\t', np.round(self.weight, d)
+        print 'bias:\t\t', self.bias
+        print 'rho:\t\t', self.rho
+        ## print 'obj val:\t', self.obj[-1]
+        ## print 'itaration:\t', self.total_itr
+        print 'convexity:\t', self.convexity
+        print 'time:\t\t', self.comp_time
+        ## print 'accuracy:\t'
+        print '============================'
 
 ##### Training nu-SVM using primal #####
 def nusvm_primal(x, y, nu):
@@ -139,5 +162,8 @@ if __name__ == '__main__':
     num, dim = x.shape
     ## Training
     svm = EnuSVM()
+    svm.set_nu(0.15)
+    np.random.seed(0)
     svm.set_initial_weight(np.random.normal(size=dim))
     svm.solve_enusvm(x, y)
+    svm.show_result()

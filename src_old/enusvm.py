@@ -188,10 +188,15 @@ if __name__ == '__main__':
     import time
     
     # Dataset
-    dataset = np.loadtxt('dataset/libsvm/liver-disorders/liver-disorders_scale.csv', delimiter=',')
+    dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
     y = dataset[:,0]
-    ##y[np.where(y==2)] = -1.
     x = dataset[:,1:]
     num, dim = x.shape
-    c, b, sv, mv = csvm_dual(x, y)
-    alpha = np.array(c.solution.get_values())
+    np.random.seed(0)
+    res = enusvm(x, y, 0.15, np.random.normal(size=dim))
+    names_w = ['w%s' % i for i in xrange(dim)]
+    names_xi = ['xi%s' % i for i in xrange(num)]
+    w = res.solution.get_values(names_w)
+    xi = res.solution.get_values(names_xi)
+    b = res.solution.get_values('b')
+    rho = res.solution.get_values('rho')
