@@ -72,14 +72,14 @@ def ramp_svm(dmat, y, cost, s, kernel, gamma=1., coef0=0., degree=2):
 
 if __name__ == '__main__':
     # Read data set from csv
-    dataset = np.loadtxt('Dataset/LIBSVM/splice_scale.csv', delimiter=',')
+    dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
     x = dataset[:, 1:]
     y = dataset[:, 0]
     num, dim = x.shape
 
     # Set hyper-parameters
-    s = -0.0
-    cost = 1e0
+    s = -1.0
+    cost = 1e1
     gamma = 0.1
     coef0 = 1.
     degree = 2
@@ -95,25 +95,3 @@ if __name__ == '__main__':
     t2 = time.time()
     print 'TIME:', t2 - t1
     print np.dot(alpha*y, x)
-
-    ## # Artificial data set
-    ## np.random.seed(1)
-    ## num_p, num_n, num_o = 200, 180, 20
-    ## mu_p, mu_n, mu_o = [1,1], [-1,-1], [7,7]
-    ## cov_p = [[2,0], [0,2]]
-    ## cov_n = [[2,0], [0,2]]
-    ## cov_o = [[5,0], [0,5]]
-    ## x_p = np.random.multivariate_normal(mu_p, cov_p, num_p)
-    ## x_n = np.random.multivariate_normal(mu_n, cov_n, num_n)
-    ## x_o = np.random.multivariate_normal(mu_o, cov_o, num_o)
-    ## x = np.vstack([x_p, x_n, x_o])
-    ## y = np.array([1.]*num_p + [-1.]*(num_n+num_o))
-
-    ## # Plot
-    ## ind = np.where(beta > 1e-7)
-    ## plt.plot(x_p[:,0], x_p[:,1], 'rx')
-    ## plt.plot(x_n[:,0], x_n[:,1], 'b+')
-    ## plt.plot(x_o[:,0], x_o[:,1], 'b*')
-    ## plt.plot(x[ind,0], x[ind,1], 'o', ms=15, color='g', alpha=0.5)
-    ## plt.grid()
-    ## plt.show()
