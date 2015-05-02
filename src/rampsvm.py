@@ -30,6 +30,7 @@ class RampSVM():
 
     def solve_rampsvm(self, x, y):
         self.total_itr = 0
+        start = time.time()
         num, dim = x.shape
         ##### Initial point #####
         self.beta = np.zeros(num)
@@ -46,7 +47,7 @@ class RampSVM():
         else:
             print 'Undefined Kernel!!'
         #kmat = kmat + 1e-8*np.eye(m)
-        qmat = (kmat.T * y).T * y + 1e-8*np.eye(num)
+        qmat = (kmat.T * y).T * y + 1e-7*np.eye(num)
         qmat = np.round(qmat, 10)
         ##### CPLEX object #####
         c = cplex.Cplex()
@@ -54,13 +55,16 @@ class RampSVM():
         ##### Set variables #####
         c.variables.add(obj=[-1]*num)
         ##### Set quadratic objective #####
+        print 'qp obj'
         c.objective.set_quadratic([[range(num), list(qmat[i])] for i in range(num)])
+        print 'done'
         ##### Set linear constraint #####
         c.linear_constraints.add(lin_expr=[[range(num), list(y)]],
                                  senses='E', rhs=[0])
         ##### Set QP optimization method #####
         c.parameters.qpmethod.set(self.cplex_method)
         for i in xrange(self.max_itr):
+            print i
             ##### Update constraints #####
             c.variables.set_lower_bounds(zip(range(num), list(-self.beta)))
             c.variables.set_upper_bounds(zip(range(num), list(self.cost-self.beta)))
@@ -72,7 +76,7 @@ class RampSVM():
             ind_mv = [j for j in xrange(num) if self.eps <= (self.alpha[j]/self.cost) <= 1-self.eps]
             wx_seq = np.dot(self.alpha*y, kmat)
             bias_seq = (y - wx_seq)[ind_mv]
-            ## print bias_seq
+            print bias_seq
             self.bias = np.mean(bias_seq)
             dv = wx_seq + self.bias
             ##### Update beta #####
@@ -83,6 +87,18 @@ class RampSVM():
             else:
                 self.beta = beta_new
         self.weight = np.dot(x.T, self.alpha * y)
+        end = time.time()
+        self.comp_time = end - start
+            
+    ## ===== To be public method ======================================
+    def show_result(self, d=5):
+        print '===== RESULT ==============='
+        print 'cost:\t\t', self.cost
+        print 'weight:\t\t', np.round(self.weight, d)
+        print 'bias:\t\t', np.round(self.bias, d)
+        print 'itaration:\t', self.total_itr
+        print 'time:\t\t', self.comp_time
+        print '============================'
 
 if __name__ == '__main__':
     ## Read data set from csv

@@ -127,7 +127,7 @@ class LinearPrimalERSVM():
                                        np.dot(y*(1-self.eta), x) - 2*self.t[-1]*self.weight))        
             ##### Solve subproblem #####
             c.solve()
-            print 'feasibility:', c.solution.is_primal_feasible()
+            ## print 'feasibility:', c.solution.is_primal_feasible()
             self.weight = np.array(c.solution.get_values(w_names))
             ## xi = np.array(c.solution.get_values(xi_names))
             self.bias = c.solution.get_values('b')
