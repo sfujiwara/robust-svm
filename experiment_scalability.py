@@ -16,10 +16,10 @@ if __name__ == '__main__':
     y[ind_neg] = -1
 
     ## Scaling
-    ersvmutil.libsvm_scale(x)
+    ## ersvmutil.libsvm_scale(x)
 
     sampling_size = np.array([1000, 5000, 10000, 20000, 30000, 40000, 50000, 59535])
-    ## sampling_size = np.array([500, 1000, 1500, 2000, 2500])
+    sampling_size = np.array([500, 1000, 1500, 2000, 2500])
 
     ## Set seed
     np.random.seed(0)
