@@ -19,7 +19,7 @@ if __name__ == '__main__':
     ## ersvmutil.libsvm_scale(x)
 
     sampling_size = np.array([1000, 5000, 10000, 20000, 30000, 40000, 50000, 59535])
-    sampling_size = np.array([500, 1000, 1500, 2000, 2500])
+    sampling_size = np.array([1000, 5000, 10000, 12000, 15000])
 
     ## Set seed
     np.random.seed(0)
