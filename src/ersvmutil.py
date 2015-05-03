@@ -14,6 +14,13 @@ import matplotlib.pyplot as plt
 import cplex
 from sklearn.metrics import pairwise_kernels
 
+def libsvm_scale(x):
+    num, dim = x.shape
+    for i in range(dim):
+        width = max(x[:,i]) - min(x[:,i])
+        x[:,i] /= (width / 2)
+        x[:,i] -= max(x[:,i]) - 1
+
 ##### Compute nu_min for linear kernel #####
 ## nu_min = 0 の場合解が存在しないので, 対応させること
 def calc_nu_min(xmat, y):

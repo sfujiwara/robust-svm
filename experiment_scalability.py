@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import time
 import pandas as pd
 
-from src import ersvmdca, rampsvm, enusvm
+from src import ersvmdca, rampsvm, enusvm, ersvmutil
 
 if __name__ == '__main__':
     ## Read a UCI dataset
@@ -16,84 +16,113 @@ if __name__ == '__main__':
     y[ind_neg] = -1
 
     ## Scaling
-    ## for i in xrange(len(x[0])):
-    ##     x[:,i] -= np.mean(x[:,i])
-    ##     x[:,i] /= np.std(x[:,i])
+    ersvmutil.libsvm_scale(x)
 
-    max_size = 10
-    sampling_size = 1000
+    sampling_size = np.array([1000, 5000, 10000, 20000, 30000, 40000, 50000, 59535])
+    ## sampling_size = np.array([500, 1000, 1500, 2000, 2500])
+
     ## Set seed
     np.random.seed(0)
 
-    time_ersvm = []
+    time_ersvm1 = []
+    time_ersvm5 = []
     time_ramp = []
-    time_enusvm = []
-    time_libsvm = []
+    time_enusvm1 = []
+    time_enusvm5 = []
+    time_libsvm0 = []
+    time_libsvm4 = []
     time_liblinear = []
-    df_time = pd.DataFrame({'#sample':[], 'ER-SVM':[], 'Ramp-SVM':[],
-                            'Enu-SVM':[], 'LIBSVM':[], 'LIBLINEAR':[]})
-    s = pd.Series([1,3,5,np.nan,6,8])
-    df2 = pd.DataFrame({'key': ['a', 'b', 'd'], 'data2' : range(3)})
 
-    for i in range(1, max_size):
-        ind_train = np.random.choice(len(y), i*sampling_size, replace=False)
+    for i in sampling_size:
+        ind_train = np.random.choice(len(y), i, replace=False)
         num, dim = x.shape
-        ## dim = 2
-        x_train = x[ind_train, 0:dim]
+        x_train = x[ind_train]
         y_train = y[ind_train]
         initial_weight = np.random.normal(size=dim)
 
         ## ER-SVM
         print 'ER-SVM'
         ersvm = ersvmdca.LinearPrimalERSVM()
-        ersvm.set_nu(0.5)
+        ersvm.set_nu(0.1)
+        ersvm.set_mu(0.05)
         ersvm.set_epsilon(1e-5)
         ersvm.set_cplex_method(1)
         ersvm.set_initial_point(initial_weight, 0)
         ersvm.solve_ersvm(x_train, y_train)
         ersvm.show_result()
-        time_ersvm.append(ersvm.comp_time)
+        time_ersvm1.append(ersvm.comp_time)
+        ersvm.set_nu(0.5)
+        ersvm.solve_ersvm(x_train, y_train)
+        ersvm.show_result()
+        time_ersvm5.append(ersvm.comp_time)
 
         ## Ramp Loss SVM
-        print 'Ramp Loss SVM'
-        ramp = rampsvm.RampSVM()
-        ramp.solve_rampsvm(x_train, y_train)
-        time_ramp.append(ramp.comp_time)
+        ## print 'Ramp Loss SVM'
+        ## ramp = rampsvm.RampSVM()
+        ## ramp.solve_rampsvm(x_train, y_train)
+        ## time_ramp.append(ramp.comp_time)
 
         ## Enu-SVM
         print 'Enu-SVM'
         enu = enusvm.EnuSVM()
         enu.set_initial_weight(initial_weight)
+        enu.set_nu(0.1)
         enu.solve_enusvm(x_train, y_train)
-        time_enusvm.append(enu.comp_time)
+        time_enusvm1.append(enu.comp_time)
+        enu.show_result()
+        enu.set_nu(0.5)
+        enu.solve_enusvm(x_train, y_train)
+        time_enusvm5.append(enu.comp_time)
+        enu.show_result()
 
         ## LIBSVM
-        ## print 'start libsvm'
-        ## start = time.time()
-        ## clf_libsvm = svm.SVC(C=1.0, kernel='linear')
-        ## clf_libsvm.fit(x_train, y_train)
-        ## end = time.time()
-        ## print 'end libsvm'
-        ## print 'time:', end - start
-        ## time_libsvm.append(end - start)
+        print 'start libsvm'
+        start = time.time()
+        clf_libsvm = svm.SVC(C=1e0, kernel='linear')
+        clf_libsvm.fit(x_train, y_train)
+        end = time.time()
+        print 'end libsvm'
+        print 'time:', end - start
+        time_libsvm0.append(end - start)
+        print 'start libsvm'
+        start = time.time()
+        clf_libsvm = svm.SVC(C=1e3, kernel='linear')
+        clf_libsvm.fit(x_train, y_train)
+        end = time.time()
+        print 'end libsvm'
+        print 'time:', end - start
+        time_libsvm4.append(end - start)
 
         ## LIBLINEAR
-        print 'start liblinear'
-        start = time.time()
-        clf_liblinear = svm.LinearSVC(C=1.0)
-        clf_liblinear.fit(x_train, y_train)
-        end = time.time()
-        print 'end liblinear'
-        print 'time:', end - start
-        time_liblinear.append(end - start)
+        ## print 'start liblinear'
+        ## start = time.time()
+        ## clf_liblinear = svm.LinearSVC(C=1.0)
+        ## clf_liblinear.fit(x_train, y_train)
+        ## end = time.time()
+        ## print 'end liblinear'
+        ## print 'time:', end - start
+        ## time_liblinear.append(end - start)
 
-    plt.plot(np.arange(1, max_size)*sampling_size, time_ersvm, label='ER-SVM (DCA)')
-    ## plt.plot(np.arange(1, max_size)*sampling_size, time_libsvm, label='C-SVC (LIBSVM)')
-    plt.plot(np.arange(1, max_size)*sampling_size, time_liblinear, label='C-SVC (LIBLINEAR)')
-    plt.plot(np.arange(1, max_size)*sampling_size, time_enusvm, label='Enu-SVM')
-    plt.plot(np.arange(1, max_size)*sampling_size, time_ramp, label='Ramp')
+    ## Set parameters for plot
+    params = {'axes.labelsize': 24,
+              'lines.linewidth' : 5,
+              ## 'text.fontsize': 18,
+              'legend.fontsize': 20,
+              'xtick.labelsize': 14,
+              'ytick.labelsize': 14,
+              }
+    plt.rcParams.update(params)
+
+    plt.plot(sampling_size, time_ersvm1, label='ER-SVM (nu = 0.1)')
+    plt.plot(sampling_size, time_ersvm5, label='ER-SVM (nu = 0.5)')
+    plt.plot(sampling_size, time_libsvm0, label='LIBSVM (C = 1e0)')
+    plt.plot(sampling_size, time_libsvm4, label='LIBSVM (C = 1e4)')
+    ## plt.plot(sampling_size, time_liblinear, label='C-SVC (LIBLINEAR)')
+    plt.plot(sampling_size, time_enusvm1, label='Enu-SVM (nu = 0.1)')
+    plt.plot(sampling_size, time_enusvm5, label='Enu-SVM (nu = 0.5)')
+    ## plt.plot(sampling_size, time_ramp, label='Ramp')
     plt.xlabel('num of training samples')
     plt.ylabel('training time (sec)')
-    plt.legend()
+    plt.legend(loc='upper left')
     plt.grid()
     plt.show()

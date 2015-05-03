@@ -64,7 +64,7 @@ class RampSVM():
         ##### Set QP optimization method #####
         c.parameters.qpmethod.set(self.cplex_method)
         for i in xrange(self.max_itr):
-            print i
+            ## print i
             ##### Update constraints #####
             c.variables.set_lower_bounds(zip(range(num), list(-self.beta)))
             c.variables.set_upper_bounds(zip(range(num), list(self.cost-self.beta)))
@@ -76,7 +76,7 @@ class RampSVM():
             ind_mv = [j for j in xrange(num) if self.eps <= (self.alpha[j]/self.cost) <= 1-self.eps]
             wx_seq = np.dot(self.alpha*y, kmat)
             bias_seq = (y - wx_seq)[ind_mv]
-            print bias_seq
+            ## print bias_seq
             self.bias = np.mean(bias_seq)
             dv = wx_seq + self.bias
             ##### Update beta #####
