@@ -146,7 +146,7 @@ class LinearPrimalERSVM():
             else:
                 self.t.append(self.constant_t)
             ##### Termination #####
-            diff = (self.obj[-2] - self.obj[-1]) / (abs(obj[-1]) + 1e-7)
+            diff = (self.obj[-2] - self.obj[-1]) / (abs(self.obj[-1]) + 1e-7)
             if diff < self.eps:
                 break
             eta_bef = self.eta
