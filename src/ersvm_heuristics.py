@@ -1,4 +1,3 @@
-import ersvmutil
 ## -*- coding: utf-8 -*-
 
 import time
@@ -8,34 +7,33 @@ sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux')
 import numpy as np
 import matplotlib.pyplot as plt
 import cplex
+import enusvm, ersvmutil
 
 class HeuristicLinearERSVM():
     def __init__(self):
         self.max_itr = 100
         self.stopping_rule = True
-        self.nu = 0.7
-        self.mu = 0.1
+        self.nu = 0.5
         self.gamma = 0.01
+        self.heuristic_termination = True
 
-    def set_initial_point(initial_weight, initial_bias):
+    ## ===== Setters ==================================================
+    def set_initial_weight(self, initial_weight):
         self.weight = initial_weight
-        self.bias = initial_bias
 
-    def set_nu(nu):
+    def set_nu(self, nu):
         self.nu = nu
 
-    def set_mu(mu):
-        self.mu = mu
-
-    def set_gamma(gamma):
+    def set_gamma(self, gamma):
         self.gamma = gamma
+    ## ================================================================
 
     def solve_heuristics(self, x, y):
         num, dim = x.shape
         self.total_itr = 0
-        self.weight = np.zeros(dim)
         self.bias = 0
         self.ind_active = np.arange(num)
+        enu = enusvm.EnuSVM()
         for i in range(self.max_itr):
             ##### Update nu #####
             nu_i = (self.nu * (1-self.gamma)**i * num) / len(self.ind_active)
@@ -48,27 +46,43 @@ class HeuristicLinearERSVM():
                 break
             ##### Solve subproblem if bounded
             self.total_itr += 1
-            result = enusvm.enusvm(xmat[active_set], y[active_set],
-                                   nu_i, w_init)
-            w_new = np.array(result.solution.get_values(range(1, n+1)))
-            b = result.solution.get_values(n+1)
+            enu.set_nu(nu_i)
+            enu.set_initial_weight(self.weight)
+            enu.solve_enusvm(x[self.ind_active], y[self.ind_active])
+            w_new = enu.weight
+            self.bias = enu.bias
             ##### Heuristic termination (1e-4 or 1e-5 is better) #####
-            if heuristics and np.abs(1 - np.dot(w, w_new)) < 1e-4:
-                print 'Heuristic Termination:', 1-np.dot(w, w_new)
-                break
-            else: w = w_new
+            if self.heuristic_termination:
+                if np.abs(1 - np.dot(self.weight, w_new)) < 1e-4:
+                    self.stp = 'Heuristic Termination'
+                    break
+            self.weight = w_new
             ##### Update loss and active set #####
-            loss = - (np.dot(xmat, w) + b) * y
-            card_active = np.ceil(m * (1 - nu + nu*(1-gamma)**(i+1)))
+            loss = - (np.dot(x, self.weight) + self.bias) * y
+            card_active = np.ceil(num * (1 - self.nu + self.nu*(1-self.gamma)**(i+1)))
             new_active_set = np.argsort(loss)[range(np.int(card_active))]
+            ind_active_new = np.argsort(loss)[range(np.int(card_active))]
             ##### Terminate if active set does not change #####
-            if set(active_set) == set(new_active_set):
-                print 'VaR Minimization'
+            if set(self.ind_active) == set(ind_active_new):
+                self.stp = 'VaR Minimization'
                 break
-            else: active_set = new_active_set
-            w_init = w
+            else: self.ind_active = ind_active_new
+            self.initial_weight = self.weight
         print 'ITR:', i + 1
-        #return [result, w, b, active_set, nu_i]
+
+    ## ===== To be public method ======================================
+    def show_result(self, d=5):
+        print '===== RESULT ==============='
+        print 'nu:\t\t\t\t', self.nu
+        print 'weight:\t\t\t', np.round(self.weight, d)
+        print 'bias:\t\t\t', np.round(self.bias, d)
+        #print 'alpha:\t\t', np.round(self.alpha, d)
+        #print 'obj val:\t', self.obj[-1]
+        print 'itaration:\t\t', self.total_itr
+        print 'termination:\t', self.stp
+        #print 'time:\t\t', self.comp_time
+        #print 'accuracy:\t', sum(self.risks < 0) / float(len(self.risks))
+        print '============================'
 
 if __name__ == '__main__':
     dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
@@ -76,4 +90,10 @@ if __name__ == '__main__':
     x = dataset[:, 1:]
     num, dim = x.shape
     svm = HeuristicLinearERSVM()
+    np.random.seed(0)
+    initial_weight = np.random.normal(size=dim)
+    initial_weight = initial_weight / np.linalg.norm(initial_weight)
+    svm.set_initial_weight(initial_weight)
+    svm.set_nu(0.8)
     svm.solve_heuristics(x, y)
+    svm.show_result()

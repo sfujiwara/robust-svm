@@ -76,7 +76,7 @@ class LinearPrimalERSVM():
         print 'time:\t\t', self.comp_time
         print 'accuracy:\t', sum(self.risks < 0) / float(len(self.risks))
         print '============================'
-        
+
     def solve_ersvm(self, x, y):
         time_start = time.time()
         self.initialize_result()

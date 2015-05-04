@@ -348,7 +348,7 @@ if __name__ == '__main__':
     # Read a UCI dataset
     ## dataset = np.loadtxt('Dataset/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
     ## dataset = np.loadtxt('Dataset/LIBSVM/heart/heart_scale.csv', delimiter=',')
-    dataset = np.loadtxt('Dataset/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
+    dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
     ## dataset = np.loadtxt('Dataset/LIBSVM/sonar/sonar_scale.csv', delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
