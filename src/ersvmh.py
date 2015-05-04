@@ -28,7 +28,7 @@ class HeuristicLinearERSVM():
         self.gamma = gamma
     ## ================================================================
 
-    def solve_heuristics(self, x, y):
+    def solve_varmin(self, x, y):
         num, dim = x.shape
         self.total_itr = 0
         self.bias = 0

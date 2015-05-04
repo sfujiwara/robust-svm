@@ -116,6 +116,8 @@ class EnuSVM:
         self.xi = np.array(result.solution.get_values(xi_names))
         self.bias = result.solution.get_values('b')
         self.rho = result.solution.get_values('rho')
+        self.decision_values = np.dot(x, self.weight) + self.bias
+        self.accuracy = sum(self.decision_values * y > 0) / float(num)
 
     ## ===== To be public method ======================================
     def show_result(self, d=5):
@@ -128,7 +130,7 @@ class EnuSVM:
         ## print 'itaration:\t', self.total_itr
         print 'convexity:\t', self.convexity
         print 'time:\t\t', self.comp_time
-        ## print 'accuracy:\t'
+        print 'accuracy:\t', self.accuracy
         print '============================'
 
 ##### Training nu-SVM using primal #####

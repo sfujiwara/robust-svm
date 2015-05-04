@@ -1,12 +1,6 @@
 ## -*- coding: utf-8 -*-
 
-##### Compute nu_max #####
-def calc_nu_max(y):
-    return np.double(len(y)-np.abs(np.sum(y))) / len(y)
-
-## -*- coding: utf-8 -*-
-
-import sys
+import sys, time
 ## Ubuntu
 sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux')
 import numpy as np
@@ -14,12 +8,19 @@ import matplotlib.pyplot as plt
 import cplex
 from sklearn.metrics import pairwise_kernels
 
+
 def libsvm_scale(x):
     num, dim = x.shape
     for i in range(dim):
         width = max(x[:,i]) - min(x[:,i])
         x[:,i] /= (width / 2)
         x[:,i] -= max(x[:,i]) - 1
+
+
+##### Compute nu_max #####
+def calc_nu_max(y):
+    return np.double(len(y)-np.abs(np.sum(y))) / len(y)
+
 
 ##### Compute nu_min for linear kernel #####
 ## nu_min = 0 の場合解が存在しないので, 対応させること
@@ -36,6 +37,7 @@ def calc_nu_min(xmat, y):
     c.solve()
     return 2/(c.solution.get_values()[0]*m)
 
+
 ## Calculate beta-CVaR
 def calc_cvar(risks, beta):
     m = len(risks)
@@ -46,6 +48,7 @@ def calc_cvar(risks, beta):
     eta[indices_sorted[int(np.ceil(m*(1-beta))-1)]] -= np.ceil(m*(1-beta)) - m*(1-beta)
     return np.dot(risks, eta) / (m*(1-beta))
 
+
 def kernel_matrix(x, kernel):
     if kernel == 'linear':
         return np.dot(x, x.T)
@@ -53,6 +56,17 @@ def kernel_matrix(x, kernel):
         num, dim = x.shape
         tmp = np.dot(np.ones([num, 1]), np.array([np.linalg.norm(x, axis=1)])**2)
         return np.exp(-(tmp - 2 * np.dot(x, x.T) + tmp.T))
+
+
+## Uniform distribution on sphere
+def runif_sphere(radius, dim, size=1):
+    outliers = []
+    for i in xrange(size):
+        v = np.random.normal(size=dim)
+        v = v / np.linalg.norm(v)
+        outliers.append(v)
+    return np.array(outliers)
+
 
 if __name__ == '__main__':
     x = np.array([[1,2], [3,4], [5,6]])
@@ -65,3 +79,5 @@ if __name__ == '__main__':
     t3 = time.time()
     print 'ORIGINAL:', t2-t1
     print 'scikit-learn:', t3-t2
+
+    outliers = runif_sphere(radius=50, dim=100, size=10)

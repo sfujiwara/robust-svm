@@ -78,31 +78,38 @@ class RampSVM():
             bias_seq = (y - wx_seq)[ind_mv]
             ## print bias_seq
             self.bias = np.mean(bias_seq)
-            dv = wx_seq + self.bias
+            self.decision_values = wx_seq + self.bias
             ##### Update beta #####
             beta_new = np.zeros(num)
-            beta_new[np.where(dv*y < self.s)] = self.cost
+            beta_new[np.where(self.decision_values*y < self.s)] = self.cost
             if all(self.beta == beta_new):
                 break
             else:
                 self.beta = beta_new
-        self.weight = np.dot(x.T, self.alpha * y)
+        if self.kernel == 'linear':
+            self.weight = np.dot(x.T, self.alpha * y)
+        
+        self.accuracy = sum(self.decision_values * y > 0) / float(num)
         end = time.time()
         self.comp_time = end - start
-            
+
     ## ===== To be public method ======================================
     def show_result(self, d=5):
         print '===== RESULT ==============='
-        print 'cost:\t\t', self.cost
-        print 'weight:\t\t', np.round(self.weight, d)
+        print '(cost, s):\t', (self.cost, self.s)
+        print 'kernel:\t\t', self.kernel
+        if self.kernel == 'linear':
+            print 'weight:\t\t', np.round(self.weight, d)
         print 'bias:\t\t', np.round(self.bias, d)
         print 'itaration:\t', self.total_itr
+        print 'accuracy:\t', self.accuracy
         print 'time:\t\t', self.comp_time
         print '============================'
 
 if __name__ == '__main__':
     ## Read data set from csv
-    dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
+    filename = 'liver-disorders_scale.csv'
+    dataset = np.loadtxt(filename, delimiter=',')
     x = dataset[:, 1:]
     y = dataset[:, 0]
     num, dim = x.shape
@@ -111,3 +118,4 @@ if __name__ == '__main__':
     rampsvm.set_cost(1e1)
     ## rampsvm.set_epsilon(1e-10)
     rampsvm.solve_rampsvm(x, y)
+    rampsvm.show_result(3)
