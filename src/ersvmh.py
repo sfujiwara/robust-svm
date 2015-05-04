@@ -10,6 +10,7 @@ import cplex
 import enusvm, ersvmutil
 
 class HeuristicLinearERSVM():
+
     def __init__(self):
         self.max_itr = 100
         self.stopping_rule = True
@@ -17,16 +18,20 @@ class HeuristicLinearERSVM():
         self.gamma = 0.01
         self.heuristic_termination = True
 
+
     ## ===== Setters ==================================================
     def set_initial_weight(self, initial_weight):
         self.weight = initial_weight
 
+
     def set_nu(self, nu):
         self.nu = nu
+
 
     def set_gamma(self, gamma):
         self.gamma = gamma
     ## ================================================================
+
 
     def solve_varmin(self, x, y):
         num, dim = x.shape
@@ -70,7 +75,14 @@ class HeuristicLinearERSVM():
             self.initial_weight = self.weight
         print 'ITR:', i + 1
 
-    ## ===== To be public method ======================================
+
+    ## Calculate accuracy
+    def calc_accuracy(self, x_test, y_test):
+        num, dim = x_test.shape
+        dv = np.dot(x_test, self.weight) + self.bias
+        return sum(dv * y_test > 0) / float(num)
+
+
     def show_result(self, d=5):
         print '===== RESULT ==============='
         print 'nu:\t\t\t\t', self.nu
@@ -83,6 +95,7 @@ class HeuristicLinearERSVM():
         #print 'time:\t\t', self.comp_time
         #print 'accuracy:\t', sum(self.risks < 0) / float(len(self.risks))
         print '============================'
+
 
 if __name__ == '__main__':
     dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')

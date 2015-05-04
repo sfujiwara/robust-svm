@@ -54,7 +54,8 @@ def kernel_matrix(x, kernel):
         return np.dot(x, x.T)
     elif kernel == 'rbf':
         num, dim = x.shape
-        tmp = np.dot(np.ones([num, 1]), np.array([np.linalg.norm(x, axis=1)])**2)
+        tmp = np.dot(np.ones([num, 1]),
+                     np.array([np.linalg.norm(x, axis=1)])**2)
         return np.exp(-(tmp - 2 * np.dot(x, x.T) + tmp.T))
 
 
@@ -63,7 +64,7 @@ def runif_sphere(radius, dim, size=1):
     outliers = []
     for i in xrange(size):
         v = np.random.normal(size=dim)
-        v = v / np.linalg.norm(v)
+        v = radius * v / np.linalg.norm(v)
         outliers.append(v)
     return np.array(outliers)
 
