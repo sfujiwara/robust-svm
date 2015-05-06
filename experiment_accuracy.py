@@ -9,19 +9,22 @@ from src import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
 
 if __name__ == '__main__':
     ## Set seed
-    np.random.seed(0)
+    np.random.seed(1)
 
     ## Read data set
-    filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
+    ## filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
     ## filename = 'datasets/LIBSVM/heart/heart_scale.csv'
+    filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
     dataset = np.loadtxt(filename, delimiter=',')
-    ind = np.random.choice(59535, 1000, replace=False)
-    y = dataset[ind, 0]
-    x = dataset[ind, 1:]
+    ## ind = np.random.choice(59535, 1000, replace=False)
+    ## y = dataset[ind, 0]
+    ## x = dataset[ind, 1:]
+    y = dataset[:, 0]
+    x = dataset[:, 1:]
     num, dim = x.shape
 
     ## Scaling
-    ersvmutil.libsvm_scale(x)
+    ## ersvmutil.libsvm_scale(x)
 
     ## Initial point generated at random
     initial_weight = np.random.normal(size=dim)
