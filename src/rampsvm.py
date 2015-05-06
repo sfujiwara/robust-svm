@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+'''
+todo
+* Save support vectors for prediction using nonlinear kernel
+'''
+
 import sys
 sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux') # Ubuntu
 import numpy as np
@@ -11,6 +16,7 @@ from sklearn.metrics import pairwise_kernels
 
 class RampSVM():
 
+    ## ===== Constructor =========================================== ##
     def __init__(self):
         self.eps = 1e-5
         self.max_itr = 30
@@ -21,12 +27,22 @@ class RampSVM():
         self.coef0 = 0
         self.degree = 2
         self.cplex_method = 1
+    ## ============================================================= ##
 
+
+    ## ===== Setters =============================================== ##
     def set_cost(self, cost):
         self.cost = cost
 
+
+    def set_s(self, s):
+        self.s = s
+
+
     def set_epsilon(self, eps):
         self.eps = eps
+    ## ============================================================= ##
+
 
     def solve_rampsvm(self, x, y):
         self.total_itr = 0
@@ -38,15 +54,13 @@ class RampSVM():
         if self.kernel == 'linear':
             kmat = pairwise_kernels(x, metric='linear')
         elif self.kernel == 'rbf':
-            kmat = pairwise_kernels(x, x, metric='rbf',
-                                    gamma=self.gamma)
+            kmat = pairwise_kernels(x, metric='rbf', gamma=self.gamma)
         elif self.kernel == 'polynomial':
             kmat = pairwise_kernels(x, metric='polynomial',
                                     coef0=self.coef0,
                                     degree=self.degree)
         else:
             print 'Undefined Kernel!!'
-        #kmat = kmat + 1e-8*np.eye(m)
         qmat = (kmat.T * y).T * y + 1e-7*np.eye(num)
         qmat = np.round(qmat, 10)
         ##### CPLEX object #####
@@ -55,7 +69,7 @@ class RampSVM():
         ##### Set variables #####
         c.variables.add(obj=[-1]*num)
         ##### Set quadratic objective #####
-        print 'qp obj'
+        print 'set qp obj'
         c.objective.set_quadratic([[range(num), list(qmat[i])] for i in range(num)])
         print 'done'
         ##### Set linear constraint #####
@@ -93,7 +107,7 @@ class RampSVM():
         end = time.time()
         self.comp_time = end - start
 
-    ## ===== To be public method ======================================
+
     def show_result(self, d=5):
         print '===== RESULT ==============='
         print '(cost, s):\t', (self.cost, self.s)
@@ -105,6 +119,7 @@ class RampSVM():
         print 'accuracy:\t', self.accuracy
         print 'time:\t\t', self.comp_time
         print '============================'
+
 
 if __name__ == '__main__':
     ## Read data set from csv
@@ -119,3 +134,4 @@ if __name__ == '__main__':
     ## rampsvm.set_epsilon(1e-10)
     rampsvm.solve_rampsvm(x, y)
     rampsvm.show_result(3)
+    kmat = pairwise_kernels(x, metric='linear')
