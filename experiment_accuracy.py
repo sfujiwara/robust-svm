@@ -9,7 +9,7 @@ from src import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
 
 if __name__ == '__main__':
     ## Set seed
-    np.random.seed(1)
+    np.random.seed(0)
 
     ## Read data set
     ## filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
@@ -25,6 +25,7 @@ if __name__ == '__main__':
 
     ## Scaling
     ## ersvmutil.libsvm_scale(x)
+    ersvmutil.standard_scale(x)
 
     ## Initial point generated at random
     initial_weight = np.random.normal(size=dim)
