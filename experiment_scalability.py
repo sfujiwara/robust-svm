@@ -16,12 +16,13 @@ if __name__ == '__main__':
     y[ind_neg] = -1
 
     ## Scaling
-    ## ersvmutil.libsvm_scale(x)
+    #ersvmutil.libsvm_scale(x)
+    ersvmutil.standard_scale(x)
 
     ## Experimental setup
     sampling_size = np.array([1000, 5000, 10000, 20000, 30000, 40000, 50000, 59535])
-    sampling_size = np.array([1000, 5000, 10000, 12000, 15000])
-    trial = 1
+    ##sampling_size = np.array([500, 1000, 2000, 3000])
+    trial = 10
 
     ## Arrays for results
     time_ersvm1 = np.zeros([len(sampling_size), trial])
@@ -36,6 +37,9 @@ if __name__ == '__main__':
 
     for i in range(len(sampling_size)):
         for j in range(trial):
+            print 'sample size', sampling_size[i]
+            print 'trial', j
+            
             ind_train = np.random.choice(len(y), sampling_size[i], replace=False)
             num, dim = x.shape
             x_train = x[ind_train]

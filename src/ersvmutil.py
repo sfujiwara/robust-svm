@@ -9,6 +9,13 @@ import cplex
 from sklearn.metrics import pairwise_kernels
 
 
+def standard_scale(x):
+    num, dim = x.shape
+    for i in range(dim):
+        x[:,i] -= np.mean(x[:,i])
+        x[:,i] /= np.std(x[:,i])
+
+
 def libsvm_scale(x):
     num, dim = x.shape
     for i in range(dim):
