@@ -10,7 +10,7 @@ if __name__ == '__main__':
     time_ersvm5 = np.loadtxt('ersvm_nu05.csv', delimiter=',')
     time_libsvm0 = np.loadtxt('libsvm_c0.csv', delimiter=',')
     time_libsvm4 = np.loadtxt('libsvm_c4.csv', delimiter=',')
-    time_enusvm1 = np.loadtxt('enusvm_nu05.csv', delimiter=',')
+    time_enusvm1 = np.loadtxt('enusvm_nu01.csv', delimiter=',')
     time_enusvm5 = np.loadtxt('enusvm_nu05.csv', delimiter=',')
     
     ## Set parameters for plot
