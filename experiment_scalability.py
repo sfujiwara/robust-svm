@@ -115,6 +115,16 @@ if __name__ == '__main__':
             ## print 'time:', end - start
             ## time_liblinear.append(end - start)
 
+
+    ## Save results
+    np.savetxt('results/scalability/sampling_size.csv', sampling_size, fmt='%.0f', delimiter=',')
+    np.savetxt('results/scalability/ersvm_nu01.csv', time_ersvm1, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/ersvm_nu05.csv', time_ersvm5, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/libsvm_c0.csv', time_libsvm0, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/libsvm_c4.csv', time_libsvm4, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/enusvm_nu01.csv', time_enusvm1, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/enusvm_nu05.csv', time_enusvm5, fmt='%0.9f', delimiter=',')
+
     ## Set parameters for plot
     plt.rcParams['axes.labelsize'] = 24
     plt.rcParams['lines.linewidth'] = 3
@@ -154,5 +164,6 @@ if __name__ == '__main__':
     plt.xlabel('# training samples')
     plt.ylabel('training time (sec)')
     plt.legend(loc='upper left')
+    plt.ylim([-100, 1500])
     plt.grid()
     plt.show()
