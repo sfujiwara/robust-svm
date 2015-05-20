@@ -34,6 +34,8 @@ if __name__ == '__main__':
     initial_weight = initial_weight / np.linalg.norm(initial_weight)
 
     ## Candidates of hyper-parameters
+    nu_max = 0.75
+    nu_cand = np.linspace(nu_max, 0.1, 9)
     nu_cand = np.linspace(0.75, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     ol_ratio = np.array([0., 0.05])
