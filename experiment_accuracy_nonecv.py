@@ -49,11 +49,11 @@ if __name__ == '__main__':
     libsvm = svm.SVC(C=1e0, kernel='linear')
 
     ## DataFrame for results
-    df_dca = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'test-acc', 'VaR', 'tr-CVaR'])
-    df_var = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'test-acc'])
-    df_enu = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'test-acc'])
-    df_libsvm = pd.DataFrame(columns=['ratio', 'trial', 'C', 'val-acc', 'test-acc'])
-    df_ramp = pd.DataFrame(columns=['ratio', 'trial', 'C', 's', 'val-acc', 'test-acc'])
+    df_dca = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'var-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR'])
+    df_var = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f'])
+    df_enu = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f'])
+    df_libsvm = pd.DataFrame(columns=['ratio', 'trial', 'C', 'val-acc', 'val-f', 'test-acc', 'test-f'])
+    df_ramp = pd.DataFrame(columns=['ratio', 'trial', 'C', 's', 'val-acc', 'val-f', 'test-acc', 'test-f'])
 
     ## Loop for outlier ratio
     for i in range(len(ol_ratio)):
