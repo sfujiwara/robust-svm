@@ -36,7 +36,6 @@ if __name__ == '__main__':
     ## Candidates of hyper-parameters
     nu_max = 0.8
     nu_cand = np.linspace(nu_max, 0.1, 9)
-    nu_cand = np.linspace(0.75, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     ol_ratio = np.array([0., 0.05])
     mu_cand = np.array([0.05, 0.15, 0.25])
@@ -75,29 +74,28 @@ if __name__ == '__main__':
             y_val = np.array(y[ind_val])
             ## Generate synthetic outliers
             if num_ol_tr > 0:
-                outliers = ersvmutil.runif_sphere(radius=20, dim=dim, size=num_ol_tr)
+                outliers = ersvmutil.runif_sphere(radius=3, dim=dim, size=num_ol_tr)
                 x_tr[:num_ol_tr] = outliers
-                outliers = ersvmutil.runif_sphere(radius=20, dim=dim, size=num_ol_val)
+                outliers = ersvmutil.runif_sphere(radius=3, dim=dim, size=num_ol_val)
                 x_val[:num_ol_val] = outliers
 
             ## Loop for hyper-parameter tuning
             for k in range(len(nu_cand)):
-                print 'Start Ramp Loss SVM'
-                ramp.set_cost(cost_cand[k])
-                ramp.solve_rampsvm(x_tr, y_tr)
-                ramp.show_result()
-                #acc_ramp[i, cv] = sum((np.dot(x[ind_t], ramp.weight) + ramp.bias) * y[ind_t] > 0) / float(len(y[ind_t]))
-                #res_ramp = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], -1., sum((np.dot(x_val, ramp.weight) + ramp.bias) * y_val > 0) / float(len(y_val)), sum((np.dot(x[ind_t], ramp.weight) + ramp.bias) * y[ind_t] > 0) / float(len(y[ind_t]))]], columns=['ratio','trial','C','s','val-acc','test-acc'])
-                res_ramp = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], -1., ramp.calc_accuracy_linear(x_val,y_val), ramp.calc_accuracy_linear(x[ind_t], y[ind_t])]], columns=['ratio','trial','C','s','val-acc','test-acc'])
-                df_ramp = df_ramp.append(res_ramp)
-
+                
                 for l in range(len(mu_cand)):
+                    print 'Start Ramp Loss SVM'
+                    ramp.set_cost(cost_cand[k])
+                    ramp.set_s(s_cand[l])
+                    ramp.solve_rampsvm(x_tr, y_tr)
+                    ramp.show_result()
+                    res_ramp = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], s_cand[l], ramp.calc_accuracy_linear(x_val,y_val), ramp.calc_accuracy_linear(x[ind_t], y[ind_t])]], columns=['ratio','trial','C','s','val-acc','test-acc'])
+                    df_ramp = df_ramp.append(res_ramp)
+
                     print 'Start ER-SVM (DCA)'
                     ersvm.set_nu(nu_cand[k])
                     ersvm.set_mu(0.05)
                     ersvm.solve_ersvm(x_tr, y_tr)
                     ersvm.show_result()
-                    #acc_dca[i, cv] = ersvm.calc_accuracy(x[ind_t], y[ind_t])
                     ersvm.set_initial_point(ersvm.weight, 0)
                     res_dca = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], mu_cand[l], ersvm.calc_accuracy(x_val, y_val), ersvm.calc_accuracy(x[ind_t], y[ind_t]), ersvm.alpha, ersvm.obj[-1]]], columns=['ratio','trial','nu','mu','val-acc','test-acc','VaR','tr-CVaR'])
                     df_dca = df_dca.append(res_dca)
@@ -129,6 +127,5 @@ if __name__ == '__main__':
                 end = time.time()
                 print 'End LIBSVM'
                 print 'time:', end - start
-                res_libsvm = pd.DataFrame([[ol_ratio[i], j, cost_cand[k], libsvm.score(x_val,y_val), libsvm.score(x[ind_t],y[ind_t])]],
-                                       columns=['ratio','trial','C','val-acc','test-acc'])
+                res_libsvm = pd.DataFrame([[ol_ratio[i], j, cost_cand[k], libsvm.score(x_val,y_val), libsvm.score(x[ind_t],y[ind_t])]],columns=['ratio','trial','C','val-acc','test-acc'])
                 df_libsvm = df_libsvm.append(res_libsvm)
