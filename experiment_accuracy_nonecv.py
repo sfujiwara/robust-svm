@@ -34,10 +34,12 @@ if __name__ == '__main__':
     initial_weight = initial_weight / np.linalg.norm(initial_weight)
 
     ## Candidates of hyper-parameters
+    nu_max = 0.8
+    nu_cand = np.linspace(nu_max, 0.1, 9)
     nu_cand = np.linspace(0.75, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     ol_ratio = np.array([0., 0.05])
-    mu_cand = np.array([0.01, 0.05, 0.1, 0.2])
+    mu_cand = np.array([0.05, 0.15, 0.25])
     s_cand = np.array([-1, 0., 0.5])
 
     ## Class instances
@@ -59,7 +61,7 @@ if __name__ == '__main__':
     for i in range(len(ol_ratio)):
         num_ol_tr = int(num_tr * ol_ratio[i])
         num_ol_val = int(num_val * ol_ratio[i])
-    ## Loop for random splitting
+        ## Loop for random splitting
         for j in range(trial):
             ## Split indices to training, validation, and test set
             ind_rand = np.random.permutation(range(num))
@@ -85,23 +87,20 @@ if __name__ == '__main__':
                 ramp.solve_rampsvm(x_tr, y_tr)
                 ramp.show_result()
                 #acc_ramp[i, cv] = sum((np.dot(x[ind_t], ramp.weight) + ramp.bias) * y[ind_t] > 0) / float(len(y[ind_t]))
-                res_ramp = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], -1.,
-                                          sum((np.dot(x_val, ramp.weight) + ramp.bias) * y_val > 0) / float(len(y_val)),
-                                          sum((np.dot(x[ind_t], ramp.weight) + ramp.bias) * y[ind_t] > 0) / float(len(y[ind_t]))]],
-                                        columns=['ratio','trial','C', 's', 'val-acc','test-acc'])
+                #res_ramp = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], -1., sum((np.dot(x_val, ramp.weight) + ramp.bias) * y_val > 0) / float(len(y_val)), sum((np.dot(x[ind_t], ramp.weight) + ramp.bias) * y[ind_t] > 0) / float(len(y[ind_t]))]], columns=['ratio','trial','C','s','val-acc','test-acc'])
+                res_ramp = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], -1., ramp.calc_accuracy_linear(x_val,y_val), ramp.calc_accuracy_linear(x[ind_t], y[ind_t])]], columns=['ratio','trial','C','s','val-acc','test-acc'])
                 df_ramp = df_ramp.append(res_ramp)
 
-                print 'Start ER-SVM (DCA)'
-                ersvm.set_nu(nu_cand[k])
-                ersvm.set_mu(0.05)
-                ersvm.solve_ersvm(x_tr, y_tr)
-                ersvm.show_result()
-                #acc_dca[i, cv] = ersvm.calc_accuracy(x[ind_t], y[ind_t])
-                ersvm.set_initial_point(ersvm.weight, 0)
-                res_dca = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], 0.05, ersvm.calc_accuracy(x_val, y_val),
-                                         ersvm.calc_accuracy(x[ind_t], y[ind_t]), ersvm.alpha, ersvm.obj[-1]]],
-                                       columns=['ratio','trial','nu','mu','val-acc','test-acc','VaR','tr-CVaR'])
-                df_dca = df_dca.append(res_dca)
+                for l in range(len(mu_cand)):
+                    print 'Start ER-SVM (DCA)'
+                    ersvm.set_nu(nu_cand[k])
+                    ersvm.set_mu(0.05)
+                    ersvm.solve_ersvm(x_tr, y_tr)
+                    ersvm.show_result()
+                    #acc_dca[i, cv] = ersvm.calc_accuracy(x[ind_t], y[ind_t])
+                    ersvm.set_initial_point(ersvm.weight, 0)
+                    res_dca = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], mu_cand[l], ersvm.calc_accuracy(x_val, y_val), ersvm.calc_accuracy(x[ind_t], y[ind_t]), ersvm.alpha, ersvm.obj[-1]]], columns=['ratio','trial','nu','mu','val-acc','test-acc','VaR','tr-CVaR'])
+                    df_dca = df_dca.append(res_dca)
 
                 print 'Start Enu-SVM'
                 enu.set_initial_weight(initial_weight)

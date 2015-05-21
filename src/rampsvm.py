@@ -107,6 +107,8 @@ class RampSVM():
         end = time.time()
         self.comp_time = end - start
 
+    def calc_accuracy_linear(self, x, y):
+        return sum((np.dot(x, self.weight) + self.bias) * y > 0) / float(len(y))
 
     def show_result(self, d=5):
         print '===== RESULT ==============='
