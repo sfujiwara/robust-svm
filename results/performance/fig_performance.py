@@ -5,8 +5,10 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 if __name__ == '__main__':
-    val_measure = 'val-acc'
-    test_measure = 'test-acc'
+    pd.set_option('line_width',200)
+    pd.set_option("display.max_rows",200)
+    val_measure = 'val-f'
+    test_measure = 'test-f'
     ## Load result csv
     dir_name = 'liver-disorders/'
     df_dca = pd.read_csv(dir_name+'dca.csv')
