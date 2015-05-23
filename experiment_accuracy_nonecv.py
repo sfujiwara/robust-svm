@@ -3,6 +3,7 @@ from sklearn import svm
 import matplotlib.pyplot as plt
 import time
 import pandas as pd
+from sklearn.metrics import f1_score
 
 from src import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
 #from src_old import ersvm
@@ -23,7 +24,7 @@ if __name__ == '__main__':
     num_tr = 138
     num_val = 103
     num_t = 104
-    trial = 2
+    trial = 30
     
     ## Scaling
     ## ersvmutil.libsvm_scale(x)
@@ -34,12 +35,15 @@ if __name__ == '__main__':
     initial_weight = initial_weight / np.linalg.norm(initial_weight)
 
     ## Candidates of hyper-parameters
-    nu_max = 0.8
+    nu_max = 0.75
     nu_cand = np.linspace(nu_max, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    ol_ratio = np.array([0., 0.05])
+    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.2])
     mu_cand = np.array([0.05, 0.15, 0.25])
     s_cand = np.array([-1, 0., 0.5])
+
+    ## Setting of outlier
+    radius = 10
 
     ## Class instances
     ersvm = ersvmdca.LinearPrimalERSVM()
@@ -50,7 +54,7 @@ if __name__ == '__main__':
     libsvm = svm.SVC(C=1e0, kernel='linear')
 
     ## DataFrame for results
-    df_dca = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'var-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR'])
+    df_dca = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR'])
     df_var = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f'])
     df_enu = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f'])
     df_libsvm = pd.DataFrame(columns=['ratio', 'trial', 'C', 'val-acc', 'val-f', 'test-acc', 'test-f'])
@@ -74,9 +78,9 @@ if __name__ == '__main__':
             y_val = np.array(y[ind_val])
             ## Generate synthetic outliers
             if num_ol_tr > 0:
-                outliers = ersvmutil.runif_sphere(radius=3, dim=dim, size=num_ol_tr)
+                outliers = ersvmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
                 x_tr[:num_ol_tr] = outliers
-                outliers = ersvmutil.runif_sphere(radius=3, dim=dim, size=num_ol_val)
+                outliers = ersvmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
                 x_val[:num_ol_val] = outliers
 
             ## Loop for hyper-parameter tuning
@@ -88,16 +92,18 @@ if __name__ == '__main__':
                     ramp.set_s(s_cand[l])
                     ramp.solve_rampsvm(x_tr, y_tr)
                     ramp.show_result()
-                    res_ramp = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], s_cand[l], ramp.calc_accuracy_linear(x_val,y_val), ramp.calc_accuracy_linear(x[ind_t], y[ind_t])]], columns=['ratio','trial','C','s','val-acc','test-acc'])
+                    res_ramp = pd.DataFrame([[ol_ratio[i], j, cost_cand[k], s_cand[l], ramp.calc_accuracy_linear(x_val,y_val), ramp.calc_f_linear(x_val,y_val), ramp.calc_accuracy_linear(x[ind_t], y[ind_t]), ramp.calc_f_linear(x[ind_t], y[ind_t])]], columns=['ratio','trial','C','s','val-acc','val-f','test-acc','test-f'])
                     df_ramp = df_ramp.append(res_ramp)
 
+                for l in range(len(mu_cand)):
                     print 'Start ER-SVM (DCA)'
                     ersvm.set_nu(nu_cand[k])
-                    ersvm.set_mu(0.05)
+                    ersvm.set_mu(mu_cand[l])
                     ersvm.solve_ersvm(x_tr, y_tr)
                     ersvm.show_result()
                     ersvm.set_initial_point(ersvm.weight, 0)
-                    res_dca = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], mu_cand[l], ersvm.calc_accuracy(x_val, y_val), ersvm.calc_accuracy(x[ind_t], y[ind_t]), ersvm.alpha, ersvm.obj[-1]]], columns=['ratio','trial','nu','mu','val-acc','test-acc','VaR','tr-CVaR'])
+                    res_dca = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], mu_cand[l], ersvm.calc_accuracy(x_val, y_val),ersvm.calc_f(x_val,y_val), ersvm.calc_accuracy(x[ind_t], y[ind_t]),ersvm.calc_f(x[ind_t],y[ind_t]), ersvm.alpha, ersvm.obj[-1]]],
+                                           columns=['ratio','trial','nu','mu','val-acc','val-f','test-acc','test-f','VaR','tr-CVaR'])
                     df_dca = df_dca.append(res_dca)
 
                 print 'Start Enu-SVM'
@@ -105,9 +111,8 @@ if __name__ == '__main__':
                 enu.set_nu(nu_cand[k])
                 enu.solve_enusvm(x_tr, y_tr)
                 enu.show_result()
-                res_enu = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], enu.calc_accuracy(x_val, y_val),
-                                         enu.calc_accuracy(x[ind_t], y[ind_t])]],
-                                       columns=['ratio','trial','nu','val-acc','test-acc'])
+                res_enu = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], enu.calc_accuracy(x_val, y_val), enu.calc_f(x_val,y_val), enu.calc_accuracy(x[ind_t], y[ind_t]), enu.calc_f(x[ind_t],y[ind_t])]],
+                                       columns=['ratio','trial','nu','val-acc','val-f','test-acc','test-f'])
                 df_enu = df_enu.append(res_enu)
 
                 print 'Start ER-SVM (Heuristics)'
@@ -115,9 +120,8 @@ if __name__ == '__main__':
                 var.set_nu(nu_cand[k])
                 var.solve_varmin(x_tr, y_tr)
                 var.show_result()
-                res_var = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], var.calc_accuracy(x_val, y_val),
-                                         var.calc_accuracy(x[ind_t], y[ind_t])]],
-                                       columns=['ratio','trial','nu','val-acc','test-acc'])
+                res_var = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], var.calc_accuracy(x_val, y_val),var.calc_f(x_val, y_val), var.calc_accuracy(x[ind_t], y[ind_t]),var.calc_f(x[ind_t], y[ind_t])]],
+                                       columns=['ratio','trial','nu','val-acc','val-f','test-acc','test-f'])
                 df_var = df_var.append(res_var)
 
                 print 'Start LIBSVM'
@@ -127,5 +131,14 @@ if __name__ == '__main__':
                 end = time.time()
                 print 'End LIBSVM'
                 print 'time:', end - start
-                res_libsvm = pd.DataFrame([[ol_ratio[i], j, cost_cand[k], libsvm.score(x_val,y_val), libsvm.score(x[ind_t],y[ind_t])]],columns=['ratio','trial','C','val-acc','test-acc'])
+                res_libsvm = pd.DataFrame([[ol_ratio[i], j, cost_cand[k], libsvm.score(x_val,y_val), f1_score(y_val,libsvm.predict(x_val)), libsvm.score(x[ind_t],y[ind_t]), f1_score(y[ind_t],libsvm.predict(x[ind_t]))]], columns=['ratio','trial','C','val-acc','val-f','test-acc','test-f'])
                 df_libsvm = df_libsvm.append(res_libsvm)
+
+
+    ## Save as csv
+    dir_name = 'results/performance/liver-disorders/'
+    df_dca.to_csv(dir_name+'liver_dca.csv', index=False)
+    df_enu.to_csv(dir_name+'liver_enu.csv', index=False)
+    df_var.to_csv(dir_name+'liver_var.csv', index=False)
+    df_ramp.to_csv(dir_name+'liver_ramp.csv', index=False)
+    df_libsvm.to_csv(dir_name+'liver_libsvm.csv', index=False)

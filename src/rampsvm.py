@@ -34,16 +34,15 @@ class RampSVM():
     def set_cost(self, cost):
         self.cost = cost
 
-
     def set_s(self, s):
         self.s = s
-
 
     def set_epsilon(self, eps):
         self.eps = eps
     ## ============================================================= ##
 
 
+    ## ===== Solve ================================================= ##
     def solve_rampsvm(self, x, y):
         self.total_itr = 0
         start = time.time()
@@ -106,9 +105,31 @@ class RampSVM():
         self.accuracy = sum(self.decision_values * y > 0) / float(num)
         end = time.time()
         self.comp_time = end - start
+    ## ============================================================= ##
 
+
+    ## ===== Evaluation measures =================================== ##
     def calc_accuracy_linear(self, x, y):
         return sum((np.dot(x, self.weight) + self.bias) * y > 0) / float(len(y))
+
+    def calc_f_linear(self, x_test, y_test):
+        num, dim = x_test.shape
+        dv = np.dot(x_test, self.weight) + self.bias
+        ind_p = np.where(y_test > 0)[0]
+        ind_n = np.where(y_test < 0)[0]
+        tp = sum(dv[ind_p] > 0)
+        tn = sum(dv[ind_n] < 0)
+        recall = float(tp) / len(ind_p)
+        if tp == 0:
+            precision = 0.
+        else:
+            precision = float(tp) / (len(ind_n) - tn + tp)
+        if recall + precision == 0:
+            return 0.
+        else:
+            return 2*recall*precision / (recall+precision)
+    ## ============================================================= ##
+
 
     def show_result(self, d=5):
         print '===== RESULT ==============='

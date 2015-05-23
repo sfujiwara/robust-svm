@@ -68,11 +68,29 @@ class LinearPrimalERSVM():
     ## ============================================================= ##
 
 
-    ## Calculate accuracy
+    ## ===== Evaluation measures =================================== ##
     def calc_accuracy(self, x_test, y_test):
         num, dim = x_test.shape
         dv = np.dot(x_test, self.weight) + self.bias
         return sum(dv * y_test > 0) / float(num)
+
+    def calc_f(self, x_test, y_test):
+        num, dim = x_test.shape
+        dv = np.dot(x_test, self.weight) + self.bias
+        ind_p = np.where(y_test > 0)[0]
+        ind_n = np.where(y_test < 0)[0]
+        tp = sum(dv[ind_p] > 0)
+        tn = sum(dv[ind_n] < 0)
+        recall = float(tp) / len(ind_p)
+        if tp == 0:
+            precision = 0.
+        else:
+            precision = float(tp) / (len(ind_n) - tn + tp)
+        if recall + precision == 0:
+            return 0.
+        else:
+            return 2*recall*precision / (recall+precision)
+    ## ============================================================= ##
 
 
     def show_result(self, d=5):
