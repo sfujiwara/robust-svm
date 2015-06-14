@@ -24,7 +24,8 @@ if __name__ == '__main__':
     num_tr = 138
     num_val = 103
     num_t = 104
-    trial = 30
+    #trial = 30
+    trial = 1
     
     ## Scaling
     ## ersvmutil.libsvm_scale(x)
@@ -38,7 +39,8 @@ if __name__ == '__main__':
     nu_max = 0.75
     nu_cand = np.linspace(nu_max, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.2])
+    #ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.2])
+    ol_ratio = np.array([0., 0.03])
     mu_cand = np.array([0.05, 0.15, 0.25])
     s_cand = np.array([-1, 0., 0.5])
 
@@ -51,7 +53,7 @@ if __name__ == '__main__':
     ramp = rampsvm.RampSVM()
     enu = enusvm.EnuSVM()
     var = ersvmh.HeuristicLinearERSVM()
-    libsvm = svm.SVC(C=1e0, kernel='linear')
+    libsvm = svm.SVC(C=1e0, kernel='linear', max_iter=-1)
 
     ## DataFrame for results
     df_dca = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR'])
@@ -92,9 +94,18 @@ if __name__ == '__main__':
                     ramp.set_s(s_cand[l])
                     ramp.solve_rampsvm(x_tr, y_tr)
                     ramp.show_result()
-                    res_ramp = pd.DataFrame([[ol_ratio[i], j, cost_cand[k], s_cand[l], ramp.calc_accuracy_linear(x_val,y_val), ramp.calc_f_linear(x_val,y_val), ramp.calc_accuracy_linear(x[ind_t], y[ind_t]), ramp.calc_f_linear(x[ind_t], y[ind_t])]], columns=['ratio','trial','C','s','val-acc','val-f','test-acc','test-f'])
-                    df_ramp = df_ramp.append(res_ramp)
-
+                    #res_ramp = pd.DataFrame([[ol_ratio[i], j, cost_cand[k], s_cand[l], ramp.calc_accuracy_linear(x_val,y_val), ramp.calc_f_linear(x_val,y_val), ramp.calc_accuracy_linear(x[ind_t], y[ind_t]), ramp.calc_f_linear(x[ind_t], y[ind_t])]], columns=['ratio','trial','C','s','val-acc','val-f','test-acc','test-f'])
+                    #df_ramp = df_ramp.append(res_ramp)
+                    row_ramp = {'ratio': ol_ratio[i],
+                                'trial': j,
+                                'C': cost_cand[k],
+                                's': s_cand[l],
+                                'val-acc': ramp.calc_accuracy_linear(x_val, y_val),
+                                'val-f': ramp.calc_f_linear(x_val,y_val),
+                                'test-acc': ramp.calc_accuracy_linear(x[ind_t], y[ind_t]),
+                                'test-f': ramp.calc_f_linear(x[ind_t],y[ind_t])}
+                    df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
+                
                 for l in range(len(mu_cand)):
                     print 'Start ER-SVM (DCA)'
                     ersvm.set_nu(nu_cand[k])
@@ -102,27 +113,47 @@ if __name__ == '__main__':
                     ersvm.solve_ersvm(x_tr, y_tr)
                     ersvm.show_result()
                     ersvm.set_initial_point(ersvm.weight, 0)
-                    res_dca = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], mu_cand[l], ersvm.calc_accuracy(x_val, y_val),ersvm.calc_f(x_val,y_val), ersvm.calc_accuracy(x[ind_t], y[ind_t]),ersvm.calc_f(x[ind_t],y[ind_t]), ersvm.alpha, ersvm.obj[-1]]],
-                                           columns=['ratio','trial','nu','mu','val-acc','val-f','test-acc','test-f','VaR','tr-CVaR'])
-                    df_dca = df_dca.append(res_dca)
+                    #res_dca = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], mu_cand[l], ersvm.calc_accuracy(x_val, y_val),ersvm.calc_f(x_val,y_val), ersvm.calc_accuracy(x[ind_t], y[ind_t]),ersvm.calc_f(x[ind_t],y[ind_t]), ersvm.alpha, ersvm.obj[-1]]],columns=['ratio','trial','nu','mu','val-acc','val-f','test-acc','test-f','VaR','tr-CVaR'])
+                    #df_dca = df_dca.append(res_dca)
+                    row_dca = {'ratio': ol_ratio[i],
+                               'trial': j,
+                               'nu': nu_cand[k],
+                               'mu': mu_cand[l],
+                               'val-acc': ersvm.calc_accuracy(x_val, y_val),
+                               'val-f': ersvm.calc_f(x_val,y_val),
+                               'test-acc': ersvm.calc_accuracy(x[ind_t], y[ind_t]),
+                               'test-f': ersvm.calc_f(x[ind_t],y[ind_t]),
+                               'VaR': ersvm.alpha,
+                               'tr-CVaR': ersvm.obj[-1]}
+                    df_dca = df_dca.append(pd.Series(row_dca, name=pd.datetime.today()))
 
                 print 'Start Enu-SVM'
                 enu.set_initial_weight(initial_weight)
                 enu.set_nu(nu_cand[k])
                 enu.solve_enusvm(x_tr, y_tr)
                 enu.show_result()
-                res_enu = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], enu.calc_accuracy(x_val, y_val), enu.calc_f(x_val,y_val), enu.calc_accuracy(x[ind_t], y[ind_t]), enu.calc_f(x[ind_t],y[ind_t])]],
-                                       columns=['ratio','trial','nu','val-acc','val-f','test-acc','test-f'])
-                df_enu = df_enu.append(res_enu)
+                row_enu = {'ratio': ol_ratio[i],
+                           'trial': j,
+                           'nu': nu_cand[k],
+                           'val-acc': enu.calc_accuracy(x_val, y_val),
+                           'val-f': enu.calc_f(x_val,y_val),
+                           'test-acc': enu.calc_accuracy(x[ind_t], y[ind_t]),
+                           'test-f': enu.calc_f(x[ind_t],y[ind_t])}
+                df_enu = df_enu.append(pd.Series(row_enu, name=pd.datetime.today()))
 
                 print 'Start ER-SVM (Heuristics)'
                 var.set_initial_weight(initial_weight)
                 var.set_nu(nu_cand[k])
                 var.solve_varmin(x_tr, y_tr)
                 var.show_result()
-                res_var = pd.DataFrame([[ol_ratio[i], j, nu_cand[k], var.calc_accuracy(x_val, y_val),var.calc_f(x_val, y_val), var.calc_accuracy(x[ind_t], y[ind_t]),var.calc_f(x[ind_t], y[ind_t])]],
-                                       columns=['ratio','trial','nu','val-acc','val-f','test-acc','test-f'])
-                df_var = df_var.append(res_var)
+                row_var = {'ratio': ol_ratio[i],
+                           'trial': j,
+                           'nu': nu_cand[k],
+                           'val-acc': var.calc_accuracy(x_val, y_val),
+                           'val-f': var.calc_f(x_val,y_val),
+                           'test-acc': var.calc_accuracy(x[ind_t], y[ind_t]),
+                           'test-f': var.calc_f(x[ind_t],y[ind_t])}
+                df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
 
                 print 'Start LIBSVM'
                 start = time.time()
@@ -131,14 +162,22 @@ if __name__ == '__main__':
                 end = time.time()
                 print 'End LIBSVM'
                 print 'time:', end - start
-                res_libsvm = pd.DataFrame([[ol_ratio[i], j, cost_cand[k], libsvm.score(x_val,y_val), f1_score(y_val,libsvm.predict(x_val)), libsvm.score(x[ind_t],y[ind_t]), f1_score(y[ind_t],libsvm.predict(x[ind_t]))]], columns=['ratio','trial','C','val-acc','val-f','test-acc','test-f'])
-                df_libsvm = df_libsvm.append(res_libsvm)
+                row_libsvm = {'ratio': ol_ratio[i],
+                              'trial': j,
+                              'C': cost_cand[k],
+                              'val-acc': libsvm.score(x_val, y_val),
+                              'val-f': f1_score(y_val,libsvm.predict(x_val)),
+                              'test-acc': libsvm.score(x[ind_t], y[ind_t]),
+                              'test-f': f1_score(y[ind_t],libsvm.predict(x[ind_t]))}
+                df_libsvm = df_libsvm.append(pd.Series(row_libsvm, name=pd.datetime.today()))
 
 
+    pd.set_option('line_width',200)
     ## Save as csv
-    dir_name = 'results/performance/liver-disorders/'
-    df_dca.to_csv(dir_name+'liver_dca.csv', index=False)
-    df_enu.to_csv(dir_name+'liver_enu.csv', index=False)
-    df_var.to_csv(dir_name+'liver_var.csv', index=False)
-    df_ramp.to_csv(dir_name+'liver_ramp.csv', index=False)
-    df_libsvm.to_csv(dir_name+'liver_libsvm.csv', index=False)
+    ## dir_name = 'results/performance/liver-disorders/'
+    ## df_dca.to_csv(dir_name+'liver_dca.csv', index=False)
+    ## df_enu.to_csv(dir_name+'liver_enu.csv', index=False)
+    ## df_var.to_csv(dir_name+'liver_var.csv', index=False)
+    ## df_ramp.to_csv(dir_name+'liver_ramp.csv', index=False)
+    ## df_libsvm.to_csv(dir_name+'liver_libsvm.csv', index=False)
+    df_enu.to_csv('liver_enu.csv', index=True)
