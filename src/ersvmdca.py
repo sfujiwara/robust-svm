@@ -72,7 +72,7 @@ class LinearPrimalERSVM():
     def calc_accuracy(self, x_test, y_test):
         num, dim = x_test.shape
         dv = np.dot(x_test, self.weight) + self.bias
-        return sum(dv * y_test > 0) / float(num)
+        return sum(dv * y_test > 0+1e-9) / float(num)
 
     def calc_f(self, x_test, y_test):
         num, dim = x_test.shape
