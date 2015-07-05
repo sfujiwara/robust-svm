@@ -25,7 +25,7 @@ if __name__ == '__main__':
     num_val = 103
     num_t = 104
     #trial = 30
-    trial = 2
+    trial = 10
     
     ## Scaling
     ## ersvmutil.libsvm_scale(x)
@@ -137,14 +137,14 @@ if __name__ == '__main__':
                     conv_ersvm.show_result()
                     conv_ersvm.set_initial_point(conv_ersvm.weight, 0)
                     row_conv = {'ratio': ol_ratio[i],
-                               'trial': j,
-                               'nu': nu_cand[k],
-                               'mu': mu_cand[l],
-                               'val-acc': conv_ersvm.calc_accuracy(x_val, y_val),
-                               'val-f': conv_ersvm.calc_f(x_val,y_val),
-                               'test-acc': conv_ersvm.calc_accuracy(x[ind_t], y[ind_t]),
-                               'test-f': conv_ersvm.calc_f(x[ind_t],y[ind_t]),
-                               'VaR': conv_ersvm.alpha,
+                                'trial': j,
+                                'nu': nu_cand[k],
+                                'mu': mu_cand[l],
+                                'val-acc': conv_ersvm.calc_accuracy(x_val, y_val),
+                                'val-f': conv_ersvm.calc_f(x_val,y_val),
+                                'test-acc': conv_ersvm.calc_accuracy(x[ind_t], y[ind_t]),
+                                'test-f': conv_ersvm.calc_f(x[ind_t],y[ind_t]),
+                                'VaR': conv_ersvm.alpha,
                                'tr-CVaR': conv_ersvm.obj[-1]}
                     df_conv = df_conv.append(pd.Series(row_conv, name=pd.datetime.today()))
 
