@@ -32,6 +32,7 @@ class HeuristicLinearERSVM():
 
 
     def solve_varmin(self, x, y):
+        start = time.time()
         num, dim = x.shape
         self.total_itr = 0
         self.bias = 0
@@ -72,6 +73,8 @@ class HeuristicLinearERSVM():
             else: self.ind_active = ind_active_new
             self.initial_weight = self.weight
         print 'ITR:', i + 1
+        end = time.time()
+        self.comp_time = end - start
 
 
     ## ===== Evaluation measures =================================== ##
@@ -108,7 +111,7 @@ class HeuristicLinearERSVM():
         #print 'obj val:\t', self.obj[-1]
         print 'itaration:\t\t', self.total_itr
         print 'termination:\t', self.stp
-        #print 'time:\t\t', self.comp_time
+        print 'time:\t\t', self.comp_time
         #print 'accuracy:\t', sum(self.risks < 0) / float(len(self.risks))
         print '============================'
 

@@ -1,10 +1,12 @@
+## -*- coding:utf-8 -*-
+
 import numpy as np
 from sklearn import svm
 import matplotlib.pyplot as plt
 import time
 import pandas as pd
 
-from src import ersvmdca, rampsvm, enusvm, ersvmutil
+from src import ersvmdca, rampsvm, enusvm, ersvmh, ersvmutil
 
 if __name__ == '__main__':
     ## Read a UCI dataset
@@ -21,8 +23,9 @@ if __name__ == '__main__':
 
     ## Experimental setup
     sampling_size = np.array([1000, 5000, 10000, 20000, 30000, 40000, 50000, 59535])
-    ##sampling_size = np.array([500, 1000, 2000, 3000])
+    #sampling_size = np.array([500, 1000, 2000, 3000])
     trial = 10
+    #trial = 1
 
     ## Arrays for results
     time_ersvm1 = np.zeros([len(sampling_size), trial])
@@ -31,7 +34,11 @@ if __name__ == '__main__':
     time_enusvm5 = np.zeros([len(sampling_size), trial])
     time_libsvm4 = np.zeros([len(sampling_size), trial])
     time_libsvm0 = np.zeros([len(sampling_size), trial])
-
+    time_var1 = np.zeros([len(sampling_size), trial])
+    time_var5 = np.zeros([len(sampling_size), trial])
+    convexity_enu1 = np.zeros([len(sampling_size), trial])
+    convexity_enu5 = np.zeros([len(sampling_size), trial])
+    
     ## Set seed
     np.random.seed(0)
 
@@ -64,6 +71,23 @@ if __name__ == '__main__':
             ersvm.show_result()
             time_ersvm5[i,j] = ersvm.comp_time
 
+            ## Heuristic VaR minimization (nu = 0.1)
+            var = ersvmh.HeuristicLinearERSVM()
+            var.set_nu(0.1)
+            var.set_initial_weight(initial_weight)
+            var.solve_varmin(x_train, y_train)
+            var.show_result()
+            time_var1[i,j] = var.comp_time
+
+            ## Heuristic VaR minimization (nu = 0.5)
+            ## var = ersvmh.HeuristicLinearERSVM()
+            var.set_nu(0.1)
+            var.set_gamma(0.03)
+            var.set_initial_weight(initial_weight)
+            var.solve_varmin(x_train, y_train)
+            var.show_result()
+            time_var5[i,j] = var.comp_time
+
             ## Ramp Loss SVM
             ## print 'Ramp Loss SVM'
             ## ramp = rampsvm.RampSVM()
@@ -78,12 +102,14 @@ if __name__ == '__main__':
             enu.solve_enusvm(x_train, y_train)
             enu.show_result()
             time_enusvm1[i,j] = enu.comp_time
+            convexity_enu1[i,j] = enu.convexity
 
             ## Enu-SVM (nu = 0.5)
             enu.set_nu(0.5)
             enu.solve_enusvm(x_train, y_train)
             enu.show_result()
             time_enusvm5[i,j] = enu.comp_time
+            convexity_enu5[i,j] = enu.convexity
 
             ## LIBSVM (C = 1e0)
             print 'start libsvm'
@@ -95,7 +121,7 @@ if __name__ == '__main__':
             print 'time:', end - start
             time_libsvm0[i,j] = end - start
 
-            ## LIBSVM (C = 1e4)
+            ## LIBSVM (C = 1e3)
             print 'start libsvm'
             start = time.time()
             clf_libsvm = svm.SVC(C=1e3, kernel='linear')
@@ -120,10 +146,12 @@ if __name__ == '__main__':
     np.savetxt('results/scalability/sampling_size.csv', sampling_size, fmt='%.0f', delimiter=',')
     np.savetxt('results/scalability/ersvm_nu01.csv', time_ersvm1, fmt='%0.9f', delimiter=',')
     np.savetxt('results/scalability/ersvm_nu05.csv', time_ersvm5, fmt='%0.9f', delimiter=',')
-    np.savetxt('results/scalability/libsvm_c0.csv', time_libsvm0, fmt='%0.9f', delimiter=',')
-    np.savetxt('results/scalability/libsvm_c4.csv', time_libsvm4, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/libsvm_c1e0.csv', time_libsvm0, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/libsvm_c1e3.csv', time_libsvm4, fmt='%0.9f', delimiter=',')
     np.savetxt('results/scalability/enusvm_nu01.csv', time_enusvm1, fmt='%0.9f', delimiter=',')
     np.savetxt('results/scalability/enusvm_nu05.csv', time_enusvm5, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/var_nu01.csv', time_enusvm1, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/var_nu05.csv', time_enusvm5, fmt='%0.9f', delimiter=',')
 
     ## Set parameters for plot
     plt.rcParams['axes.labelsize'] = 24
@@ -152,7 +180,7 @@ if __name__ == '__main__':
     plt.errorbar(sampling_size,
                  [np.mean(i) for i in time_libsvm4],
                  yerr=[np.std(i) for i in time_libsvm4],
-                 label='LIBSVM (C = 1e4)', elinewidth=elw, capsize=cs)
+                 label='LIBSVM (C = 1e3)', elinewidth=elw, capsize=cs)
     plt.errorbar(sampling_size,
                  [np.mean(i) for i in time_enusvm1],
                  yerr=[np.std(i) for i in time_enusvm1],
@@ -161,9 +189,17 @@ if __name__ == '__main__':
                  [np.mean(i) for i in time_enusvm5],
                  yerr=[np.std(i) for i in time_enusvm5],
                  label='Enu-SVM (nu = 0.5)', elinewidth=elw, capsize=cs)
+    plt.errorbar(sampling_size,
+                 [np.mean(i) for i in time_var1],
+                 yerr=[np.std(i) for i in time_var1],
+                 label='Heuristics (nu = 0.1)', elinewidth=elw, capsize=cs)
+    plt.errorbar(sampling_size,
+                 [np.mean(i) for i in time_var5],
+                 yerr=[np.std(i) for i in time_var5],
+                 label='Heuristics (nu = 0.5)', elinewidth=elw, capsize=cs)
     plt.xlabel('# training samples')
     plt.ylabel('training time (sec)')
     plt.legend(loc='upper left')
-    plt.ylim([-100, 1500])
+    ## plt.ylim([-100, 1500])
     plt.grid()
     plt.show()
