@@ -64,7 +64,8 @@ if __name__ == '__main__':
             initial_weight = np.random.normal(size=dim)
 
             ## ER-SVM (nu = 0.1)
-            print 'ER-SVM'
+            print '----- ER-SVM -----'
+            print 'nu: 0.1', '#sample:', sampling_size[i], 'trial:', j
             if is_on_time_ersvm1:
                 ersvm = ersvmdca.LinearPrimalERSVM()
                 ersvm.set_nu(0.1)
@@ -79,12 +80,16 @@ if __name__ == '__main__':
                 ##     is_on_time_ersvm1 = False
 
             ## ER-SVM (nu = 0.5)
+            print '----- ER-SVM -----'
+            print 'nu: 0.5', '#sample:', sampling_size[i], 'trial:', j
             ersvm.set_nu(0.5)
             ersvm.solve_ersvm(x_train, y_train)
             ersvm.show_result()
             time_ersvm5[i,j] = ersvm.comp_time
 
             ## Heuristic VaR minimization (nu = 0.1)
+            print '----- Heuristics -----'
+            print 'nu: 0.1', '#sample:', sampling_size[i], 'trial:', j
             if is_on_time_var1:
                 var = ersvmh.HeuristicLinearERSVM()
                 var.set_nu(0.1)
@@ -98,6 +103,8 @@ if __name__ == '__main__':
 
             ## Heuristic VaR minimization (nu = 0.5)
             ## var = ersvmh.HeuristicLinearERSVM()
+            print '----- Heuristics -----'
+            print 'nu: 0.5', '#sample:', sampling_size[i], 'trial:', j
             if is_on_time_var5:
                 var.set_nu(0.5)
                 var.set_gamma(0.03/0.5)
@@ -115,7 +122,8 @@ if __name__ == '__main__':
             ## time_ramp.append(ramp.comp_time)
 
             ## Enu-SVM (nu = 0.1)
-            print 'Enu-SVM'
+            print '----- Enu-SVM -----'
+            print 'nu: 0.1', '#sample:', sampling_size[i], 'trial:', j
             enu = enusvm.EnuSVM()
             enu.set_initial_weight(initial_weight)
             enu.set_nu(0.1)
@@ -125,6 +133,8 @@ if __name__ == '__main__':
             convexity_enu1[i,j] = enu.convexity
 
             ## Enu-SVM (nu = 0.5)
+            print '----- Enu-SVM -----'
+            print 'nu: 0.5', '#sample:', sampling_size[i], 'trial:', j
             enu.set_nu(0.5)
             enu.solve_enusvm(x_train, y_train)
             enu.show_result()
@@ -132,7 +142,8 @@ if __name__ == '__main__':
             convexity_enu5[i,j] = enu.convexity
 
             ## LIBSVM (C = 1e0)
-            print 'start libsvm'
+            print '----- LIBSVM -----'
+            print 'C: 1e0', '#sample:', sampling_size[i], 'trial:', j
             start = time.time()
             clf_libsvm = svm.SVC(C=1e0, kernel='linear')
             clf_libsvm.fit(x_train, y_train)
@@ -143,7 +154,8 @@ if __name__ == '__main__':
 
             ## LIBSVM (C = 1e3)
             if is_on_time_libsvm1e3:
-                print 'start libsvm'
+                print '----- LIBSVM -----'
+                print 'C: 1e0', '#sample:', sampling_size[i], 'trial:', j
                 start = time.time()
                 clf_libsvm = svm.SVC(C=1e3, kernel='linear')
                 clf_libsvm.fit(x_train, y_train)
