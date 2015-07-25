@@ -23,9 +23,19 @@ if __name__ == '__main__':
 
     ## Experimental setup
     sampling_size = np.array([1000, 5000, 10000, 20000, 30000, 40000, 50000, 59535])
-    #sampling_size = np.array([500, 1000, 2000, 3000])
+    ## sampling_size = np.array([500, 1000, 2000, 3000, 5000, 10000])
     trial = 10
-    #trial = 1
+    ## trial = 1
+
+    time_limit = 2000
+    is_on_time_ersvm1 = True
+    is_on_time_ersvm5 = True
+    is_on_time_enusvm1 = True
+    is_on_time_enusvm5 = True
+    is_on_time_libsvm1e0 = True
+    is_on_time_libsvm1e3 = True
+    is_on_time_var1 = True
+    is_on_time_var5 = True
 
     ## Arrays for results
     time_ersvm1 = np.zeros([len(sampling_size), trial])
@@ -55,15 +65,18 @@ if __name__ == '__main__':
 
             ## ER-SVM (nu = 0.1)
             print 'ER-SVM'
-            ersvm = ersvmdca.LinearPrimalERSVM()
-            ersvm.set_nu(0.1)
-            ersvm.set_mu(0.05)
-            ersvm.set_epsilon(1e-5)
-            ersvm.set_cplex_method(1)
-            ersvm.set_initial_point(initial_weight, 0)
-            ersvm.solve_ersvm(x_train, y_train)
-            ersvm.show_result()
-            time_ersvm1[i,j] = ersvm.comp_time
+            if is_on_time_ersvm1:
+                ersvm = ersvmdca.LinearPrimalERSVM()
+                ersvm.set_nu(0.1)
+                ersvm.set_mu(0.05)
+                ersvm.set_epsilon(1e-5)
+                ersvm.set_cplex_method(1)
+                ersvm.set_initial_point(initial_weight, 0)
+                ersvm.solve_ersvm(x_train, y_train)
+                ersvm.show_result()
+                time_ersvm1[i,j] = ersvm.comp_time
+                ## if ersvm.comp_time > time_limit:
+                ##     is_on_time_ersvm1 = False
 
             ## ER-SVM (nu = 0.5)
             ersvm.set_nu(0.5)
@@ -72,21 +85,28 @@ if __name__ == '__main__':
             time_ersvm5[i,j] = ersvm.comp_time
 
             ## Heuristic VaR minimization (nu = 0.1)
-            var = ersvmh.HeuristicLinearERSVM()
-            var.set_nu(0.1)
-            var.set_initial_weight(initial_weight)
-            var.solve_varmin(x_train, y_train)
-            var.show_result()
-            time_var1[i,j] = var.comp_time
+            if is_on_time_var1:
+                var = ersvmh.HeuristicLinearERSVM()
+                var.set_nu(0.1)
+                var.set_gamma(0.03/0.1)
+                var.set_initial_weight(initial_weight)
+                var.solve_varmin(x_train, y_train)
+                var.show_result()
+                time_var1[i,j] = var.comp_time
+                if time_var1[i,j] > time_limit:
+                    is_on_time_var1 = False
 
             ## Heuristic VaR minimization (nu = 0.5)
             ## var = ersvmh.HeuristicLinearERSVM()
-            var.set_nu(0.1)
-            var.set_gamma(0.03)
-            var.set_initial_weight(initial_weight)
-            var.solve_varmin(x_train, y_train)
-            var.show_result()
-            time_var5[i,j] = var.comp_time
+            if is_on_time_var5:
+                var.set_nu(0.5)
+                var.set_gamma(0.03/0.5)
+                var.set_initial_weight(initial_weight)
+                var.solve_varmin(x_train, y_train)
+                var.show_result()
+                time_var5[i,j] = var.comp_time
+                if time_var5[i,j] > time_limit:
+                    is_on_time_var5 = False
 
             ## Ramp Loss SVM
             ## print 'Ramp Loss SVM'
@@ -122,14 +142,17 @@ if __name__ == '__main__':
             time_libsvm0[i,j] = end - start
 
             ## LIBSVM (C = 1e3)
-            print 'start libsvm'
-            start = time.time()
-            clf_libsvm = svm.SVC(C=1e3, kernel='linear')
-            clf_libsvm.fit(x_train, y_train)
-            end = time.time()
-            print 'end libsvm'
-            print 'time:', end - start
-            time_libsvm4[i,j] = end - start
+            if is_on_time_libsvm1e3:
+                print 'start libsvm'
+                start = time.time()
+                clf_libsvm = svm.SVC(C=1e3, kernel='linear')
+                clf_libsvm.fit(x_train, y_train)
+                end = time.time()
+                print 'end libsvm'
+                print 'time:', end - start
+                time_libsvm4[i,j] = end - start
+                if time_libsvm4[i,j] > time_limit:
+                    is_on_time_libsvm1e3 = False
 
             ## LIBLINEAR
             ## print 'start liblinear'
