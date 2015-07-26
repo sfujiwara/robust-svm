@@ -24,8 +24,8 @@ if __name__ == '__main__':
     num_tr = 138
     num_val = 103
     num_t = 104
-    #trial = 30
-    trial = 10
+    trial = 30
+    ## trial = 10
     
     ## Scaling
     ## ersvmutil.libsvm_scale(x)
@@ -204,4 +204,3 @@ if __name__ == '__main__':
     df_ramp.to_csv(dir_name+file_name+'ramp.csv', index=False)
     df_libsvm.to_csv(dir_name+file_name+'libsvm.csv', index=False)
     df_conv.to_csv(dir_name+file_name+'conv.csv', index=False)
-    ## df_enu.to_csv('liver_enu.csv', index=True)
