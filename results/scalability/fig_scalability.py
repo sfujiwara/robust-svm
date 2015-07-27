@@ -8,8 +8,8 @@ if __name__ == '__main__':
     sampling_size = np.loadtxt('sampling_size.csv', delimiter=',')
     time_ersvm1 = np.loadtxt('ersvm_nu01.csv', delimiter=',')
     time_ersvm5 = np.loadtxt('ersvm_nu05.csv', delimiter=',')
-    time_libsvm0 = np.loadtxt('libsvm_c0.csv', delimiter=',')
-    time_libsvm4 = np.loadtxt('libsvm_c4.csv', delimiter=',')
+    time_libsvm0 = np.loadtxt('libsvm_c1e0.csv', delimiter=',')
+    time_libsvm4 = np.loadtxt('libsvm_c1e3.csv', delimiter=',')
     time_enusvm1 = np.loadtxt('enusvm_nu01.csv', delimiter=',')
     time_enusvm5 = np.loadtxt('enusvm_nu05.csv', delimiter=',')
     
