@@ -187,6 +187,8 @@ if __name__ == '__main__':
     np.savetxt('results/scalability/enusvm_nu05.csv', time_enusvm5, fmt='%0.9f', delimiter=',')
     np.savetxt('results/scalability/var_nu01.csv', time_enusvm1, fmt='%0.9f', delimiter=',')
     np.savetxt('results/scalability/var_nu05.csv', time_enusvm5, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/convexity_enusvm_nu01.csv', convexity_enu1, fmt='%0.1f', delimiter=',')
+    np.savetxt('results/scalability/convexity_enusvm_nu05.csv', convexity_enu5, fmt='%0.1f', delimiter=',')
 
     ## Set parameters for plot
     plt.rcParams['axes.labelsize'] = 24
