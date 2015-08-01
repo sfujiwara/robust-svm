@@ -185,8 +185,8 @@ if __name__ == '__main__':
     np.savetxt('results/scalability/libsvm_c1e3.csv', time_libsvm4, fmt='%0.9f', delimiter=',')
     np.savetxt('results/scalability/enusvm_nu01.csv', time_enusvm1, fmt='%0.9f', delimiter=',')
     np.savetxt('results/scalability/enusvm_nu05.csv', time_enusvm5, fmt='%0.9f', delimiter=',')
-    np.savetxt('results/scalability/var_nu01.csv', time_enusvm1, fmt='%0.9f', delimiter=',')
-    np.savetxt('results/scalability/var_nu05.csv', time_enusvm5, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/var_nu01.csv', time_var1, fmt='%0.9f', delimiter=',')
+    np.savetxt('results/scalability/var_nu05.csv', time_var5, fmt='%0.9f', delimiter=',')
     np.savetxt('results/scalability/convexity_enusvm_nu01.csv', convexity_enu1, fmt='%0.1f', delimiter=',')
     np.savetxt('results/scalability/convexity_enusvm_nu05.csv', convexity_enu5, fmt='%0.1f', delimiter=',')
 
