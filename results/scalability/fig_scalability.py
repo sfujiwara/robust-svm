@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 if __name__ == '__main__':
-    ## Load results
+    # Load results
     sampling_size = np.loadtxt('sampling_size.csv', delimiter=',')
     time_ersvm1 = np.loadtxt('ersvm_nu01.csv', delimiter=',')
     time_ersvm5 = np.loadtxt('ersvm_nu05.csv', delimiter=',')
@@ -12,8 +12,10 @@ if __name__ == '__main__':
     time_libsvm4 = np.loadtxt('libsvm_c1e3.csv', delimiter=',')
     time_enusvm1 = np.loadtxt('enusvm_nu01.csv', delimiter=',')
     time_enusvm5 = np.loadtxt('enusvm_nu05.csv', delimiter=',')
-    
-    ## Set parameters for plot
+    time_var1 = np.loadtxt('var_nu01.csv', delimiter=',')
+    time_var5 = np.loadtxt('var_nu05.csv', delimiter=',')
+
+    # Set parameters for plot
     plt.rcParams['axes.labelsize'] = 24
     plt.rcParams['lines.linewidth'] = 3
     plt.rcParams['lines.markersize'] = 8
@@ -40,7 +42,7 @@ if __name__ == '__main__':
     plt.errorbar(sampling_size,
                  [np.mean(i) for i in time_libsvm4],
                  yerr=[np.std(i) for i in time_libsvm4],
-                 label='LIBSVM (C = 1e4)', elinewidth=elw, capsize=cs)
+                 label='LIBSVM (C = 1e3)', elinewidth=elw, capsize=cs)
     plt.errorbar(sampling_size,
                  [np.mean(i) for i in time_enusvm1],
                  yerr=[np.std(i) for i in time_enusvm1],
@@ -49,6 +51,14 @@ if __name__ == '__main__':
                  [np.mean(i) for i in time_enusvm5],
                  yerr=[np.std(i) for i in time_enusvm5],
                  label='Enu-SVM (nu = 0.5)', elinewidth=elw, capsize=cs)
+    plt.errorbar(sampling_size,
+                 [np.mean(i) for i in time_var1],
+                 yerr=[np.std(i) for i in time_var1],
+                 label='Heuristics (nu = 0.1)', elinewidth=elw, capsize=cs)
+    plt.errorbar(sampling_size,
+                 [np.mean(i) for i in time_var5],
+                 yerr=[np.std(i) for i in time_var5],
+                 label='Heuristics (nu = 0.5)', elinewidth=elw, capsize=cs)
     plt.xlabel('# training samples')
     plt.ylabel('training time (sec)')
     plt.legend(loc='upper left')
