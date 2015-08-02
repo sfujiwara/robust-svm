@@ -9,9 +9,10 @@ if __name__ == '__main__':
     pd.set_option("display.max_rows", 200)
     val_measure = 'val-acc'
     test_measure = 'test-acc'
-    test_measure = "test-f"
+    # test_measure = "test-f"
     # Load result csv
-    dir_name = 'liver-disorders/'
+    # dir_name = 'liver-disorders/'
+    dir_name = 'heart/'
     df_dca = pd.read_csv(dir_name+'dca.csv')
     df_var = pd.read_csv(dir_name+'var.csv')
     df_ramp = pd.read_csv(dir_name+'ramp.csv')
