@@ -1,53 +1,66 @@
 import numpy as np
 from sklearn import svm
-import matplotlib.pyplot as plt
 import time
 import pandas as pd
 from sklearn.metrics import f1_score
-
 from src import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
-#from src_old import ersvm
 
 if __name__ == '__main__':
-    ## Set seed
+    # Set seed
     np.random.seed(0)
 
-    ## Read data set
-    name_dataset = 'liver'
-    ## filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
-    ## filename = 'datasets/LIBSVM/heart/heart_scale.csv'
-    filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
+    # Read data set (liver)
+    # name_dataset = 'liver'
+    # filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
+    # dataset = np.loadtxt(filename, delimiter=',')
+    # y = dataset[:, 0]
+    # x = dataset[:, 1:]
+    # num, dim = x.shape
+    # num_tr = 138
+    # num_val = 103
+    # num_t = 104
+    # trial = 30
+
+    # Read data set (heart)
+    name_dataset = 'heart'
+    filename = 'datasets/LIBSVM/heart/heart_scale.csv'
     dataset = np.loadtxt(filename, delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
     num, dim = x.shape
-    num_tr = 138
-    num_val = 103
-    num_t = 104
-    trial = 30
-    ## trial = 10
-    
-    ## Scaling
-    ## ersvmutil.libsvm_scale(x)
+    num_tr = 108
+    num_val = 81
+    num_t = 81
+    trial = 1
+
+    # Scaling
+    # ersvmutil.libsvm_scale(x)
     ersvmutil.standard_scale(x)
 
-    ## Initial point generated at random
+    # Initial point generated at random
     initial_weight = np.random.normal(size=dim)
     initial_weight = initial_weight / np.linalg.norm(initial_weight)
 
-    ## Candidates of hyper-parameters
-    nu_max = 0.75
+    # Candidates of hyper-parameters (liver)
+    # nu_max = 0.75
+    # nu_cand = np.linspace(nu_max, 0.1, 9)
+    # cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    # ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    # mu_cand = np.array([0.05, 0.1, 0.15])
+    # s_cand = np.array([-1, 0., 0.5])
+
+    # Candidates of hyper-parameters (heart)
+    nu_max = 0.8
     nu_cand = np.linspace(nu_max, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    ## ol_ratio = np.array([0., 0.03])
     mu_cand = np.array([0.05, 0.1, 0.15])
     s_cand = np.array([-1, 0., 0.5])
 
-    ## Setting of outlier
+    # Setting of outlier
     radius = 10
 
-    ## Class instances
+    # Class instances
     ersvm = ersvmdca.LinearPrimalERSVM()
     ersvm.set_initial_point(initial_weight, 0)
     ramp = rampsvm.RampSVM()
@@ -58,7 +71,7 @@ if __name__ == '__main__':
     conv_ersvm.set_initial_point(initial_weight, 0)
     conv_ersvm.set_constant_t(0)
 
-    ## DataFrame for results
+    # DataFrame for results
     df_dca = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR'])
     df_var = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f'])
     df_enu = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f'])
@@ -66,32 +79,32 @@ if __name__ == '__main__':
     df_ramp = pd.DataFrame(columns=['ratio', 'trial', 'C', 's', 'val-acc', 'val-f', 'test-acc', 'test-f'])
     df_conv = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR'])
 
-    ## Loop for outlier ratio
+    # Loop for outlier ratio
     for i in range(len(ol_ratio)):
         num_ol_tr = int(num_tr * ol_ratio[i])
         num_ol_val = int(num_val * ol_ratio[i])
-        ## Loop for random splitting
+        # Loop for random splitting
         for j in range(trial):
-            ## Split indices to training, validation, and test set
+            # Split indices to training, validation, and test set
             ind_rand = np.random.permutation(range(num))
             ind_tr = ind_rand[:num_tr]
             ind_val = ind_rand[num_tr:(num_tr+num_val)]
             ind_t = ind_rand[(num_tr+num_val):]
-            ## Copy training and validation set since they will be contaminated
+            # Copy training and validation set since they will be contaminated
             x_tr = np.array(x[ind_tr])
             y_tr = np.array(y[ind_tr])
             x_val = np.array(x[ind_val])
             y_val = np.array(y[ind_val])
-            ## Generate synthetic outliers
+            # Generate synthetic outliers
             if num_ol_tr > 0:
                 outliers = ersvmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
                 x_tr[:num_ol_tr] = outliers
                 outliers = ersvmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
                 x_val[:num_ol_val] = outliers
 
-            ## Loop for hyper-parameter tuning
+            # Loop for hyper-parameter tuning
             for k in range(len(nu_cand)):
-                ## Hyper-parameter s of Ramp SVM
+                # Hyper-parameter s of Ramp SVM
                 for l in range(len(mu_cand)):
                     print 'Start Ramp Loss SVM'
                     ramp.set_cost(cost_cand[k])
@@ -108,7 +121,7 @@ if __name__ == '__main__':
                                 'test-f': ramp.calc_f_linear(x[ind_t],y[ind_t])}
                     df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
 
-                ## Hyper-parameter mu of ER-SVM
+                # Hyper-parameter mu of ER-SVM
                 for l in range(len(mu_cand)):
                     print 'Start ER-SVM (DCA)'
                     ersvm.set_nu(nu_cand[k])
@@ -128,7 +141,7 @@ if __name__ == '__main__':
                                'tr-CVaR': ersvm.obj[-1]}
                     df_dca = df_dca.append(pd.Series(row_dca, name=pd.datetime.today()))
 
-                ## Hyper-parameter mu of ER-SVM with t = 0
+                # Hyper-parameter mu of ER-SVM with t = 0
                 for l in range(len(mu_cand)):
                     print 'Start ER-SVM (DCA) with t = 0'
                     conv_ersvm.set_nu(nu_cand[k])
@@ -194,13 +207,12 @@ if __name__ == '__main__':
 
 
     pd.set_option('line_width',200)
-    ## Save as csv
-    dir_name = 'results/performance/liver-disorders/'
-    ## file_name = 'liver_'
-    file_name = ''
-    df_dca.to_csv(dir_name+file_name+'dca.csv', index=False)
-    df_enu.to_csv(dir_name+file_name+'enu.csv', index=False)
-    df_var.to_csv(dir_name+file_name+'var.csv', index=False)
-    df_ramp.to_csv(dir_name+file_name+'ramp.csv', index=False)
-    df_libsvm.to_csv(dir_name+file_name+'libsvm.csv', index=False)
-    df_conv.to_csv(dir_name+file_name+'conv.csv', index=False)
+    # Save as csv
+    # dir_name = 'results/performance/heart/'
+    # file_name = ''
+    # df_dca.to_csv(dir_name+file_name+'dca.csv', index=False)
+    # df_enu.to_csv(dir_name+file_name+'enu.csv', index=False)
+    # df_var.to_csv(dir_name+file_name+'var.csv', index=False)
+    # df_ramp.to_csv(dir_name+file_name+'ramp.csv', index=False)
+    # df_libsvm.to_csv(dir_name+file_name+'libsvm.csv', index=False)
+    # df_conv.to_csv(dir_name+file_name+'conv.csv', index=False)
