@@ -11,8 +11,8 @@ if __name__ == '__main__':
     test_measure = 'test-acc'
     # test_measure = "test-f"
     # Load result csv
-    # dir_name = 'liver-disorders/'
-    dir_name = 'heart/'
+    dir_name = 'liver-disorders/'
+    # dir_name = 'heart/'
     df_dca = pd.read_csv(dir_name+'dca.csv')
     df_var = pd.read_csv(dir_name+'var.csv')
     df_ramp = pd.read_csv(dir_name+'ramp.csv')
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     plt.plot(ratio, df_gb_conv.groupby('ratio')[test_measure].mean(), label='ER-SVM (convex range)')
     plt.ylabel('Performance')
     plt.xlabel('Outlier Ratio')
-    plt.ylim([0.55, 0.8])
+    # plt.ylim([0.55, 0.8])
     plt.legend()
     plt.grid()
     plt.show()
