@@ -10,28 +10,28 @@ if __name__ == '__main__':
     np.random.seed(0)
 
     # Read data set (liver)
-    # name_dataset = 'liver'
-    # filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
-    # dataset = np.loadtxt(filename, delimiter=',')
-    # y = dataset[:, 0]
-    # x = dataset[:, 1:]
-    # num, dim = x.shape
-    # num_tr = 138
-    # num_val = 103
-    # num_t = 104
-    # trial = 30
-
-    # Read data set (heart)
-    name_dataset = 'heart'
-    filename = 'datasets/LIBSVM/heart/heart_scale.csv'
+    name_dataset = 'liver'
+    filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
     dataset = np.loadtxt(filename, delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
     num, dim = x.shape
-    num_tr = 108
-    num_val = 81
-    num_t = 81
+    num_tr = 138
+    num_val = 103
+    num_t = 104
     trial = 30
+
+    # Read data set (heart)
+    # name_dataset = 'heart'
+    # filename = 'datasets/LIBSVM/heart/heart_scale.csv'
+    # dataset = np.loadtxt(filename, delimiter=',')
+    # y = dataset[:, 0]
+    # x = dataset[:, 1:]
+    # num, dim = x.shape
+    # num_tr = 108
+    # num_val = 81
+    # num_t = 81
+    # trial = 30
 
     # Scaling
     # ersvmutil.libsvm_scale(x)
@@ -42,24 +42,24 @@ if __name__ == '__main__':
     initial_weight = initial_weight / np.linalg.norm(initial_weight)
 
     # Candidates of hyper-parameters (liver)
-    # nu_max = 0.75
-    # nu_cand = np.linspace(nu_max, 0.1, 9)
-    # cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    # ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    # mu_cand = np.array([0.05, 0.1, 0.15])
-    # s_cand = np.array([-1, 0., 0.5])
-    # Setting of outlier
-    # radius = 10
-
-    # Candidates of hyper-parameters (heart)
-    nu_max = 0.8
+    nu_max = 0.75
     nu_cand = np.linspace(nu_max, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
     mu_cand = np.array([0.05, 0.1, 0.15])
     s_cand = np.array([-1, 0., 0.5])
     # Setting of outlier
-    radius = 50
+    radius = 10
+
+    # # Candidates of hyper-parameters (heart)
+    # nu_max = 0.8
+    # nu_cand = np.linspace(nu_max, 0.1, 9)
+    # cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    # ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    # mu_cand = np.array([0.05, 0.1, 0.15])
+    # s_cand = np.array([-1, 0., 0.5])
+    # # Setting of outlier
+    # radius = 50
 
     # Class instances
     ersvm = ersvmdca.LinearPrimalERSVM()
@@ -183,6 +183,7 @@ if __name__ == '__main__':
                 print 'Start ER-SVM (Heuristics)'
                 var.set_initial_weight(np.array(initial_weight))
                 var.set_nu(nu_cand[k])
+                var.set_gamma(0.03/nu_cand[k])
                 var.solve_varmin(x_tr, y_tr)
                 var.show_result()
                 row_var = {'ratio': ol_ratio[i],
@@ -212,7 +213,8 @@ if __name__ == '__main__':
 
     pd.set_option('line_width', 200)
     # Save as csv
-    dir_name = 'results/performance/heart/'
+    # dir_name = 'results/performance/heart/'
+    dir_name = "results/performance/liver-disorders/"
     file_name = ''
     df_dca.to_csv(dir_name+file_name+'dca.csv', index=False)
     df_enu.to_csv(dir_name+file_name+'enu.csv', index=False)

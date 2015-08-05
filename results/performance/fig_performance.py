@@ -9,6 +9,7 @@ if __name__ == '__main__':
     pd.set_option("display.max_rows", 200)
     val_measure = 'val-acc'
     test_measure = 'test-acc'
+    # val_measure + "val-f"
     # test_measure = "test-f"
     # Load result csv
     dir_name = 'liver-disorders/'
@@ -45,7 +46,7 @@ if __name__ == '__main__':
     # Set parameters
     plt.rcParams['axes.labelsize'] = 24
     plt.rcParams['lines.linewidth'] = 5
-    plt.rcParams['legend.fontsize'] = 18
+    plt.rcParams['legend.fontsize'] = 16
     plt.rcParams['legend.shadow'] = False
     plt.rcParams['xtick.labelsize'] = 12
     plt.rcParams['ytick.labelsize'] = 12
