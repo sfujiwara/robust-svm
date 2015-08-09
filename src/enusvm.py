@@ -8,11 +8,8 @@ import sys
 # for Ubuntu 64bit
 sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux')
 import numpy as np
-import scipy as sp
-import matplotlib.pyplot as plt
 import cplex
 import time
-from sklearn.metrics import pairwise_kernels
 
 
 class EnuSVM:

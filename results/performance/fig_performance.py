@@ -4,22 +4,34 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
+print "hello"
+
 if __name__ == '__main__':
+    measure = "accuracy"
+    # measure = "f-measure"
     pd.set_option('line_width', 200)
     pd.set_option("display.max_rows", 200)
-    val_measure = 'val-acc'
-    test_measure = 'test-acc'
-    # val_measure + "val-f"
-    # test_measure = "test-f"
+    if measure == "accuracy":
+        val_measure = 'val-acc'
+        test_measure = 'test-acc'
+    elif measure == "f-measure":
+        val_measure + "val-f"
+        test_measure = "test-f"
     # Load result csv
     dir_name = 'liver-disorders/'
-    # dir_name = 'heart/'
+    dir_name = "diabetes2/"
+    #dir_name = 'liver2/'
+    #dir_name = 'heart2/'
     df_dca = pd.read_csv(dir_name+'dca.csv')
     df_var = pd.read_csv(dir_name+'var.csv')
     df_ramp = pd.read_csv(dir_name+'ramp.csv')
     df_enu = pd.read_csv(dir_name+'enu.csv')
     df_libsvm = pd.read_csv(dir_name+'libsvm.csv')
     df_conv = pd.read_csv(dir_name+"conv.csv")
+
+    ## Indices achieving maximum validation performance in each trial
+    ind_dca = df_dca.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
+    test = df_dca.iloc[np.array(ind_dca["val-acc"], dtype=int)]
 
     gb_dca = df_dca.groupby(['ratio', 'trial'])
     gb_libsvm = df_libsvm.groupby(['ratio', 'trial'])
@@ -35,13 +47,7 @@ if __name__ == '__main__':
     df_gb_libsvm = df_libsvm[gb_libsvm[val_measure].transform(max) == df_libsvm[val_measure]].groupby(['ratio', 'trial'], as_index=False).first()
     df_gb_conv = df_conv[gb_conv[val_measure].transform(max) == df_conv[val_measure]].groupby(['ratio', 'trial'], as_index=False).first()
 
-    # df_gb_dca = df_dca[df_dca.groupby(['ratio','trial'])['val-acc'].transform(max) == df_dca['val-acc']]
-    # df_gb_libsvm = df_libsvm[df_libsvm.groupby(['ratio','trial'])['val-acc'].transform(max) == df_libsvm['val-acc']]
-    # df_gb_var = df_var[df_var.groupby(['ratio','trial'])['val-acc'].transform(max) == df_var['val-acc']]
-    # df_gb_ramp = df_ramp[df_ramp.groupby(['ratio','trial'])['val-acc'].transform(max) == df_ramp['val-acc']]
-    # df_gb_enu = df_enu[df_enu.groupby(['ratio','trial'])['val-acc'].transform(max) == df_enu['val-acc']]
-
-    ratio = np.array([0, 0.03, 0.05, 0.1, 0.2])
+    ratio = np.array([0, 0.03, 0.05, 0.1, 0.15])
 
     # Set parameters
     plt.rcParams['axes.labelsize'] = 24
@@ -63,3 +69,9 @@ if __name__ == '__main__':
     plt.legend()
     plt.grid()
     plt.show()
+
+    res_dca = df_gb_dca.groupby('ratio')[test_measure].mean()
+    res_libsvm = df_gb_libsvm.groupby('ratio')[test_measure].mean()
+    res_var = df_gb_var.groupby('ratio')[test_measure].mean()
+    res_ramp = df_gb_ramp.groupby('ratio')[test_measure].mean()
+

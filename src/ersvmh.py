@@ -7,9 +7,11 @@ sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux')
 import numpy as np
 import matplotlib.pyplot as plt
 import cplex
-import enusvm, ersvmutil
+import enusvm
+import ersvmutil
 
-class HeuristicLinearERSVM():
+
+class HeuristicLinearERSVM:
 
     def __init__(self):
         self.max_itr = 100
@@ -17,9 +19,10 @@ class HeuristicLinearERSVM():
         self.nu = 0.5
         self.gamma = 0.01
         self.heuristic_termination = True
+        self.is_convex = None
 
+    # ===== Setters ==================================================
 
-    ## ===== Setters ==================================================
     def set_initial_weight(self, initial_weight):
         self.weight = initial_weight
 
@@ -28,13 +31,13 @@ class HeuristicLinearERSVM():
 
     def set_gamma(self, gamma):
         self.gamma = gamma
-    ## ================================================================
-
+    # ================================================================
 
     def solve_varmin(self, x, y):
         start = time.time()
         num, dim = x.shape
         self.total_itr = 0
+        self.is_convex = True
         self.bias = 0
         self.ind_active = np.arange(num)
         enu = enusvm.EnuSVM()
@@ -53,6 +56,9 @@ class HeuristicLinearERSVM():
             enu.set_nu(nu_i)
             enu.set_initial_weight(self.weight)
             enu.solve_enusvm(x[self.ind_active], y[self.ind_active])
+            # Check convexity
+            if not enu.convexity:
+                self.is_convex = False
             w_new = enu.weight
             self.bias = enu.bias
             ##### Heuristic termination (1e-4 or 1e-5 is better) #####
@@ -76,7 +82,6 @@ class HeuristicLinearERSVM():
         end = time.time()
         self.comp_time = end - start
 
-
     ## ===== Evaluation measures =================================== ##
     def calc_accuracy(self, x_test, y_test):
         num, dim = x_test.shape
@@ -99,20 +104,19 @@ class HeuristicLinearERSVM():
             return 0.
         else:
             return 2*recall*precision / (recall+precision)
-    ## ============================================================= ##
-
+    # =============================================================
 
     def show_result(self, d=5):
         print '===== RESULT ==============='
         print 'nu:\t\t\t\t', self.nu
         print 'weight:\t\t\t', np.round(self.weight, d)
         print 'bias:\t\t\t', np.round(self.bias, d)
-        #print 'alpha:\t\t', np.round(self.alpha, d)
-        #print 'obj val:\t', self.obj[-1]
-        print 'itaration:\t\t', self.total_itr
+        # print 'alpha:\t\t', np.round(self.alpha, d)
+        # print 'obj val:\t', self.obj[-1]
+        print 'iteration:\t\t', self.total_itr
         print 'termination:\t', self.stp
         print 'time:\t\t', self.comp_time
-        #print 'accuracy:\t', sum(self.risks < 0) / float(len(self.risks))
+        # print 'accuracy:\t', sum(self.risks < 0) / float(len(self.risks))
         print '============================'
 
 

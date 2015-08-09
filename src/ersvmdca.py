@@ -1,4 +1,4 @@
-## -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 import time
 import sys
@@ -13,7 +13,7 @@ import ersvmutil
 
 class LinearPrimalERSVM():
 
-    ## ===== Constructor =========================================== ##
+    # ===== Constructor ===========================================
     def __init__(self):
         self.max_itr = 30
         self.cplex_method = 0
@@ -23,7 +23,7 @@ class LinearPrimalERSVM():
         self.eps = 1e-10
         self.obj = []
         self.constant_t = -1
-    ## ============================================================= ##
+    # =============================================================
 
 
     ## ===== Setters =============================================== ##

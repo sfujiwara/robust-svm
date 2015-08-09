@@ -10,57 +10,76 @@ if __name__ == '__main__':
     np.random.seed(0)
 
     # Read data set (liver)
-    name_dataset = 'liver'
-    filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
-    dataset = np.loadtxt(filename, delimiter=',')
-    y = dataset[:, 0]
-    x = dataset[:, 1:]
-    num, dim = x.shape
-    num_tr = 138
-    num_val = 103
-    num_t = 104
-    trial = 30
-
-    # Read data set (heart)
-    # name_dataset = 'heart'
-    # filename = 'datasets/LIBSVM/heart/heart_scale.csv'
+    # name_dataset = 'liver'
+    # filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
     # dataset = np.loadtxt(filename, delimiter=',')
     # y = dataset[:, 0]
     # x = dataset[:, 1:]
     # num, dim = x.shape
-    # num_tr = 108
-    # num_val = 81
-    # num_t = 81
-    # trial = 30
-
-    # Scaling
-    # ersvmutil.libsvm_scale(x)
-    ersvmutil.standard_scale(x)
-
-    # Initial point generated at random
-    initial_weight = np.random.normal(size=dim)
-    initial_weight = initial_weight / np.linalg.norm(initial_weight)
-
+    # num_tr = 138
+    # num_val = 103
+    # num_t = 104
     # Candidates of hyper-parameters (liver)
-    nu_max = 0.75
-    nu_cand = np.linspace(nu_max, 0.1, 9)
-    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    mu_cand = np.array([0.05, 0.1, 0.15])
-    s_cand = np.array([-1, 0., 0.5])
-    # Setting of outlier
-    radius = 10
-
-    # # Candidates of hyper-parameters (heart)
-    # nu_max = 0.8
+    # nu_max = 0.75
     # nu_cand = np.linspace(nu_max, 0.1, 9)
     # cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     # ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
     # mu_cand = np.array([0.05, 0.1, 0.15])
     # s_cand = np.array([-1, 0., 0.5])
     # # Setting of outlier
-    # radius = 50
+    # radius = 10
 
+    # Read data set (heart)
+    name_dataset = 'heart'
+    filename = 'datasets/LIBSVM/heart/heart_scale.csv'
+    dir_name_result = 'results/performance/heart/'
+    dataset = np.loadtxt(filename, delimiter=',')
+    y = dataset[:, 0]
+    x = dataset[:, 1:]
+    num, dim = x.shape
+    num_tr = 108
+    num_val = 81
+    num_t = 81
+    # Candidates of hyper-parameters (heart)
+    nu_max = 0.8
+    nu_cand = np.linspace(nu_max, 0.1, 9)
+    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    mu_cand = np.array([0.05, 0.1, 0.15])
+    s_cand = np.array([-1, 0., 0.5])
+    # Setting of outlier
+    radius = 100
+
+    ## # Read data set (diabetes)
+    ## name_dataset = 'diabetes'
+    ## filename = 'datasets/LIBSVM/diabetes/diabetes_scale.csv'
+    ## dataset = np.loadtxt(filename, delimiter=',')
+    ## y = dataset[:, 0]
+    ## x = dataset[:, 1:]
+    ## num, dim = x.shape
+    ## num_tr = 307
+    ## num_val = 203
+    ## num_t = 231
+    ## # Candidates of hyper-parameters (diabetes)
+    ## nu_max = 0.65
+    ## nu_cand = np.linspace(nu_max, 0.1, 9)
+    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    ## mu_cand = np.array([0.05, 0.1, 0.15])
+    ## s_cand = np.array([-1, 0., 0.5])
+    ## # Setting of outlier
+    ## radius = 10  # diabetes2
+    ## radius = 50  # diabetes3
+    ## dir_name_result = "results/performance/diabetes3/"
+
+    # Number of trial
+    trial = 30
+    # Scaling
+    # ersvmutil.libsvm_scale(x)
+    ersvmutil.standard_scale(x)
+    # Initial point generated at random
+    initial_weight = np.random.normal(size=dim)
+    initial_weight = initial_weight / np.linalg.norm(initial_weight)
     # Class instances
     ersvm = ersvmdca.LinearPrimalERSVM()
     ersvm.set_initial_point(np.array(initial_weight), 0)
@@ -71,11 +90,10 @@ if __name__ == '__main__':
     conv_ersvm = ersvmdca.LinearPrimalERSVM()
     conv_ersvm.set_initial_point(np.array(initial_weight), 0)
     conv_ersvm.set_constant_t(0)
-
     # DataFrame for results
     df_dca = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR'])
-    df_var = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f'])
-    df_enu = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f'])
+    df_var = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'is_convex'])
+    df_enu = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'is_convex'])
     df_libsvm = pd.DataFrame(columns=['ratio', 'trial', 'C', 'val-acc', 'val-f', 'test-acc', 'test-f'])
     df_ramp = pd.DataFrame(columns=['ratio', 'trial', 'C', 's', 'val-acc', 'val-f', 'test-acc', 'test-f'])
     df_conv = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR'])
@@ -177,7 +195,8 @@ if __name__ == '__main__':
                            'val-acc': enu.calc_accuracy(x_val, y_val),
                            'val-f': enu.calc_f(x_val,y_val),
                            'test-acc': enu.calc_accuracy(x[ind_t], y[ind_t]),
-                           'test-f': enu.calc_f(x[ind_t],y[ind_t])}
+                           'test-f': enu.calc_f(x[ind_t],y[ind_t]),
+                           'is_convex': enu.convexity}
                 df_enu = df_enu.append(pd.Series(row_enu, name=pd.datetime.today()))
 
                 print 'Start ER-SVM (Heuristics)'
@@ -192,7 +211,8 @@ if __name__ == '__main__':
                            'val-acc': var.calc_accuracy(x_val, y_val),
                            'val-f': var.calc_f(x_val, y_val),
                            'test-acc': var.calc_accuracy(x[ind_t], y[ind_t]),
-                           'test-f': var.calc_f(x[ind_t], y[ind_t])}
+                           'test-f': var.calc_f(x[ind_t], y[ind_t]),
+                           'is_convex': var.is_convex}
                 df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
 
                 print 'Start LIBSVM'
@@ -213,12 +233,9 @@ if __name__ == '__main__':
 
     pd.set_option('line_width', 200)
     # Save as csv
-    # dir_name = 'results/performance/heart/'
-    dir_name = "results/performance/liver-disorders/"
-    file_name = ''
-    df_dca.to_csv(dir_name+file_name+'dca.csv', index=False)
-    df_enu.to_csv(dir_name+file_name+'enu.csv', index=False)
-    df_var.to_csv(dir_name+file_name+'var.csv', index=False)
-    df_ramp.to_csv(dir_name+file_name+'ramp.csv', index=False)
-    df_libsvm.to_csv(dir_name+file_name+'libsvm.csv', index=False)
-    df_conv.to_csv(dir_name+file_name+'conv.csv', index=False)
+    df_dca.to_csv(dir_name_result+'dca.csv', index=False)
+    df_enu.to_csv(dir_name_result+'enu.csv', index=False)
+    df_var.to_csv(dir_name_result+'var.csv', index=False)
+    df_ramp.to_csv(dir_name_result+'ramp.csv', index=False)
+    df_libsvm.to_csv(dir_name_result+'libsvm.csv', index=False)
+    df_conv.to_csv(dir_name_result+'conv.csv', index=False)
