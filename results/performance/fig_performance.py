@@ -21,7 +21,7 @@ if __name__ == '__main__':
     dir_name = 'liver-disorders/'
     #dir_name = "diabetes/"
     dir_name = 'liver/'
-    #dir_name = 'heart2/'
+    dir_name = 'heart/'
     df_dca = pd.read_csv(dir_name+'dca.csv')
     df_var = pd.read_csv(dir_name+'var.csv')
     df_ramp = pd.read_csv(dir_name+'ramp.csv')

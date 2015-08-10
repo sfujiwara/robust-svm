@@ -30,26 +30,26 @@ if __name__ == '__main__':
     ## # Setting of outlier
     ## radius = 10
 
-    # Read data set (heart)
-    name_dataset = 'heart'
-    filename = 'datasets/LIBSVM/heart/heart_scale.csv'
-    dir_name_result = 'results/performance/heart/'
-    dataset = np.loadtxt(filename, delimiter=',')
-    y = dataset[:, 0]
-    x = dataset[:, 1:]
-    num, dim = x.shape
-    num_tr = 108
-    num_val = 81
-    num_t = 81
-    # Candidates of hyper-parameters (heart)
-    nu_max = 0.8
-    nu_cand = np.linspace(nu_max, 0.1, 9)
-    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    mu_cand = np.array([0.05, 0.1, 0.15])
-    s_cand = np.array([-1, 0., 0.5])
-    # Setting of outlier
-    radius = 100
+    ## # Read data set (heart)
+    ## name_dataset = 'heart'
+    ## filename = 'datasets/LIBSVM/heart/heart_scale.csv'
+    ## dir_name_result = 'results/performance/heart/'
+    ## dataset = np.loadtxt(filename, delimiter=',')
+    ## y = dataset[:, 0]
+    ## x = dataset[:, 1:]
+    ## num, dim = x.shape
+    ## num_tr = 108
+    ## num_val = 81
+    ## num_t = 81
+    ## # Candidates of hyper-parameters (heart)
+    ## nu_max = 0.8
+    ## nu_cand = np.linspace(nu_max, 0.1, 9)
+    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    ## mu_cand = np.array([0.05, 0.1, 0.15])
+    ## s_cand = np.array([-1, 0., 0.5])
+    ## # Setting of outlier
+    ## radius = 100
 
     ## # Read data set (diabetes)
     ## name_dataset = 'diabetes'
@@ -71,6 +71,27 @@ if __name__ == '__main__':
     ## # Setting of outlier
     ## radius = 20
     ## dir_name_result = "results/performance/diabetes/"
+
+    # Read data set (splice)
+    name_dataset = 'splice'
+    filename = 'datasets/LIBSVM/splice/splice_scale.csv'
+    dir_name_result = 'results/performance/splice/'
+    dataset = np.loadtxt(filename, delimiter=',')
+    y = dataset[:, 0]
+    x = dataset[:, 1:]
+    num, dim = x.shape
+    num_tr = 400
+    num_val = 300
+    num_t = 300
+    # Candidates of hyper-parameters (splice)
+    nu_max = 0.9
+    nu_cand = np.linspace(nu_max, 0.1, 9)
+    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    mu_cand = np.array([0.05, 0.1, 0.15])
+    s_cand = np.array([-1, 0., 0.5])
+    # Setting of outlier
+    radius = 200
 
     # Number of trial
     trial = 30
