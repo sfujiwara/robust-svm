@@ -10,24 +10,25 @@ if __name__ == '__main__':
     np.random.seed(0)
 
     # Read data set (liver)
-    # name_dataset = 'liver'
-    # filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
-    # dataset = np.loadtxt(filename, delimiter=',')
-    # y = dataset[:, 0]
-    # x = dataset[:, 1:]
-    # num, dim = x.shape
-    # num_tr = 138
-    # num_val = 103
-    # num_t = 104
+    name_dataset = 'liver'
+    filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
+    dir_name_result = "results/performance/liver/"
+    dataset = np.loadtxt(filename, delimiter=',')
+    y = dataset[:, 0]
+    x = dataset[:, 1:]
+    num, dim = x.shape
+    num_tr = 138
+    num_val = 103
+    num_t = 104
     # Candidates of hyper-parameters (liver)
-    # nu_max = 0.75
-    # nu_cand = np.linspace(nu_max, 0.1, 9)
-    # cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    # ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    # mu_cand = np.array([0.05, 0.1, 0.15])
-    # s_cand = np.array([-1, 0., 0.5])
-    # # Setting of outlier
-    # radius = 10
+    nu_max = 0.75
+    nu_cand = np.linspace(nu_max, 0.1, 9)
+    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    mu_cand = np.array([0.05, 0.1, 0.15])
+    s_cand = np.array([-1, 0., 0.5])
+    # Setting of outlier
+    radius = 10
 
     ## # Read data set (heart)
     ## name_dataset = 'heart'
@@ -50,26 +51,26 @@ if __name__ == '__main__':
     ## # Setting of outlier
     ## radius = 100
 
-    # Read data set (diabetes)
-    name_dataset = 'diabetes'
-    filename = 'datasets/LIBSVM/diabetes/diabetes_scale.csv'
-    dataset = np.loadtxt(filename, delimiter=',')
-    y = dataset[:, 0]
-    x = dataset[:, 1:]
-    num, dim = x.shape
-    num_tr = 307
-    num_val = 230
-    num_t = 231
-    # Candidates of hyper-parameters (diabetes)
-    nu_max = 0.65
-    nu_cand = np.linspace(nu_max, 0.1, 9)
-    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    mu_cand = np.array([0.05, 0.1, 0.15])
-    s_cand = np.array([-1, 0., 0.5])
-    # Setting of outlier
-    radius = 20
-    dir_name_result = "results/performance/diabetes/"
+    ## # Read data set (diabetes)
+    ## name_dataset = 'diabetes'
+    ## filename = 'datasets/LIBSVM/diabetes/diabetes_scale.csv'
+    ## dataset = np.loadtxt(filename, delimiter=',')
+    ## y = dataset[:, 0]
+    ## x = dataset[:, 1:]
+    ## num, dim = x.shape
+    ## num_tr = 307
+    ## num_val = 230
+    ## num_t = 231
+    ## # Candidates of hyper-parameters (diabetes)
+    ## nu_max = 0.65
+    ## nu_cand = np.linspace(nu_max, 0.1, 9)
+    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    ## mu_cand = np.array([0.05, 0.1, 0.15])
+    ## s_cand = np.array([-1, 0., 0.5])
+    ## # Setting of outlier
+    ## radius = 20
+    ## dir_name_result = "results/performance/diabetes/"
 
     # Number of trial
     trial = 30
