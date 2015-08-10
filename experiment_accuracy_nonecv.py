@@ -9,47 +9,47 @@ if __name__ == '__main__':
     # Set seed
     np.random.seed(0)
 
-    # Read data set (liver)
-    name_dataset = 'liver'
-    filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
-    dir_name_result = "results/performance/liver/"
-    dataset = np.loadtxt(filename, delimiter=',')
-    y = dataset[:, 0]
-    x = dataset[:, 1:]
-    num, dim = x.shape
-    num_tr = 138
-    num_val = 103
-    num_t = 104
-    # Candidates of hyper-parameters (liver)
-    nu_max = 0.75
-    nu_cand = np.linspace(nu_max, 0.1, 9)
-    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    mu_cand = np.array([0.05, 0.1, 0.15])
-    s_cand = np.array([-1, 0., 0.5])
-    # Setting of outlier
-    radius = 10
-
-    ## # Read data set (heart)
-    ## name_dataset = 'heart'
-    ## filename = 'datasets/LIBSVM/heart/heart_scale.csv'
-    ## dir_name_result = 'results/performance/heart/'
+    ## # Read data set (liver)
+    ## name_dataset = 'liver'
+    ## filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
+    ## dir_name_result = "results/performance/liver/"
     ## dataset = np.loadtxt(filename, delimiter=',')
     ## y = dataset[:, 0]
     ## x = dataset[:, 1:]
     ## num, dim = x.shape
-    ## num_tr = 108
-    ## num_val = 81
-    ## num_t = 81
-    ## # Candidates of hyper-parameters (heart)
-    ## nu_max = 0.8
+    ## num_tr = 138
+    ## num_val = 103
+    ## num_t = 104
+    ## # Candidates of hyper-parameters (liver)
+    ## nu_max = 0.75
     ## nu_cand = np.linspace(nu_max, 0.1, 9)
     ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
     ## mu_cand = np.array([0.05, 0.1, 0.15])
     ## s_cand = np.array([-1, 0., 0.5])
     ## # Setting of outlier
-    ## radius = 100
+    ## radius = 10
+
+    # Read data set (heart)
+    name_dataset = 'heart'
+    filename = 'datasets/LIBSVM/heart/heart_scale.csv'
+    dir_name_result = 'results/performance/heart/'
+    dataset = np.loadtxt(filename, delimiter=',')
+    y = dataset[:, 0]
+    x = dataset[:, 1:]
+    num, dim = x.shape
+    num_tr = 108
+    num_val = 81
+    num_t = 81
+    # Candidates of hyper-parameters (heart)
+    nu_max = 0.8
+    nu_cand = np.linspace(nu_max, 0.1, 9)
+    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    mu_cand = np.array([0.05, 0.1, 0.15])
+    s_cand = np.array([-1, 0., 0.5])
+    # Setting of outlier
+    radius = 100
 
     ## # Read data set (diabetes)
     ## name_dataset = 'diabetes'
@@ -231,7 +231,7 @@ if __name__ == '__main__':
                               'test-f': f1_score(y[ind_t],libsvm.predict(x[ind_t]))}
                 df_libsvm = df_libsvm.append(pd.Series(row_libsvm, name=pd.datetime.today()))
 
-    pd.set_option('line_width', 200)
+    #pd.set_option('line_width', 200)
     # Save as csv
     df_dca.to_csv(dir_name_result+'dca.csv', index=False)
     df_enu.to_csv(dir_name_result+'enu.csv', index=False)
