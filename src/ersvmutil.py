@@ -13,7 +13,8 @@ def standard_scale(x):
     num, dim = x.shape
     for i in range(dim):
         x[:,i] -= np.mean(x[:,i])
-        x[:,i] /= np.std(x[:,i])
+        if np.std(x[:,i]) >= 1e-5:
+            x[:,i] /= np.std(x[:,i])
 
 
 def libsvm_scale(x):

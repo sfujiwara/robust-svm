@@ -72,26 +72,47 @@ if __name__ == '__main__':
     ## radius = 20
     ## dir_name_result = "results/performance/diabetes/"
 
-    # Read data set (splice)
-    name_dataset = 'splice'
-    filename = 'datasets/LIBSVM/splice/splice_scale.csv'
-    dir_name_result = 'results/performance/splice/'
+    ## # Read data set (splice)
+    ## name_dataset = 'splice'
+    ## filename = 'datasets/LIBSVM/splice/splice_scale.csv'
+    ## dir_name_result = 'results/performance/splice/'
+    ## dataset = np.loadtxt(filename, delimiter=',')
+    ## y = dataset[:, 0]
+    ## x = dataset[:, 1:]
+    ## num, dim = x.shape
+    ## num_tr = 400
+    ## num_val = 300
+    ## num_t = 300
+    ## # Candidates of hyper-parameters (splice)
+    ## nu_max = 0.9
+    ## nu_cand = np.linspace(nu_max, 0.1, 9)
+    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    ## mu_cand = np.array([0.05, 0.1, 0.15])
+    ## s_cand = np.array([-1, 0., 0.5])
+    ## # Setting of outlier
+    ## radius = 200
+
+    # Read data set (adult)
+    name_dataset = 'adult'
+    filename = 'datasets/LIBSVM/adult/a1a.csv'
+    dir_name_result = 'results/performance/adult/'
     dataset = np.loadtxt(filename, delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
     num, dim = x.shape
-    num_tr = 400
-    num_val = 300
-    num_t = 300
-    # Candidates of hyper-parameters (splice)
-    nu_max = 0.9
+    num_tr = 642
+    num_val = 481
+    num_t = 482
+    # Candidates of hyper-parameters (adult)
+    nu_max = 0.45
     nu_cand = np.linspace(nu_max, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
     mu_cand = np.array([0.05, 0.1, 0.15])
     s_cand = np.array([-1, 0., 0.5])
     # Setting of outlier
-    radius = 200
+    radius = 300
 
     # Number of trial
     trial = 30
@@ -168,6 +189,7 @@ if __name__ == '__main__':
                 # Hyper-parameter mu of ER-SVM
                 for l in range(len(mu_cand)):
                     print 'Start ER-SVM (DCA)'
+                    print '(ratio, trial):', (ol_ratio[i], j)
                     ersvm.set_nu(nu_cand[k])
                     ersvm.set_mu(mu_cand[l])
                     ersvm.solve_ersvm(x_tr, y_tr)
@@ -236,21 +258,21 @@ if __name__ == '__main__':
                            'is_convex': var.is_convex}
                 df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
 
-                print 'Start LIBSVM'
-                start = time.time()
-                libsvm.set_params(**{'C': cost_cand[k]})
-                libsvm.fit(x_tr, y_tr)
-                end = time.time()
-                print 'End LIBSVM'
-                print 'time:', end - start
-                row_libsvm = {'ratio': ol_ratio[i],
-                              'trial': j,
-                              'C': cost_cand[k],
-                              'val-acc': libsvm.score(x_val, y_val),
-                              'val-f': f1_score(y_val,libsvm.predict(x_val)),
-                              'test-acc': libsvm.score(x[ind_t], y[ind_t]),
-                              'test-f': f1_score(y[ind_t],libsvm.predict(x[ind_t]))}
-                df_libsvm = df_libsvm.append(pd.Series(row_libsvm, name=pd.datetime.today()))
+                ## print 'Start LIBSVM'
+                ## start = time.time()
+                ## libsvm.set_params(**{'C': cost_cand[k]})
+                ## libsvm.fit(x_tr, y_tr)
+                ## end = time.time()
+                ## print 'End LIBSVM'
+                ## print 'time:', end - start
+                ## row_libsvm = {'ratio': ol_ratio[i],
+                ##               'trial': j,
+                ##               'C': cost_cand[k],
+                ##               'val-acc': libsvm.score(x_val, y_val),
+                ##               'val-f': f1_score(y_val,libsvm.predict(x_val)),
+                ##               'test-acc': libsvm.score(x[ind_t], y[ind_t]),
+                ##               'test-f': f1_score(y[ind_t],libsvm.predict(x[ind_t]))}
+                ## df_libsvm = df_libsvm.append(pd.Series(row_libsvm, name=pd.datetime.today()))
 
     #pd.set_option('line_width', 200)
     # Save as csv
