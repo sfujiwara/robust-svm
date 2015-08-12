@@ -1,0 +1,27 @@
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-5-01aace653462> in <module>()
+----> 1 exec(compile(open('/home/shuhei/PycharmProjects/robust-svm/experiment_accuracy_nonecv.py').read(), '/home/shuhei/PycharmProjects/robust-svm/experiment_accuracy_nonecv.py', 'exec')) # PYTHON-MODE
+
+/home/shuhei/PycharmProjects/robust-svm/experiment_accuracy_nonecv.py in <module>()
+    247                 var.set_nu(nu_cand[k])
+    248                 var.set_gamma(0.03/nu_cand[k])
+--> 249                 var.solve_varmin(x_tr, y_tr)
+    250                 var.show_result()
+    251                 row_var = {'ratio': ol_ratio[i],
+
+/home/shuhei/PycharmProjects/robust-svm/src/ersvmh.pyc in solve_varmin(self, x, y)
+     56             enu.set_nu(nu_i)
+     57             enu.set_initial_weight(self.weight)
+---> 58             enu.solve_enusvm(x[self.ind_active], y[self.ind_active])
+     59             # Check convexity
+     60             if not enu.convexity:
+
+/home/shuhei/PycharmProjects/robust-svm/src/enusvm.pyc in solve_enusvm(self, x, y)
+    120         end = time.time()
+    121         self.comp_time = end - start
+--> 122         self.weight = np.array(result.solution.get_values(w_names))
+    123         self.xi = np.array(result.solution.get_values(xi_names))
+    124         self.bias = result.solution.get_values('b')
+
+AttributeError: 'NoneType' object has no attribute 'solution'

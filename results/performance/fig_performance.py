@@ -15,14 +15,15 @@ if __name__ == '__main__':
         val_measure = 'val-acc'
         test_measure = 'test-acc'
     elif measure == "f-measure":
-        val_measure + "val-f"
+        val_measure = "val-f"
         test_measure = "test-f"
     # Load result csv
     dir_name = 'liver-disorders/'
     #dir_name = "diabetes/"
     dir_name = 'liver/'
-    dir_name = 'heart/'
-    dir_name = 'splice/'
+    #dir_name = 'heart/'
+    #dir_name = 'splice/'
+    dir_name = 'adult/'
     df_dca = pd.read_csv(dir_name+'dca.csv')
     df_var = pd.read_csv(dir_name+'var.csv')
     df_ramp = pd.read_csv(dir_name+'ramp.csv')
