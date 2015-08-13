@@ -7,7 +7,7 @@ import pandas as pd
 print "hello"
 
 if __name__ == '__main__':
-    measure = "f-measure"
+    measure = "accuracy"
     # measure = "f-measure"
     pd.set_option('line_width', 200)
     pd.set_option("display.max_rows", 200)
@@ -24,6 +24,8 @@ if __name__ == '__main__':
     #dir_name = 'heart/'
     #dir_name = 'splice/'
     dir_name = 'adult/'
+    dir_name = 'vehicle/'
+
     df_dca = pd.read_csv(dir_name+'dca.csv')
     df_var = pd.read_csv(dir_name+'var.csv')
     df_ramp = pd.read_csv(dir_name+'ramp.csv')

@@ -93,18 +93,42 @@ if __name__ == '__main__':
     ## # Setting of outlier
     ## radius = 200
 
-    # Read data set (adult)
-    name_dataset = 'adult'
-    filename = 'datasets/LIBSVM/adult/a1a.csv'
-    dir_name_result = 'results/performance/adult/'
+    ## # Read data set (adult)
+    ## name_dataset = 'adult'
+    ## filename = 'datasets/LIBSVM/adult/a1a.csv'
+    ## dir_name_result = 'results/performance/adult/'
+    ## dataset = np.loadtxt(filename, delimiter=',')
+    ## y = dataset[:, 0]
+    ## x = dataset[:, 1:]
+    ## num, dim = x.shape
+    ## num_tr = 642
+    ## num_val = 481
+    ## num_t = 482
+    ## # Candidates of hyper-parameters (adult)
+    ## nu_max = 0.45
+    ## nu_cand = np.linspace(nu_max, 0.1, 9)
+    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    ## mu_cand = np.array([0.05, 0.1, 0.15])
+    ## s_cand = np.array([-1, 0., 0.5])
+    ## # Setting of outlier
+    ## radius = 300
+
+    # Read data set (vehicle)
+    name_dataset = 'vehicle'
+    filename = 'datasets/LIBSVM/vehicle/vehicle_scale.csv'
+    dir_name_result = 'results/performance/vehicle/'
     dataset = np.loadtxt(filename, delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
     num, dim = x.shape
-    num_tr = 642
-    num_val = 481
-    num_t = 482
-    # Candidates of hyper-parameters (adult)
+    # Multi class to binary class (one vs rest)
+    y[np.where(y != 1)] = -1.
+    y[np.where(y != -1)] = 1.
+    num_tr = 338
+    num_val = 254
+    num_t = 254
+    # Candidates of hyper-parameters (vehicle)
     nu_max = 0.45
     nu_cand = np.linspace(nu_max, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
@@ -112,7 +136,9 @@ if __name__ == '__main__':
     mu_cand = np.array([0.05, 0.1, 0.15])
     s_cand = np.array([-1, 0., 0.5])
     # Setting of outlier
-    radius = 300
+    radius = 200
+
+
 
     # Number of trial
     trial = 30
