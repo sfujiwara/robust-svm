@@ -114,31 +114,54 @@ if __name__ == '__main__':
     ## # Setting of outlier
     ## radius = 300
 
-    # Read data set (vehicle)
-    name_dataset = 'vehicle'
-    filename = 'datasets/LIBSVM/vehicle/vehicle_scale.csv'
+    ## # Read data set (vehicle)
+    ## name_dataset = 'vehicle'
+    ## filename = 'datasets/LIBSVM/vehicle/vehicle_scale.csv'
+    ## dir_name_result = 'results/performance/vehicle/'
+    ## dataset = np.loadtxt(filename, delimiter=',')
+    ## y = dataset[:, 0]
+    ## x = dataset[:, 1:]
+    ## num, dim = x.shape
+    ## # Multi class to binary class (one vs rest)
+    ## y[np.where(y != 1)] = -1.
+    ## y[np.where(y != -1)] = 1.
+    ## num_tr = 338
+    ## num_val = 254
+    ## num_t = 254
+    ## # Candidates of hyper-parameters (vehicle)
+    ## nu_max = 0.45
+    ## nu_cand = np.linspace(nu_max, 0.1, 9)
+    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    ## mu_cand = np.array([0.05, 0.1, 0.15])
+    ## s_cand = np.array([-1, 0., 0.5])
+    ## # Setting of outlier
+    ## radius = 200
+
+    # Read satimage dataset
+    name_dataset = 'satimage'
     dir_name_result = 'results/performance/vehicle/'
-    dataset = np.loadtxt(filename, delimiter=',')
+    dataset_train = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
+    dataset_test  = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.t.csv', delimiter=',')
+    dataset = np.vstack([dataset_train, dataset_test])
     y = dataset[:, 0]
     x = dataset[:, 1:]
     num, dim = x.shape
-    # Multi class to binary class (one vs rest)
-    y[np.where(y != 1)] = -1.
+    num_tr = 2574
+    num_val = 1930
+    num_t = 1931
+    # Multi class to binary class
+    y[np.where(y != 6)] = -1.
     y[np.where(y != -1)] = 1.
-    num_tr = 338
-    num_val = 254
-    num_t = 254
     # Candidates of hyper-parameters (vehicle)
-    nu_max = 0.45
+    nu_max = 0.4
     nu_cand = np.linspace(nu_max, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
     mu_cand = np.array([0.05, 0.1, 0.15])
     s_cand = np.array([-1, 0., 0.5])
     # Setting of outlier
-    radius = 200
-
-
+    radius = 300
 
     # Number of trial
     trial = 30
