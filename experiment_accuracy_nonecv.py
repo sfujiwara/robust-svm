@@ -140,7 +140,7 @@ if __name__ == '__main__':
 
     # Read satimage dataset
     name_dataset = 'satimage'
-    dir_name_result = 'results/performance/vehicle/'
+    dir_name_result = 'results/performance/satimage/'
     dataset_train = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
     dataset_test  = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.t.csv', delimiter=',')
     dataset = np.vstack([dataset_train, dataset_test])
@@ -164,7 +164,7 @@ if __name__ == '__main__':
     radius = 300
 
     # Number of trial
-    trial = 30
+    trial = 1
     # Scaling
     # ersvmutil.libsvm_scale(x)
     ersvmutil.standard_scale(x)
@@ -221,6 +221,7 @@ if __name__ == '__main__':
                 # Hyper-parameter s of Ramp SVM
                 for l in range(len(mu_cand)):
                     print 'Start Ramp Loss SVM'
+                    ramp.cplex_method = 0 # automatic
                     ramp.set_cost(cost_cand[k])
                     ramp.set_s(s_cand[l])
                     ramp.solve_rampsvm(x_tr, y_tr)
@@ -239,42 +240,44 @@ if __name__ == '__main__':
                 for l in range(len(mu_cand)):
                     print 'Start ER-SVM (DCA)'
                     print '(ratio, trial):', (ol_ratio[i], j)
-                    ersvm.set_nu(nu_cand[k])
-                    ersvm.set_mu(mu_cand[l])
-                    ersvm.solve_ersvm(x_tr, y_tr)
-                    ersvm.show_result()
-                    ersvm.set_initial_point(np.array(initial_weight), 0)
-                    row_dca = {'ratio': ol_ratio[i],
-                               'trial': j,
-                               'nu': nu_cand[k],
-                               'mu': mu_cand[l],
-                               'val-acc': ersvm.calc_accuracy(x_val, y_val),
-                               'val-f': ersvm.calc_f(x_val, y_val),
-                               'test-acc': ersvm.calc_accuracy(x[ind_t], y[ind_t]),
-                               'test-f': ersvm.calc_f(x[ind_t], y[ind_t]),
-                               'VaR': ersvm.alpha,
-                               'tr-CVaR': ersvm.obj[-1]}
-                    df_dca = df_dca.append(pd.Series(row_dca, name=pd.datetime.today()))
+                    if nu_cand[k] > mu_cand[l]:
+                        ersvm.set_nu(nu_cand[k])
+                        ersvm.set_mu(mu_cand[l])
+                        ersvm.solve_ersvm(x_tr, y_tr)
+                        ersvm.show_result()
+                        ersvm.set_initial_point(np.array(initial_weight), 0)
+                        row_dca = {'ratio': ol_ratio[i],
+                                   'trial': j,
+                                   'nu': nu_cand[k],
+                                   'mu': mu_cand[l],
+                                   'val-acc': ersvm.calc_accuracy(x_val, y_val),
+                                   'val-f': ersvm.calc_f(x_val, y_val),
+                                   'test-acc': ersvm.calc_accuracy(x[ind_t], y[ind_t]),
+                                   'test-f': ersvm.calc_f(x[ind_t], y[ind_t]),
+                                   'VaR': ersvm.alpha,
+                                   'tr-CVaR': ersvm.obj[-1]}
+                        df_dca = df_dca.append(pd.Series(row_dca, name=pd.datetime.today()))
 
                 # Hyper-parameter mu of ER-SVM with t = 0
                 for l in range(len(mu_cand)):
                     print 'Start ER-SVM (DCA) with t = 0'
-                    conv_ersvm.set_nu(nu_cand[k])
-                    conv_ersvm.set_mu(mu_cand[l])
-                    conv_ersvm.solve_ersvm(x_tr, y_tr)
-                    conv_ersvm.show_result()
-                    conv_ersvm.set_initial_point(np.array(initial_weight), 0)
-                    row_conv = {'ratio': ol_ratio[i],
-                                'trial': j,
-                                'nu': nu_cand[k],
-                                'mu': mu_cand[l],
-                                'val-acc': conv_ersvm.calc_accuracy(x_val, y_val),
-                                'val-f': conv_ersvm.calc_f(x_val,y_val),
-                                'test-acc': conv_ersvm.calc_accuracy(x[ind_t], y[ind_t]),
-                                'test-f': conv_ersvm.calc_f(x[ind_t], y[ind_t]),
-                                'VaR': conv_ersvm.alpha,
-                                'tr-CVaR': conv_ersvm.obj[-1]}
-                    df_conv = df_conv.append(pd.Series(row_conv, name=pd.datetime.today()))
+                    if nu_cand[k] > mu_cand[l]:
+                        conv_ersvm.set_nu(nu_cand[k])
+                        conv_ersvm.set_mu(mu_cand[l])
+                        conv_ersvm.solve_ersvm(x_tr, y_tr)
+                        conv_ersvm.show_result()
+                        conv_ersvm.set_initial_point(np.array(initial_weight), 0)
+                        row_conv = {'ratio': ol_ratio[i],
+                                    'trial': j,
+                                    'nu': nu_cand[k],
+                                    'mu': mu_cand[l],
+                                    'val-acc': conv_ersvm.calc_accuracy(x_val, y_val),
+                                    'val-f': conv_ersvm.calc_f(x_val,y_val),
+                                    'test-acc': conv_ersvm.calc_accuracy(x[ind_t], y[ind_t]),
+                                    'test-f': conv_ersvm.calc_f(x[ind_t], y[ind_t]),
+                                    'VaR': conv_ersvm.alpha,
+                                    'tr-CVaR': conv_ersvm.obj[-1]}
+                        df_conv = df_conv.append(pd.Series(row_conv, name=pd.datetime.today()))
 
                 print 'Start Enu-SVM'
                 enu.set_initial_weight(np.array(initial_weight))
