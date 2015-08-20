@@ -138,30 +138,53 @@ if __name__ == '__main__':
     ## # Setting of outlier
     ## radius = 200
 
-    # Read satimage dataset
-    name_dataset = 'satimage'
-    dir_name_result = 'results/performance/satimage/'
-    dataset_train = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
-    dataset_test  = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.t.csv', delimiter=',')
-    dataset = np.vstack([dataset_train, dataset_test])
+    ## # Read satimage dataset
+    ## name_dataset = 'satimage'
+    ## dir_name_result = 'results/performance/satimage/'
+    ## dataset_train = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
+    ## dataset_test  = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.t.csv', delimiter=',')
+    ## dataset = np.vstack([dataset_train, dataset_test])
+    ## y = dataset[:, 0]
+    ## x = dataset[:, 1:]
+    ## num, dim = x.shape
+    ## num_tr = 2574
+    ## num_val = 1930
+    ## num_t = 1931
+    ## # Multi class to binary class
+    ## y[np.where(y != 6)] = -1.
+    ## y[np.where(y != -1)] = 1.
+    ## # Candidates of hyper-parameters (vehicle)
+    ## nu_max = 0.4
+    ## nu_cand = np.linspace(nu_max, 0.1, 9)
+    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ## # cost_cand = np.array([5.**i for i in range(3, -5, -1)])
+    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    ## mu_cand = np.array([0.05, 0.1, 0.15])
+    ## s_cand = np.array([-1, 0., 0.5])
+    ## # Setting of outlier
+    ## radius = 200
+
+    # Read data set (adult)
+    name_dataset = 'adult'
+    filename = 'datasets/LIBSVM/svmguide1/svmguide1.csv'
+    dir_name_result = 'results/performance/svmguide1/'
+    dataset = np.loadtxt(filename, delimiter=',')
     y = dataset[:, 0]
+    y[y==0] = -1
     x = dataset[:, 1:]
     num, dim = x.shape
-    num_tr = 2574
-    num_val = 1930
-    num_t = 1931
-    # Multi class to binary class
-    y[np.where(y != 6)] = -1.
-    y[np.where(y != -1)] = 1.
-    # Candidates of hyper-parameters (vehicle)
-    nu_max = 0.4
+    num_tr = 1235
+    num_val = 927
+    num_t = 927
+    # Candidates of hyper-parameters (adult)
+    nu_max = 0.6
     nu_cand = np.linspace(nu_max, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
     mu_cand = np.array([0.05, 0.1, 0.15])
     s_cand = np.array([-1, 0., 0.5])
     # Setting of outlier
-    radius = 300
+    radius = 20
 
     # Number of trial
     trial = 1
@@ -221,20 +244,20 @@ if __name__ == '__main__':
                 # Hyper-parameter s of Ramp SVM
                 for l in range(len(mu_cand)):
                     print 'Start Ramp Loss SVM'
-                    ramp.cplex_method = 0 # automatic
-                    ramp.set_cost(cost_cand[k])
-                    ramp.set_s(s_cand[l])
-                    ramp.solve_rampsvm(x_tr, y_tr)
-                    ramp.show_result()
-                    row_ramp = {'ratio': ol_ratio[i],
-                                'trial': j,
-                                'C': cost_cand[k],
-                                's': s_cand[l],
-                                'val-acc': ramp.calc_accuracy_linear(x_val, y_val),
-                                'val-f': ramp.calc_f_linear(x_val, y_val),
-                                'test-acc': ramp.calc_accuracy_linear(x[ind_t], y[ind_t]),
-                                'test-f': ramp.calc_f_linear(x[ind_t], y[ind_t])}
-                    df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
+                    ## ramp.cplex_method = 1
+                    ## ramp.set_cost(cost_cand[k])
+                    ## ramp.set_s(s_cand[l])
+                    ## ramp.solve_rampsvm(x_tr, y_tr)
+                    ## ramp.show_result()
+                    ## row_ramp = {'ratio': ol_ratio[i],
+                    ##             'trial': j,
+                    ##             'C': cost_cand[k],
+                    ##             's': s_cand[l],
+                    ##             'val-acc': ramp.calc_accuracy_linear(x_val, y_val),
+                    ##             'val-f': ramp.calc_f_linear(x_val, y_val),
+                    ##             'test-acc': ramp.calc_accuracy_linear(x[ind_t], y[ind_t]),
+                    ##             'test-f': ramp.calc_f_linear(x[ind_t], y[ind_t])}
+                    ## df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
 
                 # Hyper-parameter mu of ER-SVM
                 for l in range(len(mu_cand)):
@@ -310,21 +333,21 @@ if __name__ == '__main__':
                            'is_convex': var.is_convex}
                 df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
 
-                ## print 'Start LIBSVM'
-                ## start = time.time()
-                ## libsvm.set_params(**{'C': cost_cand[k]})
-                ## libsvm.fit(x_tr, y_tr)
-                ## end = time.time()
-                ## print 'End LIBSVM'
-                ## print 'time:', end - start
-                ## row_libsvm = {'ratio': ol_ratio[i],
-                ##               'trial': j,
-                ##               'C': cost_cand[k],
-                ##               'val-acc': libsvm.score(x_val, y_val),
-                ##               'val-f': f1_score(y_val,libsvm.predict(x_val)),
-                ##               'test-acc': libsvm.score(x[ind_t], y[ind_t]),
-                ##               'test-f': f1_score(y[ind_t],libsvm.predict(x[ind_t]))}
-                ## df_libsvm = df_libsvm.append(pd.Series(row_libsvm, name=pd.datetime.today()))
+                print 'Start LIBSVM'
+                start = time.time()
+                libsvm.set_params(**{'C': cost_cand[k]})
+                libsvm.fit(x_tr, y_tr)
+                end = time.time()
+                print 'End LIBSVM'
+                print 'time:', end - start
+                row_libsvm = {'ratio': ol_ratio[i],
+                              'trial': j,
+                              'C': cost_cand[k],
+                              'val-acc': libsvm.score(x_val, y_val),
+                              'val-f': f1_score(y_val,libsvm.predict(x_val)),
+                              'test-acc': libsvm.score(x[ind_t], y[ind_t]),
+                              'test-f': f1_score(y[ind_t],libsvm.predict(x[ind_t]))}
+                df_libsvm = df_libsvm.append(pd.Series(row_libsvm, name=pd.datetime.today()))
 
     #pd.set_option('line_width', 200)
     # Save as csv
