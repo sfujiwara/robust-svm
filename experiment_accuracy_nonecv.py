@@ -164,40 +164,18 @@ if __name__ == '__main__':
     ## # Setting of outlier
     ## radius = 200
 
-    ## # Read data set (svmguide1)
-    ## name_dataset = 'svmguide1'
-    ## filename = 'datasets/LIBSVM/svmguide1/svmguide1.csv'
-    ## dir_name_result = 'results/performance/svmguide1/'
-    ## dataset = np.loadtxt(filename, delimiter=',')
-    ## y = dataset[:, 0]
-    ## y[y==0] = -1
-    ## x = dataset[:, 1:]
-    ## num, dim = x.shape
-    ## num_tr = 1235
-    ## num_val = 927
-    ## num_t = 927
-    ## # Candidates of hyper-parameters (adult)
-    ## nu_max = 0.6
-    ## nu_cand = np.linspace(nu_max, 0.1, 9)
-    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    ## mu_cand = np.array([0.05, 0.1, 0.15])
-    ## s_cand = np.array([-1, 0., 0.5])
-    ## # Setting of outlier
-    ## radius = 50
-
     # Read data set (svmguide1)
     name_dataset = 'svmguide1'
-    filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
-    dir_name_result = 'results/performance/cod-rna/'
+    filename = 'datasets/LIBSVM/svmguide1/svmguide1.csv'
+    dir_name_result = 'results/performance/svmguide1/'
     dataset = np.loadtxt(filename, delimiter=',')
     y = dataset[:, 0]
     y[y==0] = -1
     x = dataset[:, 1:]
     num, dim = x.shape
-    num_tr = 10000
-    num_val = 20000
-    num_t = 20000
+    num_tr = 1235
+    num_val = 927
+    num_t = 927
     # Candidates of hyper-parameters (adult)
     nu_max = 0.6
     nu_cand = np.linspace(nu_max, 0.1, 9)
@@ -206,10 +184,32 @@ if __name__ == '__main__':
     mu_cand = np.array([0.05, 0.1, 0.15])
     s_cand = np.array([-1, 0., 0.5])
     # Setting of outlier
-    radius = 30
+    radius = 50
+
+    ## # Read data set (cod-rna)
+    ## name_dataset = 'svmguide1'
+    ## filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
+    ## dir_name_result = 'results/performance/cod-rna/'
+    ## dataset = np.loadtxt(filename, delimiter=',')
+    ## y = dataset[:, 0]
+    ## y[y==0] = -1
+    ## x = dataset[:, 1:]
+    ## num, dim = x.shape
+    ## num_tr = 10000
+    ## num_val = 20000
+    ## num_t = 20000
+    ## # Candidates of hyper-parameters (adult)
+    ## nu_max = 0.6
+    ## nu_cand = np.linspace(nu_max, 0.1, 9)
+    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    ## mu_cand = np.array([0.05, 0.1, 0.15])
+    ## s_cand = np.array([-1, 0., 0.5])
+    ## # Setting of outlier
+    ## radius = 30
 
     # Number of trial
-    trial = 1
+    trial = 30
     # Scaling
     # ersvmutil.libsvm_scale(x)
     ersvmutil.standard_scale(x)
