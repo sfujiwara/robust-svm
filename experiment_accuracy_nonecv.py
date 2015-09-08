@@ -264,25 +264,25 @@ if __name__ == '__main__':
 
             # Loop for hyper-parameter tuning
             for k in range(len(nu_cand)):
-                ## # Hyper-parameter s of Ramp SVM
-                ## for l in range(len(mu_cand)):
-                ##     print 'Start Ramp Loss SVM'
-                ##     ramp.cplex_method = 1
-                ##     ramp.set_cost(cost_cand[k])
-                ##     ramp.set_s(s_cand[l])
-                ##     ramp.solve_rampsvm(x_tr, y_tr)
-                ##     ramp.show_result()
-                ##     row_ramp = {'ratio': ol_ratio[i],
-                ##                 'trial': j,
-                ##                 'C': cost_cand[k],
-                ##                 's': s_cand[l],
-                ##                 'val-acc': ramp.calc_accuracy_linear(x_val, y_val),
-                ##                 'val-f': ramp.calc_f_linear(x_val, y_val),
-                ##                 'test-acc': ramp.calc_accuracy_linear(x[ind_t], y[ind_t]),
-                ##                 'test-f': ramp.calc_f_linear(x[ind_t], y[ind_t]),
-                ##                 'comp_time': ramp.comp_time,
-                ##                 'timeout': ramp.timeout}
-                ##     df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
+                # Hyper-parameter s of Ramp SVM
+                for l in range(len(mu_cand)):
+                    print 'Start Ramp Loss SVM'
+                    ramp.cplex_method = 1
+                    ramp.set_cost(cost_cand[k])
+                    ramp.set_s(s_cand[l])
+                    ramp.solve_rampsvm(x_tr, y_tr)
+                    ramp.show_result()
+                    row_ramp = {'ratio': ol_ratio[i],
+                                'trial': j,
+                                'C': cost_cand[k],
+                                's': s_cand[l],
+                                'val-acc': ramp.calc_accuracy_linear(x_val, y_val),
+                                'val-f': ramp.calc_f_linear(x_val, y_val),
+                                'test-acc': ramp.calc_accuracy_linear(x[ind_t], y[ind_t]),
+                                'test-f': ramp.calc_f_linear(x[ind_t], y[ind_t]),
+                                'comp_time': ramp.comp_time,
+                                'timeout': ramp.timeout}
+                    df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
 
                 # Hyper-parameter mu of ER-SVM
                 for l in range(len(mu_cand)):
