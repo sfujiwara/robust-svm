@@ -13,10 +13,13 @@ import ersvmutil
 # Minimize a difference of CVaR by DCA (using non-linear kernel)
 class KernelErSvm():
 
-    def __init__(self, nu, mu, kernel):
+    def __init__(self, nu, mu, kernel, gamma=1., coef0=1, degree=2):
         self.nu = nu
         self.mu = mu
         self.kernel = kernel
+        self.gamma = gamma
+        self.coef0 = coef0
+        self.degree = degree
 
     def kernel_matrix(self, x):
         ##### Compute kernel gram matrix #####
@@ -74,18 +77,18 @@ class KernelErSvm():
         print 'End bottle neck?'
         ind2 = ['a%s' % i for i in range(num)] * num
         val  = list(np.reshape(kmat, num*num))
-        print 'begin to set quadratic constraint'
+        print '===== Set quadratic constraint ====='
         c.quadratic_constraints.add(name='norm', quad_expr=[ind1, ind2, val], rhs=1., sense='L')
-        # Set linear constraints
-        # y_i(wx_i + b) + xi_i + alpha >= 0 where w = Sum{a_j*Phi(x_j)}
-        print 'Begin to set linear constraints'
+        print '===================================='
+        print '===== Set linear constraints ====='
+        ## y_i(wx_i + b) + xi_i + alpha >= 0 where w = Sum{a_j*Phi(x_j)}
         for i in xrange(num):
             names = a_names + ['b'] + ['xi%s' % i] + ['alpha']
             coeffs = [y[i] * kmat[i,j] for j in range(num)] + [y[i]] + [1.] + [1.]
             c.linear_constraints.add(names=['margin%s' % i], senses='G', lin_expr=[[names, coeffs]])
-        print 'Finished to set linear constraints'
-        # Save the problem as text file
-        c.write('test.lp')
+        print '=================================='
+        ## Save the problem as text file
+        ## c.write('test.lp')
         # Iteration
         for i in xrange(20):
             print '\nIteration:\t', i+1
@@ -117,28 +120,31 @@ class KernelErSvm():
             # Update eta
             eta = self.update_eta(risks)
             # Update t
-            print 't:\t\t', t
             # Termination
             obj_val_new = ersvmutil.calc_cvar(risks, 1-self.nu) * self.nu - ersvmutil.calc_cvar(risks, 1-self.mu) * self.mu
             t.append(max(0., obj_val[-1]/0.9))
 
-            print obj_val
-            print obj_val_new
             diff_obj = np.abs((obj_val[-1] - obj_val_new) / obj_val[-1])
-            print 'DIFF_OBJ:\t', diff_obj
             if diff_obj < 1e-5: break
             obj_val.append(obj_val_new)
             #print 'WEIGHT:\t\t', np.round(np.dot(dmat.T, a), 3)
+        self.a = a
+        self.bias = bias
+        self.eta = eta
+        self.decision_values = (np.dot(kmat, a) + bias)
+        self.training_error = np.mean(self.decision_values * y < 0)
         return c, eta
 
+
 class SvmResult:
+    def __init__(self, a, bias, kernel):
+        self.dual_coefs = a
+        self.bias = bias
+        self.kernel = kernel
 
-    def __init__(self, itr, w, b, kernel):
-        self.kernal = kernel
-        self.itration = itr
-        self.weight = w
-        self.bias = b
-
+    def predict(X):
+        pass
+        
 
 if __name__ == '__main__':
     print 'hello'
@@ -152,5 +158,5 @@ if __name__ == '__main__':
     a = np.ones(num)
 
     ## Train Kernel ER-SVM
-    kersvm = KernelErSvm(nu=0.75, mu=0.05, kernel='linear')
+    kersvm = KernelErSvm(nu=0.2, mu=0.0, kernel='rbf')
     kersvm.solve(x=x, y=y, a=a, b=0.)

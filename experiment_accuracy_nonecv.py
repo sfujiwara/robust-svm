@@ -164,40 +164,18 @@ if __name__ == '__main__':
     ## # Setting of outlier
     ## radius = 200
 
-    # Read data set (svmguide1)
-    name_dataset = 'svmguide1'
-    filename = 'datasets/LIBSVM/svmguide1/svmguide1.csv'
-    dir_name_result = 'results/performance/svmguide1/'
-    dataset = np.loadtxt(filename, delimiter=',')
-    y = dataset[:, 0]
-    y[y==0] = -1
-    x = dataset[:, 1:]
-    num, dim = x.shape
-    num_tr = 1235
-    num_val = 927
-    num_t = 927
-    # Candidates of hyper-parameters (adult)
-    nu_max = 0.6
-    nu_cand = np.linspace(nu_max, 0.1, 9)
-    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    mu_cand = np.array([0.05, 0.1, 0.15])
-    s_cand = np.array([-1, 0., 0.5])
-    # Setting of outlier
-    radius = 50
-
-    ## # Read data set (cod-rna)
+    ## # Read data set (svmguide1)
     ## name_dataset = 'svmguide1'
-    ## filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
-    ## dir_name_result = 'results/performance/cod-rna/'
+    ## filename = 'datasets/LIBSVM/svmguide1/svmguide1.csv'
+    ## dir_name_result = 'results/performance/svmguide1/'
     ## dataset = np.loadtxt(filename, delimiter=',')
     ## y = dataset[:, 0]
     ## y[y==0] = -1
     ## x = dataset[:, 1:]
     ## num, dim = x.shape
-    ## num_tr = 10000
-    ## num_val = 20000
-    ## num_t = 20000
+    ## num_tr = 1235
+    ## num_val = 927
+    ## num_t = 927
     ## # Candidates of hyper-parameters (adult)
     ## nu_max = 0.6
     ## nu_cand = np.linspace(nu_max, 0.1, 9)
@@ -206,10 +184,32 @@ if __name__ == '__main__':
     ## mu_cand = np.array([0.05, 0.1, 0.15])
     ## s_cand = np.array([-1, 0., 0.5])
     ## # Setting of outlier
-    ## radius = 30
+    ## radius = 50
+
+    # Read data set (cod-rna)
+    name_dataset = 'svmguide1'
+    filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
+    dir_name_result = 'results/performance/cod-rna/'
+    dataset = np.loadtxt(filename, delimiter=',')
+    y = dataset[:, 0]
+    y[y==0] = -1
+    x = dataset[:, 1:]
+    num, dim = x.shape
+    num_tr = 23814
+    num_val = 17860
+    num_t = 17861
+    # Candidates of hyper-parameters (adult)
+    nu_max = 0.6
+    nu_cand = np.linspace(nu_max, 0.1, 9)
+    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    mu_cand = np.array([0.05, 0.1, 0.15])
+    s_cand = np.array([-1, 0., 0.5])
+    # Setting of outlier
+    radius = 30
 
     # Number of trial
-    trial = 30
+    trial = 3
     # Scaling
     # ersvmutil.libsvm_scale(x)
     ersvmutil.standard_scale(x)
@@ -264,25 +264,25 @@ if __name__ == '__main__':
 
             # Loop for hyper-parameter tuning
             for k in range(len(nu_cand)):
-                # Hyper-parameter s of Ramp SVM
-                for l in range(len(mu_cand)):
-                    print 'Start Ramp Loss SVM'
-                    ramp.cplex_method = 1
-                    ramp.set_cost(cost_cand[k])
-                    ramp.set_s(s_cand[l])
-                    ramp.solve_rampsvm(x_tr, y_tr)
-                    ramp.show_result()
-                    row_ramp = {'ratio': ol_ratio[i],
-                                'trial': j,
-                                'C': cost_cand[k],
-                                's': s_cand[l],
-                                'val-acc': ramp.calc_accuracy_linear(x_val, y_val),
-                                'val-f': ramp.calc_f_linear(x_val, y_val),
-                                'test-acc': ramp.calc_accuracy_linear(x[ind_t], y[ind_t]),
-                                'test-f': ramp.calc_f_linear(x[ind_t], y[ind_t]),
-                                'comp_time': ramp.comp_time,
-                                'timeout': ramp.timeout}
-                    df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
+                ## # Hyper-parameter s of Ramp SVM
+                ## for l in range(len(mu_cand)):
+                ##     print 'Start Ramp Loss SVM'
+                ##     ramp.cplex_method = 1
+                ##     ramp.set_cost(cost_cand[k])
+                ##     ramp.set_s(s_cand[l])
+                ##     ramp.solve_rampsvm(x_tr, y_tr)
+                ##     ramp.show_result()
+                ##     row_ramp = {'ratio': ol_ratio[i],
+                ##                 'trial': j,
+                ##                 'C': cost_cand[k],
+                ##                 's': s_cand[l],
+                ##                 'val-acc': ramp.calc_accuracy_linear(x_val, y_val),
+                ##                 'val-f': ramp.calc_f_linear(x_val, y_val),
+                ##                 'test-acc': ramp.calc_accuracy_linear(x[ind_t], y[ind_t]),
+                ##                 'test-f': ramp.calc_f_linear(x[ind_t], y[ind_t]),
+                ##                 'comp_time': ramp.comp_time,
+                ##                 'timeout': ramp.timeout}
+                ##     df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
 
                 # Hyper-parameter mu of ER-SVM
                 for l in range(len(mu_cand)):
