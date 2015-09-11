@@ -24,7 +24,7 @@ if __name__ == '__main__':
     dir_name = 'heart/'
     dir_name = 'splice/'
     dir_name = 'adult/'
-    #dir_name = 'vehicle/'
+    dir_name = 'vehicle/'
 
     ## Load result csv
     df_dca = pd.read_csv(dir_name+'dca.csv')
