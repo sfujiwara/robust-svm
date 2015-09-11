@@ -27,6 +27,8 @@ class RampSVM():
         self.coef0 = 0
         self.degree = 2
         self.cplex_method = 1
+        self.time_limit = cplex.infinity
+        self.timeout = False
     ## ============================================================= ##
 
 
@@ -44,6 +46,7 @@ class RampSVM():
 
     ## ===== Solve ================================================= ##
     def solve_rampsvm(self, x, y):
+        self.timeout = False
         self.total_itr = 0
         start = time.time()
         num, dim = x.shape
@@ -56,14 +59,14 @@ class RampSVM():
             kmat = pairwise_kernels(x, metric='rbf', gamma=self.gamma)
         elif self.kernel == 'polynomial':
             kmat = pairwise_kernels(x, metric='polynomial',
-                                    coef0=self.coef0,
-                                    degree=self.degree)
+                                    coef0=self.coef0, degree=self.degree)
         else:
             print 'Undefined Kernel!!'
         qmat = (kmat.T * y).T * y + 1e-7*np.eye(num)
         qmat = np.round(qmat, 10)
         ##### CPLEX object #####
         c = cplex.Cplex()
+        c.parameters.timelimit.set(self.time_limit)
         c.set_results_stream(None)
         ##### Set variables #####
         c.variables.add(obj=[-1]*num)
@@ -83,6 +86,7 @@ class RampSVM():
             c.variables.set_upper_bounds(zip(range(num), list(self.cost-self.beta)))
             ##### Solve subproblem #####
             c.solve()
+            print c.solution.get_status_string()
             self.total_itr += 1
             self.alpha = np.array(c.solution.get_values())
             ##### Compute bias and decision values #####
@@ -96,6 +100,9 @@ class RampSVM():
             beta_new = np.zeros(num)
             beta_new[np.where(self.decision_values*y < self.s)] = self.cost
             if all(self.beta == beta_new):
+                break
+            elif time.time() - start > self.time_limit:
+                self.timeout = True
                 break
             else:
                 self.beta = beta_new
@@ -141,6 +148,7 @@ class RampSVM():
         print 'itaration:\t', self.total_itr
         print 'accuracy:\t', self.accuracy
         print 'time:\t\t', self.comp_time
+        print 'timeout:', self.timeout
         print '============================'
 
 
@@ -153,7 +161,7 @@ if __name__ == '__main__':
     num, dim = x.shape
     ## Set hyper-parameters
     rampsvm = RampSVM()
-    rampsvm.set_cost(1e1)
+    rampsvm.set_cost(1e10)
     ## rampsvm.set_epsilon(1e-10)
     rampsvm.solve_rampsvm(x, y)
     rampsvm.show_result(3)
