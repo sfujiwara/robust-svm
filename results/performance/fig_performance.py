@@ -24,14 +24,11 @@ if __name__ == '__main__':
     dir_name = 'heart/'
     dir_name = 'splice/'
     dir_name = 'adult/'
-<<<<<<< HEAD
     dir_name = 'vehicle/'
-=======
     #dir_name = 'vehicle/'
     dir_name = 'satimage/'
     dir_name = 'svmguide1/'
     #dir_name = 'cod-rna/'
->>>>>>> b19f3ffd297c3caa23c2714fef0c0aef81977b46
 
     ## Load result csv
     df_dca = pd.read_csv(dir_name+'dca.csv')
