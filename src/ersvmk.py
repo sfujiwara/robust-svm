@@ -128,35 +128,48 @@ class KernelErSvm():
             if diff_obj < 1e-5: break
             obj_val.append(obj_val_new)
             #print 'WEIGHT:\t\t', np.round(np.dot(dmat.T, a), 3)
+        ## Set results
         self.a = a
         self.bias = bias
         self.eta = eta
         self.decision_values = (np.dot(kmat, a) + bias)
         self.training_error = np.mean(self.decision_values * y < 0)
-        return c, eta
+        self.support_vectors = x
 
 
-class SvmResult:
-    def __init__(self, a, bias, kernel):
-        self.dual_coefs = a
-        self.bias = bias
-        self.kernel = kernel
+    def calc_decision_value(self, x):
+        kmat = pairwise_kernels(self.support_vectors, x,
+                                metric=self.kernel, gamma=self.gamma)
+        dv = np.dot(self.a, kmat) + self.bias
+        return dv
 
-    def predict(X):
-        pass
-        
 
 if __name__ == '__main__':
-    print 'hello'
+    import pandas as pd
+    np.random.seed(0)
     ## Load data set
     dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
     x = dataset[:, 1:]
     y = dataset[:, 0]
     num, dim = x.shape
-
+    num_tr = 104
+    num_t = 241
+    nu_cand = np.linspace(0.1, 0.7, 10)
+    trial = 1
     ## Initial point
-    a = np.ones(num)
+    a_init = np.ones(num_tr)
 
-    ## Train Kernel ER-SVM
-    kersvm = KernelErSvm(nu=0.2, mu=0.0, kernel='rbf')
-    kersvm.solve(x=x, y=y, a=a, b=0.)
+    df_dca = pd.DataFrame(columns=['trial', 'nu', 'mu', 'val-acc', 'val-f',
+                                   'test-acc', 'test-f', 'VaR', 'tr-CVaR', 'comp_time'])
+    err = np.zeros(len(nu_cand))
+    for i in range(len(nu_cand)):
+        for j in xrange(trial):
+            # Split indices to training, validation, and test set
+            ind_rand = np.random.permutation(range(num))
+            ind_tr = ind_rand[:num_tr]
+            ind_t = ind_rand[num_tr:]
+            ## Train Kernel ER-SVM
+            kersvm = KernelErSvm(nu=nu_cand[i], mu=0.03, kernel='polynomial')
+            kersvm.solve(x=x[ind_tr], y=y[ind_tr], a=a_init, b=0.)
+            dv = kersvm.calc_decision_value(x[ind_t])
+            err[i] += sum(dv * y[ind_t] > 0)

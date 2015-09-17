@@ -4,6 +4,8 @@ import time
 import pandas as pd
 from sklearn.metrics import f1_score
 from src import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
+import sys
+
 
 if __name__ == '__main__':
     # Set seed
@@ -138,31 +140,34 @@ if __name__ == '__main__':
     ## # Setting of outlier
     ## radius = 200
 
-    ## # Read satimage dataset
-    ## name_dataset = 'satimage'
-    ## dir_name_result = 'results/performance/satimage/'
+    # Read satimage dataset
+    name_dataset = 'satimage'
+    dir_name_result = 'results/performance/satimage/'
+    dataset = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
     ## dataset_train = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
     ## dataset_test  = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.t.csv', delimiter=',')
     ## dataset = np.vstack([dataset_train, dataset_test])
-    ## y = dataset[:, 0]
-    ## x = dataset[:, 1:]
-    ## num, dim = x.shape
-    ## num_tr = 2574
-    ## num_val = 1930
-    ## num_t = 1931
-    ## # Multi class to binary class
-    ## y[np.where(y != 6)] = -1.
-    ## y[np.where(y != -1)] = 1.
-    ## # Candidates of hyper-parameters (vehicle)
-    ## nu_max = 0.4
-    ## nu_cand = np.linspace(nu_max, 0.1, 9)
-    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    ## # cost_cand = np.array([5.**i for i in range(3, -5, -1)])
-    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    ## mu_cand = np.array([0.05, 0.1, 0.15])
-    ## s_cand = np.array([-1, 0., 0.5])
-    ## # Setting of outlier
-    ## radius = 200
+    y = dataset[:, 0]
+    x = dataset[:, 1:]
+    num, dim = x.shape
+    num_tr = 1774
+    num_val = 1330
+    num_t = 1331
+    # Multi class to binary class
+    y[np.where(y != 6)] = -1.
+    y[np.where(y != -1)] = 1.
+    # Candidates of hyper-parameters (vehicle)
+    nu_max = 0.4
+    nu_cand = np.linspace(nu_max, 0.1, 9)
+    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    # cost_cand = np.array([5.**i for i in range(3, -5, -1)])
+    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    mu_cand = np.array([0.05, 0.1, 0.15])
+    s_cand = np.array([-1, 0., 0.5])
+    # Setting of outlier
+    radius = 150
+
+    ## sys.exit()
 
     ## # Read data set (svmguide1)
     ## name_dataset = 'svmguide1'
@@ -186,27 +191,27 @@ if __name__ == '__main__':
     ## # Setting of outlier
     ## radius = 50
 
-    # Read data set (cod-rna)
-    name_dataset = 'svmguide1'
-    filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
-    dir_name_result = 'results/performance/cod-rna/'
-    dataset = np.loadtxt(filename, delimiter=',')
-    y = dataset[:, 0]
-    y[y==0] = -1
-    x = dataset[:, 1:]
-    num, dim = x.shape
-    num_tr = 23814
-    num_val = 17860
-    num_t = 17861
-    # Candidates of hyper-parameters (adult)
-    nu_max = 0.6
-    nu_cand = np.linspace(nu_max, 0.1, 9)
-    cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    mu_cand = np.array([0.05, 0.1, 0.15])
-    s_cand = np.array([-1, 0., 0.5])
-    # Setting of outlier
-    radius = 30
+    ## # Read data set (cod-rna)
+    ## name_dataset = 'cod-rna'
+    ## filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
+    ## dir_name_result = 'results/performance/cod-rna/'
+    ## dataset = np.loadtxt(filename, delimiter=',')
+    ## y = dataset[:, 0]
+    ## y[y==0] = -1
+    ## x = dataset[:, 1:]
+    ## num, dim = x.shape
+    ## num_tr = 23814
+    ## num_val = 17860
+    ## num_t = 17861
+    ## # Candidates of hyper-parameters (adult)
+    ## nu_max = 0.6
+    ## nu_cand = np.linspace(nu_max, 0.1, 9)
+    ## cost_cand = np.array([5.**i for i in range(4, -5, -1)])
+    ## ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
+    ## mu_cand = np.array([0.05, 0.1, 0.15])
+    ## s_cand = np.array([-1, 0., 0.5])
+    ## # Setting of outlier
+    ## radius = 30
 
     # Number of trial
     trial = 3
