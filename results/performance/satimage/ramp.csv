@@ -1,1 +1,1 @@
-ratio,trial,C,s,val-acc,val-f,test-acc,test-f
+ratio,trial,C,s,val-acc,val-f,test-acc,test-f,comp_time,timeout

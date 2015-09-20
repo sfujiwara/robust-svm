@@ -6,20 +6,19 @@ import pandas as pd
 
 if __name__ == '__main__':
     ## Directory name of result csv
-    ## dir_name = "diabetes/"
+    dir_name = "diabetes/"
     ## dir_name = 'liver/'
-    ## dir_name = 'heart/'
+    dir_name = 'heart/'
     dir_name = 'splice/'
     dir_name = 'adult/'
     dir_name = 'vehicle/'
     ## dir_name = 'satimage/'
-    ## dir_name = 'svmguide1/'
-    dir_name = 'cod-rna/'
+    dir_name = 'svmguide1/'
+    ## dir_name = 'cod-rna/'
 
     ## Load result csv
     df_dca = pd.read_csv(dir_name+'dca.csv')
     df_var = pd.read_csv(dir_name+'var.csv')
-    df_ramp = pd.read_csv(dir_name+'ramp.csv')
     df_enu = pd.read_csv(dir_name+'enu.csv')
     df_libsvm = pd.read_csv(dir_name+'libsvm.csv')
     df_conv = pd.read_csv(dir_name+"conv.csv")
@@ -29,9 +28,16 @@ if __name__ == '__main__':
     ind_dca = df_dca.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
     ind_var = df_var.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
     ind_enu = df_enu.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
-    #ind_ramp = df_ramp.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
     #ind_conv = df_conv.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
     ## ind_libsvm = df_libsvm.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
+
+    ## Ramp-loss SVM
+    df_ramp = pd.read_csv(dir_name+'ramp.csv')
+    ind_ramp = df_ramp.groupby(['ratio', 'trial', 's']).agg(np.argmax)[["val-acc", "val-f"]]
+    tmp = df_ramp.iloc[np.array(ind_ramp["val-acc"], dtype=int)]
+    df_acc_ramp = tmp.groupby(['ratio', 's']).agg({'test-acc': [np.mean, np.std]})
+    tmp = df_ramp.iloc[np.array(ind_ramp["val-f"], dtype=int)]
+    df_f_ramp = tmp.groupby(['ratio', 's']).agg({'test-f': [np.mean, np.std]})
 
     ## DataFrame for accuracy
     ## ER-SVM + DCA
@@ -45,9 +51,7 @@ if __name__ == '__main__':
     ## Enu-SVM
     tmp = df_enu.iloc[np.array(ind_enu["val-acc"], dtype=int)]
     df_acc_enu = tmp.groupby('ratio').agg({'test-acc': [np.mean, np.std], 'is_convex': [np.min, np.max]})
-    ## Ramp-loss SVM
-    #tmp = df_ramp.iloc[np.array(ind_ramp["val-acc"], dtype=int)]
-    df_acc_ramp = tmp.groupby('ratio').agg({'test-acc': [np.mean, np.std]})
+
     ## ER-SVM + DCA (limited to convex range)
     #tmp = df_conv.iloc[np.array(ind_conv["val-acc"], dtype=int)]
     #df_acc_conv = tmp.groupby('ratio').agg({'test-acc': [np.mean, np.std], 'tr-CVaR': [np.min, np.max]})
@@ -64,9 +68,7 @@ if __name__ == '__main__':
     ## Enu-SVM
     tmp = df_enu.iloc[np.array(ind_enu["val-f"], dtype=int)]
     df_f_enu = tmp.groupby('ratio').agg({'test-f': [np.mean, np.std], 'is_convex': [np.min, np.max]})
-    ## Ramp-loss SVM
-    #tmp = df_ramp.iloc[np.array(ind_ramp["val-f"], dtype=int)]
-    df_f_ramp = tmp.groupby('ratio').agg({'test-f': [np.mean, np.std]})
+
     ## ER-SVM + DCA (limited to convex range)
     #tmp = df_conv.iloc[np.array(ind_conv["val-f"], dtype=int)]
     #df_f_conv = tmp.groupby('ratio').agg({'test-f': [np.mean, np.std], 'tr-CVaR': [np.min, np.max]})

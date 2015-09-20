@@ -165,7 +165,7 @@ if __name__ == '__main__':
     mu_cand = np.array([0.05, 0.1, 0.15])
     s_cand = np.array([-1, 0., 0.5])
     # Setting of outlier
-    radius = 150
+    radius = 75
 
     ## sys.exit()
 
@@ -214,7 +214,7 @@ if __name__ == '__main__':
     ## radius = 30
 
     # Number of trial
-    trial = 3
+    trial = 30
     # Scaling
     # ersvmutil.libsvm_scale(x)
     ersvmutil.standard_scale(x)

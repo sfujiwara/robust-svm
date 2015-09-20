@@ -6,7 +6,7 @@ import sys
 sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux') # Ubuntu
 import cplex
 import numpy as np
-
+import matplotlib.pyplot as plt
 import ersvmutil
 
 # Non-linear classification using kernel
@@ -53,6 +53,7 @@ class KernelErSvm():
         a_names  = ['a%s'  % i for i in range(num)]
         xi_names = ['xi%s' % i for i in range(num)]
         kmat = self.kernel_matrix(x)
+        kmat += np.eye(num) * 1e-10
 
         # Initialize risk
         risks = - y * (np.dot(kmat, a) + b)
@@ -138,8 +139,13 @@ class KernelErSvm():
 
 
     def calc_decision_value(self, x):
-        kmat = pairwise_kernels(self.support_vectors, x,
-                                metric=self.kernel, gamma=self.gamma)
+        if self.kernel == 'linear':
+            kmat = pairwise_kernels(self.support_vectors, x, metric=self.kernel)
+        elif self.kernel == 'polynomial':
+            kmat = pairwise_kernels(self.support_vectors, x,
+                                    metric=self.kernel, coef0=self.coef0, degree=self.degree)
+        else:
+            print 'Undefined kernel!!'
         dv = np.dot(self.a, kmat) + self.bias
         return dv
 
@@ -150,18 +156,20 @@ if __name__ == '__main__':
     ## Load data set
     dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
     x = dataset[:, 1:]
+    ersvmutil.standard_scale(x)
     y = dataset[:, 0]
     num, dim = x.shape
     num_tr = 104
     num_t = 241
-    nu_cand = np.linspace(0.1, 0.7, 10)
+    nu_cand = np.arange(0.71, 0.1, -0.05)
     trial = 1
     ## Initial point
-    a_init = np.ones(num_tr)
+    a_init = np.random.uniform(low=-1, high=1, size=num_tr)
 
     df_dca = pd.DataFrame(columns=['trial', 'nu', 'mu', 'val-acc', 'val-f',
                                    'test-acc', 'test-f', 'VaR', 'tr-CVaR', 'comp_time'])
-    err = np.zeros(len(nu_cand))
+    err_pol = np.zeros(len(nu_cand))
+    err_lin = np.zeros(len(nu_cand))
     for i in range(len(nu_cand)):
         for j in xrange(trial):
             # Split indices to training, validation, and test set
@@ -172,4 +180,18 @@ if __name__ == '__main__':
             kersvm = KernelErSvm(nu=nu_cand[i], mu=0.03, kernel='polynomial')
             kersvm.solve(x=x[ind_tr], y=y[ind_tr], a=a_init, b=0.)
             dv = kersvm.calc_decision_value(x[ind_t])
-            err[i] += sum(dv * y[ind_t] > 0)
+            err_pol[i] += sum(dv * y[ind_t] > 0)
+            print 'Training Error:', sum(kersvm.calc_decision_value(x[ind_tr]) * y[ind_tr] < 0) / float(num_tr)
+            print 'Test Error:', sum(dv * y[ind_t] < 0) / float(num_t)
+            ## Train Linear ER-SVM
+            kersvm = KernelErSvm(nu=nu_cand[i], mu=0.03, kernel='linear')
+            kersvm.solve(x=x[ind_tr], y=y[ind_tr], a=a_init, b=0.)
+            dv = kersvm.calc_decision_value(x[ind_t])
+            err_lin[i] += sum(dv * y[ind_t] < 0)
+
+    plt.plot(nu_cand, err_lin/241., label='Linear')
+    plt.plot(nu_cand, 1-err_pol/241., label='Polynomial')
+    plt.grid()
+    plt.legend()
+    plt.ylabel('Test Error')
+    plt.show()
