@@ -26,9 +26,9 @@ def training_set(r, num_outlier):
 
 
 def test_set():
-    xmat = np.vstack([np.random.multivariate_normal(mu1, cov, 500),
-                           np.random.multivariate_normal(mu2, cov, 500)])
-    y = np.array([1] * 500 + [-1] * 500)
+    xmat = np.vstack([np.random.multivariate_normal(mu1, cov, 1000),
+                           np.random.multivariate_normal(mu2, cov, 1000)])
+    y = np.array([1] * 1000 + [-1] * 1000)
     return xmat, y
 
 
@@ -44,7 +44,8 @@ if __name__ == '__main__':
     
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     nu_cand = np.linspace(0.9, 0.1, 9)
-    num_ol = np.array([0, 1])
+    num_ol = np.array([0, 1, 2, 3, 4, 5])
+    ## num_ol = np.array([0])
 
     # Initial point generated at random
     initial_weight = np.random.normal(size=dim)
@@ -53,6 +54,7 @@ if __name__ == '__main__':
     # Class instances
     ersvm = ersvmdca.LinearPrimalERSVM()
     ersvm.set_initial_point(np.array(initial_weight), 0)
+    ersvm.set_mu(0.05)
     ramp = rampsvm.RampSVM()
     ramp.time_limit = 15
     enu = enusvm.EnuSVM()
@@ -91,10 +93,9 @@ if __name__ == '__main__':
 
                 ##### ER-SVM + DCA #####
                 ersvm.set_nu(nu_cand[k])
-                ersvm.set_initial_point(np.array(initial_weight), 0)
+                ## ersvm.set_initial_point(np.array(initial_weight_dca), 0)
                 ersvm.solve_ersvm(x_tr, y_tr)
                 ## ersvm.show_result()
-                ersvm.set_initial_point(np.array(initial_weight), 0)
                 row_dca = {
                     'outlier_ratio': num_ol[i] / 100.,
                     'trial'        : j,
@@ -105,6 +106,7 @@ if __name__ == '__main__':
                     'comp_time'    : ersvm.comp_time,
                 }
                 df_dca = df_dca.append(pd.Series(row_dca, name=pd.datetime.today()))
+                ersvm.set_initial_point(np.array(ersvm.weight), 0)
 
                 ##### Enu-SVM #####
                 enu.set_initial_weight(np.array(initial_weight))
