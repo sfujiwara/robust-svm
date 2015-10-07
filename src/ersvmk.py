@@ -109,8 +109,10 @@ class KernelErSvm():
             # Termination
             obj_val_new = ersvmutil.calc_cvar(risks, 1 - self.nu) * self.nu - \
                           ersvmutil.calc_cvar(risks, 1 - self.mu) * self.mu
-            t.append(max(0., obj_val[-1]/0.999))
-
+            if self.kernel == 'polynomial':
+                t.append(max(0., obj_val[-1]/0.999 + 1e-7))
+            else:
+                t.append(max(0., obj_val[-1]/0.999))
             diff_obj = np.abs((obj_val[-1] - obj_val_new) / obj_val[-1])
             if diff_obj < 1e-5: break
             obj_val.append(obj_val_new)
@@ -154,8 +156,10 @@ if __name__ == '__main__':
     num_tr = 173
     num_t = 172
     nu_cand = np.arange(0.71, 0.1, -0.05)
+    # nu_cand = np.array([0.1])
     trial = 30
     trial = 100
+    # trial = 1
     ## Initial point
     a_init_lin = np.random.uniform(low=-1, high=1, size=num_tr)
     a_init_pol = np.random.uniform(low=-1, high=1, size=num_tr)
@@ -233,5 +237,5 @@ if __name__ == '__main__':
     plt.ylabel('Test Error')
     plt.show()
 
-    df_pol.to_csv('kernel_pol_ol5.csv', index=False)
-    df_lin.to_csv('kernel_lin_o.5.csv', index=False)
+    df_pol.to_csv('kernel_pol_rev.csv', index=False)
+    df_lin.to_csv('kernel_lin_rev.csv', index=False)
