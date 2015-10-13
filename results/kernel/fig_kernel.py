@@ -14,25 +14,38 @@ plt.rcParams['xtick.labelsize'] = 14
 plt.rcParams['ytick.labelsize'] = 14
 
 
-df_pol = pd.read_csv('kernel_pol_ol5.csv')
-df_lin = pd.read_csv('kernel_lin_ol5.csv')
+df_pol10 = pd.read_csv('kernel_pol_ol10.csv')
+df_pol00 = pd.read_csv('kernel_pol.csv')
+df_lin10 = pd.read_csv('kernel_lin_ol10.csv')
+df_lin00 = pd.read_csv('kernel_lin.csv')
 
-res_pol = df_pol.groupby(['nu'], as_index=False).mean()
-res_lin = df_lin.groupby(['nu'], as_index=False).mean()
+res_pol00 = df_pol00.groupby(['nu'], as_index=False).mean()
+res_lin00 = df_lin00.groupby(['nu'], as_index=False).mean()
+res_pol10 = df_pol10.groupby(['nu'], as_index=False).mean()
+res_lin10 = df_lin10.groupby(['nu'], as_index=False).mean()
 
-m_pol = np.array(df_pol.groupby(['nu']).obj_val.median() > 0)
-m_lin = np.array(df_lin.groupby(['nu']).obj_val.median() > 0)
-nu = np.array(res_pol['nu'])
+m_pol00 = np.array(df_pol00.groupby(['nu']).obj_val.max() > 0)
+m_lin00 = np.array(df_lin00.groupby(['nu']).obj_val.max() > 0)
+m_pol10 = np.array(df_pol10.groupby(['nu']).obj_val.max() > 0)
+m_lin10 = np.array(df_lin10.groupby(['nu']).obj_val.max() > 0)
+nu = np.array(res_pol00['nu'])
 
-plt.plot(nu, 1 - res_pol['test_error'], label='Polynomial')
-plt.plot(nu, 1 - res_lin['test_error'], '--', label='Linear')
-plt.plot(nu[m_pol], 1 - res_pol['test_error'].ix[m_pol], 'bs', ms=9, markeredgecolor='none')
-plt.plot(nu[m_lin], 1 - res_lin['test_error'].ix[m_lin], 'gs', ms=9, markeredgecolor='none')
+plt.plot(nu, 1 - res_pol00['test_error'], label='Polynomial (0 %)')
+plt.plot(nu, 1 - res_lin00['test_error'], label='Linear (0 %)')
+plt.plot(nu, 1 - res_pol10['test_error'], '--', label='Polynomial (10 %)')
+plt.plot(nu, 1 - res_lin10['test_error'], '--', label='Linear (10 %)')
+
+plt.plot(nu[m_pol00], 1 - res_pol00['test_error'].ix[m_pol00], 'bo', ms=9, markeredgecolor='none')
+plt.plot(nu[m_lin00], 1 - res_lin00['test_error'].ix[m_lin00], 'g^', ms=9, markeredgecolor='none')
+plt.plot(nu[m_pol10], 1 - res_pol10['test_error'].ix[m_pol10], 'rs', ms=9, markeredgecolor='none')
+plt.plot(nu[m_lin10], 1 - res_lin10['test_error'].ix[m_lin10], 'cd', ms=9, markeredgecolor='none')
+
 plt.grid()
 plt.legend(loc='lower right')
 plt.xlabel('nu')
 plt.ylabel('Test Accuracy')
 plt.xlim(0.07, 0.83)
+plt.ylim(0.54, 0.71)
 plt.show()
 
 ## plt.plot(nu, df_lin.groupby(['nu']).comp_time.mean(), label='Linear')

@@ -177,8 +177,8 @@ if __name__ == '__main__':
             ind_t = ind_rand[num_tr:]
             x_tr = np.array(x[ind_tr])
             y_tr = np.array(y[ind_tr])
-            outliers = ersvmutil.runif_sphere(radius=10, dim=dim, size=6)
-            x_tr[:6] = outliers
+            outliers = ersvmutil.runif_sphere(radius=10, dim=dim, size=19)
+            x_tr[:19] = outliers
             ## Initial point
             a_init = np.random.uniform(low=-1, high=1, size=num_tr)
             kmat = pairwise_kernels(x_tr, metric='linear')
