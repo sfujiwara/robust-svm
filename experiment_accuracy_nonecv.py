@@ -161,9 +161,9 @@ if __name__ == '__main__':
     nu_cand = np.linspace(nu_max, 0.1, 9)
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     # cost_cand = np.array([5.**i for i in range(3, -5, -1)])
-    ol_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15])
-    mu_cand = np.array([0.05, 0.1, 0.15])
-    s_cand = np.array([-1, 0., 0.5])
+    ol_ratio = np.array([0., 0.03, 0.05, 0.1])
+    mu_cand = np.array([0.05])
+    s_cand = np.array([-1])
     # Setting of outlier
     radius = 75
 
@@ -269,48 +269,48 @@ if __name__ == '__main__':
 
             # Loop for hyper-parameter tuning
             for k in range(len(nu_cand)):
-                ## # Hyper-parameter s of Ramp SVM
-                ## for l in range(len(mu_cand)):
-                ##     print 'Start Ramp Loss SVM'
-                ##     ramp.cplex_method = 1
-                ##     ramp.set_cost(cost_cand[k])
-                ##     ramp.set_s(s_cand[l])
-                ##     ramp.solve_rampsvm(x_tr, y_tr)
-                ##     ramp.show_result()
-                ##     row_ramp = {'ratio': ol_ratio[i],
-                ##                 'trial': j,
-                ##                 'C': cost_cand[k],
-                ##                 's': s_cand[l],
-                ##                 'val-acc': ramp.calc_accuracy_linear(x_val, y_val),
-                ##                 'val-f': ramp.calc_f_linear(x_val, y_val),
-                ##                 'test-acc': ramp.calc_accuracy_linear(x[ind_t], y[ind_t]),
-                ##                 'test-f': ramp.calc_f_linear(x[ind_t], y[ind_t]),
-                ##                 'comp_time': ramp.comp_time,
-                ##                 'timeout': ramp.timeout}
-                ##     df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
-
-                # Hyper-parameter mu of ER-SVM
+                # Hyper-parameter s of Ramp SVM
                 for l in range(len(mu_cand)):
-                    print 'Start ER-SVM (DCA)'
-                    print '(ratio, trial):', (ol_ratio[i], j)
-                    if nu_cand[k] > mu_cand[l]:
-                        ersvm.set_nu(nu_cand[k])
-                        ersvm.set_mu(mu_cand[l])
-                        ersvm.solve_ersvm(x_tr, y_tr)
-                        ersvm.show_result()
-                        ersvm.set_initial_point(np.array(initial_weight), 0)
-                        row_dca = {'ratio': ol_ratio[i],
-                                   'trial': j,
-                                   'nu': nu_cand[k],
-                                   'mu': mu_cand[l],
-                                   'val-acc': ersvm.calc_accuracy(x_val, y_val),
-                                   'val-f': ersvm.calc_f(x_val, y_val),
-                                   'test-acc': ersvm.calc_accuracy(x[ind_t], y[ind_t]),
-                                   'test-f': ersvm.calc_f(x[ind_t], y[ind_t]),
-                                   'VaR': ersvm.alpha,
-                                   'tr-CVaR': ersvm.obj[-1],
-                                   'comp_time': ersvm.comp_time}
-                        df_dca = df_dca.append(pd.Series(row_dca, name=pd.datetime.today()))
+                    print 'Start Ramp Loss SVM'
+                    ramp.cplex_method = 1
+                    ramp.set_cost(cost_cand[k])
+                    ramp.set_s(s_cand[l])
+                    ramp.solve_rampsvm(x_tr, y_tr)
+                    ramp.show_result()
+                    row_ramp = {'ratio': ol_ratio[i],
+                                'trial': j,
+                                'C': cost_cand[k],
+                                's': s_cand[l],
+                                'val-acc': ramp.calc_accuracy_linear(x_val, y_val),
+                                'val-f': ramp.calc_f_linear(x_val, y_val),
+                                'test-acc': ramp.calc_accuracy_linear(x[ind_t], y[ind_t]),
+                                'test-f': ramp.calc_f_linear(x[ind_t], y[ind_t]),
+                                'comp_time': ramp.comp_time,
+                                'timeout': ramp.timeout}
+                    df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
+
+                ## # Hyper-parameter mu of ER-SVM
+                ## for l in range(len(mu_cand)):
+                ##     print 'Start ER-SVM (DCA)'
+                ##     print '(ratio, trial):', (ol_ratio[i], j)
+                ##     if nu_cand[k] > mu_cand[l]:
+                ##         ersvm.set_nu(nu_cand[k])
+                ##         ersvm.set_mu(mu_cand[l])
+                ##         ersvm.solve_ersvm(x_tr, y_tr)
+                ##         ersvm.show_result()
+                ##         ersvm.set_initial_point(np.array(initial_weight), 0)
+                ##         row_dca = {'ratio': ol_ratio[i],
+                ##                    'trial': j,
+                ##                    'nu': nu_cand[k],
+                ##                    'mu': mu_cand[l],
+                ##                    'val-acc': ersvm.calc_accuracy(x_val, y_val),
+                ##                    'val-f': ersvm.calc_f(x_val, y_val),
+                ##                    'test-acc': ersvm.calc_accuracy(x[ind_t], y[ind_t]),
+                ##                    'test-f': ersvm.calc_f(x[ind_t], y[ind_t]),
+                ##                    'VaR': ersvm.alpha,
+                ##                    'tr-CVaR': ersvm.obj[-1],
+                ##                    'comp_time': ersvm.comp_time}
+                ##         df_dca = df_dca.append(pd.Series(row_dca, name=pd.datetime.today()))
 
                 ## # Hyper-parameter mu of ER-SVM with t = 0
                 ## for l in range(len(mu_cand)):
@@ -334,38 +334,38 @@ if __name__ == '__main__':
                 ##                     'comp_time': conv_ersvm.comp_time}
                 ##         df_conv = df_conv.append(pd.Series(row_conv, name=pd.datetime.today()))
 
-                print 'Start Enu-SVM'
-                enu.set_initial_weight(np.array(initial_weight))
-                enu.set_nu(nu_cand[k])
-                enu.solve_enusvm(x_tr, y_tr)
-                enu.show_result()
-                row_enu = {'ratio': ol_ratio[i],
-                           'trial': j,
-                           'nu': nu_cand[k],
-                           'val-acc': enu.calc_accuracy(x_val, y_val),
-                           'val-f': enu.calc_f(x_val,y_val),
-                           'test-acc': enu.calc_accuracy(x[ind_t], y[ind_t]),
-                           'test-f': enu.calc_f(x[ind_t],y[ind_t]),
-                           'is_convex': enu.convexity,
-                           'comp_time': enu.comp_time}
-                df_enu = df_enu.append(pd.Series(row_enu, name=pd.datetime.today()))
+                ## print 'Start Enu-SVM'
+                ## enu.set_initial_weight(np.array(initial_weight))
+                ## enu.set_nu(nu_cand[k])
+                ## enu.solve_enusvm(x_tr, y_tr)
+                ## enu.show_result()
+                ## row_enu = {'ratio': ol_ratio[i],
+                ##            'trial': j,
+                ##            'nu': nu_cand[k],
+                ##            'val-acc': enu.calc_accuracy(x_val, y_val),
+                ##            'val-f': enu.calc_f(x_val,y_val),
+                ##            'test-acc': enu.calc_accuracy(x[ind_t], y[ind_t]),
+                ##            'test-f': enu.calc_f(x[ind_t],y[ind_t]),
+                ##            'is_convex': enu.convexity,
+                ##            'comp_time': enu.comp_time}
+                ## df_enu = df_enu.append(pd.Series(row_enu, name=pd.datetime.today()))
 
-                print 'Start ER-SVM (Heuristics)'
-                var.set_initial_weight(np.array(initial_weight))
-                var.set_nu(nu_cand[k])
-                var.set_gamma(0.03/nu_cand[k])
-                var.solve_varmin(x_tr, y_tr)
-                var.show_result()
-                row_var = {'ratio': ol_ratio[i],
-                           'trial': j,
-                           'nu': nu_cand[k],
-                           'val-acc': var.calc_accuracy(x_val, y_val),
-                           'val-f': var.calc_f(x_val, y_val),
-                           'test-acc': var.calc_accuracy(x[ind_t], y[ind_t]),
-                           'test-f': var.calc_f(x[ind_t], y[ind_t]),
-                           'is_convex': var.is_convex,
-                           'comp_time': var.comp_time}
-                df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
+                ## print 'Start ER-SVM (Heuristics)'
+                ## var.set_initial_weight(np.array(initial_weight))
+                ## var.set_nu(nu_cand[k])
+                ## var.set_gamma(0.03/nu_cand[k])
+                ## var.solve_varmin(x_tr, y_tr)
+                ## var.show_result()
+                ## row_var = {'ratio': ol_ratio[i],
+                ##            'trial': j,
+                ##            'nu': nu_cand[k],
+                ##            'val-acc': var.calc_accuracy(x_val, y_val),
+                ##            'val-f': var.calc_f(x_val, y_val),
+                ##            'test-acc': var.calc_accuracy(x[ind_t], y[ind_t]),
+                ##            'test-f': var.calc_f(x[ind_t], y[ind_t]),
+                ##            'is_convex': var.is_convex,
+                ##            'comp_time': var.comp_time}
+                ## df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
 
                 ## print 'Start LIBSVM'
                 ## start = time.time()
@@ -385,9 +385,9 @@ if __name__ == '__main__':
 
     #pd.set_option('line_width', 200)
     # Save as csv
-    df_dca.to_csv(dir_name_result+'dca.csv', index=False)
-    df_enu.to_csv(dir_name_result+'enu.csv', index=False)
-    df_var.to_csv(dir_name_result+'var.csv', index=False)
+    ## df_dca.to_csv(dir_name_result+'dca.csv', index=False)
+    ## df_enu.to_csv(dir_name_result+'enu.csv', index=False)
+    ## df_var.to_csv(dir_name_result+'var.csv', index=False)
     df_ramp.to_csv(dir_name_result+'ramp.csv', index=False)
-    df_libsvm.to_csv(dir_name_result+'libsvm.csv', index=False)
-    df_conv.to_csv(dir_name_result+'conv.csv', index=False)
+    ## df_libsvm.to_csv(dir_name_result+'libsvm.csv', index=False)
+    ## df_conv.to_csv(dir_name_result+'conv.csv', index=False)

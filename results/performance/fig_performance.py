@@ -12,8 +12,8 @@ if __name__ == '__main__':
     dir_name = 'splice/'
     dir_name = 'adult/'
     dir_name = 'vehicle/'
-    ## dir_name = 'satimage/'
-    dir_name = 'svmguide1/'
+    dir_name = 'satimage/'
+    ## dir_name = 'svmguide1/'
     ## dir_name = 'cod-rna/'
 
     ## Load result csv
