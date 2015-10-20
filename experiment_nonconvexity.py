@@ -89,10 +89,10 @@ if __name__ == '__main__':
 
     x = [np.sqrt(2*i**2) for i in dist]
 
-    plt.plot(x, [np.mean(i) for i in res_nonconv], '-', label='nonconvex')
-    plt.plot(x, [np.mean(i) for i in res_conv], '--', label='convex')
+    plt.plot(x, [np.mean(i) for i in res_nonconv], '-', label='Case N + Case C')
+    plt.plot(x, [np.mean(i) for i in res_conv], '--', label='Case C')
     plt.grid()
     plt.legend(loc='lower right')
-    plt.ylabel('Accuracy')
+    plt.ylabel('Test Accuracy')
     plt.xlabel('Distance')
     plt.show()
