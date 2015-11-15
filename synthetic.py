@@ -44,8 +44,8 @@ if __name__ == '__main__':
     
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     nu_cand = np.linspace(0.9, 0.1, 9)
-    num_ol = np.array([0, 1, 2, 3, 4, 5])
-    ## num_ol = np.array([0])
+    ## num_ol = np.array([0, 1, 2, 3, 4, 5])
+    num_ol = np.array([0, 2, 4, 6, 8, 10])
 
     # Initial point generated at random
     initial_weight = np.random.normal(size=dim)
@@ -172,7 +172,7 @@ if __name__ == '__main__':
 
 
     # Save as csv
-    dir_name_result = 'results/synthetic/'
+    dir_name_result = 'results/synthetic2/'
     df_dca.to_csv(dir_name_result+'dca.csv', index=False)
     df_enu.to_csv(dir_name_result+'enu.csv', index=False)
     df_var.to_csv(dir_name_result+'var.csv', index=False)

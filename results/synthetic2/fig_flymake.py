@@ -79,14 +79,20 @@ plt.rcParams['lines.markersize'] = 8
 elw = 2
 cs = 3
 
-outlier_ratio = np.array([0.0, 0.1, 0.2, 0.3, 0.4, 0.5])
-plt.errorbar(outlier_ratio-0.01, df_dca['test_accuracy_mean'], yerr=df_dca['test_accuracy_std'], label='ER-SVM (DCA)', elinewidth=elw, capsize=cs, fmt='-')
-plt.errorbar(outlier_ratio-0.005, df_var['test_accuracy_mean'], yerr=df_var['test_accuracy_std'], label='ER-SVM (heuristics)', elinewidth=elw, capsize=cs, fmt='--')
-plt.errorbar(outlier_ratio+0.005, df_enu['test_accuracy_mean'], yerr=df_csvm['test_accuracy_std'], label='Enu-SVM', elinewidth=elw, capsize=cs, fmt='-.')
-plt.errorbar(outlier_ratio+0.01, df_csvm['test_accuracy_mean'], yerr=df_csvm['test_accuracy_std'], label='C-SVM', elinewidth=elw, capsize=cs, fmt=':')
+outlier_ratio = np.array([0.0, 0.02, 0.04, 0.06, 0.08, 0.1])
+plt.errorbar(outlier_ratio-0.001, df_dca['test_accuracy_mean'], yerr=df_dca['test_accuracy_std'], label='ER-SVM (DCA)', elinewidth=elw, capsize=cs, fmt='-')
+plt.errorbar(outlier_ratio-0.002, df_var['test_accuracy_mean'], yerr=df_var['test_accuracy_std'], label='ER-SVM (heuristics)', elinewidth=elw, capsize=cs, fmt='--')
+plt.errorbar(outlier_ratio+0.002, df_enu['test_accuracy_mean'], yerr=df_csvm['test_accuracy_std'], label='Enu-SVM', elinewidth=elw, capsize=cs, fmt='-.')
+plt.errorbar(outlier_ratio+0.001, df_csvm['test_accuracy_mean'], yerr=df_csvm['test_accuracy_std'], label='C-SVM', elinewidth=elw, capsize=cs, fmt=':')
 plt.errorbar(outlier_ratio, df_ramp['test_accuracy_mean'], yerr=df_ramp['test_accuracy_std'], label='Ramp', elinewidth=elw, capsize=cs, fmt='-x')
 plt.xlabel('Outlier Ratio')
 plt.ylabel('Test Accuracy')
+plt.xlim([-0.01, 0.11])
 plt.legend(loc='lower left')
 plt.grid()
 plt.show()
+
+
+
+
+

@@ -79,7 +79,7 @@ plt.rcParams['lines.markersize'] = 8
 elw = 2
 cs = 3
 
-outlier_ratio = np.array([0.0, 0.1, 0.2, 0.3, 0.4, 0.5])
+outlier_ratio = np.array([0.0, 0.03, 0.05, 0.1, 0.15, 0.2])
 plt.errorbar(outlier_ratio-0.01, df_dca['test_accuracy_mean'], yerr=df_dca['test_accuracy_std'], label='ER-SVM (DCA)', elinewidth=elw, capsize=cs, fmt='-')
 plt.errorbar(outlier_ratio-0.005, df_var['test_accuracy_mean'], yerr=df_var['test_accuracy_std'], label='ER-SVM (heuristics)', elinewidth=elw, capsize=cs, fmt='--')
 plt.errorbar(outlier_ratio+0.005, df_enu['test_accuracy_mean'], yerr=df_csvm['test_accuracy_std'], label='Enu-SVM', elinewidth=elw, capsize=cs, fmt='-.')
