@@ -14,85 +14,81 @@ import time
 
 class EnuSVM:
 
-    ## ===== Constructor =========================================== ##
+    # Constructor
     def __init__(self):
         self.nu = 0.5
-        self.cplex_method = 0
+        # self.cplex_method = 0
+        self.lp_method = 1
         self.update_rule = 'projection'
         self.max_itr = 100
-    ## ============================================================= ##
 
-
-    ## ===== Setters =============================================== ##
+    # Setters
     def set_initial_weight(self, initial_weight):
         self.initial_weight = initial_weight
 
     def set_nu(self, nu):
         self.nu = nu
-    ## ============================================================= ##
 
-
-    ##### Convex case of Enu-SVM #####
+    # Convex case of Enu-SVM
     def solve_convex_primal(self, x, y):
         num, dim = x.shape
         w_names = ['w%s' % i for i in range(dim)]
         xi_names = ['xi%s' % i for i in range(num)]
         c = cplex.Cplex()
         c.set_results_stream(None)
-        ##### Set variables #####
+        # Set variables
         c.variables.add(names=['rho'],
                         lb=[-cplex.infinity], obj=[-self.nu*num])
         c.variables.add(names=w_names, lb=[-cplex.infinity]*dim)
         c.variables.add(names=['b'], lb=[- cplex.infinity])
         c.variables.add(names=xi_names, obj=[1.]*num)
-        ##### Set quadratic constraint #####
+        # Set quadratic constraint
         qexpr = [range(1,dim+1), range(1,dim+1), [1]*dim]
         c.quadratic_constraints.add(quad_expr=qexpr, rhs=1, sense='L', name='norm')
-        ##### Set linear constraints #####
+        # Set linear constraints
         # w * y_i * x_i + b * y_i + xi_i - rho >= 0
         for i in xrange(num):
             linexpr = [[w_names+['b']+['xi%s' % i]+['rho'],
                         list(x[i]*y[i]) + [y[i], 1., -1]]]
             c.linear_constraints.add(names=['margin%s' % i],
                                      senses='G', lin_expr=linexpr)
-        ## Solve QCLP
+        # Solve QCLP
         c.solve()
         return c
 
-
-    ## Non-convex case of Enu-SVM
+    # Non-convex case of Enu-SVM
     def solve_nonconvex(self, x, y):
         num, dim = x.shape
         w_names = ['w%s' % i for i in range(dim)]
         xi_names = ['xi%s' % i for i in range(num)]
-        ## Set initial point
+        # Set initial point
         w_tilde = np.array(self.initial_weight)
-        ## Cplex object
+        # Cplex object
         c = cplex.Cplex()
         c.set_results_stream(None)
-        ## Set variables
+        # Set variables
         c.variables.add(names=['rho'],
                         lb=[-cplex.infinity], obj=[-self.nu*num])
         c.variables.add(names=w_names, lb=[-cplex.infinity]*dim)
         c.variables.add(names=['b'], lb=[-cplex.infinity])
         c.variables.add(names=xi_names, obj=[1.]*num)
-        ## Set linear constraints: w * y_i * x_i + b * y_i + xi_i - rho >= 0
-        c.parameters.lpmethod.set(1)
+        # Set linear constraints: w * y_i * x_i + b * y_i + xi_i - rho >= 0
+        c.parameters.lpmethod.set(self.lp_method)
         for i in xrange(num):
             c.linear_constraints.add(names=['margin%s' % i], senses='G',
                                      lin_expr=[[w_names+['b']+['xi'+'%s' % i]+['rho'], list(x[i]*y[i]) + [y[i], 1., -1]]])
         # w_tilde * w = 1
         c.linear_constraints.add(names=['norm'], lin_expr=[[w_names, list(w_tilde)]], senses='E', rhs=[1.])
-        ## Iteration
+        # Iteration
         self.total_itr = 0
         for i in xrange(self.max_itr):
             self.total_itr += 1
             c.solve()
             self.weight = np.array(c.solution.get_values(w_names))
-            ## Termination
+            # Termination
             if np.linalg.norm(self.weight - w_tilde) < 1e-5:
                 return c
-            ## Update norm constraint
+            # Update norm constraint
             if self.update_rule == 'projection':
                 w_tilde = self.weight / np.linalg.norm(self.weight)
             elif update_rule == 'lin_comb':
@@ -102,10 +98,9 @@ class EnuSVM:
             c.linear_constraints.delete('norm')
             c.linear_constraints.add(names=['norm'],
                                      lin_expr=[[w_names, list(w_tilde)]],
-                                     senses = 'E', rhs = [1.])
+                                     senses='E', rhs=[1.])
 
-
-    ## Training Enu-SVM
+    # Training Enu-SVM
     def solve_enusvm(self, x, y):
         start = time.time()
         num, dim = x.shape
@@ -126,8 +121,7 @@ class EnuSVM:
         self.decision_values = np.dot(x, self.weight) + self.bias
         self.accuracy = sum(self.decision_values * y > 0) / float(num)
 
-
-    ## ===== Evaluation measures =================================== ##
+    # Evaluation measures
     def calc_accuracy(self, x_test, y_test):
         num, dim = x_test.shape
         dv = np.dot(x_test, self.weight) + self.bias
@@ -149,7 +143,6 @@ class EnuSVM:
             return 0.
         else:
             return 2*recall*precision / (recall+precision)
-    ## ============================================================= ##
 
     def show_result(self, d=5):
         print '===== Enu-SVM ==============='

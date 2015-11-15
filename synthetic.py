@@ -11,6 +11,7 @@ import sys
 cov = [[20,16], [16,20]]
 mu1, mu2 = [3,-3], [-3,3]
 
+
 def training_set(r, num_outlier):
     x1 = np.random.multivariate_normal(mu1, cov, 50)
     x2 = np.random.multivariate_normal(mu2, cov, 50 - num_outlier)
@@ -34,17 +35,16 @@ def test_set():
 
 if __name__ == '__main__':
     np.random.seed(0)
-    ## Fixed hyper-parameters
+    # Fixed hyper-parameters
     s = -1
     mu = 0.05
 
     dim = 2
     trial = 100
 
-    
     cost_cand = np.array([5.**i for i in range(4, -5, -1)])
     nu_cand = np.linspace(0.9, 0.1, 9)
-    ## num_ol = np.array([0, 1, 2, 3, 4, 5])
+    # num_ol = np.array([0, 1, 2, 3, 4, 5])
     num_ol = np.array([0, 2, 4, 6, 8, 10])
 
     # Initial point generated at random
@@ -63,19 +63,21 @@ if __name__ == '__main__':
     conv_ersvm = ersvmdca.LinearPrimalERSVM()
     conv_ersvm.set_initial_point(np.array(initial_weight), 0)
     conv_ersvm.set_constant_t(0)
+    ramp_ws = rampsvm.RampSVM()
+    ramp_ws.time_limit = 15
 
-
-    ## DataFrame
+    # DataFrame
     df_enu  = pd.DataFrame()
     df_csvm = pd.DataFrame()
     df_var  = pd.DataFrame()
     df_dca  = pd.DataFrame()
     df_ramp = pd.DataFrame()
+    df_ramp_ws = pd.DataFrame()
 
-    ## Loop for outlier ratio
+    # Loop for outlier ratio
     for i in range(len(num_ol)):
 
-        ## Loop for trial
+        # Loop for trial
         for j in range(trial):
 
             print 'Trial:', j
@@ -83,19 +85,20 @@ if __name__ == '__main__':
             initial_weight = np.random.normal(size=dim)
             initial_weight = initial_weight / np.linalg.norm(initial_weight)
 
-            ## Generate training data and test data
+            # Generate training data and test data
             x_tr, y_tr = training_set(r=75, num_outlier=num_ol[i])
             x_t, y_t = test_set()
             num, dim = x_tr.shape
 
-            ## Loop for hyper-parameters
+            # Loop for hyper-parameters
             for k in range(len(nu_cand)):
 
-                ##### ER-SVM + DCA #####
+                # ER-SVM + DCA
                 ersvm.set_nu(nu_cand[k])
-                ## ersvm.set_initial_point(np.array(initial_weight_dca), 0)
+                ersvm.set_cplex_method(0)  # automatic
+                # ersvm.set_initial_point(np.array(initial_weight_dca), 0)
                 ersvm.solve_ersvm(x_tr, y_tr)
-                ## ersvm.show_result()
+                # ersvm.show_result()
                 row_dca = {
                     'outlier_ratio': num_ol[i] / 100.,
                     'trial'        : j,
@@ -108,11 +111,11 @@ if __name__ == '__main__':
                 df_dca = df_dca.append(pd.Series(row_dca, name=pd.datetime.today()))
                 ersvm.set_initial_point(np.array(ersvm.weight), 0)
 
-                ##### Enu-SVM #####
+                # Enu-SVM
                 enu.set_initial_weight(np.array(initial_weight))
                 enu.set_nu(nu_cand[k])
                 enu.solve_enusvm(x_tr, y_tr)
-                ## enu.show_result()
+                # enu.show_result()
                 row_enu = {
                     'outlier_ratio': num_ol[i] / 100.,
                     'trial'        : j,
@@ -123,7 +126,7 @@ if __name__ == '__main__':
                 }
                 df_enu = df_enu.append(pd.Series(row_enu, name=pd.datetime.today()))
 
-                ##### C-SVM #####
+                # C-SVM
                 start = time.time()
                 libsvm.set_params(**{'C': cost_cand[k]})
                 libsvm.fit(x_tr, y_tr)
@@ -138,7 +141,7 @@ if __name__ == '__main__':
                 }
                 df_csvm = df_csvm.append(pd.Series(row_csvm, name=pd.datetime.today()))
 
-                ##### ER-SVM (Heuristics) #####
+                # ER-SVM (Heuristics)
                 var.set_initial_weight(np.array(initial_weight))
                 var.set_nu(nu_cand[k])
                 var.set_gamma(0.03/nu_cand[k])
@@ -154,9 +157,9 @@ if __name__ == '__main__':
                 }
                 df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
 
-                ##### Ramp Loss SVM #####
+                # Ramp Loss SVM
                 print 'Start Ramp Loss SVM'
-                ramp.cplex_method = 1
+                ramp.cplex_method = 0  # automatic
                 ramp.set_cost(cost_cand[k])
                 ramp.solve_rampsvm(x_tr, y_tr)
                 ramp.show_result()
@@ -170,11 +173,27 @@ if __name__ == '__main__':
                 }
                 df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
 
+                # Ramp Loss SVM
+                print 'Start Ramp Loss SVM'
+                ramp_ws.cplex_method = 1  # primal simplex (with warm start)
+                ramp_ws.set_cost(cost_cand[k])
+                ramp_ws.solve_rampsvm(x_tr, y_tr)
+                ramp_ws.show_result()
+                row_ramp_ws = {
+                    'outlier_ratio': num_ol[i] / 100.,
+                    'trial'        : j,
+                    'C'            : cost_cand[k],
+                    'test_accuracy': ramp_ws.calc_accuracy_linear(x_t, y_t),
+                    'comp_time'    : ramp_ws.comp_time,
+                    'timeout'      : ramp_ws.timeout
+                }
+                df_ramp_ws = df_ramp_ws.append(pd.Series(row_ramp_ws, name=pd.datetime.today()))
 
     # Save as csv
-    dir_name_result = 'results/synthetic2/'
+    dir_name_result = 'results/synthetic-final/'
     df_dca.to_csv(dir_name_result+'dca.csv', index=False)
     df_enu.to_csv(dir_name_result+'enu.csv', index=False)
     df_var.to_csv(dir_name_result+'var.csv', index=False)
     df_ramp.to_csv(dir_name_result+'ramp.csv', index=False)
     df_csvm.to_csv(dir_name_result+'csvm.csv', index=False)
+    df_ramp_ws.to_csv(dir_name_result+'ramp_ws.csv', index=False)

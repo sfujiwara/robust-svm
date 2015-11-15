@@ -16,7 +16,7 @@ from sklearn.metrics import pairwise_kernels
 
 class RampSVM():
 
-    ## ===== Constructor =========================================== ##
+    # Constructor
     def __init__(self):
         self.eps = 1e-5
         self.max_itr = 30
@@ -26,7 +26,7 @@ class RampSVM():
         self.gamma = 1.
         self.coef0 = 0
         self.degree = 2
-        self.cplex_method = 1
+        self.cplex_method = 0
         self.time_limit = cplex.infinity
         self.timeout = False
     ## ============================================================= ##

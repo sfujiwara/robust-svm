@@ -13,7 +13,7 @@ import ersvmutil
 
 class LinearPrimalERSVM():
 
-    # ===== Constructor ===========================================
+    # Constructor
     def __init__(self):
         self.max_itr = 30
         self.cplex_method = 0
@@ -23,10 +23,8 @@ class LinearPrimalERSVM():
         self.eps = 1e-10
         self.obj = []
         self.constant_t = -1
-    # =============================================================
 
-
-    ## ===== Setters =============================================== ##
+    # Setters
     def set_initial_point(self, initial_weight, initial_bias):
         self.initial_weight = initial_weight
         self.initial_bias = initial_bias
@@ -45,17 +43,14 @@ class LinearPrimalERSVM():
 
     def set_constant_t(self, constant_t):
         self.constant_t = constant_t
-    ## ============================================================= ##
 
-
-    ## ===== To be private method ================================== ##
+    # To be private method
     def initialize_result(self):
         self.total_itr = 0
         self.weight = self.initial_weight
         self.bias = self.initial_bias
         self.obj = []
         self.t = []
-
 
     def update_eta(self):
         m = len(self.risks)
@@ -92,7 +87,6 @@ class LinearPrimalERSVM():
             return 2*recall*precision / (recall+precision)
     ## ============================================================= ##
 
-
     def show_result(self, d=5):
         print '===== RESULT ==============='
         print '(nu, mu):\t', (self.nu, self.mu)
@@ -104,7 +98,6 @@ class LinearPrimalERSVM():
         print 'time:\t\t', self.comp_time
         print 'accuracy:\t', sum(self.risks < 0) / float(len(self.risks))
         print '============================'
-
 
     def solve_ersvm(self, x, y):
         time_start = time.time()
