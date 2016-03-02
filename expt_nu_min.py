@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 
+"""
+Compute nu_min for data sets used in the experiment.
+"""
+
 import numpy as np
 from src import ersvmutil
 
-filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
-filename = 'datasets/LIBSVM/diabetes/diabetes_scale.csv'
-filename = 'datasets/LIBSVM/adult/a1a.csv'
-filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
+filename = 'data/LIBSVM/liver-disorders/liver-disorders_scale.csv'
+filename = 'data/LIBSVM/diabetes/diabetes_scale.csv'
+filename = 'data/LIBSVM/adult/a1a.csv'
+# filename = 'data/LIBSVM/cod-rna/cod-rna.csv'
 # filename = 'datasets/LIBSVM/svmguide1/svmguide1.csv'
 dataset = np.loadtxt(filename, delimiter=',')
 x = dataset[:, 1:]

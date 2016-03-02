@@ -14,7 +14,7 @@ if __name__ == '__main__':
     ## Read data set
     ## filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
     ## filename = 'datasets/LIBSVM/heart/heart_scale.csv'
-    filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
+    filename = 'data/LIBSVM/liver-disorders/liver-disorders_scale.csv'
     dataset = np.loadtxt(filename, delimiter=',')
     ## ind = np.random.choice(59535, 1000, replace=False)
     ## y = dataset[ind, 0]

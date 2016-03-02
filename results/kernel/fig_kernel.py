@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-## Set parameters
+# Set parameters
 plt.rcParams['axes.labelsize'] = 24
 plt.rcParams['lines.linewidth'] = 4
 plt.rcParams['legend.fontsize'] = 18
@@ -47,12 +47,3 @@ plt.ylabel('Test Accuracy')
 plt.xlim(0.07, 0.83)
 plt.ylim(0.54, 0.71)
 plt.show()
-
-## plt.plot(nu, df_lin.groupby(['nu']).comp_time.mean(), label='Linear')
-## #plt.plot(nu, df_lin.groupby(['nu']).obj_val.max())
-## plt.plot(nu, df_pol.groupby(['nu']).comp_time.mean(), label='Polynomial')
-## #plt.plot(nu, df_pol.groupby(['nu']).obj_val.max())
-## #plt.ylim(-0.1, 0.2)
-## plt.legend()
-## plt.grid()
-## plt.show()

@@ -143,7 +143,7 @@ if __name__ == '__main__':
     # Read satimage dataset
     name_dataset = 'satimage'
     dir_name_result = 'results/performance/satimage/'
-    dataset = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
+    dataset = np.loadtxt('data/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
     ## dataset_train = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
     ## dataset_test  = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.t.csv', delimiter=',')
     ## dataset = np.vstack([dataset_train, dataset_test])

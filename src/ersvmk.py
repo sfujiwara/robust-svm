@@ -2,8 +2,6 @@
 
 import time
 from sklearn.metrics import pairwise_kernels
-import sys
-sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux') # Ubuntu
 import cplex
 import numpy as np
 import matplotlib.pyplot as plt

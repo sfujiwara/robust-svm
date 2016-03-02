@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+
+"""
+Compare the difference of test accuracy between Extended Robust-SVM and Non-Extended Robust-SVM
+using synthetic data
+"""
+
 import numpy as np
 from sklearn import svm
 import time
@@ -32,11 +39,11 @@ if __name__ == '__main__':
     model_conv.set_mu(mu)
     model_conv.set_constant_t(0)
 
-    ## Initial point generated at random
+    # Initial point generated at random
     initial_weight = np.random.normal(size=2)
     initial_weight = initial_weight / np.linalg.norm(initial_weight)
 
-    ## Set initial point
+    # Set initial point
     model_nonconv.set_initial_point(initial_weight, 0)
     model_conv.set_initial_point(initial_weight, 0)
 

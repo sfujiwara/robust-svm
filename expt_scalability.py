@@ -1,20 +1,19 @@
-## -*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 
 import numpy as np
 from sklearn import svm
 import matplotlib.pyplot as plt
 import time
-import pandas as pd
 
 from src import ersvmdca, rampsvm, enusvm, ersvmh, ersvmutil
 
 if __name__ == '__main__':
     ## Read a UCI dataset
-    filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
+    filename = 'data/LIBSVM/cod-rna/cod-rna.csv'
     dataset = np.loadtxt(filename, delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
-    ind_neg = np.where(y==2)[0]
+    ind_neg = np.where(y == 2)[0]
     y[ind_neg] = -1
 
     ## Scaling

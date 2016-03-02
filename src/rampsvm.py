@@ -5,18 +5,13 @@ todo
 * Save support vectors for prediction using nonlinear kernel
 '''
 
-import sys
-sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux') # Ubuntu
 import numpy as np
-import scipy as sp
-import matplotlib.pyplot as plt
 import cplex
 import time
 from sklearn.metrics import pairwise_kernels
 
-class RampSVM():
 
-    # Constructor
+class RampSVM:
     def __init__(self):
         self.eps = 1e-5
         self.max_itr = 30
@@ -29,10 +24,7 @@ class RampSVM():
         self.cplex_method = 0
         self.time_limit = cplex.infinity
         self.timeout = False
-    ## ============================================================= ##
 
-
-    ## ===== Setters =============================================== ##
     def set_cost(self, cost):
         self.cost = cost
 
@@ -41,10 +33,7 @@ class RampSVM():
 
     def set_epsilon(self, eps):
         self.eps = eps
-    ## ============================================================= ##
 
-
-    ## ===== Solve ================================================= ##
     def solve_rampsvm(self, x, y):
         self.timeout = False
         self.total_itr = 0

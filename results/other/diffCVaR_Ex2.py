@@ -4,12 +4,8 @@ sys.path.append('/opt/ibm/ILOG/CPLEX_Studio125/cplex/python/x86_sles10_4.1') # U
 sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux') # Ubuntu
 sys.path.append('C:\Program Files (x86)\IBM\ILOG\CPLEX_Studio125\cplex\python\\x86_win32') # Windows
 import numpy as np
-import scipy as sp
 import matplotlib.pyplot as plt
 import cplex
-import enusvm
-import rsvm
-import timeit
 import time
 
 # Calculate nu_min

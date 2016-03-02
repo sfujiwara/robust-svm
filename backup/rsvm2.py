@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import sys
-sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux') # Ubuntu
 import numpy as np
-import scipy as sp
-import matplotlib.pyplot as plt
 import cplex
 import time
 from sklearn.metrics import pairwise_kernels
@@ -73,7 +69,7 @@ def ramp_svm(x, y, cost, s, kernel, gamma=1., coef0=0., degree=2):
 
 if __name__ == '__main__':
     # Read data set from csv
-    filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
+    filename = 'data/LIBSVM/cod-rna/cod-rna.csv'
     dataset = np.loadtxt(filename, delimiter=',')
     x = dataset[:, 1:]
     y = dataset[:, 0]

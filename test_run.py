@@ -7,11 +7,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cplex
 import time
-from src_old import ersvm
+from backup import ersvm
 
 if __name__ == '__main__':
     ## Read a UCI dataset
-    filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
+    filename = 'data/LIBSVM/liver-disorders/liver-disorders_scale.csv'
     dataset = np.loadtxt(filename, delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
