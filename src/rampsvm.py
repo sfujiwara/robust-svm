@@ -51,9 +51,10 @@ class RampSVM:
                                     coef0=self.coef0, degree=self.degree)
         else:
             print 'Undefined Kernel!!'
+        # Round gram matrix to be PSD and symmetric
         qmat = (kmat.T * y).T * y + 1e-7*np.eye(num)
-        qmat = np.round(qmat, 10)
-        ##### CPLEX object #####
+        qmat = np.round(qmat, 7)
+        # CPLEX object
         c = cplex.Cplex()
         c.parameters.timelimit.set(self.time_limit)
         c.set_results_stream(None)
