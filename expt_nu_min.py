@@ -5,7 +5,7 @@ Compute nu_min for data sets used in the experiment.
 """
 
 import numpy as np
-from src import ersvmutil
+from fsvm import ersvmutil
 
 filename = 'data/LIBSVM/liver-disorders/liver-disorders_scale.csv'
 filename = 'data/LIBSVM/diabetes/diabetes_scale.csv'

@@ -86,30 +86,6 @@ def csvm_primal(x, y, cost, qpmethod=0):
     c.solve()
     return c
 
-##### Convex case of Enu-SVM #####
-def solve_convex_primal(xmat, y, nu):
-    m, n = xmat.shape
-    w_names = ['w'+'%s' % i for i in range(n)]
-    xi_names = ['xi'+'%s' % i for i in range(m)]
-    c = cplex.Cplex()
-    c.set_results_stream(None)
-    ##### Set variables #####
-    c.variables.add(names = ['rho'], lb = [- cplex.infinity], obj = [- nu*m])
-    c.variables.add(names = w_names, lb = [- cplex.infinity] * n)
-    c.variables.add(names = ['b'], lb = [- cplex.infinity])
-    c.variables.add(names = xi_names, obj = [1.] * m)
-    ##### Set quadratic constraint #####
-    qexpr = [range(1,n+1), range(1,n+1), [1]*n]
-    c.quadratic_constraints.add(quad_expr=qexpr, rhs=1, sense='L', name='norm')
-    ##### Set linear constraints #####
-    # w * y_i * x_i + b * y_i + xi_i - rho >= 0
-    for i in xrange(m):
-        c.linear_constraints.add(names = ['margin'+'%s' % i], senses = 'G',
-                                 lin_expr = [[w_names + ['b'] + ['xi'+'%s' % i] + ['rho'], list(xmat[i]*y[i]) + [y[i], 1., -1]]])
-    # Solve QCLP
-    c.solve()
-    return c
-
 ##### Training nu-SVM using primal #####
 def nusvm_primal(x, y, nu):
     num, dim = x.shape
@@ -133,55 +109,6 @@ def nusvm_primal(x, y, nu):
     c.solve()
     return c
 
-# Non-convex case of Enu-SVM
-def solve_nonconvex(xmat, y, nu, w_init, update_rule):
-    gamma = 0.9
-    m, n = xmat.shape
-    w_names = ['w'+'%s' % i for i in range(n)]
-    xi_names = ['xi'+'%s' % i for i in range(m)]
-    # Set initial point
-    w_tilde = w_init
-    # Cplex object
-    c = cplex.Cplex()
-    c.set_results_stream(None)
-    # Set variables
-    c.variables.add(names = ['rho'], lb = [- cplex.infinity], obj = [- nu*m])
-    c.variables.add(names = w_names, lb = [- cplex.infinity] * n)
-    c.variables.add(names = ['b'], lb = [- cplex.infinity])
-    c.variables.add(names = xi_names, obj = [1.] * m)
-    # Set linear constraints: w * y_i * x_i + b * y_i + xi_i - rho >= 0
-    c.parameters.lpmethod.set(1)
-    for i in xrange(m):
-        c.linear_constraints.add(names = ['margin%s' % i], senses = 'G',
-                                 lin_expr = [[w_names + ['b'] + ['xi'+'%s' % i] + ['rho'], list(xmat[i]*y[i]) + [y[i], 1., -1]]])
-    # w_tilde * w = 1
-    c.linear_constraints.add(names=['norm'], lin_expr=[[w_names, list(w_tilde)]], senses='E', rhs=[1.])
-    # Iteration
-    for i in xrange(1000):
-        c.solve()
-        w = np.array(c.solution.get_values(w_names))
-        # Termination
-        if np.linalg.norm(w-w_tilde) < 1e-5: return c
-        # Update norm constraint
-        if update_rule == 'projection':
-            w_tilde = w / np.linalg.norm(w)
-        elif update_rule == 'lin_comb': w_tilde = gamma*w_tilde + (1-gamma)*w
-        else: 'ERROR: Input valid update rule'
-        c.linear_constraints.delete('norm')
-        c.linear_constraints.add(names = ['norm'], lin_expr = [[w_names, list(w_tilde)]], senses = 'E', rhs = [1.])
-    return c
-
-# Training Enu-SVM
-def enusvm(x, y, nu, w_init, update_rule='projection'):
-    m, n = x.shape
-    result_convex = solve_convex_primal(x, y, nu)
-    if -1e-5 < result_convex.solution.get_objective_value() < 1e-5:
-        print 'Solve Non-Convex Case'
-        result_nonconvex = solve_nonconvex(x, y, nu, w_init, update_rule)
-        return result_nonconvex
-    else:
-        print 'Solve Convex Case'
-        return result_convex
 
 if __name__ == '__main__':
     # Import modules

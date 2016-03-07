@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import time
 import pandas as pd
 
-from src import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
+from fsvm import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
 #from src_old import ersvm
 
 if __name__ == '__main__':
@@ -82,7 +82,7 @@ if __name__ == '__main__':
 
             print 'Start Ramp Loss SVM'
             ramp.set_cost(cost_cand[i])
-            ramp.solve_rampsvm(x_train, y_train)
+            ramp.fit(x_train, y_train)
             ramp.show_result()
             acc_ramp[i, cv] = sum((np.dot(x_test, ramp.weight) + ramp.bias) * y_test > 0) / float(len(y_test))
 
@@ -97,16 +97,16 @@ if __name__ == '__main__':
             print 'Start Enu-SVM'
             enu.set_initial_weight(initial_weight)
             enu.set_nu(nu_cand[i])
-            enu.solve_enusvm(x_train, y_train)
+            enu.fit(x_train, y_train)
             enu.show_result()
-            acc_enu[i, cv] = enu.calc_accuracy(x_test, y_test)
+            acc_enu[i, cv] = enu.score(x_test, y_test)
 
             print 'Start ER-SVM (Heuristics)'
             var.set_initial_weight(initial_weight)
             var.set_nu(nu_cand[i])
             var.solve_varmin(x_train, y_train)
             var.show_result()
-            acc_var[i, cv] = var.calc_accuracy(x_test, y_test)
+            acc_var[i, cv] = var.score(x_test, y_test)
 
             print 'Start LIBSVM'
             start = time.time()

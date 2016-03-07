@@ -3,7 +3,7 @@ from sklearn import svm
 import time
 import pandas as pd
 from sklearn.metrics import f1_score
-from src import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
+from fsvm import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
 import sys
 
 
@@ -275,16 +275,16 @@ if __name__ == '__main__':
                     ramp.cplex_method = 1
                     ramp.set_cost(cost_cand[k])
                     ramp.set_s(s_cand[l])
-                    ramp.solve_rampsvm(x_tr, y_tr)
+                    ramp.fit(x_tr, y_tr)
                     ramp.show_result()
                     row_ramp = {'ratio': ol_ratio[i],
                                 'trial': j,
                                 'C': cost_cand[k],
                                 's': s_cand[l],
-                                'val-acc': ramp.calc_accuracy_linear(x_val, y_val),
-                                'val-f': ramp.calc_f_linear(x_val, y_val),
-                                'test-acc': ramp.calc_accuracy_linear(x[ind_t], y[ind_t]),
-                                'test-f': ramp.calc_f_linear(x[ind_t], y[ind_t]),
+                                'val-acc': ramp.score(x_val, y_val),
+                                'val-f': ramp.f_score(x_val, y_val),
+                                'test-acc': ramp.score(x[ind_t], y[ind_t]),
+                                'test-f': ramp.f_score(x[ind_t], y[ind_t]),
                                 'comp_time': ramp.comp_time,
                                 'timeout': ramp.timeout}
                     df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))

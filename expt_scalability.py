@@ -5,7 +5,7 @@ from sklearn import svm
 import matplotlib.pyplot as plt
 import time
 
-from src import ersvmdca, rampsvm, enusvm, ersvmh, ersvmutil
+from fsvm import ersvmdca, rampsvm, enusvm, ersvmh, ersvmutil
 
 if __name__ == '__main__':
     ## Read a UCI dataset
@@ -126,7 +126,7 @@ if __name__ == '__main__':
             enu = enusvm.EnuSVM()
             enu.set_initial_weight(initial_weight)
             enu.set_nu(0.1)
-            enu.solve_enusvm(x_train, y_train)
+            enu.fit(x_train, y_train)
             enu.show_result()
             time_enusvm1[i,j] = enu.comp_time
             convexity_enu1[i,j] = enu.convexity
@@ -135,7 +135,7 @@ if __name__ == '__main__':
             print '----- Enu-SVM -----'
             print 'nu: 0.5', '#sample:', sampling_size[i], 'trial:', j
             enu.set_nu(0.5)
-            enu.solve_enusvm(x_train, y_train)
+            enu.fit(x_train, y_train)
             enu.show_result()
             time_enusvm5[i,j] = enu.comp_time
             convexity_enu5[i,j] = enu.convexity

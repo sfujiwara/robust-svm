@@ -5,7 +5,7 @@ from sklearn import svm
 import time
 import pandas as pd
 from sklearn.metrics import f1_score
-from src import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
+from fsvm import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
 import sys
 
 cov = [[20,16], [16,20]]
@@ -114,13 +114,13 @@ if __name__ == '__main__':
                 # Enu-SVM
                 enu.set_initial_weight(np.array(initial_weight))
                 enu.set_nu(nu_cand[k])
-                enu.solve_enusvm(x_tr, y_tr)
+                enu.fit(x_tr, y_tr)
                 # enu.show_result()
                 row_enu = {
                     'outlier_ratio': num_ol[i] / 100.,
                     'trial'        : j,
                     'nu'           : nu_cand[k],
-                    'test_accuracy': enu.calc_accuracy(x_t, y_t),
+                    'test_accuracy': enu.score(x_t, y_t),
                     'is_convex'    : enu.convexity,
                     'comp_time'    : enu.comp_time,
                 }
@@ -151,7 +151,7 @@ if __name__ == '__main__':
                     'outlier_ratio': num_ol[i] / 100.,
                     'trial'        : j,
                     'nu'           : nu_cand[k],
-                    'test_accuracy': var.calc_accuracy(x_t, y_t),
+                    'test_accuracy': var.score(x_t, y_t),
                     'is_convex'    : var.is_convex,
                     'comp_time'    : var.comp_time
                 }
@@ -161,13 +161,13 @@ if __name__ == '__main__':
                 print 'Start Ramp Loss SVM'
                 ramp.cplex_method = 0  # automatic
                 ramp.set_cost(cost_cand[k])
-                ramp.solve_rampsvm(x_tr, y_tr)
+                ramp.fit(x_tr, y_tr)
                 ramp.show_result()
                 row_ramp = {
                     'outlier_ratio': num_ol[i] / 100.,
                     'trial'        : j,
                     'C'            : cost_cand[k],
-                    'test_accuracy': ramp.calc_accuracy_linear(x_t, y_t),
+                    'test_accuracy': ramp.score(x_t, y_t),
                     'comp_time'    : ramp.comp_time,
                     'timeout'      : ramp.timeout
                 }
@@ -177,13 +177,13 @@ if __name__ == '__main__':
                 print 'Start Ramp Loss SVM'
                 ramp_ws.cplex_method = 1  # primal simplex (with warm start)
                 ramp_ws.set_cost(cost_cand[k])
-                ramp_ws.solve_rampsvm(x_tr, y_tr)
+                ramp_ws.fit(x_tr, y_tr)
                 ramp_ws.show_result()
                 row_ramp_ws = {
                     'outlier_ratio': num_ol[i] / 100.,
                     'trial'        : j,
                     'C'            : cost_cand[k],
-                    'test_accuracy': ramp_ws.calc_accuracy_linear(x_t, y_t),
+                    'test_accuracy': ramp_ws.score(x_t, y_t),
                     'comp_time'    : ramp_ws.comp_time,
                     'timeout'      : ramp_ws.timeout
                 }

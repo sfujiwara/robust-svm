@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 
-'''
-todo: range -> xrange
-'''
+"""
+Enu-SVM using CPLEX
+"""
 
-import sys
-# for Ubuntu 64bit
-sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux')
 import numpy as np
 import cplex
 import time
@@ -14,69 +11,85 @@ import time
 
 class EnuSVM:
 
-    # Constructor
-    def __init__(self):
-        self.nu = 0.5
-        # self.cplex_method = 0
+    def __init__(self, nu=0.5, update_rule='projection'):
+        self.nu = nu
         self.lp_method = 1
-        self.update_rule = 'projection'
+        self.update_rule = update_rule
         self.max_itr = 100
 
-    # Setters
-    def set_initial_weight(self, initial_weight):
-        self.initial_weight = initial_weight
+    def _solve_convex(self, x, y):
+        """
+        Description
+        -----------
+        Slove convex case of Enu-SVM
 
-    def set_nu(self, nu):
-        self.nu = nu
+        Parameters
+        ----------
+        x: array of training samples
+        y: array of training labels
 
-    # Convex case of Enu-SVM
-    def solve_convex_primal(self, x, y):
+        Returns
+        -------
+        CPLEX object
+        """
         num, dim = x.shape
         w_names = ['w%s' % i for i in range(dim)]
         xi_names = ['xi%s' % i for i in range(num)]
         c = cplex.Cplex()
         c.set_results_stream(None)
         # Set variables
-        c.variables.add(names=['rho'],
-                        lb=[-cplex.infinity], obj=[-self.nu*num])
+        c.variables.add(names=['rho'], lb=[-cplex.infinity], obj=[-self.nu*num])
         c.variables.add(names=w_names, lb=[-cplex.infinity]*dim)
         c.variables.add(names=['b'], lb=[- cplex.infinity])
         c.variables.add(names=xi_names, obj=[1.]*num)
         # Set quadratic constraint
-        qexpr = [range(1,dim+1), range(1,dim+1), [1]*dim]
+        qexpr = [range(1, dim+1), range(1, dim+1), [1]*dim]
         c.quadratic_constraints.add(quad_expr=qexpr, rhs=1, sense='L', name='norm')
         # Set linear constraints
         # w * y_i * x_i + b * y_i + xi_i - rho >= 0
         for i in xrange(num):
-            linexpr = [[w_names+['b']+['xi%s' % i]+['rho'],
-                        list(x[i]*y[i]) + [y[i], 1., -1]]]
-            c.linear_constraints.add(names=['margin%s' % i],
-                                     senses='G', lin_expr=linexpr)
+            linexpr = [[w_names+['b']+['xi%s' % i]+['rho'], list(x[i]*y[i]) + [y[i], 1., -1]]]
+            c.linear_constraints.add(names=['margin%s' % i], senses='G', lin_expr=linexpr)
         # Solve QCLP
         c.solve()
         return c
 
-    # Non-convex case of Enu-SVM
-    def solve_nonconvex(self, x, y):
+    def _solve_nonconvex(self, x, y, initial_weight):
+        """
+        Description
+        -----------
+        Solve non-convex case of Enu-SVM
+
+        Parameters
+        ----------
+        x: array of training samples
+        y: array of training labels
+        initial_weight: array of initial value used on non-convex case
+
+        Returns
+        -------
+        CPLEX object
+        """
         num, dim = x.shape
         w_names = ['w%s' % i for i in range(dim)]
         xi_names = ['xi%s' % i for i in range(num)]
         # Set initial point
-        w_tilde = np.array(self.initial_weight)
+        w_tilde = np.array(initial_weight)
         # Cplex object
         c = cplex.Cplex()
         c.set_results_stream(None)
         # Set variables
-        c.variables.add(names=['rho'],
-                        lb=[-cplex.infinity], obj=[-self.nu*num])
+        c.variables.add(names=['rho'], lb=[-cplex.infinity], obj=[-self.nu*num])
         c.variables.add(names=w_names, lb=[-cplex.infinity]*dim)
         c.variables.add(names=['b'], lb=[-cplex.infinity])
         c.variables.add(names=xi_names, obj=[1.]*num)
         # Set linear constraints: w * y_i * x_i + b * y_i + xi_i - rho >= 0
         c.parameters.lpmethod.set(self.lp_method)
         for i in xrange(num):
-            c.linear_constraints.add(names=['margin%s' % i], senses='G',
-                                     lin_expr=[[w_names+['b']+['xi'+'%s' % i]+['rho'], list(x[i]*y[i]) + [y[i], 1., -1]]])
+            c.linear_constraints.add(
+                names=['margin%s' % i], senses='G',
+                lin_expr=[[w_names+['b']+['xi'+'%s' % i]+['rho'], list(x[i]*y[i]) + [y[i], 1., -1]]]
+            )
         # w_tilde * w = 1
         c.linear_constraints.add(names=['norm'], lin_expr=[[w_names, list(w_tilde)]], senses='E', rhs=[1.])
         # Iteration
@@ -91,24 +104,35 @@ class EnuSVM:
             # Update norm constraint
             if self.update_rule == 'projection':
                 w_tilde = self.weight / np.linalg.norm(self.weight)
-            elif update_rule == 'lin_comb':
+            elif self.update_rule == 'lin_comb':
                 w_tilde = self.gamma * w_tilde + (1-self.gamma) * self.weight
-            else:
-                'ERROR: Input valid update rule'
             c.linear_constraints.delete('norm')
-            c.linear_constraints.add(names=['norm'],
-                                     lin_expr=[[w_names, list(w_tilde)]],
-                                     senses='E', rhs=[1.])
+            c.linear_constraints.add(names=['norm'], lin_expr=[[w_names, list(w_tilde)]], senses='E', rhs=[1.])
 
     # Training Enu-SVM
-    def solve_enusvm(self, x, y):
+    def fit(self, x, y, initial_weight=None):
+        """
+        Description
+        -----------
+        Training Enu-SVM
+
+        Parameters
+        ----------
+        x: array of training samples
+        y: array of training labels
+        initial_weight: array of initial value used on non-convex case
+
+        Returns
+        -------
+        None
+        """
         start = time.time()
         num, dim = x.shape
         w_names = ['w%s' % i for i in range(dim)]
         xi_names = ['xi%s' % i for i in range(num)]
-        result = self.solve_convex_primal(x, y)
+        result = self._solve_convex(x, y)
         if -1e-5 < result.solution.get_objective_value() < 1e-5:
-            result = self.solve_nonconvex(x, y)
+            result = self._solve_nonconvex(x, y, initial_weight)
             self.convexity = False
         else:
             self.convexity = True
@@ -121,14 +145,26 @@ class EnuSVM:
         self.decision_values = np.dot(x, self.weight) + self.bias
         self.accuracy = sum(self.decision_values * y > 0) / float(num)
 
-    # Evaluation measures
-    def calc_accuracy(self, x_test, y_test):
-        num, dim = x_test.shape
-        dv = np.dot(x_test, self.weight) + self.bias
-        return sum(dv * y_test > 0) / float(num)
+    def score(self, x, y):
+        """
+        Description
+        -----------
+        Compute accuracy using the model
 
-    def calc_f(self, x_test, y_test):
-        num, dim = x_test.shape
+        Parameters
+        ----------
+        x: array of test samples
+        y: array of test labels
+
+        Returns
+        -------
+        Accuracy in [0, 1]
+        """
+        num, dim = x.shape
+        dv = np.dot(x, self.weight) + self.bias
+        return sum(dv * y > 0) / float(num)
+
+    def f1_score(self, x_test, y_test):
         dv = np.dot(x_test, self.weight) + self.bias
         ind_p = np.where(y_test > 0)[0]
         ind_n = np.where(y_test < 0)[0]
@@ -150,8 +186,8 @@ class EnuSVM:
         print 'weight:\t\t', np.round(self.weight, d)
         print 'bias:\t\t', self.bias
         print 'rho:\t\t', self.rho
-        ## print 'obj val:\t', self.obj[-1]
-        ## print 'itaration:\t', self.total_itr
+        # print 'obj val:\t', self.obj[-1]
+        # print 'itaration:\t', self.total_itr
         print 'convexity:\t', self.convexity
         print 'time:\t\t', self.comp_time
         print 'accuracy:\t', self.accuracy
@@ -159,15 +195,14 @@ class EnuSVM:
 
 
 if __name__ == '__main__': 
-    ## Load data set
-    dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
-    y = dataset[:,0]
-    x = dataset[:,1:]
+    # Load data set
+    dataset = np.loadtxt('data/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
+    y = dataset[:, 0]
+    x = dataset[:, 1:]
     num, dim = x.shape
-    ## Training
-    svm = EnuSVM()
-    svm.set_nu(0.15)
+    # Training
     np.random.seed(0)
-    svm.set_initial_weight(np.random.normal(size=dim))
-    svm.solve_enusvm(x, y)
-    svm.show_result()
+    initial_weight = np.random.normal(size=dim)
+    model = EnuSVM(nu=0.75)
+    model.fit(x, y, initial_weight)
+    model.show_result()
