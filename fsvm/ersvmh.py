@@ -1,12 +1,8 @@
-## -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 import time
-import sys
-## Ubuntu
-sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux')
 import numpy as np
-import matplotlib.pyplot as plt
-import cplex
+
 import enusvm
 import ersvmutil
 
@@ -21,8 +17,6 @@ class HeuristicLinearERSVM:
         self.heuristic_termination = True
         self.is_convex = None
 
-    # ===== Setters ==================================================
-
     def set_initial_weight(self, initial_weight):
         self.weight = initial_weight
 
@@ -31,7 +25,6 @@ class HeuristicLinearERSVM:
 
     def set_gamma(self, gamma):
         self.gamma = gamma
-    # ================================================================
 
     def solve_varmin(self, x, y):
         start = time.time()

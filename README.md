@@ -8,6 +8,14 @@
     - Used to draw figures.
 * scikit-learn
     - Used to compute kernel matrix.
+* Pandas
+  - Used for data handling
+
+## Run script
+
+```sh
+python expt_mnist.py
+```
 
 ### Memo
 * カーネル行列をそのままメモリに入れるとかなり辛い.

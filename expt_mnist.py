@@ -43,7 +43,6 @@ initial_weight = initial_weight / np.linalg.norm(initial_weight)
 ersvm = ersvmdca.LinearPrimalERSVM()
 ersvm.set_initial_point(np.array(initial_weight), 0)
 var = ersvmh.HeuristicLinearERSVM()
-libsvm = svm.SVC(C=1e0, kernel='linear', max_iter=-1)
 conv_ersvm = ersvmdca.LinearPrimalERSVM()
 conv_ersvm.set_initial_point(np.array(initial_weight), 0)
 conv_ersvm.set_constant_t(0)
@@ -154,10 +153,10 @@ for i in range(len(ol_ratio)):
                     }
                     df_conv = df_conv.append(pd.Series(row_conv, name=pd.datetime.today()))
 
+            # Enu-SVM
             print 'Start Enu-SVM'
             model_enusvm = enusvm.EnuSVM(nu=nu_cand[k])
             model_enusvm.fit(x_tr, y_tr, initial_weight)
-            # model_enusvm.show_result()
             row_enusvm = {
                 'ratio': ol_ratio[i],
                 'trial': j,
@@ -190,10 +189,11 @@ for i in range(len(ol_ratio)):
             }
             df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
 
+            # C-SVM (LIBSVM)
             print 'Start LIBSVM'
             start = time.time()
-            libsvm.set_params(**{'C': cost_cand[k]})
-            libsvm.fit(x_tr, y_tr)
+            model_libsvm = svm.SVC(C=cost_cand[k], kernel='linear', max_iter=-1)
+            model_libsvm.fit(x_tr, y_tr)
             end = time.time()
             print 'End LIBSVM'
             print 'time:', end - start
@@ -201,10 +201,10 @@ for i in range(len(ol_ratio)):
                 'ratio': ol_ratio[i],
                 'trial': j,
                 'C': cost_cand[k],
-                'val-acc': libsvm.score(x_val, y_val),
-                'val-f': f1_score(y_val, libsvm.predict(x_val)),
-                'test-acc': libsvm.score(x[ind_t], y[ind_t]),
-                'test-f': f1_score(y[ind_t], libsvm.predict(x[ind_t]))
+                'val-acc': model_libsvm.score(x_val, y_val),
+                'val-f': f1_score(y_val, model_libsvm.predict(x_val)),
+                'test-acc': model_libsvm.score(x[ind_t], y[ind_t]),
+                'test-f': f1_score(y[ind_t], model_libsvm.predict(x[ind_t]))
             }
             df_libsvm = df_libsvm.append(pd.Series(row_libsvm, name=pd.datetime.today()))
 

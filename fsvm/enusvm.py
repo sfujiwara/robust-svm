@@ -4,18 +4,20 @@
 Enu-SVM using CPLEX
 """
 
+import time
 import numpy as np
 import cplex
-import time
 
 
 class EnuSVM:
 
-    def __init__(self, nu=0.5, update_rule='projection'):
+    def __init__(self, nu=0.5, update_rule='projection', max_itr=1000, lp_method=1, gamma=0.5):
         self.nu = nu
-        self.lp_method = 1
+        self.lp_method = lp_method
         self.update_rule = update_rule
-        self.max_itr = 100
+        self.max_itr = max_itr
+        self.gamma = gamma
+        self.status = None
 
     def _solve_convex(self, x, y):
         """
@@ -100,6 +102,7 @@ class EnuSVM:
             self.weight = np.array(c.solution.get_values(w_names))
             # Termination
             if np.linalg.norm(self.weight - w_tilde) < 1e-5:
+                self.status = 'converge'
                 return c
             # Update norm constraint
             if self.update_rule == 'projection':
@@ -127,6 +130,7 @@ class EnuSVM:
         None
         """
         start = time.time()
+        self.status = None
         num, dim = x.shape
         w_names = ['w%s' % i for i in range(dim)]
         xi_names = ['xi%s' % i for i in range(num)]
@@ -142,8 +146,6 @@ class EnuSVM:
         self.xi = np.array(result.solution.get_values(xi_names))
         self.bias = result.solution.get_values('b')
         self.rho = result.solution.get_values('rho')
-        self.decision_values = np.dot(x, self.weight) + self.bias
-        self.accuracy = sum(self.decision_values * y > 0) / float(num)
 
     def score(self, x, y):
         """
@@ -180,19 +182,6 @@ class EnuSVM:
         else:
             return 2*recall*precision / (recall+precision)
 
-    def show_result(self, d=5):
-        print '===== Enu-SVM ==============='
-        print 'nu:\t\t\t', self.nu
-        print 'weight:\t\t', np.round(self.weight, d)
-        print 'bias:\t\t', self.bias
-        print 'rho:\t\t', self.rho
-        # print 'obj val:\t', self.obj[-1]
-        # print 'itaration:\t', self.total_itr
-        print 'convexity:\t', self.convexity
-        print 'time:\t\t', self.comp_time
-        print 'accuracy:\t', self.accuracy
-        print '============================='
-
 
 if __name__ == '__main__': 
     # Load data set
@@ -203,6 +192,5 @@ if __name__ == '__main__':
     # Training
     np.random.seed(0)
     initial_weight = np.random.normal(size=dim)
-    model = EnuSVM(nu=0.75)
+    model = EnuSVM(nu=0.395, update_rule='lin_comb')
     model.fit(x, y, initial_weight)
-    model.show_result()
