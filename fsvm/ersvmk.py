@@ -5,7 +5,7 @@ from sklearn.metrics import pairwise_kernels
 import cplex
 import numpy as np
 import matplotlib.pyplot as plt
-import ersvmutil
+import svmutil
 import pandas as pd
 
 # Non-linear classification using kernel
@@ -58,8 +58,8 @@ class KernelErSvm():
         ## Initialize risk, eta, and t
         risks = - y * (np.dot(kmat, a) + b)
         eta = self.update_eta(risks)
-        obj_val = [ersvmutil.calc_cvar(risks, 1-self.nu) * self.nu -
-                   ersvmutil.calc_cvar(risks, 1-self.mu) * self.mu]
+        obj_val = [svmutil.calc_cvar(risks, 1 - self.nu) * self.nu -
+                   svmutil.calc_cvar(risks, 1 - self.mu) * self.mu]
         t = [max(0, obj_val[-1] / 0.999)]
         # Set variables and objective function
         c.variables.add(names=a_names, lb=[-cplex.infinity]*num, ub=[cplex.infinity]*num)
@@ -105,8 +105,8 @@ class KernelErSvm():
             eta = self.update_eta(risks)
             # Update t
             # Termination
-            obj_val_new = ersvmutil.calc_cvar(risks, 1 - self.nu) * self.nu - \
-                          ersvmutil.calc_cvar(risks, 1 - self.mu) * self.mu
+            obj_val_new = svmutil.calc_cvar(risks, 1 - self.nu) * self.nu - \
+                          svmutil.calc_cvar(risks, 1 - self.mu) * self.mu
             if self.kernel == 'polynomial':
                 t.append(max(0., obj_val[-1]/0.999 + 1e-7))
             else:
@@ -146,7 +146,7 @@ if __name__ == '__main__':
     ## Load data set
     dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
     x = dataset[:, 1:]
-    ersvmutil.standard_scale(x)
+    svmutil.standard_scale(x)
     y = dataset[:, 0]
     num, dim = x.shape
     ## num_tr = 104
@@ -175,7 +175,7 @@ if __name__ == '__main__':
             ind_t = ind_rand[num_tr:]
             x_tr = np.array(x[ind_tr])
             y_tr = np.array(y[ind_tr])
-            outliers = ersvmutil.runif_sphere(radius=10, dim=dim, size=19)
+            outliers = svmutil.runif_sphere(radius=10, dim=dim, size=19)
             x_tr[:19] = outliers
             ## Initial point
             a_init = np.random.uniform(low=-1, high=1, size=num_tr)

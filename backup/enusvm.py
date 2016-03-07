@@ -14,24 +14,6 @@ import cplex
 import time
 from sklearn.metrics import pairwise_kernels
 
-##### Compute nu_max #####
-def calc_nu_max(y):
-    return np.double(len(y)-np.abs(np.sum(y))) / len(y)
-
-##### Compute nu_min for linear kernel #####
-## nu_min = 0 の場合解が存在しないので, 対応させること
-def calc_nu_min(xmat, y):
-    m, n = xmat.shape
-    c = cplex.Cplex()
-    c.set_results_stream(None)
-    c.variables.add(obj=[1]+[0]*m)
-    c.linear_constraints.add(lin_expr=[[range(1,m+1),[1]*m]], rhs=[2])
-    c.linear_constraints.add(lin_expr=[[range(1,m+1),list(y)]])
-    constraintMat = np.dot(np.diag(y), xmat).T
-    c.linear_constraints.add(lin_expr=[[range(1,m+1), list(constraintMat[i])] for i in range(n)])
-    c.linear_constraints.add(lin_expr=[[[0, i], [-1, 1]] for i in range(1, m+1)], senses='L'*m)
-    c.solve()
-    return 2/(c.solution.get_values()[0]*m)
 
 ##### Training C-SVM using dual #####
 def csvm_dual(x, y, cost=1.0, kernel='linear', gamma=1., coef0=0., degree=2):
@@ -108,22 +90,3 @@ def nusvm_primal(x, y, nu):
     c.parameters.qpmethod.set(0)
     c.solve()
     return c
-
-
-if __name__ == '__main__':
-    # Import modules
-    import time
-    
-    # Dataset
-    dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
-    y = dataset[:,0]
-    x = dataset[:,1:]
-    num, dim = x.shape
-    np.random.seed(0)
-    res = enusvm(x, y, 0.15, np.random.normal(size=dim))
-    names_w = ['w%s' % i for i in xrange(dim)]
-    names_xi = ['xi%s' % i for i in xrange(num)]
-    w = res.solution.get_values(names_w)
-    xi = res.solution.get_values(names_xi)
-    b = res.solution.get_values('b')
-    rho = res.solution.get_values('rho')

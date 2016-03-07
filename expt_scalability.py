@@ -5,7 +5,7 @@ from sklearn import svm
 import matplotlib.pyplot as plt
 import time
 
-from fsvm import ersvmdca, rampsvm, enusvm, ersvmh, ersvmutil
+from fsvm import ersvmdca, rampsvm, enusvm, ersvmh, svmutil
 
 if __name__ == '__main__':
     ## Read a UCI dataset
@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     ## Scaling
     #ersvmutil.libsvm_scale(x)
-    ersvmutil.standard_scale(x)
+    svmutil.standard_scale(x)
 
     ## Experimental setup
     sampling_size = np.array([1000, 5000, 10000, 20000, 30000, 40000, 50000, 59535])

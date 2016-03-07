@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import time
 import pandas as pd
 
-from fsvm import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
+from fsvm import ersvmdca, rampsvm, enusvm, svmutil, ersvmh
 #from src_old import ersvm
 
 if __name__ == '__main__':
@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     ## Scaling
     ## ersvmutil.libsvm_scale(x)
-    ersvmutil.standard_scale(x)
+    svmutil.standard_scale(x)
 
     ## Initial point generated at random
     initial_weight = np.random.normal(size=dim)
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
             ## Generate synthetic outliers
             if num_outliers > 0:
-                outliers = ersvmutil.runif_sphere(radius=20, dim=dim, size=num_outliers)
+                outliers = svmutil.runif_sphere(radius=20, dim=dim, size=num_outliers)
                 x_train = np.vstack([x_train, outliers])
                 y_train = np.hstack([y_train, np.ones(num_outliers)])
 

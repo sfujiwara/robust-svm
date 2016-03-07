@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import cplex
 
 ## import my modules
-import ersvmutil
+import svmutil
 
 class LinearPrimalERSVM():
 
@@ -113,8 +113,8 @@ class LinearPrimalERSVM():
         self.update_eta()
         eta_bef = self.eta
         ##### Initialize t #####
-        obj_val = num * (ersvmutil.calc_cvar(self.risks, 1-self.nu) * self.nu -
-                         ersvmutil.calc_cvar(self.risks, 1-self.mu) * self.mu)
+        obj_val = num * (svmutil.calc_cvar(self.risks, 1 - self.nu) * self.nu -
+                         svmutil.calc_cvar(self.risks, 1 - self.mu) * self.mu)
         self.obj.append(obj_val)
         if self.constant_t < -0.5:
             self.t.append(max(0, self.obj[-1] / 0.99))
@@ -159,8 +159,8 @@ class LinearPrimalERSVM():
             ##### Update eta #####
             self.update_eta()
             ##### Objective Value #####
-            obj_val = num * (ersvmutil.calc_cvar(self.risks, 1-self.nu) * self.nu -
-                             ersvmutil.calc_cvar(self.risks, 1-self.mu) * self.mu)
+            obj_val = num * (svmutil.calc_cvar(self.risks, 1 - self.nu) * self.nu -
+                             svmutil.calc_cvar(self.risks, 1 - self.mu) * self.mu)
             self.obj.append(obj_val)
             ##### Update t #####
             if self.constant_t < -0.5:

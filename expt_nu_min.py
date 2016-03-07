@@ -5,7 +5,7 @@ Compute nu_min for data sets used in the experiment.
 """
 
 import numpy as np
-from fsvm import ersvmutil
+from fsvm import svmutil
 
 filename = 'data/LIBSVM/liver-disorders/liver-disorders_scale.csv'
 filename = 'data/LIBSVM/diabetes/diabetes_scale.csv'
@@ -17,9 +17,9 @@ x = dataset[:, 1:]
 y = dataset[:, 0]
 y[y == 0] = -1
 
-ersvmutil.standard_scale(x)
+svmutil.standard_scale(x)
 
-nu_min = ersvmutil.calc_nu_min(x, y)
-nu_max = ersvmutil.calc_nu_max(y)
+nu_min = svmutil.calc_nu_min(x, y)
+nu_max = svmutil.calc_nu_max(y)
 
 print '(nu_min, nu_max):', np.round((nu_min, nu_max), 5)

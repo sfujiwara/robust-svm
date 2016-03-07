@@ -5,7 +5,7 @@ from sklearn import svm
 import time
 import pandas as pd
 from sklearn.metrics import f1_score
-from fsvm import ersvmdca, rampsvm, enusvm, ersvmutil, ersvmh
+from fsvm import ersvmdca, rampsvm, enusvm, svmutil, ersvmh
 import sys
 
 cov = [[20,16], [16,20]]

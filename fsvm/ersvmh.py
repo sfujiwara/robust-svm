@@ -4,7 +4,7 @@ import time
 import numpy as np
 
 import enusvm
-import ersvmutil
+import svmutil
 
 
 class HeuristicLinearERSVM:
@@ -40,7 +40,7 @@ class HeuristicLinearERSVM:
             x_active = x[self.ind_active]
             y_active = y[self.ind_active]
             ##### Check bounded or not
-            nu_max = ersvmutil.calc_nu_max(y_active)
+            nu_max = svmutil.calc_nu_max(y_active)
             if nu_i > nu_max:
                 self.stp = 'over nu_max'
                 break

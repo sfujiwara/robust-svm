@@ -46,7 +46,7 @@ def calc_nu_min(xmat, y):
     return 2/(c.solution.get_values()[0]*m)
 
 
-## Calculate beta-CVaR
+# Calculate beta-CVaR
 def calc_cvar(risks, beta):
     m = len(risks)
     if beta >= 1: return np.max(risks)
@@ -67,7 +67,7 @@ def kernel_matrix(x, kernel):
         return np.exp(-(tmp - 2 * np.dot(x, x.T) + tmp.T))
 
 
-## Uniform distribution on sphere
+# Uniform distribution on sphere
 def runif_sphere(radius, dim, size=1):
     outliers = []
     for i in xrange(size):

@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.metrics import f1_score
 from sklearn.datasets import fetch_mldata
 from sklearn import svm
-from fsvm import ersvmdca, ersvmh, enusvm, rampsvm, ersvmutil
+from fsvm import ersvmdca, ersvmh, enusvm, rampsvm, svmutil
 
 # Load MNIST data
 mnist = fetch_mldata('MNIST original', data_home='data/sklearn')
@@ -35,7 +35,7 @@ s_cand = np.array([-1])
 
 # Scaling
 # ersvmutil.libsvm_scale(x)
-ersvmutil.standard_scale(x)
+svmutil.standard_scale(x)
 # Initial point generated at random
 initial_weight = np.random.normal(size=dim)
 initial_weight = initial_weight / np.linalg.norm(initial_weight)
@@ -72,9 +72,9 @@ for i in range(len(ol_ratio)):
         y_val = np.array(y[ind_val])
         # Generate synthetic outliers
         if num_ol_tr > 0:
-            outliers = ersvmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
+            outliers = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
             x_tr[:num_ol_tr] = outliers
-            outliers = ersvmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
+            outliers = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
             x_val[:num_ol_val] = outliers
 
         # Initial point generated at random
