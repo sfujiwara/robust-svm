@@ -10,7 +10,7 @@ from sklearn import svm
 import time
 import pandas as pd
 from sklearn.metrics import f1_score
-from fsvm import ersvmdca, rampsvm, enusvm, svmutil, ersvmh
+from fsvm import ersvm, rampsvm, enusvm, svmutil, ersvmh
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
@@ -31,10 +31,10 @@ if __name__ == '__main__':
     nu = 0.051
     mu = 0.01
 
-    model_nonconv = ersvmdca.LinearPrimalERSVM()
+    model_nonconv = ersvm.LinearPrimalERSVM()
     model_nonconv.set_nu(nu)
     model_nonconv.set_mu(mu)
-    model_conv = ersvmdca.LinearPrimalERSVM()
+    model_conv = ersvm.LinearPrimalERSVM()
     model_conv.set_nu(nu)
     model_conv.set_mu(mu)
     model_conv.set_constant_t(0)
@@ -65,19 +65,19 @@ if __name__ == '__main__':
             y_train = np.array([1.]*num_train_p + [-1.]*(num_train_n+num_train_n_ol))
             y_test = np.array([1.]*num_test_p + [-1.]*num_test_n)
 
-            model_nonconv.solve_ersvm(x_train, y_train)
+            model_nonconv.fit(x_train, y_train)
             model_nonconv.show_result()
 
-            model_conv.solve_ersvm(x_train, y_train)
+            model_conv.fit(x_train, y_train)
             model_conv.show_result()
 
-            acc_nonconv.append(model_nonconv.calc_accuracy(x_test, y_test))
-            acc_conv.append(model_conv.calc_accuracy(x_test, y_test))
+            acc_nonconv.append(model_nonconv.score(x_test, y_test))
+            acc_conv.append(model_conv.score(x_test, y_test))
         res_conv.append(acc_conv)
         res_nonconv.append(acc_nonconv)
 
-    print model_nonconv.calc_accuracy(x_test, y_test)
-    print model_conv.calc_accuracy(x_test, y_test)
+    print model_nonconv.score(x_test, y_test)
+    print model_conv.score(x_test, y_test)
 
     ## plt.plot(x_train[:num_train_p, 0], x_train[:num_train_p, 1], 'x')
     ## plt.plot(x_train[num_train_p:, 0], x_train[num_train_p:, 1], '+')

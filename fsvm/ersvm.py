@@ -1,25 +1,18 @@
 # -*- coding: utf-8 -*-
 
 import time
-import sys
-## Ubuntu
-sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux')
 import numpy as np
-import matplotlib.pyplot as plt
 import cplex
-
-## import my modules
 import svmutil
 
-class LinearPrimalERSVM():
 
-    # Constructor
-    def __init__(self):
+class LinearPrimalERSVM:
+
+    def __init__(self, nu=0.5, mu=0.05):
+        self.nu, self.mu = nu, mu
         self.max_itr = 30
         self.cplex_method = 0
         self.t = []
-        self.nu = 0.5
-        self.mu = 0.1
         self.eps = 1e-10
         self.obj = []
         self.constant_t = -1
@@ -28,12 +21,6 @@ class LinearPrimalERSVM():
     def set_initial_point(self, initial_weight, initial_bias):
         self.initial_weight = initial_weight
         self.initial_bias = initial_bias
-
-    def set_nu(self, nu):
-        self.nu = nu
-
-    def set_mu(self, mu):
-        self.mu = mu
 
     def set_cplex_method(self, cplex_method):
         self.cplex_method = cplex_method
@@ -54,22 +41,19 @@ class LinearPrimalERSVM():
 
     def update_eta(self):
         m = len(self.risks)
-        ## Indices sorted by ascent order of risks
+        # Indices sorted by ascent order of risks
         ind_sorted = np.argsort(self.risks)[::-1]
         self.eta = np.zeros(m)
         self.eta[ind_sorted[range(int(np.ceil(m*self.mu)))]] = 1.
         self.eta[ind_sorted[int(np.ceil(m*self.mu)-1)]] -= np.ceil(m*self.mu) - m*self.mu
         self.eta = 1 - self.eta
-    ## ============================================================= ##
 
-
-    ## ===== Evaluation measures =================================== ##
-    def calc_accuracy(self, x_test, y_test):
+    def score(self, x_test, y_test):
         num, dim = x_test.shape
         dv = np.dot(x_test, self.weight) + self.bias
         return sum(dv * y_test > 0+1e-9) / float(num)
 
-    def calc_f(self, x_test, y_test):
+    def f1_score(self, x_test, y_test):
         num, dim = x_test.shape
         dv = np.dot(x_test, self.weight) + self.bias
         ind_p = np.where(y_test > 0)[0]
@@ -85,7 +69,6 @@ class LinearPrimalERSVM():
             return 0.
         else:
             return 2*recall*precision / (recall+precision)
-    ## ============================================================= ##
 
     def show_result(self, d=5):
         print '===== RESULT ==============='
@@ -99,20 +82,22 @@ class LinearPrimalERSVM():
         print 'accuracy:\t', sum(self.risks < 0) / float(len(self.risks))
         print '============================'
 
-    def solve_ersvm(self, x, y):
+    def fit(self, x, y, initial_weight, initial_bias=0):
         time_start = time.time()
+        self.initial_weight = initial_weight
+        self.initial_bias = initial_bias
         self.initialize_result()
         num, dim = x.shape
         c = cplex.Cplex()
         c.set_results_stream(None)
         w_names = ['w%s' % i for i in xrange(dim)]
         xi_names = ['xi%s' % i for i in xrange(num)]
-        ##### Initialize risk #####
+        # Initialize risk
         self.risks = - y * (np.dot(x, self.weight) + self.bias)
-        ##### Initialize eta #####
+        # Initialize eta
         self.update_eta()
         eta_bef = self.eta
-        ##### Initialize t #####
+        # Initialize t
         obj_val = num * (svmutil.calc_cvar(self.risks, 1 - self.nu) * self.nu -
                          svmutil.calc_cvar(self.risks, 1 - self.mu) * self.mu)
         self.obj.append(obj_val)
@@ -120,27 +105,20 @@ class LinearPrimalERSVM():
             self.t.append(max(0, self.obj[-1] / 0.99))
         else:
             self.t.append(self.constant_t)
-        ##### Set variables and objective function #####
-        c.variables.add(names=w_names,
-                        lb=[-cplex.infinity]*dim, ub=[cplex.infinity]*dim)
-        c.variables.add(names=['b'],
-                        lb=[-cplex.infinity], ub=[cplex.infinity])
-        c.variables.add(names=xi_names, obj=[1.]*num,
-                        lb=[0.]*num, ub=[cplex.infinity]*num)
-        c.variables.add(names=['alpha'], obj=[self.nu * num],
-                        lb=[-cplex.infinity], ub=[cplex.infinity])
-        ##### Set quadratic constraint #####
-        c.quadratic_constraints.add(name='norm',
-                                    quad_expr=[w_names, w_names, [1.]*dim],
-                                    rhs=1., sense='L')
-        ##### Set linear constraints w*y_i*x_i + b*y_i + xi_i - alf >= 0 #####
-        linexpr = [[w_names + ['b', 'xi%s' % i, 'alpha'],
-                    list(x[i] * y[i])+[y[i], 1., 1.]] for i in range(num)]
+        # Set variables and objective function
+        c.variables.add(names=w_names, lb=[-cplex.infinity]*dim, ub=[cplex.infinity]*dim)
+        c.variables.add(names=['b'], lb=[-cplex.infinity], ub=[cplex.infinity])
+        c.variables.add(names=xi_names, obj=[1.]*num, lb=[0.]*num, ub=[cplex.infinity]*num)
+        c.variables.add(names=['alpha'], obj=[self.nu*num], lb=[-cplex.infinity], ub=[cplex.infinity])
+        # Set quadratic constraint
+        c.quadratic_constraints.add(name='norm', quad_expr=[w_names, w_names, [1.]*dim], rhs=1., sense='L')
+        # Set linear constraints w*y_i*x_i + b*y_i + xi_i - alf >= 0
+        linexpr = [[w_names + ['b', 'xi%s' % i, 'alpha'], list(x[i]*y[i])+[y[i], 1., 1.]] for i in range(num)]
         names = ['margin%s' % i for i in range(num)]
         c.linear_constraints.add(names=names, senses='G'*num, lin_expr=linexpr)
-        ##### Set QP optimization method #####
+        # Set QP optimization method
         c.parameters.qpmethod.set(self.cplex_method)
-        ##### Iteration #####
+        # Iteration
         for i in xrange(self.max_itr):
             self.total_itr += 1
             ##### Update objective function #####
@@ -188,6 +166,6 @@ if __name__ == '__main__':
     svm.set_nu(0.65)
     svm.set_mu(0.1)
     svm.set_constant_t(1.5)
-    svm.solve_ersvm(x, y)
+    svm.fit(x, y)
     svm.show_result(5)
     

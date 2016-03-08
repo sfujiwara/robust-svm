@@ -3,7 +3,7 @@ from sklearn import svm
 import time
 import pandas as pd
 from sklearn.metrics import f1_score
-from fsvm import ersvmdca, rampsvm, enusvm, svmutil, ersvmh
+from fsvm import ersvm, rampsvm, enusvm, svmutil, ersvmh
 import sys
 
 
@@ -222,14 +222,14 @@ if __name__ == '__main__':
     initial_weight = np.random.normal(size=dim)
     initial_weight = initial_weight / np.linalg.norm(initial_weight)
     # Class instances
-    ersvm = ersvmdca.LinearPrimalERSVM()
+    ersvm = ersvm.LinearPrimalERSVM()
     ersvm.set_initial_point(np.array(initial_weight), 0)
     ramp = rampsvm.RampSVM()
     ramp.time_limit = 15
     enu = enusvm.EnuSVM()
     var = ersvmh.HeuristicLinearERSVM()
     libsvm = svm.SVC(C=1e0, kernel='linear', max_iter=-1)
-    conv_ersvm = ersvmdca.LinearPrimalERSVM()
+    conv_ersvm = ersvm.LinearPrimalERSVM()
     conv_ersvm.set_initial_point(np.array(initial_weight), 0)
     conv_ersvm.set_constant_t(0)
     # DataFrame for results
@@ -282,9 +282,9 @@ if __name__ == '__main__':
                                 'C': cost_cand[k],
                                 's': s_cand[l],
                                 'val-acc': ramp.score(x_val, y_val),
-                                'val-f': ramp.f_score(x_val, y_val),
+                                'val-f': ramp.f1_score(x_val, y_val),
                                 'test-acc': ramp.score(x[ind_t], y[ind_t]),
-                                'test-f': ramp.f_score(x[ind_t], y[ind_t]),
+                                'test-f': ramp.f1_score(x[ind_t], y[ind_t]),
                                 'comp_time': ramp.comp_time,
                                 'timeout': ramp.timeout}
                     df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))

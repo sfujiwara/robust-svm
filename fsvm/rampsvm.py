@@ -13,7 +13,7 @@ from sklearn.metrics import pairwise_kernels
 
 class RampSVM:
 
-    def __init__(self, C=1e0, s=-1., kernel='linear'):
+    def __init__(self, C=1e0, s=-1., kernel='linear', cplex_method=1):
         self.eps = 1e-5
         self.max_itr = 30
         self.C = C
@@ -22,7 +22,7 @@ class RampSVM:
         self.gamma = 1.
         self.coef0 = 0
         self.degree = 2
-        self.cplex_method = 0
+        self.cplex_method = cplex_method
         self.time_limit = cplex.infinity
         self.timeout = False
 
@@ -96,7 +96,7 @@ class RampSVM:
     def score(self, x, y):
         return sum((np.dot(x, self.weight) + self.bias) * y > 0) / float(len(y))
 
-    def f_score(self, x_test, y_test):
+    def f1_score(self, x_test, y_test):
         num, dim = x_test.shape
         dv = np.dot(x_test, self.weight) + self.bias
         ind_p = np.where(y_test > 0)[0]

@@ -5,7 +5,7 @@ from sklearn import svm
 import time
 import pandas as pd
 from sklearn.metrics import f1_score
-from fsvm import ersvmdca, rampsvm, enusvm, svmutil, ersvmh
+from fsvm import ersvm, rampsvm, enusvm, svmutil, ersvmh
 import sys
 
 cov = [[20,16], [16,20]]
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     initial_weight = initial_weight / np.linalg.norm(initial_weight)
 
     # Class instances
-    ersvm = ersvmdca.LinearPrimalERSVM()
+    ersvm = ersvm.LinearPrimalERSVM()
     ersvm.set_initial_point(np.array(initial_weight), 0)
     ersvm.set_mu(0.05)
     ramp = rampsvm.RampSVM()
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     enu = enusvm.EnuSVM()
     var = ersvmh.HeuristicLinearERSVM()
     libsvm = svm.SVC(C=1e0, kernel='linear', max_iter=-1)
-    conv_ersvm = ersvmdca.LinearPrimalERSVM()
+    conv_ersvm = ersvm.LinearPrimalERSVM()
     conv_ersvm.set_initial_point(np.array(initial_weight), 0)
     conv_ersvm.set_constant_t(0)
     ramp_ws = rampsvm.RampSVM()
@@ -97,13 +97,13 @@ if __name__ == '__main__':
                 ersvm.set_nu(nu_cand[k])
                 ersvm.set_cplex_method(0)  # automatic
                 # ersvm.set_initial_point(np.array(initial_weight_dca), 0)
-                ersvm.solve_ersvm(x_tr, y_tr)
+                ersvm.fit(x_tr, y_tr)
                 # ersvm.show_result()
                 row_dca = {
                     'outlier_ratio': num_ol[i] / 100.,
                     'trial'        : j,
                     'nu'           : nu_cand[k],
-                    'test_accuracy': ersvm.calc_accuracy(x_t, y_t),
+                    'test_accuracy': ersvm.score(x_t, y_t),
                     'VaR'          : ersvm.alpha,
                     'tr-CVaR'      : ersvm.obj[-1],
                     'comp_time'    : ersvm.comp_time,

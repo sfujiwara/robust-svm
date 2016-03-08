@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import time
 import pandas as pd
 
-from fsvm import ersvmdca, rampsvm, enusvm, svmutil, ersvmh
+from fsvm import ersvm, rampsvm, enusvm, svmutil, ersvmh
 #from src_old import ersvm
 
 if __name__ == '__main__':
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     ## s_cand = np.array([-1, 0., 0.5])
 
     ## Class instances
-    ersvm = ersvmdca.LinearPrimalERSVM()
+    ersvm = ersvm.LinearPrimalERSVM()
     ersvm.set_initial_point(initial_weight, 0)
     ramp = rampsvm.RampSVM()
     enu = enusvm.EnuSVM()
@@ -89,9 +89,9 @@ if __name__ == '__main__':
             print 'Start ER-SVM (DCA)'
             ersvm.set_nu(nu_cand[i])
             ersvm.set_mu(0.05)
-            ersvm.solve_ersvm(x_train, y_train)
+            ersvm.fit(x_train, y_train)
             ersvm.show_result()
-            acc_dca[i, cv] = ersvm.calc_accuracy(x_test, y_test)
+            acc_dca[i, cv] = ersvm.score(x_test, y_test)
             ersvm.set_initial_point(ersvm.weight, 0)
 
             print 'Start Enu-SVM'

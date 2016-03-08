@@ -5,7 +5,7 @@ from sklearn import svm
 import matplotlib.pyplot as plt
 import time
 
-from fsvm import ersvmdca, rampsvm, enusvm, ersvmh, svmutil
+from fsvm import ersvm, rampsvm, enusvm, ersvmh, svmutil
 
 if __name__ == '__main__':
     ## Read a UCI dataset
@@ -66,13 +66,13 @@ if __name__ == '__main__':
             print '----- ER-SVM -----'
             print 'nu: 0.1', '#sample:', sampling_size[i], 'trial:', j
             if is_on_time_ersvm1:
-                ersvm = ersvmdca.LinearPrimalERSVM()
+                ersvm = ersvm.LinearPrimalERSVM()
                 ersvm.set_nu(0.1)
                 ersvm.set_mu(0.05)
                 ersvm.set_epsilon(1e-5)
                 ersvm.set_cplex_method(1)
                 ersvm.set_initial_point(initial_weight, 0)
-                ersvm.solve_ersvm(x_train, y_train)
+                ersvm.fit(x_train, y_train)
                 ersvm.show_result()
                 time_ersvm1[i,j] = ersvm.comp_time
                 ## if ersvm.comp_time > time_limit:
@@ -82,7 +82,7 @@ if __name__ == '__main__':
             print '----- ER-SVM -----'
             print 'nu: 0.5', '#sample:', sampling_size[i], 'trial:', j
             ersvm.set_nu(0.5)
-            ersvm.solve_ersvm(x_train, y_train)
+            ersvm.fit(x_train, y_train)
             ersvm.show_result()
             time_ersvm5[i,j] = ersvm.comp_time
 

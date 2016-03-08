@@ -82,6 +82,30 @@ def csvm_primal(x, y, cost, qpmethod=0):
     c.solve()
     return c
 
+
+##### Training nu-SVM using primal #####
+def nusvm_primal(x, y, nu):
+    num, dim = x.shape
+    c = cplex.Cplex()
+    c.set_results_stream(None)
+    ##### Set names of variables #####
+    w_names  = ['w%s' % i for i in range(dim)]
+    xi_names = ['xi%s' % i for i in range(num)]
+    ##### Set variables (w, b, xi, rho) #####
+    c.variables.add(names=w_names, lb=[-cplex.infinity]*dim)
+    c.variables.add(names=['b'], lb=[- cplex.infinity])
+    c.variables.add(obj=[1./nu]*num, names=xi_names)
+    c.variables.add(names=['rho'])
+    ##### Set quadratic objective #####
+    c.objective.set_quadratic_coefficients(zip(range(dim), range(dim), [1]*dim))
+    ##### Set linear constraint w*y_i*x_i + b*y_i + xi_i - rho >= 0 for all i #####
+    linexpr = [[range(dim+1)+[dim+1+i], list(x[i]*y[i])+[y[i]]+[1.]] for i in range(num)]
+    c.linear_constraints.add(lin_expr=linexpr, senses='G'*num, rhs=[1]*num)
+    ##### Solve QP #####
+    c.parameters.qpmethod.set(0)
+    c.solve()
+    return c
+
 if __name__ == '__main__': 
     ## Load data set
     dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')

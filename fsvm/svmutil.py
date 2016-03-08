@@ -1,37 +1,34 @@
 ## -*- coding: utf-8 -*-
 
-import sys, time
-## Ubuntu
-sys.path.append('/opt/ibm/ILOG/CPLEX_Studio126/cplex/python/x86-64_linux')
+import time
 import numpy as np
-import matplotlib.pyplot as plt
-import cplex
 from sklearn.metrics import pairwise_kernels
+import cplex
 
 
 def standard_scale(x):
     num, dim = x.shape
     for i in range(dim):
-        x[:,i] -= np.mean(x[:,i])
-        if np.std(x[:,i]) >= 1e-5:
-            x[:,i] /= np.std(x[:,i])
+        x[:, i] -= np.mean(x[:, i])
+        if np.std(x[:, i]) >= 1e-5:
+            x[:, i] /= np.std(x[:, i])
 
 
 def libsvm_scale(x):
     num, dim = x.shape
     for i in range(dim):
-        width = max(x[:,i]) - min(x[:,i])
-        x[:,i] /= (width / 2)
-        x[:,i] -= max(x[:,i]) - 1
+        width = max(x[:, i]) - min(x[:, i])
+        x[:, i] /= (width / 2)
+        x[:, i] -= max(x[:, i]) - 1
 
 
-##### Compute nu_max #####
+# Compute nu_max
 def calc_nu_max(y):
-    return np.double(len(y)-np.abs(np.sum(y))) / len(y)
+    return float(len(y)-np.abs(np.sum(y))) / len(y)
 
 
-##### Compute nu_min for linear kernel #####
-## nu_min = 0 の場合解が存在しないので, 対応させること
+# Compute nu_min for linear kernel
+# nu_min = 0 の場合解が存在しないので, 対応させること
 def calc_nu_min(xmat, y):
     m, n = xmat.shape
     c = cplex.Cplex()
@@ -39,8 +36,8 @@ def calc_nu_min(xmat, y):
     c.variables.add(obj=[1]+[0]*m)
     c.linear_constraints.add(lin_expr=[[range(1,m+1),[1]*m]], rhs=[2])
     c.linear_constraints.add(lin_expr=[[range(1,m+1),list(y)]])
-    constraintMat = np.dot(np.diag(y), xmat).T
-    c.linear_constraints.add(lin_expr=[[range(1,m+1), list(constraintMat[i])] for i in range(n)])
+    constraint_mat = np.dot(np.diag(y), xmat).T
+    c.linear_constraints.add(lin_expr=[[range(1,m+1), list(constraint_mat[i])] for i in range(n)])
     c.linear_constraints.add(lin_expr=[[[0, i], [-1, 1]] for i in range(1, m+1)], senses='L'*m)
     c.solve()
     return 2/(c.solution.get_values()[0]*m)
@@ -78,11 +75,11 @@ def runif_sphere(radius, dim, size=1):
 
 
 if __name__ == '__main__':
-    x = np.array([[1,2], [3,4], [5,6]])
+    x = np.array([[1, 2], [3, 4], [5, 6]])
     x = np.ones([2000, 10])
     kernel = 'rbf'
     t1 = time.time()
-    #print kernel_matrix(x, kernel)
+    # print kernel_matrix(x, kernel)
     t2 = time.time()
     print pairwise_kernels(x, metric='rbf', gamma=1.)
     t3 = time.time()
