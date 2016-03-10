@@ -145,7 +145,7 @@ if __name__ == '__main__':
                 var.set_initial_weight(np.array(initial_weight))
                 var.set_nu(nu_cand[k])
                 var.set_gamma(0.03/nu_cand[k])
-                var.solve_varmin(x_tr, y_tr)
+                var.fit(x_tr, y_tr)
                 var.show_result()
                 row_var = {
                     'outlier_ratio': num_ol[i] / 100.,

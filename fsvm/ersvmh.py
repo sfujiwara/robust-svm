@@ -9,25 +9,16 @@ import svmutil
 
 class HeuristicLinearERSVM:
 
-    def __init__(self):
+    def __init__(self, nu=0.5, gamma=0.1, heuristic_termination=True):
         self.max_itr = 100
-        self.stopping_rule = True
-        self.nu = 0.5
-        self.gamma = 0.01
-        self.heuristic_termination = True
+        self.nu = nu
+        self.gamma = gamma
+        self.heuristic_termination = heuristic_termination
         self.is_convex = None
 
-    def set_initial_weight(self, initial_weight):
-        self.weight = initial_weight
-
-    def set_nu(self, nu):
-        self.nu = nu
-
-    def set_gamma(self, gamma):
-        self.gamma = gamma
-
-    def solve_varmin(self, x, y):
+    def fit(self, x, y, initial_weight):
         start = time.time()
+        self.weight = np.array(initial_weight)
         num, dim = x.shape
         self.total_itr = 0
         self.is_convex = True
@@ -39,7 +30,7 @@ class HeuristicLinearERSVM:
             nu_i = (self.nu * (1-self.gamma)**i * num) / len(self.ind_active)
             x_active = x[self.ind_active]
             y_active = y[self.ind_active]
-            ##### Check bounded or not
+            # Check bounded or not
             nu_max = svmutil.calc_nu_max(y_active)
             if nu_i > nu_max:
                 self.stp = 'over nu_max'
@@ -112,15 +103,13 @@ class HeuristicLinearERSVM:
 
 
 if __name__ == '__main__':
-    dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
+    dataset = np.loadtxt('data/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
     num, dim = x.shape
-    svm = HeuristicLinearERSVM()
     np.random.seed(0)
     initial_weight = np.random.normal(size=dim)
-    initial_weight = initial_weight / np.linalg.norm(initial_weight)
-    svm.set_initial_weight(initial_weight)
-    svm.set_nu(0.8)
-    svm.solve_heuristics(x, y)
+    initial_weight /= np.linalg.norm(initial_weight)
+    svm = HeuristicLinearERSVM()
+    svm.fit(x, y, initial_weight)
     svm.show_result()

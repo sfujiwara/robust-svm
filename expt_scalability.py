@@ -94,7 +94,7 @@ if __name__ == '__main__':
                 var.set_nu(0.1)
                 var.set_gamma(0.03/0.1)
                 var.set_initial_weight(initial_weight)
-                var.solve_varmin(x_train, y_train)
+                var.fit(x_train, y_train)
                 var.show_result()
                 time_var1[i,j] = var.comp_time
                 if time_var1[i,j] > time_limit:
@@ -108,7 +108,7 @@ if __name__ == '__main__':
                 var.set_nu(0.5)
                 var.set_gamma(0.03/0.5)
                 var.set_initial_weight(initial_weight)
-                var.solve_varmin(x_train, y_train)
+                var.fit(x_train, y_train)
                 var.show_result()
                 time_var5[i,j] = var.comp_time
                 if time_var5[i,j] > time_limit:

@@ -104,7 +104,7 @@ if __name__ == '__main__':
             print 'Start ER-SVM (Heuristics)'
             var.set_initial_weight(initial_weight)
             var.set_nu(nu_cand[i])
-            var.solve_varmin(x_train, y_train)
+            var.fit(x_train, y_train)
             var.show_result()
             acc_var[i, cv] = var.score(x_test, y_test)
 

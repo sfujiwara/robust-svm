@@ -34,14 +34,11 @@ ol_ratio = np.array([0., 0.03, 0.05, 0.1])
 # Scaling
 # ersvmutil.libsvm_scale(x)
 svmutil.standard_scale(x)
+
 # Initial point generated at random
 initial_weight = np.random.normal(size=dim)
-initial_weight = initial_weight / np.linalg.norm(initial_weight)
-# Class instances
-var = ersvmh.HeuristicLinearERSVM()
-# model_ersvm_conv = ersvm.LinearPrimalERSVM()
-# model_ersvm_conv.set_initial_point(np.array(initial_weight), 0)
-# model_ersvm_conv.set_constant_t(0)
+initial_weight /= np.linalg.norm(initial_weight)
+
 # DataFrame for results
 df_dca = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR', 'comp_time'])
 df_var = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'is_convex', 'comp_time'])
@@ -120,7 +117,6 @@ for i in range(len(ol_ratio)):
                 df_dca = df_dca.append(pd.Series(row_dca, name=pd.datetime.today()))
 
             # Hyper-parameter mu of ER-SVM with t = 0
-            # for l in range(len(mu_cand)):
             print 'Start ER-SVM (DCA) with t = 0'
             if nu_cand[k] > 0.05:
                 model_ersvm_conv = ersvm.LinearPrimalERSVM(nu=nu_cand[k])
@@ -161,21 +157,19 @@ for i in range(len(ol_ratio)):
             df_enusvm = df_enusvm.append(pd.Series(row_enusvm, name=pd.datetime.today()))
 
             print 'Start ER-SVM (Heuristics)'
-            var.set_initial_weight(np.array(initial_weight))
-            var.set_nu(nu_cand[k])
-            var.set_gamma(0.03/nu_cand[k])
-            var.solve_varmin(x_tr, y_tr)
-            var.show_result()
+            model_var = ersvmh.HeuristicLinearERSVM(nu=nu_cand[k], gamma=0.03/nu_cand[k])
+            model_var.fit(x_tr, y_tr, initial_weight)
+            model_var.show_result()
             row_var = {
                 'ratio': ol_ratio[i],
                 'trial': j,
                 'nu': nu_cand[k],
-                'val-acc': var.score(x_val, y_val),
-                'val-f': var.f1_score(x_val, y_val),
-                'test-acc': var.score(x[ind_t], y[ind_t]),
-                'test-f': var.f1_score(x[ind_t], y[ind_t]),
-                'is_convex': var.is_convex,
-                'comp_time': var.comp_time
+                'val-acc': model_var.score(x_val, y_val),
+                'val-f': model_var.f1_score(x_val, y_val),
+                'test-acc': model_var.score(x[ind_t], y[ind_t]),
+                'test-f': model_var.f1_score(x[ind_t], y[ind_t]),
+                'is_convex': model_var.is_convex,
+                'comp_time': model_var.comp_time
             }
             df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
 
