@@ -11,11 +11,11 @@ import cplex
 
 class EnuSVM:
 
-    def __init__(self, nu=0.5, update_rule='projection', max_itr=1000, lp_method=1, gamma=0.5):
+    def __init__(self, nu=0.5, update_rule='projection', max_iter=1000, lp_method=1, gamma=0.5):
         self.nu = nu
         self.lp_method = lp_method
         self.update_rule = update_rule
-        self.max_itr = max_itr
+        self.max_iter = max_iter
         self.gamma = gamma
         self.status = None
 
@@ -47,10 +47,9 @@ class EnuSVM:
         # Set quadratic constraint
         qexpr = [range(1, dim+1), range(1, dim+1), [1]*dim]
         c.quadratic_constraints.add(quad_expr=qexpr, rhs=1, sense='L', name='norm')
-        # Set linear constraints
-        # w * y_i * x_i + b * y_i + xi_i - rho >= 0
+        # Set linear constraints: w * y_i * x_i + b * y_i + xi_i - rho >= 0
         for i in xrange(num):
-            linexpr = [[w_names+['b']+['xi%s' % i]+['rho'], list(x[i]*y[i]) + [y[i], 1., -1]]]
+            linexpr = [[w_names+['b']+['xi%s' % i]+['rho'], list(x[i]*y[i])+[y[i], 1., -1]]]
             c.linear_constraints.add(names=['margin%s' % i], senses='G', lin_expr=linexpr)
         # Solve QCLP
         c.solve()
@@ -96,7 +95,7 @@ class EnuSVM:
         c.linear_constraints.add(names=['norm'], lin_expr=[[w_names, list(w_tilde)]], senses='E', rhs=[1.])
         # Iteration
         self.total_itr = 0
-        for i in xrange(self.max_itr):
+        for i in xrange(self.max_iter):
             self.total_itr += 1
             c.solve()
             self.weight = np.array(c.solution.get_values(w_names))

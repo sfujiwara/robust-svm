@@ -13,9 +13,9 @@ from sklearn.metrics import pairwise_kernels
 
 class RampSVM:
 
-    def __init__(self, C=1e0, s=-1., kernel='linear', cplex_method=1):
+    def __init__(self, C=1e0, s=-1., kernel='linear', max_iter=100, cplex_method=1):
         self.eps = 1e-5
-        self.max_itr = 30
+        self.max_iter = max_iter
         self.C = C
         self.s = s
         self.kernel = kernel
@@ -39,12 +39,11 @@ class RampSVM:
         elif self.kernel == 'rbf':
             kmat = pairwise_kernels(x, metric='rbf', gamma=self.gamma)
         elif self.kernel == 'polynomial':
-            kmat = pairwise_kernels(x, metric='polynomial',
-                                    coef0=self.coef0, degree=self.degree)
+            kmat = pairwise_kernels(x, metric='polynomial', coef0=self.coef0, degree=self.degree)
         else:
             print 'Undefined Kernel!!'
         # Round gram matrix to be PSD and symmetric
-        qmat = (kmat.T * y).T * y + 1e-7*np.eye(num)
+        qmat = (kmat.T * y).T * y + 1e-5*np.eye(num)
         qmat = np.round(qmat, 7)
         # CPLEX object
         c = cplex.Cplex()
@@ -53,30 +52,27 @@ class RampSVM:
         # Set variables
         c.variables.add(obj=[-1]*num)
         # Set quadratic objective
-        print 'set qp obj'
         c.objective.set_quadratic([[range(num), list(qmat[i])] for i in range(num)])
-        print 'done'
         # Set linear constraint
         c.linear_constraints.add(lin_expr=[[range(num), list(y)]], senses='E', rhs=[0])
         # Set QP optimization method
         c.parameters.qpmethod.set(self.cplex_method)
-        for i in xrange(self.max_itr):
+        for i in xrange(self.max_iter):
             # Update constraints
             c.variables.set_lower_bounds(zip(range(num), list(-self.beta)))
             c.variables.set_upper_bounds(zip(range(num), list(self.C - self.beta)))
-            ##### Solve subproblem #####
+            # Solve subproblem
             c.solve()
-            print c.solution.get_status_string()
             self.total_itr += 1
             self.alpha = np.array(c.solution.get_values())
-            ##### Compute bias and decision values #####
+            # Compute bias and decision values
             ind_mv = [j for j in xrange(num) if self.eps <= (self.alpha[j] / self.C) <= 1 - self.eps]
             wx_seq = np.dot(self.alpha*y, kmat)
             bias_seq = (y - wx_seq)[ind_mv]
-            ## print bias_seq
+            # print bias_seq
             self.bias = np.mean(bias_seq)
             self.decision_values = wx_seq + self.bias
-            ##### Update beta #####
+            # Update beta
             beta_new = np.zeros(num)
             beta_new[np.where(self.decision_values*y < self.s)] = self.C
             if all(self.beta == beta_new):
@@ -113,31 +109,18 @@ class RampSVM:
         else:
             return 2*recall*precision / (recall+precision)
 
-    def show_result(self, d=5):
-        print '===== RESULT ==============='
-        print '(cost, s):\t', (self.C, self.s)
-        print 'kernel:\t\t', self.kernel
-        if self.kernel == 'linear':
-            print 'weight:\t\t', np.round(self.weight, d)
-        print 'bias:\t\t', np.round(self.bias, d)
-        print 'itaration:\t', self.total_itr
-        print 'accuracy:\t', self.accuracy
-        print 'time:\t\t', self.comp_time
-        print 'timeout:', self.timeout
-        print '============================'
-
 
 if __name__ == '__main__':
-    ## Read data set from csv
+    # Read data set from csv
     filename = 'liver-disorders_scale.csv'
     dataset = np.loadtxt(filename, delimiter=',')
     x = dataset[:, 1:]
     y = dataset[:, 0]
     num, dim = x.shape
-    ## Set hyper-parameters
+    # Set hyper-parameters
     rampsvm = RampSVM()
     rampsvm.set_cost(1e10)
-    ## rampsvm.set_epsilon(1e-10)
+    # rampsvm.set_epsilon(1e-10)
     rampsvm.fit(x, y)
     rampsvm.show_result(3)
     kmat = pairwise_kernels(x, metric='linear')

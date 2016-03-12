@@ -2,14 +2,10 @@
 
 ## Required Libraries
 * CPLEX
-    - Used to solve subproblems.
 * Numpy
 * Matplotlib
-    - Used to draw figures.
 * scikit-learn
-    - Used to compute kernel matrix.
 * Pandas
-  - Used for data handling
 
 ## Run script
 

@@ -9,34 +9,34 @@ import svmutil
 
 class HeuristicLinearERSVM:
 
-    def __init__(self, nu=0.5, gamma=0.1, heuristic_termination=True):
-        self.max_itr = 100
+    def __init__(self, nu=0.5, gamma=0.1, max_iter=100, heuristic_termination=True):
+        self.max_iter = max_iter
         self.nu = nu
         self.gamma = gamma
         self.heuristic_termination = heuristic_termination
         self.is_convex = None
+        self.total_iter = None
+        self.comp_time = None
 
     def fit(self, x, y, initial_weight):
         start = time.time()
         self.weight = np.array(initial_weight)
         num, dim = x.shape
-        self.total_itr = 0
+        self.total_iter = 0
         self.is_convex = True
         self.bias = 0
         self.ind_active = np.arange(num)
         model_enusvm = enusvm.EnuSVM()
-        for i in range(self.max_itr):
+        for i in range(self.max_iter):
             # Update nu
             nu_i = (self.nu * (1-self.gamma)**i * num) / len(self.ind_active)
-            x_active = x[self.ind_active]
-            y_active = y[self.ind_active]
             # Check bounded or not
-            nu_max = svmutil.calc_nu_max(y_active)
+            nu_max = svmutil.calc_nu_max(y[self.ind_active])
             if nu_i > nu_max:
                 self.stp = 'over nu_max'
                 break
             # Solve subproblem if bounded
-            self.total_itr += 1
+            self.total_iter += 1
             model_enusvm.nu = nu_i
             initial_weight = np.array(self.weight)
             model_enusvm.fit(x[self.ind_active], y[self.ind_active], initial_weight)
@@ -46,10 +46,9 @@ class HeuristicLinearERSVM:
             w_new = model_enusvm.weight
             self.bias = model_enusvm.bias
             # Heuristic termination (1e-4 or 1e-5 is better)
-            if self.heuristic_termination:
-                if np.abs(1 - np.dot(self.weight, w_new)) < 1e-4:
-                    self.stp = 'Heuristic Termination'
-                    break
+            if self.heuristic_termination and np.abs(1 - np.dot(self.weight, w_new)) < 1e-4:
+                self.stp = 'Heuristic Termination'
+                break
             self.weight = w_new
             # Update loss and active set
             loss = - (np.dot(x, self.weight) + self.bias) * y
@@ -72,7 +71,6 @@ class HeuristicLinearERSVM:
         return sum(dv * y_test > 0) / float(num)
 
     def f1_score(self, x_test, y_test):
-        num, dim = x_test.shape
         dv = np.dot(x_test, self.weight) + self.bias
         ind_p = np.where(y_test > 0)[0]
         ind_n = np.where(y_test < 0)[0]
@@ -88,19 +86,6 @@ class HeuristicLinearERSVM:
         else:
             return 2*recall*precision / (recall+precision)
 
-    def show_result(self, d=5):
-        print '===== RESULT ==============='
-        print 'nu:\t\t\t\t', self.nu
-        print 'weight:\t\t\t', np.round(self.weight, d)
-        print 'bias:\t\t\t', np.round(self.bias, d)
-        # print 'alpha:\t\t', np.round(self.alpha, d)
-        # print 'obj val:\t', self.obj[-1]
-        print 'iteration:\t\t', self.total_itr
-        print 'termination:\t', self.stp
-        print 'time:\t\t', self.comp_time
-        # print 'accuracy:\t', sum(self.risks < 0) / float(len(self.risks))
-        print '============================'
-
 
 if __name__ == '__main__':
     dataset = np.loadtxt('data/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
@@ -112,4 +97,3 @@ if __name__ == '__main__':
     initial_weight /= np.linalg.norm(initial_weight)
     svm = HeuristicLinearERSVM()
     svm.fit(x, y, initial_weight)
-    svm.show_result()

@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import time
+# import time
 import numpy as np
 import pandas as pd
-from sklearn.metrics import f1_score
 from sklearn.datasets import fetch_mldata
-from sklearn import svm
+# from sklearn.metrics import f1_score
+# from sklearn import svm
+
+# Import my modules
 from fsvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
 
 # Load MNIST data
@@ -20,16 +22,16 @@ num, dim = x.shape
 np.random.seed(0)
 
 # Experimental set up
-num_tr = 100   # size of training set
-num_val = 100  # size of validation set
+num_tr = 1000   # size of training set
+num_val = 1000  # size of validation set
 num_t = 100    # size of test set
 radius = 75    # level of outlier
 trial = 1
 
 # Candidates of hyper-parameters
-nu_cand = np.linspace(0.9, 0.1, 9)
-cost_cand = np.array([5.**i for i in range(4, -5, -1)])
-ol_ratio = np.array([0., 0.03, 0.05, 0.1])
+nu_list = np.linspace(0.9, 0.1, 9)
+c_list = np.array([5. ** i for i in range(4, -5, -1)])
+outlier_ratio = np.array([0., 0.03, 0.05, 0.1])
 
 # Scaling
 # ersvmutil.libsvm_scale(x)
@@ -40,17 +42,16 @@ initial_weight = np.random.normal(size=dim)
 initial_weight /= np.linalg.norm(initial_weight)
 
 # DataFrame for results
-df_dca = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR', 'comp_time'])
+df_ersvm = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR', 'comp_time'])
 df_var = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'is_convex', 'comp_time'])
 df_enusvm = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'is_convex', 'comp_time'])
-df_libsvm = pd.DataFrame(columns=['ratio', 'trial', 'C', 'val-acc', 'val-f', 'test-acc', 'test-f', 'comp_time'])
 df_ramp = pd.DataFrame(columns=['ratio', 'trial', 'C', 's', 'val-acc', 'val-f', 'test-acc', 'test-f', 'comp_time', 'timeout'])
-df_conv = pd.DataFrame(columns=['ratio', 'trial', 'nu', 'mu', 'val-acc', 'val-f', 'test-acc', 'test-f', 'VaR', 'tr-CVaR', 'comp_time'])
+# df_libsvm = pd.DataFrame(columns=['ratio', 'trial', 'C', 'val-acc', 'val-f', 'test-acc', 'test-f', 'comp_time'])
 
 # Loop for outlier ratio
-for i in range(len(ol_ratio)):
-    num_ol_tr = int(num_tr * ol_ratio[i])
-    num_ol_val = int(num_val * ol_ratio[i])
+for i in range(len(outlier_ratio)):
+    num_ol_tr = int(num_tr * outlier_ratio[i])
+    num_ol_val = int(num_val * outlier_ratio[i])
     # Loop for random splitting
     for j in range(trial):
         # Split indices to training, validation, and test set
@@ -59,31 +60,26 @@ for i in range(len(ol_ratio)):
         ind_val = ind_rand[num_tr:(num_tr+num_val)]
         ind_t = ind_rand[(num_tr+num_val):]
         # Copy training and validation set since they will be contaminated
-        x_tr = np.array(x[ind_tr])
-        y_tr = np.array(y[ind_tr])
-        x_val = np.array(x[ind_val])
-        y_val = np.array(y[ind_val])
+        x_tr, y_tr = np.array(x[ind_tr]), np.array(y[ind_tr])      # training set
+        x_val, y_val = np.array(x[ind_val]), np.array(y[ind_val])  # validation samples
         # Generate synthetic outliers
         if num_ol_tr > 0:
-            outliers = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
-            x_tr[:num_ol_tr] = outliers
-            outliers = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
-            x_val[:num_ol_val] = outliers
-
+            x_tr[:num_ol_tr] = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
+            x_val[:num_ol_val] = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
         # Initial point generated at random
         initial_weight = np.random.normal(size=dim)
         initial_weight /= np.linalg.norm(initial_weight)
-
-        # Loop for hyper-parameter tuning
-        for k in range(len(nu_cand)):
+        # Loop for hyper parameters tuning
+        for k in range(len(nu_list)):
             # Ramp Loss SVM
-            print 'Start Ramp Loss SVM'
-            model_ramp = rampsvm.RampSVM(C=cost_cand[k])
+            print 'Train ramp loss SVM (C, ratio, trial):', (c_list[k], outlier_ratio[i], j)
+            model_ramp = rampsvm.RampSVM(C=c_list[k])
             model_ramp.fit(x_tr, y_tr)
+            print 'time:', model_ramp.comp_time, '\n'
             row_ramp = {
-                'ratio': ol_ratio[i],
+                'ratio': outlier_ratio[i],
                 'trial': j,
-                'C': cost_cand[k],
+                'C': c_list[k],
                 's': model_ramp.s,
                 'val-acc': model_ramp.score(x_val, y_val),
                 'val-f': model_ramp.f1_score(x_val, y_val),
@@ -93,60 +89,34 @@ for i in range(len(ol_ratio)):
                 'timeout': model_ramp.timeout
             }
             df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
-
             # ER-SVM using DC Algorithm
-            print 'Start ER-SVM (DCA)'
-            print '(ratio, trial):', (ol_ratio[i], j)
-            if nu_cand[k] > 0.05:
-                model_ersvm = ersvm.LinearPrimalERSVM(nu=nu_cand[k])
-                model_ersvm.fit(x_tr, y_tr, initial_weight)
-                model_ersvm.show_result()
-                row_dca = {
-                    'ratio': ol_ratio[i],
-                    'trial': j,
-                    'nu': nu_cand[k],
-                    'mu': model_ersvm.mu,
-                    'val-acc': model_ersvm.score(x_val, y_val),
-                    'val-f': model_ersvm.f1_score(x_val, y_val),
-                    'test-acc': model_ersvm.score(x[ind_t], y[ind_t]),
-                    'test-f': model_ersvm.f1_score(x[ind_t], y[ind_t]),
-                    'VaR': model_ersvm.alpha,
-                    'tr-CVaR': model_ersvm.obj[-1],
-                    'comp_time': model_ersvm.comp_time
-                }
-                df_dca = df_dca.append(pd.Series(row_dca, name=pd.datetime.today()))
-
-            # Hyper-parameter mu of ER-SVM with t = 0
-            print 'Start ER-SVM (DCA) with t = 0'
-            if nu_cand[k] > 0.05:
-                model_ersvm_conv = ersvm.LinearPrimalERSVM(nu=nu_cand[k])
-                model_ersvm_conv.t = 0
-                model_ersvm_conv.fit(x_tr, y_tr, initial_weight)
-                model_ersvm_conv.show_result()
-                model_ersvm_conv.set_initial_point(np.array(initial_weight), 0)
-                row_conv = {
-                    'ratio': ol_ratio[i],
-                    'trial': j,
-                    'nu': nu_cand[k],
-                    'mu': model_ersvm_conv.mu,
-                    'val-acc': model_ersvm_conv.score(x_val, y_val),
-                    'val-f': model_ersvm_conv.f1_score(x_val, y_val),
-                    'test-acc': model_ersvm_conv.score(x[ind_t], y[ind_t]),
-                    'test-f': model_ersvm_conv.f1_score(x[ind_t], y[ind_t]),
-                    'VaR': model_ersvm_conv.alpha,
-                    'tr-CVaR': model_ersvm_conv.obj[-1],
-                    'comp_time': model_ersvm_conv.comp_time
-                }
-                df_conv = df_conv.append(pd.Series(row_conv, name=pd.datetime.today()))
-
-            # Enu-SVM
-            print 'Start Enu-SVM'
-            model_enusvm = enusvm.EnuSVM(nu=nu_cand[k])
-            model_enusvm.fit(x_tr, y_tr, initial_weight)
-            row_enusvm = {
-                'ratio': ol_ratio[i],
+            print 'Train ER-SVM with DCA (nu, ratio, trial):', (nu_list[k], outlier_ratio[i], j)
+            model_ersvm = ersvm.LinearPrimalERSVM(nu=nu_list[k])
+            model_ersvm.fit(x_tr, y_tr, initial_weight)
+            print 'time:', model_ersvm.comp_time, '\n'
+            row_dca = {
+                'ratio': outlier_ratio[i],
                 'trial': j,
-                'nu': nu_cand[k],
+                'nu': nu_list[k],
+                'mu': model_ersvm.mu,
+                'val-acc': model_ersvm.score(x_val, y_val),
+                'val-f': model_ersvm.f1_score(x_val, y_val),
+                'test-acc': model_ersvm.score(x[ind_t], y[ind_t]),
+                'test-f': model_ersvm.f1_score(x[ind_t], y[ind_t]),
+                'VaR': model_ersvm.alpha,
+                'tr-CVaR': model_ersvm.obj[-1],
+                'comp_time': model_ersvm.comp_time
+            }
+            df_ersvm = df_ersvm.append(pd.Series(row_dca, name=pd.datetime.today()))
+            # Enu-SVM
+            print 'Train Enu-SVM (nu, ratio, trial):', (nu_list[k], outlier_ratio[i], j)
+            model_enusvm = enusvm.EnuSVM(nu=nu_list[k])
+            model_enusvm.fit(x_tr, y_tr, initial_weight)
+            print 'time:', model_enusvm.comp_time, '\n'
+            row_enusvm = {
+                'ratio': outlier_ratio[i],
+                'trial': j,
+                'nu': nu_list[k],
                 'val-acc': model_enusvm.score(x_val, y_val),
                 'val-f': model_enusvm.f1_score(x_val, y_val),
                 'test-acc': model_enusvm.score(x[ind_t], y[ind_t]),
@@ -156,14 +126,14 @@ for i in range(len(ol_ratio)):
             }
             df_enusvm = df_enusvm.append(pd.Series(row_enusvm, name=pd.datetime.today()))
 
-            print 'Start ER-SVM (Heuristics)'
-            model_var = ersvmh.HeuristicLinearERSVM(nu=nu_cand[k], gamma=0.03/nu_cand[k])
+            print 'Train ER-SVM with Heuristics (nu, ratio, trial):', (nu_list[k], outlier_ratio[i], j)
+            model_var = ersvmh.HeuristicLinearERSVM(nu=nu_list[k], gamma=0.03 / nu_list[k])
             model_var.fit(x_tr, y_tr, initial_weight)
-            model_var.show_result()
+            print 'time:', model_var.comp_time, '\n'
             row_var = {
-                'ratio': ol_ratio[i],
+                'ratio': outlier_ratio[i],
                 'trial': j,
-                'nu': nu_cand[k],
+                'nu': nu_list[k],
                 'val-acc': model_var.score(x_val, y_val),
                 'val-f': model_var.f1_score(x_val, y_val),
                 'test-acc': model_var.score(x[ind_t], y[ind_t]),
@@ -174,25 +144,25 @@ for i in range(len(ol_ratio)):
             df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
 
             # C-SVM (LIBSVM)
-            print 'Start LIBSVM'
-            start = time.time()
-            model_libsvm = svm.SVC(C=cost_cand[k], kernel='linear', max_iter=-1)
-            model_libsvm.fit(x_tr, y_tr)
-            end = time.time()
-            print 'End LIBSVM'
-            print 'time:', end - start
-            row_libsvm = {
-                'ratio': ol_ratio[i],
-                'trial': j,
-                'C': cost_cand[k],
-                'val-acc': model_libsvm.score(x_val, y_val),
-                'val-f': f1_score(y_val, model_libsvm.predict(x_val)),
-                'test-acc': model_libsvm.score(x[ind_t], y[ind_t]),
-                'test-f': f1_score(y[ind_t], model_libsvm.predict(x[ind_t]))
-            }
-            df_libsvm = df_libsvm.append(pd.Series(row_libsvm, name=pd.datetime.today()))
+            # print 'Start LIBSVM'
+            # start = time.time()
+            # model_libsvm = svm.SVC(C=c_list[k], kernel='linear', max_iter=-1)
+            # model_libsvm.fit(x_tr, y_tr)
+            # end = time.time()
+            # print 'End LIBSVM'
+            # print 'time:', end - start
+            # row_libsvm = {
+            #     'ratio': outlier_ratio[i],
+            #     'trial': j,
+            #     'C': c_list[k],
+            #     'val-acc': model_libsvm.score(x_val, y_val),
+            #     'val-f': f1_score(y_val, model_libsvm.predict(x_val)),
+            #     'test-acc': model_libsvm.score(x[ind_t], y[ind_t]),
+            #     'test-f': f1_score(y[ind_t], model_libsvm.predict(x[ind_t]))
+            # }
+            # df_libsvm = df_libsvm.append(pd.Series(row_libsvm, name=pd.datetime.today()))
 
-#pd.set_option('line_width', 200)
+# pd.set_option('line_width', 200)
 
 # Save as csv
 # df_dca.to_csv(dir_name_result+'dca.csv', index=False)
