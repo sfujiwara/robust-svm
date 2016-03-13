@@ -52,7 +52,7 @@ if __name__ == '__main__':
     initial_weight = initial_weight / np.linalg.norm(initial_weight)
 
     # Class instances
-    ersvm = ersvm.LinearPrimalERSVM()
+    ersvm = ersvm.LinearERSVM()
     ersvm.set_initial_point(np.array(initial_weight), 0)
     ersvm.set_mu(0.05)
     ramp = rampsvm.RampSVM()
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     enu = enusvm.EnuSVM()
     var = ersvmh.HeuristicLinearERSVM()
     libsvm = svm.SVC(C=1e0, kernel='linear', max_iter=-1)
-    conv_ersvm = ersvm.LinearPrimalERSVM()
+    conv_ersvm = ersvm.LinearERSVM()
     conv_ersvm.set_initial_point(np.array(initial_weight), 0)
     conv_ersvm.set_constant_t(0)
     ramp_ws = rampsvm.RampSVM()

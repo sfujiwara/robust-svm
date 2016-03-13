@@ -22,10 +22,10 @@ num, dim = x.shape
 np.random.seed(0)
 
 # Experimental set up
-num_tr = 1000   # size of training set
-num_val = 1000  # size of validation set
-num_t = 100    # size of test set
-radius = 75    # level of outlier
+num_tr = 6068   # size of training set
+num_val = 4551  # size of validation set
+num_t = 4551    # size of test set
+radius = 75     # level of outlier
 trial = 1
 
 # Candidates of hyper-parameters
@@ -91,7 +91,7 @@ for i in range(len(outlier_ratio)):
             df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
             # ER-SVM using DC Algorithm
             print 'Train ER-SVM with DCA (nu, ratio, trial):', (nu_list[k], outlier_ratio[i], j)
-            model_ersvm = ersvm.LinearPrimalERSVM(nu=nu_list[k])
+            model_ersvm = ersvm.LinearERSVM(nu=nu_list[k])
             model_ersvm.fit(x_tr, y_tr, initial_weight)
             print 'time:', model_ersvm.comp_time, '\n'
             row_dca = {
@@ -125,7 +125,7 @@ for i in range(len(outlier_ratio)):
                 'comp_time': model_enusvm.comp_time
             }
             df_enusvm = df_enusvm.append(pd.Series(row_enusvm, name=pd.datetime.today()))
-
+            # ER-SVM with heuristic VaR minimization algorithm
             print 'Train ER-SVM with Heuristics (nu, ratio, trial):', (nu_list[k], outlier_ratio[i], j)
             model_var = ersvmh.HeuristicLinearERSVM(nu=nu_list[k], gamma=0.03 / nu_list[k])
             model_var.fit(x_tr, y_tr, initial_weight)
@@ -142,7 +142,6 @@ for i in range(len(outlier_ratio)):
                 'comp_time': model_var.comp_time
             }
             df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
-
             # C-SVM (LIBSVM)
             # print 'Start LIBSVM'
             # start = time.time()

@@ -31,10 +31,10 @@ if __name__ == '__main__':
     nu = 0.051
     mu = 0.01
 
-    model_nonconv = ersvm.LinearPrimalERSVM()
+    model_nonconv = ersvm.LinearERSVM()
     model_nonconv.set_nu(nu)
     model_nonconv.set_mu(mu)
-    model_conv = ersvm.LinearPrimalERSVM()
+    model_conv = ersvm.LinearERSVM()
     model_conv.set_nu(nu)
     model_conv.set_mu(mu)
     model_conv.set_constant_t(0)

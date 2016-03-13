@@ -43,7 +43,7 @@ if __name__ == '__main__':
     ## s_cand = np.array([-1, 0., 0.5])
 
     ## Class instances
-    ersvm = ersvm.LinearPrimalERSVM()
+    ersvm = ersvm.LinearERSVM()
     ersvm.set_initial_point(initial_weight, 0)
     ramp = rampsvm.RampSVM()
     enu = enusvm.EnuSVM()

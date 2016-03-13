@@ -66,7 +66,7 @@ if __name__ == '__main__':
             print '----- ER-SVM -----'
             print 'nu: 0.1', '#sample:', sampling_size[i], 'trial:', j
             if is_on_time_ersvm1:
-                ersvm = ersvm.LinearPrimalERSVM()
+                ersvm = ersvm.LinearERSVM()
                 ersvm.set_nu(0.1)
                 ersvm.set_mu(0.05)
                 ersvm.set_epsilon(1e-5)
