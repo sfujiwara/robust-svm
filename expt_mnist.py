@@ -8,7 +8,7 @@ from sklearn.datasets import fetch_mldata
 # from sklearn import svm
 
 # Import my modules
-from fsvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
+from mysvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
 
 # Load MNIST data
 mnist = fetch_mldata('MNIST original', data_home='data/sklearn')

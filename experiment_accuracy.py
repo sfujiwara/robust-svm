@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import time
 import pandas as pd
 
-from fsvm import ersvm, rampsvm, enusvm, svmutil, ersvmh
+from mysvm import ersvm, rampsvm, enusvm, svmutil, ersvmh
 #from src_old import ersvm
 
 if __name__ == '__main__':

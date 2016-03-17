@@ -5,7 +5,7 @@ from sklearn import svm
 import matplotlib.pyplot as plt
 import time
 
-from fsvm import ersvm, rampsvm, enusvm, ersvmh, svmutil
+from mysvm import ersvm, rampsvm, enusvm, ersvmh, svmutil
 
 if __name__ == '__main__':
     ## Read a UCI dataset

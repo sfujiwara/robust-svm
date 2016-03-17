@@ -10,7 +10,7 @@ from sklearn import svm
 import time
 import pandas as pd
 from sklearn.metrics import f1_score
-from fsvm import ersvm, rampsvm, enusvm, svmutil, ersvmh
+from mysvm import ersvm, rampsvm, enusvm, svmutil, ersvmh
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
