@@ -19,7 +19,7 @@ if __name__ == '__main__':
     ## Load result csv
     df_dca = pd.read_csv(dir_name+'dca.csv')
     df_var = pd.read_csv(dir_name+'var.csv')
-    df_enu = pd.read_csv(dir_name+'enu.csv')
+    df_enu = pd.read_csv(dir_name+'enusvm.csv')
     df_libsvm = pd.read_csv(dir_name+'libsvm.csv')
     df_conv = pd.read_csv(dir_name+"conv.csv")
 

@@ -192,7 +192,7 @@ if __name__ == '__main__':
     # Save as csv
     dir_name_result = 'results/synthetic-final/'
     df_dca.to_csv(dir_name_result+'dca.csv', index=False)
-    df_enu.to_csv(dir_name_result+'enu.csv', index=False)
+    df_enu.to_csv(dir_name_result+'enusvm.csv', index=False)
     df_var.to_csv(dir_name_result+'var.csv', index=False)
     df_ramp.to_csv(dir_name_result+'ramp.csv', index=False)
     df_csvm.to_csv(dir_name_result+'csvm.csv', index=False)

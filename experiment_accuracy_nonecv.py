@@ -386,7 +386,7 @@ if __name__ == '__main__':
     #pd.set_option('line_width', 200)
     # Save as csv
     ## df_dca.to_csv(dir_name_result+'dca.csv', index=False)
-    ## df_enu.to_csv(dir_name_result+'enu.csv', index=False)
+    ## df_enu.to_csv(dir_name_result+'enusvm.csv', index=False)
     ## df_var.to_csv(dir_name_result+'var.csv', index=False)
     df_ramp.to_csv(dir_name_result+'ramp.csv', index=False)
     ## df_libsvm.to_csv(dir_name_result+'libsvm.csv', index=False)

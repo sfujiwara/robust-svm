@@ -39,7 +39,7 @@ gb = df.groupby(['C', 'outlier_ratio'], as_index=False)
 df_ramp = gb.aggregate({'comp_time': [np.mean, np.std]})
 
 # Enu-SVM
-df = pd.read_csv('enu.csv')
+df = pd.read_csv('enusvm.csv')
 gb = df.groupby(['nu', 'outlier_ratio'], as_index=False)
 # gb = df.groupby(['outlier_ratio'], as_index=False)
 df_enu = gb.aggregate({'comp_time': [np.mean, np.std]})

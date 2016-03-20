@@ -49,7 +49,7 @@ ind = np.array(df.groupby(['outlier_ratio']).agg(np.argmax)['comp_time_mean'], d
 df_ramp = df.iloc[ind]
 
 # Enu-SVM
-df = pd.read_csv('enu.csv')
+df = pd.read_csv('enusvm.csv')
 gb = df.groupby(['outlier_ratio', 'nu'], as_index=False)
 df = gb.aggregate({'comp_time': [np.mean, np.std]})
 df.columns = df.columns.map(flatten_hierarchical_col)

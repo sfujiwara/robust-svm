@@ -61,7 +61,6 @@ class HeuristicLinearERSVM:
                 break
             else: self.ind_active = ind_active_new
             self.initial_weight = self.weight
-        print 'ITR:', i + 1
         end = time.time()
         self.comp_time = end - start
 

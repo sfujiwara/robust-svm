@@ -49,7 +49,7 @@ ind = np.array(df.groupby(['outlier_ratio']).agg(np.argmax)['test_accuracy_mean'
 df_ramp = df.iloc[ind]
 
 ## Enu-SVM
-df = pd.read_csv('enu.csv')
+df = pd.read_csv('enusvm.csv')
 gb = df.groupby(['outlier_ratio', 'nu'], as_index=False)
 df = gb.aggregate({'test_accuracy': [np.mean, np.std]})
 df.columns = df.columns.map(flatten_hierarchical_col)

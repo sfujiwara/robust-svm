@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 # import time
+import sys
+import logging
 import numpy as np
 import pandas as pd
 from sklearn.datasets import fetch_mldata
@@ -9,6 +11,19 @@ from sklearn.datasets import fetch_mldata
 
 # Import my modules
 from mysvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
+
+# Logging
+logging.basicConfig(
+    filename="logs/expt_mnist.log",
+    level=logging.DEBUG,
+    filemode="w",
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+logger.info("info test")
+
+sys.stdout = open("logs/mnist_stdout.txt", "w")
+sys.stderr = open("logs/mnist_stderror.txt", "w")
 
 # Load MNIST data
 mnist = fetch_mldata('MNIST original', data_home='data/sklearn')
@@ -22,10 +37,11 @@ num, dim = x.shape
 np.random.seed(0)
 
 # Experimental set up
-num_tr = 6068   # size of training set
+# num_tr = 6068   # size of training set
+num_tr = 100
 num_val = 4551  # size of validation set
 num_t = 4551    # size of test set
-radius = 75     # level of outlier
+radius = 150     # level of outlier
 trial = 1
 
 # Candidates of hyper-parameters
@@ -72,10 +88,10 @@ for i in range(len(outlier_ratio)):
         # Loop for hyper parameters tuning
         for k in range(len(nu_list)):
             # Ramp Loss SVM
-            print 'Train ramp loss SVM (C, ratio, trial):', (c_list[k], outlier_ratio[i], j)
+            logger.info('Train ramp loss SVM (C, ratio, trial): {}'.format(c_list[k], outlier_ratio[i], j))
             model_ramp = rampsvm.RampSVM(C=c_list[k])
             model_ramp.fit(x_tr, y_tr)
-            print 'time:', model_ramp.comp_time, '\n'
+            logger.info('time: {}'.format(model_ramp.comp_time))
             row_ramp = {
                 'ratio': outlier_ratio[i],
                 'trial': j,
@@ -90,10 +106,10 @@ for i in range(len(outlier_ratio)):
             }
             df_ramp = df_ramp.append(pd.Series(row_ramp, name=pd.datetime.today()))
             # ER-SVM using DC Algorithm
-            print 'Train ER-SVM with DCA (nu, ratio, trial):', (nu_list[k], outlier_ratio[i], j)
+            logger.info('Train ER-SVM with DCA (nu, ratio, trial): {}'.format((nu_list[k], outlier_ratio[i], j)))
             model_ersvm = ersvm.LinearERSVM(nu=nu_list[k])
             model_ersvm.fit(x_tr, y_tr, initial_weight)
-            print 'time:', model_ersvm.comp_time, '\n'
+            logger.info('time: {}'.format(model_ersvm.comp_time))
             row_dca = {
                 'ratio': outlier_ratio[i],
                 'trial': j,
@@ -109,10 +125,10 @@ for i in range(len(outlier_ratio)):
             }
             df_ersvm = df_ersvm.append(pd.Series(row_dca, name=pd.datetime.today()))
             # Enu-SVM
-            print 'Train Enu-SVM (nu, ratio, trial):', (nu_list[k], outlier_ratio[i], j)
+            logger.info("Train Enu-SVM (nu, ratio, trial): {}".format((nu_list[k], outlier_ratio[i], j)))
             model_enusvm = enusvm.EnuSVM(nu=nu_list[k])
             model_enusvm.fit(x_tr, y_tr, initial_weight)
-            print 'time:', model_enusvm.comp_time, '\n'
+            logger.info("time: {}".format(model_enusvm.comp_time))
             row_enusvm = {
                 'ratio': outlier_ratio[i],
                 'trial': j,
@@ -126,10 +142,10 @@ for i in range(len(outlier_ratio)):
             }
             df_enusvm = df_enusvm.append(pd.Series(row_enusvm, name=pd.datetime.today()))
             # ER-SVM with heuristic VaR minimization algorithm
-            print 'Train ER-SVM with Heuristics (nu, ratio, trial):', (nu_list[k], outlier_ratio[i], j)
+            logger.info("Train ER-SVM with Heuristics (nu, ratio, trial): {}".format((nu_list[k], outlier_ratio[i], j)))
             model_var = ersvmh.HeuristicLinearERSVM(nu=nu_list[k], gamma=0.03 / nu_list[k])
             model_var.fit(x_tr, y_tr, initial_weight)
-            print 'time:', model_var.comp_time, '\n'
+            logger.info("time: {}".format(model_var.comp_time))
             row_var = {
                 'ratio': outlier_ratio[i],
                 'trial': j,
@@ -161,12 +177,11 @@ for i in range(len(outlier_ratio)):
             # }
             # df_libsvm = df_libsvm.append(pd.Series(row_libsvm, name=pd.datetime.today()))
 
+logger.info("Training finished")
 # pd.set_option('line_width', 200)
 
 # Save as csv
-# df_dca.to_csv(dir_name_result+'dca.csv', index=False)
-# df_enu.to_csv(dir_name_result+'enu.csv', index=False)
-# df_var.to_csv(dir_name_result+'var.csv', index=False)
-# df_ramp.to_csv(dir_name_result+'ramp.csv', index=False)
-# df_libsvm.to_csv(dir_name_result+'libsvm.csv', index=False)
-# df_conv.to_csv(dir_name_result+'conv.csv', index=False)
+df_ersvm.to_csv("results/mnist/ersvm.csv", index=False)
+df_enusvm.to_csv("results/mnist/enusvm.csv", index=False)
+df_var.to_csv("results/mnist/var.csv", index=False)
+df_ramp.to_csv("results/mnist/ramp.csv", index=False)
