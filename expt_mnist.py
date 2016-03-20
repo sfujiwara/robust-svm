@@ -37,12 +37,11 @@ num, dim = x.shape
 np.random.seed(0)
 
 # Experimental set up
-# num_tr = 6068   # size of training set
-num_tr = 100
+num_tr = 6068   # size of training set
 num_val = 4551  # size of validation set
 num_t = 4551    # size of test set
-radius = 150     # level of outlier
-trial = 1
+radius = 300     # level of outlier
+trial = 3
 
 # Candidates of hyper-parameters
 nu_list = np.linspace(0.9, 0.1, 9)
