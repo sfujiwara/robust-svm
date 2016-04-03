@@ -48,7 +48,7 @@ trial = 3
 # Candidates of hyper-parameters
 nu_list = np.linspace(0.9, 0.1, 9)
 c_list = np.array([5. ** i for i in range(4, -5, -1)])
-outlier_ratio = np.array([0., 0.03, 0.05, 0.1])
+outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.2])
 
 # Scaling
 # ersvmutil.libsvm_scale(x)
