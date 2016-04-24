@@ -26,32 +26,36 @@ sys.stdout = open("logs/internet_ad_stdout.txt", "w")
 sys.stderr = open("logs/internet_ad_stderror.txt", "w")
 
 # Load internet ad. data (nu_min, nu_max) = (0012, 0.323)
+print 'load'
 df = pd.read_csv("data/UCI/internet_ad/ad.data", header=None, skipinitialspace=True)
+print "load"
 df[1558][df[1558] == "ad."] = 1.
 df[1558][df[1558] == "nonad."] = -1.
-df[1558] = df[1558].astype(float)
-df = df.replace("?", np.nan)
-df = df.dropna()
-x = np.array(df.iloc[:, :1558], dtype=float)
-y = np.array(df[1558], dtype=float)
+df = df.iloc[:, 4:]
+# df = df.replace("?", np.nan)
+# df = df.dropna()
+x = np.array(df.iloc[:, :(len(df.columns)-1)], dtype=float)
+y = np.array(df.iloc[:, len(df.columns)-1], dtype=float)
+# x = np.array(df.iloc[:, :1555], dtype=float)
+# y = np.array(df[1555], dtype=float)
 num, dim = x.shape
 
 # Set seed
 np.random.seed(0)
 
 # Experimental set up
-num_tr = 943   # size of training set
-num_tr = 100
-num_val = 708  # size of validation set
-num_t = 708    # size of test set
+num_tr = 1311   # size of training set
+# num_tr = 200
+num_val = 984  # size of validation set
+num_t = 984    # size of test set
 radius = 300     # level of outlier
-trial = 3
-trial = 1
+trial = 10
+# trial = 1
 
 # Candidates of hyper-parameters
 nu_list = np.linspace(0.25, 0.05, 9)
 c_list = np.array([5. ** i for i in range(4, -5, -1)])
-outlier_ratio = np.array([0., 0.03, 0.05, 0.1])
+outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.2])
 
 # Scaling
 # ersvmutil.libsvm_scale(x)
