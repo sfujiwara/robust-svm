@@ -8,13 +8,14 @@ import pandas as pd
 from sklearn.datasets import fetch_mldata
 # from sklearn.metrics import f1_score
 # from sklearn import svm
+from sklearn.datasets import load_svmlight_file
 
 # Import my modules
 from mysvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
 
 # Logging
 logging.basicConfig(
-    filename="logs/expt_madelon.log",
+    filename="logs/expt_w6a.log",
     level=logging.DEBUG,
     filemode="w",
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -22,16 +23,12 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.info("info test")
 
-sys.stdout = open("logs/madelon_stdout.txt", "w")
-sys.stderr = open("logs/madelon_stderror.txt", "w")
+# sys.stdout = open("logs/w6a_stdout.txt", "w")
+# sys.stderr = open("logs/w6a_stderror.txt", "w")
 
-# Load internet ad. data (nu_min, nu_max) = (0012, 0.323)
-x1 = np.loadtxt("data/UCI/madelon/madelon_valid.data")
-x2 = np.loadtxt("data/UCI/madelon/madelon_train.data")
-y1 = np.loadtxt("data/UCI/madelon/madelon_valid.labels")
-y2 = np.loadtxt("data/UCI/madelon/madelon_train.labels")
-x = np.vstack([x1, x2])
-y = np.hstack([y1, y2])
+# Load data
+x, y = load_svmlight_file("data/LIBSVM/w6a/w6a")
+x = x.toarray()
 num, dim = x.shape
 
 # Set seed
@@ -46,13 +43,15 @@ trial = 10
 # trial = 1
 
 # Candidates of hyper-parameters
-nu_list = np.linspace(0.95, 0.1, 9)
+nu_list = np.linspace(0.55, 0.1, 9)
 c_list = np.array([5. ** i for i in range(4, -5, -1)])
 outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.2])
 
 # Scaling
 # ersvmutil.libsvm_scale(x)
 svmutil.standard_scale(x)
+
+sys.exit(0)
 
 # Initial point generated at random
 initial_weight = np.random.normal(size=dim)
@@ -184,7 +183,7 @@ logger.info("Training finished")
 # pd.set_option('line_width', 200)
 
 # Save as csv
-df_ersvm.to_csv("results/madelon/ersvm.csv", index=False)
-df_enusvm.to_csv("results/madelon/enusvm.csv", index=False)
-df_var.to_csv("results/madelon/var.csv", index=False)
-df_ramp.to_csv("results/madelon/ramp.csv", index=False)
+df_ersvm.to_csv("results/w6a/ersvm.csv", index=False)
+df_enusvm.to_csv("results/w6a/enusvm.csv", index=False)
+df_var.to_csv("results/w6a/var.csv", index=False)
+df_ramp.to_csv("results/w6a/ramp.csv", index=False)
