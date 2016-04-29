@@ -39,11 +39,11 @@ np.random.seed(0)
 
 # Experimental set up
 num_tr = 1040   # size of training set
-num_tr = 100
+# num_tr = 100
 num_val = 780  # size of validation set
 num_t = 780    # size of test set
 trial = 10
-trial = 1
+# trial = 1
 
 # Candidates of hyper-parameters
 nu_list = np.linspace(0.95, 0.65, 9)
