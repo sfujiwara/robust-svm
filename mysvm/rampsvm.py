@@ -43,7 +43,7 @@ class RampSVM:
         else:
             print 'Undefined Kernel!!'
         # Round gram matrix to be PSD and symmetric
-        qmat = (kmat.T * y).T * y + 1e-5*np.eye(num)
+        qmat = (kmat.T * y).T * y + 1e-4*np.eye(num)
         qmat = np.round(qmat, 7)
         # CPLEX object
         c = cplex.Cplex()
