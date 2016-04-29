@@ -37,7 +37,8 @@ class LinearERSVM:
     def score(self, x, y):
         num, dim = x.shape
         dv = np.dot(x, self.weight) + self.bias
-        return sum(dv * y > 0 + 1e-9) / float(num)
+        # return sum(dv * y > 0 + 1e-9) / float(num)
+        return sum(dv * y > 0) / float(num)
 
     def f1_score(self, x, y):
         dv = np.dot(x, self.weight) + self.bias

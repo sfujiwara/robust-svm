@@ -4,10 +4,10 @@ import numpy as np
 import pandas as pd
 
 # Load result csv
-df_ersvm = pd.read_csv("results/internet_ad/ersvm.csv")
-df_var = pd.read_csv("results/internet_ad/var.csv")
-df_enusvm = pd.read_csv("results/internet_ad/enusvm.csv")
-df_ramp = pd.read_csv("results/internet_ad/ramp.csv")
+df_ersvm = pd.read_csv("results/internet_ad/labelflip/ersvm.csv")
+df_var = pd.read_csv("results/internet_ad/labelflip/var.csv")
+df_enusvm = pd.read_csv("results/internet_ad/labelflip/enusvm.csv")
+df_ramp = pd.read_csv("results/internet_ad/labelflip/ramp.csv")
 
 # Indices achieving maximum validation performance in each trial
 ind_dca = df_ersvm.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
