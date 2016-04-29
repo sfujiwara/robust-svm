@@ -22,8 +22,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.info("info test")
 
-# sys.stdout = open("logs/internet_ad_stdout.txt", "w")
-# sys.stderr = open("logs/internet_ad_stderror.txt", "w")
+sys.stdout = open("logs/madelon_stdout.txt", "w")
+sys.stderr = open("logs/madelon_stderror.txt", "w")
 
 # Load internet ad. data (nu_min, nu_max) = (0012, 0.323)
 x1 = np.loadtxt("data/UCI/madelon/madelon_valid.data")
@@ -42,7 +42,6 @@ num_tr = 1040   # size of training set
 num_tr = 100
 num_val = 780  # size of validation set
 num_t = 780    # size of test set
-radius = 300     # level of outlier
 trial = 10
 trial = 1
 
@@ -82,8 +81,10 @@ for i in range(len(outlier_ratio)):
         x_val, y_val = np.array(x[ind_val]), np.array(y[ind_val])  # validation samples
         # Generate synthetic outliers
         if num_ol_tr > 0:
-            x_tr[:num_ol_tr] = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
-            x_val[:num_ol_val] = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
+            # x_tr[:num_ol_tr] = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
+            # x_val[:num_ol_val] = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
+            y_tr[np.random.choice(num_tr, num_ol_tr, replace=False)] *= -1.
+            y_val[np.random.choice(num_val, num_ol_val, replace=False)] *= -1.
         # Initial point generated at random
         initial_weight = np.random.normal(size=dim)
         initial_weight /= np.linalg.norm(initial_weight)
