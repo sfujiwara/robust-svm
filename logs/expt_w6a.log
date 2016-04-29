@@ -1,3 +1,363 @@
-2016-04-30 05:12:26,539 - __main__ - INFO - info test
-2016-04-30 05:20:49,386 - __main__ - INFO - info test
-2016-04-30 05:21:20,790 - __main__ - INFO - info test
+2016-04-30 05:37:29,446 - __main__ - INFO - info test
+2016-04-30 05:39:50,863 - __main__ - INFO - info test
+2016-04-30 05:39:51,249 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
+2016-04-30 05:39:51,315 - __main__ - INFO - time: 0.0655560493469
+2016-04-30 05:39:51,508 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.55000000000000004, 0.0, 0)
+2016-04-30 05:39:51,818 - __main__ - INFO - time: 0.309191942215
+2016-04-30 05:39:51,986 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.55000000000000004, 0.0, 0)
+2016-04-30 05:39:52,195 - __main__ - INFO - time: 0.202749967575
+2016-04-30 05:39:52,368 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.55000000000000004, 0.0, 0)
+2016-04-30 05:39:52,368 - __main__ - INFO - time: 6.29425048828e-05
+2016-04-30 05:39:52,544 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
+2016-04-30 05:39:52,600 - __main__ - INFO - time: 0.0554358959198
+2016-04-30 05:39:52,774 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.49375000000000002, 0.0, 0)
+2016-04-30 05:39:53,100 - __main__ - INFO - time: 0.324393033981
+2016-04-30 05:39:53,274 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.49375000000000002, 0.0, 0)
+2016-04-30 05:39:53,483 - __main__ - INFO - time: 0.202903032303
+2016-04-30 05:39:53,659 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.49375000000000002, 0.0, 0)
+2016-04-30 05:39:53,659 - __main__ - INFO - time: 6.29425048828e-05
+2016-04-30 05:39:53,834 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
+2016-04-30 05:39:53,891 - __main__ - INFO - time: 0.0571920871735
+2016-04-30 05:39:54,066 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.4375, 0.0, 0)
+2016-04-30 05:39:54,392 - __main__ - INFO - time: 0.325495958328
+2016-04-30 05:39:54,564 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.4375, 0.0, 0)
+2016-04-30 05:39:54,779 - __main__ - INFO - time: 0.207872867584
+2016-04-30 05:39:54,954 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.4375, 0.0, 0)
+2016-04-30 05:39:54,954 - __main__ - INFO - time: 6.19888305664e-05
+2016-04-30 05:39:55,128 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
+2016-04-30 05:39:55,186 - __main__ - INFO - time: 0.0577390193939
+2016-04-30 05:39:55,362 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.38125000000000003, 0.0, 0)
+2016-04-30 05:39:55,691 - __main__ - INFO - time: 0.327844142914
+2016-04-30 05:39:55,864 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.38125000000000003, 0.0, 0)
+2016-04-30 05:39:56,088 - __main__ - INFO - time: 0.215213060379
+2016-04-30 05:39:56,271 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.38125000000000003, 0.0, 0)
+2016-04-30 05:39:56,271 - __main__ - INFO - time: 6.19888305664e-05
+2016-04-30 05:39:56,445 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
+2016-04-30 05:39:56,502 - __main__ - INFO - time: 0.0569100379944
+2016-04-30 05:39:56,676 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.32500000000000001, 0.0, 0)
+2016-04-30 05:39:57,252 - __main__ - INFO - time: 0.575359106064
+2016-04-30 05:39:57,425 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.32500000000000001, 0.0, 0)
+2016-04-30 05:39:57,610 - __main__ - INFO - time: 0.175527095795
+2016-04-30 05:39:57,785 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.32500000000000001, 0.0, 0)
+2016-04-30 05:39:57,786 - __main__ - INFO - time: 5.98430633545e-05
+2016-04-30 05:39:57,958 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
+2016-04-30 05:39:58,015 - __main__ - INFO - time: 0.0569131374359
+2016-04-30 05:39:58,189 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.26874999999999999, 0.0, 0)
+2016-04-30 05:39:58,517 - __main__ - INFO - time: 0.326512098312
+2016-04-30 05:39:58,688 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.26874999999999999, 0.0, 0)
+2016-04-30 05:39:58,910 - __main__ - INFO - time: 0.215313911438
+2016-04-30 05:39:59,084 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.26874999999999999, 0.0, 0)
+2016-04-30 05:39:59,084 - __main__ - INFO - time: 6.19888305664e-05
+2016-04-30 05:39:59,260 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
+2016-04-30 05:39:59,316 - __main__ - INFO - time: 0.0554070472717
+2016-04-30 05:39:59,492 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.21250000000000002, 0.0, 0)
+2016-04-30 05:39:59,905 - __main__ - INFO - time: 0.411418914795
+2016-04-30 05:40:00,077 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.21250000000000002, 0.0, 0)
+2016-04-30 05:40:00,262 - __main__ - INFO - time: 0.178297996521
+2016-04-30 05:40:00,437 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.21250000000000002, 0.0, 0)
+2016-04-30 05:40:00,438 - __main__ - INFO - time: 6.41345977783e-05
+2016-04-30 05:40:00,612 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
+2016-04-30 05:40:00,668 - __main__ - INFO - time: 0.0552577972412
+2016-04-30 05:40:00,841 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.15625, 0.0, 0)
+2016-04-30 05:40:01,202 - __main__ - INFO - time: 0.359875917435
+2016-04-30 05:40:01,374 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.15625, 0.0, 0)
+2016-04-30 05:40:01,591 - __main__ - INFO - time: 0.21103811264
+2016-04-30 05:40:01,766 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.15625, 0.0, 0)
+2016-04-30 05:40:01,766 - __main__ - INFO - time: 5.88893890381e-05
+2016-04-30 05:40:01,944 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
+2016-04-30 05:40:02,005 - __main__ - INFO - time: 0.0594921112061
+2016-04-30 05:40:02,179 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.10000000000000001, 0.0, 0)
+2016-04-30 05:40:02,551 - __main__ - INFO - time: 0.370620012283
+2016-04-30 05:40:02,723 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.10000000000000001, 0.0, 0)
+2016-04-30 05:40:02,952 - __main__ - INFO - time: 0.222902059555
+2016-04-30 05:40:03,126 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.10000000000000001, 0.0, 0)
+2016-04-30 05:40:03,126 - __main__ - INFO - time: 6.00814819336e-05
+2016-04-30 05:40:03,317 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
+2016-04-30 05:40:03,375 - __main__ - INFO - time: 0.0568468570709
+2016-04-30 05:40:03,559 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.55000000000000004, 0.029999999999999999, 0)
+2016-04-30 05:40:04,009 - __main__ - INFO - time: 0.447778940201
+2016-04-30 05:40:04,182 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.55000000000000004, 0.029999999999999999, 0)
+2016-04-30 05:40:04,366 - __main__ - INFO - time: 0.178123950958
+2016-04-30 05:40:04,541 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.55000000000000004, 0.029999999999999999, 0)
+2016-04-30 05:40:04,541 - __main__ - INFO - time: 5.98430633545e-05
+2016-04-30 05:40:04,716 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
+2016-04-30 05:40:04,773 - __main__ - INFO - time: 0.0568590164185
+2016-04-30 05:40:04,950 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.49375000000000002, 0.029999999999999999, 0)
+2016-04-30 05:40:05,348 - __main__ - INFO - time: 0.396979808807
+2016-04-30 05:40:05,524 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.49375000000000002, 0.029999999999999999, 0)
+2016-04-30 05:40:05,742 - __main__ - INFO - time: 0.211739063263
+2016-04-30 05:40:05,917 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.49375000000000002, 0.029999999999999999, 0)
+2016-04-30 05:40:05,918 - __main__ - INFO - time: 7.39097595215e-05
+2016-04-30 05:40:06,091 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
+2016-04-30 05:40:06,151 - __main__ - INFO - time: 0.0592319965363
+2016-04-30 05:40:06,328 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.4375, 0.029999999999999999, 0)
+2016-04-30 05:40:06,738 - __main__ - INFO - time: 0.408832073212
+2016-04-30 05:40:06,913 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.4375, 0.029999999999999999, 0)
+2016-04-30 05:40:07,101 - __main__ - INFO - time: 0.181442022324
+2016-04-30 05:40:07,276 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.4375, 0.029999999999999999, 0)
+2016-04-30 05:40:07,277 - __main__ - INFO - time: 5.98430633545e-05
+2016-04-30 05:40:07,456 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
+2016-04-30 05:40:07,513 - __main__ - INFO - time: 0.0565819740295
+2016-04-30 05:40:07,688 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.38125000000000003, 0.029999999999999999, 0)
+2016-04-30 05:40:08,023 - __main__ - INFO - time: 0.33448600769
+2016-04-30 05:40:08,199 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.38125000000000003, 0.029999999999999999, 0)
+2016-04-30 05:40:08,444 - __main__ - INFO - time: 0.232868909836
+2016-04-30 05:40:08,619 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.38125000000000003, 0.029999999999999999, 0)
+2016-04-30 05:40:08,620 - __main__ - INFO - time: 6.00814819336e-05
+2016-04-30 05:40:08,794 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
+2016-04-30 05:40:08,851 - __main__ - INFO - time: 0.0569460391998
+2016-04-30 05:40:09,028 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.32500000000000001, 0.029999999999999999, 0)
+2016-04-30 05:40:09,447 - __main__ - INFO - time: 0.417829036713
+2016-04-30 05:40:09,622 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.32500000000000001, 0.029999999999999999, 0)
+2016-04-30 05:40:09,821 - __main__ - INFO - time: 0.192442893982
+2016-04-30 05:40:09,996 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.32500000000000001, 0.029999999999999999, 0)
+2016-04-30 05:40:09,996 - __main__ - INFO - time: 5.81741333008e-05
+2016-04-30 05:40:10,170 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
+2016-04-30 05:40:10,260 - __main__ - INFO - time: 0.0895781517029
+2016-04-30 05:40:10,435 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.26874999999999999, 0.029999999999999999, 0)
+2016-04-30 05:40:10,857 - __main__ - INFO - time: 0.421170949936
+2016-04-30 05:40:11,030 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.26874999999999999, 0.029999999999999999, 0)
+2016-04-30 05:40:11,235 - __main__ - INFO - time: 0.197848081589
+2016-04-30 05:40:11,408 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.26874999999999999, 0.029999999999999999, 0)
+2016-04-30 05:40:11,408 - __main__ - INFO - time: 6.103515625e-05
+2016-04-30 05:40:11,585 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
+2016-04-30 05:40:11,647 - __main__ - INFO - time: 0.0612289905548
+2016-04-30 05:40:11,821 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.21250000000000002, 0.029999999999999999, 0)
+2016-04-30 05:40:12,191 - __main__ - INFO - time: 0.368371963501
+2016-04-30 05:40:12,365 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.21250000000000002, 0.029999999999999999, 0)
+2016-04-30 05:40:12,563 - __main__ - INFO - time: 0.19064283371
+2016-04-30 05:40:12,737 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.21250000000000002, 0.029999999999999999, 0)
+2016-04-30 05:40:12,737 - __main__ - INFO - time: 6.00814819336e-05
+2016-04-30 05:40:12,913 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
+2016-04-30 05:40:12,974 - __main__ - INFO - time: 0.0601098537445
+2016-04-30 05:40:13,152 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.15625, 0.029999999999999999, 0)
+2016-04-30 05:40:13,709 - __main__ - INFO - time: 0.555598974228
+2016-04-30 05:40:13,881 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.15625, 0.029999999999999999, 0)
+2016-04-30 05:40:14,131 - __main__ - INFO - time: 0.235377073288
+2016-04-30 05:40:14,307 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.15625, 0.029999999999999999, 0)
+2016-04-30 05:40:14,527 - __main__ - INFO - time: 0.219830989838
+2016-04-30 05:40:14,702 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
+2016-04-30 05:40:14,763 - __main__ - INFO - time: 0.0600528717041
+2016-04-30 05:40:14,937 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.10000000000000001, 0.029999999999999999, 0)
+2016-04-30 05:40:15,447 - __main__ - INFO - time: 0.508920907974
+2016-04-30 05:40:15,619 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.10000000000000001, 0.029999999999999999, 0)
+2016-04-30 05:40:15,813 - __main__ - INFO - time: 0.187477111816
+2016-04-30 05:40:15,987 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.10000000000000001, 0.029999999999999999, 0)
+2016-04-30 05:40:16,864 - __main__ - INFO - time: 0.876877069473
+2016-04-30 05:40:17,054 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
+2016-04-30 05:40:17,112 - __main__ - INFO - time: 0.0572371482849
+2016-04-30 05:40:17,289 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.55000000000000004, 0.050000000000000003, 0)
+2016-04-30 05:40:17,783 - __main__ - INFO - time: 0.493589162827
+2016-04-30 05:40:17,959 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.55000000000000004, 0.050000000000000003, 0)
+2016-04-30 05:40:18,161 - __main__ - INFO - time: 0.193478107452
+2016-04-30 05:40:18,336 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.55000000000000004, 0.050000000000000003, 0)
+2016-04-30 05:40:18,336 - __main__ - INFO - time: 5.98430633545e-05
+2016-04-30 05:40:18,511 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
+2016-04-30 05:40:18,569 - __main__ - INFO - time: 0.0568919181824
+2016-04-30 05:40:18,746 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.49375000000000002, 0.050000000000000003, 0)
+2016-04-30 05:40:19,118 - __main__ - INFO - time: 0.370769023895
+2016-04-30 05:40:19,292 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.49375000000000002, 0.050000000000000003, 0)
+2016-04-30 05:40:19,494 - __main__ - INFO - time: 0.186101198196
+2016-04-30 05:40:19,669 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.49375000000000002, 0.050000000000000003, 0)
+2016-04-30 05:40:19,669 - __main__ - INFO - time: 5.91278076172e-05
+2016-04-30 05:40:19,845 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
+2016-04-30 05:40:19,905 - __main__ - INFO - time: 0.0593948364258
+2016-04-30 05:40:20,081 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.4375, 0.050000000000000003, 0)
+2016-04-30 05:40:20,563 - __main__ - INFO - time: 0.480888843536
+2016-04-30 05:40:20,736 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.4375, 0.050000000000000003, 0)
+2016-04-30 05:40:20,944 - __main__ - INFO - time: 0.200628995895
+2016-04-30 05:40:21,120 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.4375, 0.050000000000000003, 0)
+2016-04-30 05:40:21,120 - __main__ - INFO - time: 6.19888305664e-05
+2016-04-30 05:40:21,296 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
+2016-04-30 05:40:21,354 - __main__ - INFO - time: 0.0570061206818
+2016-04-30 05:40:21,529 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.38125000000000003, 0.050000000000000003, 0)
+2016-04-30 05:40:21,905 - __main__ - INFO - time: 0.374336957932
+2016-04-30 05:40:22,077 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.38125000000000003, 0.050000000000000003, 0)
+2016-04-30 05:40:22,280 - __main__ - INFO - time: 0.195765972137
+2016-04-30 05:40:22,453 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.38125000000000003, 0.050000000000000003, 0)
+2016-04-30 05:40:22,453 - __main__ - INFO - time: 6.19888305664e-05
+2016-04-30 05:40:22,627 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
+2016-04-30 05:40:22,685 - __main__ - INFO - time: 0.0568790435791
+2016-04-30 05:40:22,859 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.32500000000000001, 0.050000000000000003, 0)
+2016-04-30 05:40:23,272 - __main__ - INFO - time: 0.411901950836
+2016-04-30 05:40:23,445 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.32500000000000001, 0.050000000000000003, 0)
+2016-04-30 05:40:23,671 - __main__ - INFO - time: 0.208847999573
+2016-04-30 05:40:23,844 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.32500000000000001, 0.050000000000000003, 0)
+2016-04-30 05:40:23,844 - __main__ - INFO - time: 6.00814819336e-05
+2016-04-30 05:40:24,018 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
+2016-04-30 05:40:24,078 - __main__ - INFO - time: 0.0596289634705
+2016-04-30 05:40:24,255 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.26874999999999999, 0.050000000000000003, 0)
+2016-04-30 05:40:24,630 - __main__ - INFO - time: 0.373841047287
+2016-04-30 05:40:24,803 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.26874999999999999, 0.050000000000000003, 0)
+2016-04-30 05:40:25,011 - __main__ - INFO - time: 0.202057123184
+2016-04-30 05:40:25,185 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.26874999999999999, 0.050000000000000003, 0)
+2016-04-30 05:40:25,185 - __main__ - INFO - time: 5.91278076172e-05
+2016-04-30 05:40:25,360 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
+2016-04-30 05:40:25,418 - __main__ - INFO - time: 0.0574400424957
+2016-04-30 05:40:25,592 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.21250000000000002, 0.050000000000000003, 0)
+2016-04-30 05:40:26,145 - __main__ - INFO - time: 0.551115989685
+2016-04-30 05:40:26,317 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.21250000000000002, 0.050000000000000003, 0)
+2016-04-30 05:40:26,540 - __main__ - INFO - time: 0.215521097183
+2016-04-30 05:40:26,716 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.21250000000000002, 0.050000000000000003, 0)
+2016-04-30 05:40:26,964 - __main__ - INFO - time: 0.247470140457
+2016-04-30 05:40:27,138 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
+2016-04-30 05:40:27,197 - __main__ - INFO - time: 0.0582370758057
+2016-04-30 05:40:27,371 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.15625, 0.050000000000000003, 0)
+2016-04-30 05:40:27,998 - __main__ - INFO - time: 0.625921010971
+2016-04-30 05:40:28,171 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.15625, 0.050000000000000003, 0)
+2016-04-30 05:40:28,390 - __main__ - INFO - time: 0.211839914322
+2016-04-30 05:40:28,565 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.15625, 0.050000000000000003, 0)
+2016-04-30 05:40:29,696 - __main__ - INFO - time: 1.13035607338
+2016-04-30 05:40:29,870 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
+2016-04-30 05:40:29,927 - __main__ - INFO - time: 0.0572290420532
+2016-04-30 05:40:30,104 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.10000000000000001, 0.050000000000000003, 0)
+2016-04-30 05:40:30,915 - __main__ - INFO - time: 0.809071063995
+2016-04-30 05:40:31,095 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.10000000000000001, 0.050000000000000003, 0)
+2016-04-30 05:40:31,319 - __main__ - INFO - time: 0.20737695694
+2016-04-30 05:40:31,495 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.10000000000000001, 0.050000000000000003, 0)
+2016-04-30 05:40:32,947 - __main__ - INFO - time: 1.45113301277
+2016-04-30 05:40:33,143 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
+2016-04-30 05:40:33,203 - __main__ - INFO - time: 0.058819770813
+2016-04-30 05:40:33,378 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.55000000000000004, 0.10000000000000001, 0)
+2016-04-30 05:40:33,865 - __main__ - INFO - time: 0.485562086105
+2016-04-30 05:40:34,043 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.55000000000000004, 0.10000000000000001, 0)
+2016-04-30 05:40:34,255 - __main__ - INFO - time: 0.195708036423
+2016-04-30 05:40:34,431 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.55000000000000004, 0.10000000000000001, 0)
+2016-04-30 05:40:34,431 - __main__ - INFO - time: 6.19888305664e-05
+2016-04-30 05:40:34,606 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
+2016-04-30 05:40:34,666 - __main__ - INFO - time: 0.059583902359
+2016-04-30 05:40:34,842 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.49375000000000002, 0.10000000000000001, 0)
+2016-04-30 05:40:35,280 - __main__ - INFO - time: 0.437232017517
+2016-04-30 05:40:35,456 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.49375000000000002, 0.10000000000000001, 0)
+2016-04-30 05:40:35,637 - __main__ - INFO - time: 0.174988031387
+2016-04-30 05:40:35,812 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.49375000000000002, 0.10000000000000001, 0)
+2016-04-30 05:40:35,812 - __main__ - INFO - time: 5.98430633545e-05
+2016-04-30 05:40:35,987 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
+2016-04-30 05:40:36,045 - __main__ - INFO - time: 0.0568661689758
+2016-04-30 05:40:36,223 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.4375, 0.10000000000000001, 0)
+2016-04-30 05:40:36,653 - __main__ - INFO - time: 0.423321008682
+2016-04-30 05:40:36,827 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.4375, 0.10000000000000001, 0)
+2016-04-30 05:40:37,020 - __main__ - INFO - time: 0.186664819717
+2016-04-30 05:40:37,201 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.4375, 0.10000000000000001, 0)
+2016-04-30 05:40:37,201 - __main__ - INFO - time: 5.98430633545e-05
+2016-04-30 05:40:37,375 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
+2016-04-30 05:40:37,433 - __main__ - INFO - time: 0.0572881698608
+2016-04-30 05:40:37,607 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.38125000000000003, 0.10000000000000001, 0)
+2016-04-30 05:40:37,979 - __main__ - INFO - time: 0.371390104294
+2016-04-30 05:40:38,158 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.38125000000000003, 0.10000000000000001, 0)
+2016-04-30 05:40:38,366 - __main__ - INFO - time: 0.192552089691
+2016-04-30 05:40:38,543 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.38125000000000003, 0.10000000000000001, 0)
+2016-04-30 05:40:38,543 - __main__ - INFO - time: 6.00814819336e-05
+2016-04-30 05:40:38,718 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
+2016-04-30 05:40:38,776 - __main__ - INFO - time: 0.0569608211517
+2016-04-30 05:40:38,952 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.32500000000000001, 0.10000000000000001, 0)
+2016-04-30 05:40:39,295 - __main__ - INFO - time: 0.342749118805
+2016-04-30 05:40:39,470 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.32500000000000001, 0.10000000000000001, 0)
+2016-04-30 05:40:39,674 - __main__ - INFO - time: 0.189106225967
+2016-04-30 05:40:39,848 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.32500000000000001, 0.10000000000000001, 0)
+2016-04-30 05:40:39,849 - __main__ - INFO - time: 5.98430633545e-05
+2016-04-30 05:40:40,022 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
+2016-04-30 05:40:40,080 - __main__ - INFO - time: 0.057550907135
+2016-04-30 05:40:40,259 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.26874999999999999, 0.10000000000000001, 0)
+2016-04-30 05:40:40,649 - __main__ - INFO - time: 0.388761043549
+2016-04-30 05:40:40,821 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.26874999999999999, 0.10000000000000001, 0)
+2016-04-30 05:40:41,047 - __main__ - INFO - time: 0.211607933044
+2016-04-30 05:40:41,228 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.26874999999999999, 0.10000000000000001, 0)
+2016-04-30 05:40:41,229 - __main__ - INFO - time: 5.91278076172e-05
+2016-04-30 05:40:41,404 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
+2016-04-30 05:40:41,467 - __main__ - INFO - time: 0.0625560283661
+2016-04-30 05:40:41,641 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.21250000000000002, 0.10000000000000001, 0)
+2016-04-30 05:40:42,334 - __main__ - INFO - time: 0.691298007965
+2016-04-30 05:40:42,511 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.21250000000000002, 0.10000000000000001, 0)
+2016-04-30 05:40:42,714 - __main__ - INFO - time: 0.196640968323
+2016-04-30 05:40:42,889 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.21250000000000002, 0.10000000000000001, 0)
+2016-04-30 05:40:42,889 - __main__ - INFO - time: 5.79357147217e-05
+2016-04-30 05:40:43,066 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
+2016-04-30 05:40:43,127 - __main__ - INFO - time: 0.0602161884308
+2016-04-30 05:40:43,304 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.15625, 0.10000000000000001, 0)
+2016-04-30 05:40:44,195 - __main__ - INFO - time: 0.890181779861
+2016-04-30 05:40:44,368 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.15625, 0.10000000000000001, 0)
+2016-04-30 05:40:44,563 - __main__ - INFO - time: 0.187508106232
+2016-04-30 05:40:44,737 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.15625, 0.10000000000000001, 0)
+2016-04-30 05:40:45,175 - __main__ - INFO - time: 0.438188076019
+2016-04-30 05:40:45,350 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
+2016-04-30 05:40:45,407 - __main__ - INFO - time: 0.0570390224457
+2016-04-30 05:40:45,582 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.10000000000000001, 0.10000000000000001, 0)
+2016-04-30 05:40:46,084 - __main__ - INFO - time: 0.501106977463
+2016-04-30 05:40:46,261 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.10000000000000001, 0.10000000000000001, 0)
+2016-04-30 05:40:46,496 - __main__ - INFO - time: 0.219989061356
+2016-04-30 05:40:46,671 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.10000000000000001, 0.10000000000000001, 0)
+2016-04-30 05:40:48,122 - __main__ - INFO - time: 1.45090508461
+2016-04-30 05:40:48,319 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
+2016-04-30 05:40:48,381 - __main__ - INFO - time: 0.0606091022491
+2016-04-30 05:40:48,558 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.55000000000000004, 0.20000000000000001, 0)
+2016-04-30 05:40:48,905 - __main__ - INFO - time: 0.345535993576
+2016-04-30 05:40:49,081 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.55000000000000004, 0.20000000000000001, 0)
+2016-04-30 05:40:49,276 - __main__ - INFO - time: 0.188861131668
+2016-04-30 05:40:49,452 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.55000000000000004, 0.20000000000000001, 0)
+2016-04-30 05:40:49,452 - __main__ - INFO - time: 8.89301300049e-05
+2016-04-30 05:40:49,628 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
+2016-04-30 05:40:49,688 - __main__ - INFO - time: 0.0596120357513
+2016-04-30 05:40:49,861 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.49375000000000002, 0.20000000000000001, 0)
+2016-04-30 05:40:50,206 - __main__ - INFO - time: 0.343945980072
+2016-04-30 05:40:50,376 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.49375000000000002, 0.20000000000000001, 0)
+2016-04-30 05:40:50,567 - __main__ - INFO - time: 0.183874130249
+2016-04-30 05:40:50,739 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.49375000000000002, 0.20000000000000001, 0)
+2016-04-30 05:40:50,740 - __main__ - INFO - time: 5.81741333008e-05
+2016-04-30 05:40:50,913 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
+2016-04-30 05:40:50,971 - __main__ - INFO - time: 0.0577661991119
+2016-04-30 05:40:51,149 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.4375, 0.20000000000000001, 0)
+2016-04-30 05:40:51,625 - __main__ - INFO - time: 0.47450709343
+2016-04-30 05:40:51,798 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.4375, 0.20000000000000001, 0)
+2016-04-30 05:40:52,010 - __main__ - INFO - time: 0.202582120895
+2016-04-30 05:40:52,189 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.4375, 0.20000000000000001, 0)
+2016-04-30 05:40:52,189 - __main__ - INFO - time: 6.103515625e-05
+2016-04-30 05:40:52,364 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
+2016-04-30 05:40:52,422 - __main__ - INFO - time: 0.0576009750366
+2016-04-30 05:40:52,597 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.38125000000000003, 0.20000000000000001, 0)
+2016-04-30 05:40:53,076 - __main__ - INFO - time: 0.478032112122
+2016-04-30 05:40:53,253 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.38125000000000003, 0.20000000000000001, 0)
+2016-04-30 05:40:53,508 - __main__ - INFO - time: 0.248398065567
+2016-04-30 05:40:53,681 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.38125000000000003, 0.20000000000000001, 0)
+2016-04-30 05:40:53,681 - __main__ - INFO - time: 6.19888305664e-05
+2016-04-30 05:40:53,855 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
+2016-04-30 05:40:53,913 - __main__ - INFO - time: 0.0575530529022
+2016-04-30 05:40:54,089 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.32500000000000001, 0.20000000000000001, 0)
+2016-04-30 05:40:54,715 - __main__ - INFO - time: 0.624619007111
+2016-04-30 05:40:54,887 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.32500000000000001, 0.20000000000000001, 0)
+2016-04-30 05:40:55,092 - __main__ - INFO - time: 0.198516130447
+2016-04-30 05:40:55,266 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.32500000000000001, 0.20000000000000001, 0)
+2016-04-30 05:40:55,977 - __main__ - INFO - time: 0.710740804672
+2016-04-30 05:40:56,129 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
+2016-04-30 05:40:56,194 - __main__ - INFO - time: 0.0640499591827
+2016-04-30 05:40:56,367 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.26874999999999999, 0.20000000000000001, 0)
+2016-04-30 05:40:56,938 - __main__ - INFO - time: 0.569607973099
+2016-04-30 05:40:57,111 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.26874999999999999, 0.20000000000000001, 0)
+2016-04-30 05:40:57,351 - __main__ - INFO - time: 0.233012914658
+2016-04-30 05:40:57,526 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.26874999999999999, 0.20000000000000001, 0)
+2016-04-30 05:40:58,640 - __main__ - INFO - time: 1.11403608322
+2016-04-30 05:40:58,815 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
+2016-04-30 05:40:58,874 - __main__ - INFO - time: 0.0580399036407
+2016-04-30 05:40:59,048 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.21250000000000002, 0.20000000000000001, 0)
+2016-04-30 05:40:59,587 - __main__ - INFO - time: 0.538234949112
+2016-04-30 05:40:59,760 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.21250000000000002, 0.20000000000000001, 0)
+2016-04-30 05:40:59,949 - __main__ - INFO - time: 0.182765960693
+2016-04-30 05:41:00,123 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.21250000000000002, 0.20000000000000001, 0)
+2016-04-30 05:41:02,766 - __main__ - INFO - time: 2.64265179634
+2016-04-30 05:41:02,938 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
+2016-04-30 05:41:03,006 - __main__ - INFO - time: 0.0673339366913
+2016-04-30 05:41:03,181 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.15625, 0.20000000000000001, 0)
+2016-04-30 05:41:03,737 - __main__ - INFO - time: 0.555298089981
+2016-04-30 05:41:03,911 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.15625, 0.20000000000000001, 0)
+2016-04-30 05:41:04,136 - __main__ - INFO - time: 0.209085941315
+2016-04-30 05:41:04,315 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.15625, 0.20000000000000001, 0)
+2016-04-30 05:41:06,211 - __main__ - INFO - time: 1.89569115639
+2016-04-30 05:41:06,385 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
+2016-04-30 05:41:06,447 - __main__ - INFO - time: 0.0611929893494
+2016-04-30 05:41:06,624 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.10000000000000001, 0.20000000000000001, 0)
+2016-04-30 05:41:07,303 - __main__ - INFO - time: 0.677242040634
+2016-04-30 05:41:07,478 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.10000000000000001, 0.20000000000000001, 0)
+2016-04-30 05:41:07,701 - __main__ - INFO - time: 0.210605144501
+2016-04-30 05:41:07,874 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.10000000000000001, 0.20000000000000001, 0)
+2016-04-30 05:41:09,226 - __main__ - INFO - time: 1.35145187378
+2016-04-30 05:41:09,402 - __main__ - INFO - Training finished

@@ -23,8 +23,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.info("info test")
 
-# sys.stdout = open("logs/w6a_stdout.txt", "w")
-# sys.stderr = open("logs/w6a_stderror.txt", "w")
+sys.stdout = open("logs/w6a_stdout.txt", "w")
+sys.stderr = open("logs/w6a_stderror.txt", "w")
 
 # Load data
 x, y = load_svmlight_file("data/LIBSVM/w6a/w6a")
@@ -35,11 +35,11 @@ num, dim = x.shape
 np.random.seed(0)
 
 # Experimental set up
-num_tr = 1040   # size of training set
+num_tr = 6874   # size of training set
 # num_tr = 100
-num_val = 780  # size of validation set
-num_t = 780    # size of test set
-trial = 10
+num_val = 5157  # size of validation set
+num_t = 5157    # size of test set
+trial = 3
 # trial = 1
 
 # Candidates of hyper-parameters
@@ -50,8 +50,6 @@ outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.2])
 # Scaling
 # ersvmutil.libsvm_scale(x)
 svmutil.standard_scale(x)
-
-sys.exit(0)
 
 # Initial point generated at random
 initial_weight = np.random.normal(size=dim)
