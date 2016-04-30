@@ -1,2 +1,11 @@
-/usr/lib/python2.7/dist-packages/pandas/io/parsers.py:1070: DtypeWarning: Columns (3) have mixed types. Specify dtype option on import or set low_memory=False.
-  data = self._reader.read(nrows)
+sys:1: DtypeWarning: Columns (3) have mixed types. Specify dtype option on import or set low_memory=False.
+expt_internet_ad_labelflip_retry.py:35: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  df[1558][df[1558] == "ad."] = 1.
+expt_internet_ad_labelflip_retry.py:36: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  df[1558][df[1558] == "nonad."] = -1.
