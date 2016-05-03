@@ -3,18 +3,25 @@
 # import time
 import sys
 import logging
+import yaml
+import argparse
 import numpy as np
 import pandas as pd
-from sklearn.datasets import fetch_mldata
-# from sklearn.metrics import f1_score
-# from sklearn import svm
-
 # Import my modules
 from mysvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
+import data_loader
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-c", "--conf-file", type=str)
+args = parser.parse_args()
+
+# Load Config
+config = yaml.load(open(args.conf_file).read())
+DATASET_NAME = config["data"]["name"]
 
 # Logging
 logging.basicConfig(
-    filename="logs/expt_internet_ad_labelflip.log",
+    filename="logs/{}.log".format(DATASET_NAME),
     level=logging.DEBUG,
     filemode="w",
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -22,39 +29,23 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.info("info test")
 
-sys.stdout = open("logs/internet_ad_labelflip_stdout.txt", "w")
-sys.stderr = open("logs/internet_ad_labelflip_stderror.txt", "w")
-
 # Load internet ad. data (nu_min, nu_max) = (0012, 0.323)
-df = pd.read_csv("data/UCI/internet_ad/ad.data", header=None, skipinitialspace=True)
-df[1558][df[1558] == "ad."] = 1.
-df[1558][df[1558] == "nonad."] = -1.
-df = df.iloc[:, 4:]
-# df = df.replace("?", np.nan)
-# df = df.dropna()
-x = np.array(df.iloc[:, :(len(df.columns)-1)], dtype=float)
-y = np.array(df.iloc[:, len(df.columns)-1], dtype=float)
-# x = np.array(df.iloc[:, :1555], dtype=float)
-# y = np.array(df[1555], dtype=float)
+x, y = data_loader.load_data(config["data"]["name"])
 num, dim = x.shape
 
 # Set seed
 np.random.seed(0)
 
 # Experimental set up
-num_tr = 1311   # size of training set
-# num_tr = 200
-num_val = 984  # size of validation set
-num_t = 984    # size of test set
-radius = 300     # level of outlier
-trial = 10
-# trial = 1
+num_tr = int(num * 0.4)   # size of training set
+num_val = int(num * 0.3)  # size of validation set
+num_t = num - num_tr - num_val    # size of test set
+trial = config["num_trials"]
 
 # Candidates of hyper-parameters
-# nu_list = np.linspace(0.25, 0.05, 9)
-nu_list = np.linspace(0.25, 0.1, 9)
+nu_list = np.linspace(config["hyper_parameters"]["nu_max"], config["hyper_parameters"]["nu_min"], 9)
 c_list = np.array([5. ** i for i in range(4, -5, -1)])
-outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.2])
+outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15, 0.2])
 
 # Scaling
 # ersvmutil.libsvm_scale(x)
@@ -87,6 +78,8 @@ for i in range(len(outlier_ratio)):
         x_val, y_val = np.array(x[ind_val]), np.array(y[ind_val])  # validation samples
         # Generate synthetic outliers
         if num_ol_tr > 0:
+            # x_tr[:num_ol_tr] = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
+            # x_val[:num_ol_val] = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
             y_tr[np.random.choice(num_tr, num_ol_tr, replace=False)] *= -1.
             y_val[np.random.choice(num_val, num_ol_val, replace=False)] *= -1.
         # Initial point generated at random
@@ -188,7 +181,7 @@ logger.info("Training finished")
 # pd.set_option('line_width', 200)
 
 # Save as csv
-df_ersvm.to_csv("results/internet_ad/labelflip/ersvm2.csv", index=False)
-df_enusvm.to_csv("results/internet_ad/labelflip/enusvm2.csv", index=False)
-df_var.to_csv("results/internet_ad/labelflip/var2.csv", index=False)
-df_ramp.to_csv("results/internet_ad/labelflip/ramp2.csv", index=False)
+df_ersvm.to_csv("results/{}/ersvm.csv".format(DATASET_NAME), index=False)
+df_enusvm.to_csv("results/{}/enusvm.csv".format(DATASET_NAME), index=False)
+df_var.to_csv("results/{}/var.csv".format(DATASET_NAME), index=False)
+df_ramp.to_csv("results/{}/ramp.csv".format(DATASET_NAME), index=False)

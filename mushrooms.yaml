@@ -1,0 +1,10 @@
+data:
+  name: mushrooms
+  # path: data/LIBSVM/mushrooms/mushrooms
+  # format: LIBSVM
+
+num_trials: 10
+
+hyper_parameters:
+  nu_max: 0.9
+  nu_min: 0.1
