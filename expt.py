@@ -42,6 +42,9 @@ num_val = int(num * 0.3)  # size of validation set
 num_t = num - num_tr - num_val    # size of test set
 trial = config["num_trials"]
 
+# num_tr = 10
+# trial = 1
+
 # Candidates of hyper-parameters
 nu_list = np.linspace(config["hyper_parameters"]["nu_max"], config["hyper_parameters"]["nu_min"], 9)
 c_list = np.array([5. ** i for i in range(4, -5, -1)])
