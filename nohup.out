@@ -10,3 +10,9 @@ Traceback (most recent call last):
   File "/home/shuhei_fujiwara/robust-svm/mysvm/ersvm.py", line 5, in <module>
     import cplex
 ImportError: No module named cplex
+Traceback (most recent call last):
+  File "expt_w6a.py", line 14, in <module>
+    from mysvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
+  File "/home/shuhei_fujiwara/robust-svm/mysvm/ersvm.py", line 5, in <module>
+    import cplex
+ImportError: No module named cplex
