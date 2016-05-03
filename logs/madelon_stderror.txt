@@ -1,0 +1,4 @@
+Markowitz threshold set to 0.1
+Markowitz threshold set to 0.1
+Markowitz threshold set to 0.1
+Markowitz threshold set to 0.1
