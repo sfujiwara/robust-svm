@@ -51,7 +51,8 @@ trial = 10
 # trial = 1
 
 # Candidates of hyper-parameters
-nu_list = np.linspace(0.25, 0.05, 9)
+# nu_list = np.linspace(0.25, 0.05, 9)
+nu_list = np.linspace(0.25, 0.1, 9)
 c_list = np.array([5. ** i for i in range(4, -5, -1)])
 outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.2])
 
@@ -187,7 +188,7 @@ logger.info("Training finished")
 # pd.set_option('line_width', 200)
 
 # Save as csv
-df_ersvm.to_csv("results/internet_ad/labelflip/ersvm.csv", index=False)
-df_enusvm.to_csv("results/internet_ad/labelflip/enusvm.csv", index=False)
-df_var.to_csv("results/internet_ad/labelflip/var.csv", index=False)
-df_ramp.to_csv("results/internet_ad/labelflip/ramp.csv", index=False)
+df_ersvm.to_csv("results/internet_ad/labelflip/ersvm2.csv", index=False)
+df_enusvm.to_csv("results/internet_ad/labelflip/enusvm.2csv", index=False)
+df_var.to_csv("results/internet_ad/labelflip/var2.csv", index=False)
+df_ramp.to_csv("results/internet_ad/labelflip/ramp2.csv", index=False)
