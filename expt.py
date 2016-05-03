@@ -2,6 +2,7 @@
 
 # import time
 import sys
+import os
 import logging
 import yaml
 import argparse
@@ -30,7 +31,7 @@ logger = logging.getLogger(__name__)
 logger.info("info test")
 
 # Load internet ad. data (nu_min, nu_max) = (0012, 0.323)
-x, y = data_loader.load_data(config["data"]["name"])
+x, y = data_loader.load_data(DATASET_NAME)
 num, dim = x.shape
 
 # Set seed
@@ -184,6 +185,8 @@ logger.info("Training finished")
 # pd.set_option('line_width', 200)
 
 # Save as csv
+if not os.path.isdir("results/{}".format(DATASET_NAME)):
+    os.makedirs("results/{}".format(DATASET_NAME))
 df_ersvm.to_csv("results/{}/ersvm.csv".format(DATASET_NAME), index=False)
 df_enusvm.to_csv("results/{}/enusvm.csv".format(DATASET_NAME), index=False)
 df_var.to_csv("results/{}/var.csv".format(DATASET_NAME), index=False)
