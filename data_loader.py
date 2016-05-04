@@ -2,7 +2,7 @@
 
 from sklearn.datasets import load_svmlight_file
 from sklearn.datasets.mldata import fetch_mldata
-
+import numpy as np
 
 def load_data(name):
     if name == "mushrooms":
@@ -55,7 +55,7 @@ def load_dna():
     x, y = x[ind].todense(), y[ind].astype(float)
     y[y == 2] = 1.
     y[y == 3] = -1.
-    return x, y, x_outlier
+    return np.array(x), np.array(y), np.array(x_outlier)
 
 if __name__ == "__main__":
     x, y, x_outlier = load_dna()
