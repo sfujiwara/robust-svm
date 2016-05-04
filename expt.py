@@ -51,7 +51,7 @@ nu_list = np.linspace(config["hyper_parameters"]["nu_max"], config["hyper_parame
 c_list = np.array([5. ** i for i in range(4, -5, -1)])
 outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15, 0.2])
 
-sys.exit(0)
+# sys.exit(0)
 
 # Scaling
 # ersvmutil.libsvm_scale(x)
