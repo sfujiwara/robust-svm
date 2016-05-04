@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from sklearn.datasets import load_svmlight_file
+from sklearn.datasets.mldata import fetch_mldata
 
 
 def load_data(name):
@@ -10,6 +11,8 @@ def load_data(name):
         return load_gisette()
     if name == "usps":
         return load_usps()
+    if name == "dna":
+        return load_dna()
 
 
 def load_mushrooms():
@@ -35,5 +38,24 @@ def load_usps():
     return x, y, x_outlier
 
 
+def load_connect4():
+    data = fetch_mldata("connect-4")
+    x, y = data["data"], data["target"]
+    x_outlier = x[y == 0]
+    ind = (y != 0)
+    x, y = x[ind].todense(), y[ind].astype(float)
+    return x, y, x_outlier
+
+
+def load_dna():
+    data = fetch_mldata("dna")
+    x, y = data["data"], data["target"]
+    x_outlier = x[y == 1]
+    ind = (y != 1)
+    x, y = x[ind].todense(), y[ind].astype(float)
+    y[y == 2] = 1.
+    y[y == 3] = -1.
+    return x, y, x_outlier
+
 if __name__ == "__main__":
-    x, y, x_outlier = load_usps()
+    x, y, x_outlier = load_dna()
