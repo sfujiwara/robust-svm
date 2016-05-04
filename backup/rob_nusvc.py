@@ -313,7 +313,7 @@ if __name__ == '__main__':
     ## print 'nu_min:', calc_nu_min(x, y)
     
     ## Read data set from csv
-    ## dataset = np.loadtxt('Dataset/LIBSVM/splice/splice_scale.csv', delimiter=',')
+    ## dataset = np.loadtxt('Dataset/libsvm/splice/splice_scale.csv', delimiter=',')
     ## x = dataset[:, 1:]
     ## y = dataset[:, 0]
     ## num, dim = x.shape

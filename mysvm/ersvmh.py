@@ -87,7 +87,7 @@ class HeuristicLinearERSVM:
 
 
 if __name__ == '__main__':
-    dataset = np.loadtxt('data/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
+    dataset = np.loadtxt('data/libsvm/liver-disorders/liver-disorders_scale.csv', delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
     num, dim = x.shape

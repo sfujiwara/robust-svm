@@ -19,6 +19,7 @@ args = parser.parse_args()
 # Load Config
 config = yaml.load(open(args.conf_file).read())
 DATASET_NAME = config["data"]["name"]
+OUTLIER_METHOD = config["outlier"]["method"]
 
 # Logging
 logging.basicConfig(
@@ -31,7 +32,7 @@ logger = logging.getLogger(__name__)
 logger.info("info test")
 
 # Load internet ad. data (nu_min, nu_max) = (0012, 0.323)
-x, y = data_loader.load_data(DATASET_NAME)
+x, y, x_outlier = data_loader.load_data(DATASET_NAME)
 num, dim = x.shape
 
 # Set seed
@@ -44,12 +45,13 @@ num_t = num - num_tr - num_val    # size of test set
 trial = config["num_trials"]
 
 # num_tr = 10
-# trial = 1
 
 # Candidates of hyper-parameters
 nu_list = np.linspace(config["hyper_parameters"]["nu_max"], config["hyper_parameters"]["nu_min"], 9)
 c_list = np.array([5. ** i for i in range(4, -5, -1)])
 outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15, 0.2])
+
+sys.exit(0)
 
 # Scaling
 # ersvmutil.libsvm_scale(x)
@@ -84,8 +86,14 @@ for i in range(len(outlier_ratio)):
         if num_ol_tr > 0:
             # x_tr[:num_ol_tr] = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
             # x_val[:num_ol_val] = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
-            y_tr[np.random.choice(num_tr, num_ol_tr, replace=False)] *= -1.
-            y_val[np.random.choice(num_val, num_ol_val, replace=False)] *= -1.
+            if OUTLIER_METHOD == "label_flip":
+                y_tr[np.random.choice(num_tr, num_ol_tr, replace=False)] *= -1.
+                y_val[np.random.choice(num_val, num_ol_val, replace=False)] *= -1.
+            elif OUTLIER_METHOD == "another_class":
+                x_tr[:num_ol_tr] = x_outlier[np.random.choice(len(x_outlier), num_ol_tr, replace=False)]
+                x_val[:num_ol_val] = x_outlier[np.random.choice(len(x_outlier), num_ol_val, replace=False)]
+            else:
+                raise ValueError("{} is invalid value as OUTLIER_METHOD".format(OUTLIER_METHOD))
         # Initial point generated at random
         initial_weight = np.random.normal(size=dim)
         initial_weight /= np.linalg.norm(initial_weight)
@@ -162,13 +170,13 @@ for i in range(len(outlier_ratio)):
                 'comp_time': model_var.comp_time
             }
             df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
-            # C-SVM (LIBSVM)
-            # print 'Start LIBSVM'
+            # C-SVM (libsvm)
+            # print 'Start libsvm'
             # start = time.time()
             # model_libsvm = svm.SVC(C=c_list[k], kernel='linear', max_iter=-1)
             # model_libsvm.fit(x_tr, y_tr)
             # end = time.time()
-            # print 'End LIBSVM'
+            # print 'End libsvm'
             # print 'time:', end - start
             # row_libsvm = {
             #     'ratio': outlier_ratio[i],

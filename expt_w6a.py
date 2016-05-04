@@ -27,7 +27,7 @@ sys.stdout = open("logs/w6a_stdout.txt", "w")
 sys.stderr = open("logs/w6a_stderror.txt", "w")
 
 # Load data
-x, y = load_svmlight_file("data/LIBSVM/w6a/w6a")
+x, y = load_svmlight_file("data/libsvm/w6a/w6a")
 x = x.toarray()
 num, dim = x.shape
 
@@ -158,13 +158,13 @@ for i in range(len(outlier_ratio)):
                 'comp_time': model_var.comp_time
             }
             df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
-            # C-SVM (LIBSVM)
-            # print 'Start LIBSVM'
+            # C-SVM (libsvm)
+            # print 'Start libsvm'
             # start = time.time()
             # model_libsvm = svm.SVC(C=c_list[k], kernel='linear', max_iter=-1)
             # model_libsvm.fit(x_tr, y_tr)
             # end = time.time()
-            # print 'End LIBSVM'
+            # print 'End libsvm'
             # print 'time:', end - start
             # row_libsvm = {
             #     'ratio': outlier_ratio[i],

@@ -346,10 +346,10 @@ def heuristic_dr(xmat, y, nu, w_init, gamma=0.1, heuristics=False):
 if __name__ == '__main__':
     import pandas as pd
     # Read a UCI dataset
-    ## dataset = np.loadtxt('Dataset/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
-    ## dataset = np.loadtxt('Dataset/LIBSVM/heart/heart_scale.csv', delimiter=',')
+    ## dataset = np.loadtxt('Dataset/libsvm/liver-disorders/liver-disorders_scale.csv', delimiter=',')
+    ## dataset = np.loadtxt('Dataset/libsvm/heart/heart_scale.csv', delimiter=',')
     dataset = np.loadtxt('liver-disorders_scale.csv', delimiter=',')
-    ## dataset = np.loadtxt('Dataset/LIBSVM/sonar/sonar_scale.csv', delimiter=',')
+    ## dataset = np.loadtxt('Dataset/libsvm/sonar/sonar_scale.csv', delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
     num, dim = x.shape
