@@ -1,18 +1,4 @@
 Traceback (most recent call last):
-  File "expt_internet_ad.py", line 13, in <module>
-    from mysvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
-  File "/home/shuhei_fujiwara/robust-svm/mysvm/ersvm.py", line 5, in <module>
-    import cplex
-ImportError: No module named cplex
-Traceback (most recent call last):
-  File "expt_internet_ad.py", line 13, in <module>
-    from mysvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
-  File "/home/shuhei_fujiwara/robust-svm/mysvm/ersvm.py", line 5, in <module>
-    import cplex
-ImportError: No module named cplex
-Traceback (most recent call last):
-  File "expt_w6a.py", line 14, in <module>
-    from mysvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
-  File "/home/shuhei_fujiwara/robust-svm/mysvm/ersvm.py", line 5, in <module>
-    import cplex
-ImportError: No module named cplex
+  File "expt.py", line 93, in <module>
+    x_tr[:num_ol_tr] = x_outlier[np.random.choice(len(x_outlier), num_ol_tr, replace=False)]
+TypeError: len() of unsized object
