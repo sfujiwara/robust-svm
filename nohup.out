@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "expt.py", line 93, in <module>
-    x_tr[:num_ol_tr] = x_outlier[np.random.choice(len(x_outlier), num_ol_tr, replace=False)]
-TypeError: len() of unsized object
