@@ -8,4 +8,4 @@ hyper_parameters:
   nu_min: 0.1
 
 outlier:
-  method: another_classs
+  method: another_class
