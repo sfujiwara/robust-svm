@@ -1,0 +1,11 @@
+data:
+  name: madelon
+
+num_trials: 10
+
+hyper_parameters:
+  nu_max: 0.9
+  nu_min: 0.1
+
+outlier:
+  method: label_flip
