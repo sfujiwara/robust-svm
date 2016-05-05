@@ -2,9 +2,14 @@
 
 import numpy as np
 import pandas as pd
+import argparse
 
 
-DATASET_NAME = "usps"
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", "--dataset-name", type=str)
+args = parser.parse_args()
+
+DATASET_NAME = args.dataset_name
 
 # Load result csv
 df_ersvm = pd.read_csv("results/{}/ersvm.csv".format(DATASET_NAME))
