@@ -1,0 +1,11 @@
+data:
+  name: internet_ad
+
+num_trials: 10
+
+hyper_parameters:
+  nu_max: 0.2
+  nu_min: 0.055
+
+outlier:
+  method: label_flip

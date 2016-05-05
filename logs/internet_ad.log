@@ -1,0 +1,4 @@
+2016-05-06 02:41:01,980 - __main__ - INFO - info test
+2016-05-06 02:41:02,978 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
+2016-05-06 02:41:09,208 - __main__ - INFO - time: 6.22720503807
+2016-05-06 02:41:09,269 - __main__ - INFO - Train ER-SVM with DCA (nu, ratio, trial): (0.20000000000000001, 0.0, 0)

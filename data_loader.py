@@ -3,6 +3,7 @@
 from sklearn.datasets import load_svmlight_file
 from sklearn.datasets.mldata import fetch_mldata
 import numpy as np
+import pandas as pd
 
 
 def load_data(name):
@@ -14,6 +15,8 @@ def load_data(name):
         return load_usps()
     if name == "dna":
         return load_dna()
+    if name == "internet_ad":
+        return load_internet_ad()
 
 
 def load_mushrooms():
@@ -60,5 +63,18 @@ def load_dna():
     return np.array(x), np.array(y), np.array(x_outlier)
 
 
+def load_internet_ad():
+    df = pd.read_csv("data/UCI/internet_ad/ad.data", header=None, skipinitialspace=True)
+    df[1558][df[1558] == "ad."] = 1.
+    df[1558][df[1558] == "nonad."] = -1.
+    df = df.iloc[:, 4:]
+    x = np.array(df.iloc[:, :(len(df.columns) - 1)], dtype=float)
+    y = np.array(df.iloc[:, len(df.columns) - 1], dtype=float)
+    return x, y, None
+
+
 if __name__ == "__main__":
-    x, y, x_outlier = load_dna()
+    x, y, x_outlier = load_internet_ad()
+    from mysvm import svmutil
+    print "nu_max: {}".format(svmutil.calc_nu_max(y))
+
