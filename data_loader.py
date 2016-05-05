@@ -20,16 +20,17 @@ def load_data(name):
 
 
 def load_mushrooms():
-    x, y = load_svmlight_file("data/libsvm/mushrooms/mushrooms")
-    x = x.toarray()
+    data = fetch_mldata("mushrooms")
+    x = data["data"].todense()
+    y = data["target"].astype(float)
     y[y > 1.5] = -1.
-    return x, y
+    return x, y, None
 
 
 def load_gisette():
     x, y = load_svmlight_file("data/libsvm/gisette/gisette_scale.bz2")
     x = x.toarray()
-    return x, y
+    return x, y, None
 
 
 def load_usps():
