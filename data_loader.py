@@ -17,6 +17,10 @@ def load_data(name):
         return load_dna()
     if name == "internet_ad":
         return load_internet_ad()
+    if name == "w6a":
+        return load_w6a()
+    if name == "madelon":
+        return load_madelon()
 
 
 def load_mushrooms():
@@ -42,6 +46,15 @@ def load_usps():
     y[y != 1] = -1.
     return x, y, x_outlier
 
+
+def load_madelon():
+    x1 = np.loadtxt("data/UCI/madelon/madelon_valid.data")
+    x2 = np.loadtxt("data/UCI/madelon/madelon_train.data")
+    y1 = np.loadtxt("data/UCI/madelon/madelon_valid.labels")
+    y2 = np.loadtxt("data/UCI/madelon/madelon_train.labels")
+    x = np.vstack([x1, x2])
+    y = np.hstack([y1, y2])
+    return x, y, None
 
 def load_connect4():
     data = fetch_mldata("connect-4")
@@ -74,8 +87,14 @@ def load_internet_ad():
     return x, y, None
 
 
+def load_w6a():
+    x, y = load_svmlight_file("data/libsvm/w6a/w6a")
+    x = x.toarray()
+    return x, y, None
+
+
 if __name__ == "__main__":
-    x, y, x_outlier = load_internet_ad()
+    x, y, x_outlier = load_madelon()
     from mysvm import svmutil
     print "nu_max: {}".format(svmutil.calc_nu_max(y))
 
