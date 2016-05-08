@@ -115,8 +115,22 @@ def load_w6a():
     return x, y, None
 
 
+def load_aloi():
+    x, y = load_svmlight_file("data/libsvm/aloi/aloi.scale.bz2")
+    x = x.todense()
+    x_outlier = x[y == 999]
+    ind = (1 <= y) * (y <= 100)
+    x, y = x[ind], y[ind]
+    y[(1 <= y) * (y <= 50)] = 1.
+    y[(50 <= y) * (y <= 100)] = -1.
+    clf = svm.SVC(kernel="linear")
+    clf.fit(x, y)
+    y_outlier = clf.predict(x_outlier) * -1.
+    return np.array(x), y, np.array(x_outlier), y_outlier
+
+
 if __name__ == "__main__":
-    x, y, x_outlier, y_outlier = load_connect4()
+    x, y, x_outlier, y_outlier = load_aloi()
     from mysvm import svmutil
     print "nu_max: {}".format(svmutil.calc_nu_max(y))
 
