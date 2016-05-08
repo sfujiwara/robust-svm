@@ -81,7 +81,7 @@ def load_connect4():
     clf = svm.SVC(kernel="linear", cache_size=2000)
     clf.fit(x, y)
     y_outlier = clf.predict(x_outlier) * -1
-    return x, y, x_outlier, y_outlier
+    return np.array(x), y, np.array(x_outlier), y_outlier
 
 
 def load_dna():
@@ -130,7 +130,7 @@ def load_aloi():
 
 
 if __name__ == "__main__":
-    x, y, x_outlier, y_outlier = load_aloi()
+    x, y, x_outlier, y_outlier = load_connect4()
     from mysvm import svmutil
     print "nu_max: {}".format(svmutil.calc_nu_max(y))
 
