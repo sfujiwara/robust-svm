@@ -51,7 +51,10 @@ def load_usps():
     ind = (y != 2)
     x, y = x[ind], y[ind]
     y[y != 1] = -1.
-    return x, y, x_outlier
+    clf = svm.SVC(kernel="linear", cache_size=2000)
+    clf.fit(x, y)
+    y_outlier = clf.predict(x_outlier) * -1
+    return x, y, x_outlier, y_outlier
 
 
 def load_madelon():
@@ -107,7 +110,7 @@ def load_w6a():
 
 
 if __name__ == "__main__":
-    x, y, x_outlier, y_outlier = load_dna()
+    x, y, x_outlier, y_outlier = load_usps()
     from mysvm import svmutil
     print "nu_max: {}".format(svmutil.calc_nu_max(y))
 
