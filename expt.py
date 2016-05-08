@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 logger.info("info test")
 
 # Load internet ad. data (nu_min, nu_max) = (0012, 0.323)
-x, y, x_outlier = data_loader.load_data(DATASET_NAME)
+x, y, x_outlier, y_outlier = data_loader.load_data(DATASET_NAME)
 num, dim = x.shape
 
 # Set seed
@@ -90,8 +90,11 @@ for i in range(len(outlier_ratio)):
                 y_tr[np.random.choice(num_tr, num_ol_tr, replace=False)] *= -1.
                 y_val[np.random.choice(num_val, num_ol_val, replace=False)] *= -1.
             elif OUTLIER_METHOD == "another_class":
-                x_tr[:num_ol_tr] = x_outlier[np.random.choice(len(x_outlier), num_ol_tr, replace=False)]
-                x_val[:num_ol_val] = x_outlier[np.random.choice(len(x_outlier), num_ol_val, replace=False)]
+                ind_ol_tr = np.random.choice(len(x_outlier), num_ol_tr, replace=False)
+                ind_ol_val = np.random.choice(len(x_outlier), num_ol_val, replace=False)
+                x_tr[:num_ol_tr] = x_outlier[ind_ol_tr]
+                x_val[:num_ol_val] = x_outlier[ind_ol_val]
+                y_tr[:num_ol_tr], y_val[:num_ol_val] = y_outlier[ind_ol_tr], y_outlier[ind_ol_val]
             else:
                 raise ValueError("{} is invalid value as OUTLIER_METHOD".format(OUTLIER_METHOD))
         # Initial point generated at random

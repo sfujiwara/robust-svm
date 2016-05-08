@@ -2,6 +2,7 @@
 
 from sklearn.datasets import load_svmlight_file
 from sklearn.datasets.mldata import fetch_mldata
+from sklearn import svm
 import numpy as np
 import pandas as pd
 
@@ -37,6 +38,12 @@ def load_gisette():
     return x, y, None
 
 
+# def load_protein():
+#     x, y = load_svmlight_file("data/libsvm/protein/protein.bz2", dtype=str)
+#     # x = x.toarray()
+#     return x, y, None
+
+
 def load_usps():
     x, y = load_svmlight_file("data/libsvm/usps/usps.bz2")
     x = x.toarray()
@@ -56,13 +63,16 @@ def load_madelon():
     y = np.hstack([y1, y2])
     return x, y, None
 
+
 def load_connect4():
     data = fetch_mldata("connect-4")
     x, y = data["data"], data["target"]
     x_outlier = x[y == 0]
     ind = (y != 0)
     x, y = x[ind].todense(), y[ind].astype(float)
-    return x, y, x_outlier
+    np.random.seed(0)
+    ind = np.random.choice(range(len(x)), 10000)
+    return x[ind], y[ind], x_outlier
 
 
 def load_dna():
@@ -74,7 +84,10 @@ def load_dna():
     x, y = x[ind], y[ind].astype(float)
     y[y == 2] = 1.
     y[y == 3] = -1.
-    return np.array(x), np.array(y), np.array(x_outlier)
+    clf = svm.SVC(kernel="linear", cache_size=2000)
+    clf.fit(x, y)
+    y_outlier = clf.predict(x_outlier) * -1
+    return np.array(x), np.array(y), np.array(x_outlier), y_outlier
 
 
 def load_internet_ad():
@@ -94,7 +107,7 @@ def load_w6a():
 
 
 if __name__ == "__main__":
-    x, y, x_outlier = load_madelon()
+    x, y, x_outlier, y_outlier = load_dna()
     from mysvm import svmutil
     print "nu_max: {}".format(svmutil.calc_nu_max(y))
 

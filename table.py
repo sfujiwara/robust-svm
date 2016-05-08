@@ -6,16 +6,16 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-d", "--dataset-name", type=str)
+parser.add_argument("-d", "--dir", type=str)
 args = parser.parse_args()
 
-DATASET_NAME = args.dataset_name
+DATASET_NAME = args.dir
 
 # Load result csv
-df_ersvm = pd.read_csv("results/{}/ersvm.csv".format(DATASET_NAME))
-df_var = pd.read_csv("results/{}/var.csv".format(DATASET_NAME))
-df_enusvm = pd.read_csv("results/{}/enusvm.csv".format(DATASET_NAME))
-df_ramp = pd.read_csv("results/{}/ramp.csv".format(DATASET_NAME))
+df_ersvm = pd.read_csv("{}/ersvm.csv".format(DATASET_NAME))
+df_var = pd.read_csv("{}/var.csv".format(DATASET_NAME))
+df_enusvm = pd.read_csv("{}/enusvm.csv".format(DATASET_NAME))
+df_ramp = pd.read_csv("{}/ramp.csv".format(DATASET_NAME))
 
 # Indices achieving maximum validation performance in each trial
 ind_dca = df_ersvm.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
