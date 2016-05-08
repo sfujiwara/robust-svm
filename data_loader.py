@@ -22,6 +22,8 @@ def load_data(name):
         return load_w6a()
     if name == "madelon":
         return load_madelon()
+    if name == "connect-4":
+        return load_connect4()
 
 
 def load_mushrooms():
