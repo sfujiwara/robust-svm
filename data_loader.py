@@ -69,13 +69,17 @@ def load_madelon():
 
 def load_connect4():
     data = fetch_mldata("connect-4")
-    x, y = data["data"], data["target"]
+    x, y = data["data"].todense(), data["target"]
     x_outlier = x[y == 0]
     ind = (y != 0)
-    x, y = x[ind].todense(), y[ind].astype(float)
+    x, y = x[ind], y[ind].astype(float)
     np.random.seed(0)
     ind = np.random.choice(range(len(x)), 10000)
-    return x[ind], y[ind], x_outlier
+    x, y = x[ind], y[ind]
+    clf = svm.SVC(kernel="linear", cache_size=2000)
+    clf.fit(x, y)
+    y_outlier = clf.predict(x_outlier) * -1
+    return x, y, x_outlier, y_outlier
 
 
 def load_dna():
@@ -110,7 +114,7 @@ def load_w6a():
 
 
 if __name__ == "__main__":
-    x, y, x_outlier, y_outlier = load_usps()
+    x, y, x_outlier, y_outlier = load_connect4()
     from mysvm import svmutil
     print "nu_max: {}".format(svmutil.calc_nu_max(y))
 
