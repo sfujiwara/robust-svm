@@ -24,6 +24,8 @@ def load_data(name):
         return load_madelon()
     if name == "connect-4":
         return load_connect4()
+    if name == "aloi":
+        return load_aloi()
 
 
 def load_mushrooms():
@@ -130,7 +132,7 @@ def load_aloi():
 
 
 if __name__ == "__main__":
-    x, y, x_outlier, y_outlier = load_connect4()
+    x, y, x_outlier, y_outlier = load_aloi()
     from mysvm import svmutil
     print "nu_max: {}".format(svmutil.calc_nu_max(y))
 
