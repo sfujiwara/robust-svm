@@ -22,6 +22,8 @@ def load_data(name):
         return load_w6a()
     if name == "madelon":
         return load_madelon()
+    if name == "connect-4":
+        return load_connect4()
 
 
 def load_mushrooms():
@@ -51,7 +53,10 @@ def load_usps():
     ind = (y != 2)
     x, y = x[ind], y[ind]
     y[y != 1] = -1.
-    return x, y, x_outlier
+    clf = svm.SVC(kernel="linear", cache_size=2000)
+    clf.fit(x, y)
+    y_outlier = clf.predict(x_outlier) * -1
+    return x, y, x_outlier, y_outlier
 
 
 def load_madelon():
@@ -66,13 +71,17 @@ def load_madelon():
 
 def load_connect4():
     data = fetch_mldata("connect-4")
-    x, y = data["data"], data["target"]
+    x, y = data["data"].todense(), data["target"]
     x_outlier = x[y == 0]
     ind = (y != 0)
-    x, y = x[ind].todense(), y[ind].astype(float)
+    x, y = x[ind], y[ind].astype(float)
     np.random.seed(0)
     ind = np.random.choice(range(len(x)), 10000)
-    return x[ind], y[ind], x_outlier
+    x, y = x[ind], y[ind]
+    clf = svm.SVC(kernel="linear", cache_size=2000)
+    clf.fit(x, y)
+    y_outlier = clf.predict(x_outlier) * -1
+    return np.array(x), y, np.array(x_outlier), y_outlier
 
 
 def load_dna():
@@ -106,8 +115,22 @@ def load_w6a():
     return x, y, None
 
 
+def load_aloi():
+    x, y = load_svmlight_file("data/libsvm/aloi/aloi.scale.bz2")
+    x = x.todense()
+    x_outlier = x[y == 999]
+    ind = (1 <= y) * (y <= 100)
+    x, y = x[ind], y[ind]
+    y[(1 <= y) * (y <= 50)] = 1.
+    y[(50 <= y) * (y <= 100)] = -1.
+    clf = svm.SVC(kernel="linear")
+    clf.fit(x, y)
+    y_outlier = clf.predict(x_outlier) * -1.
+    return np.array(x), y, np.array(x_outlier), y_outlier
+
+
 if __name__ == "__main__":
-    x, y, x_outlier, y_outlier = load_dna()
+    x, y, x_outlier, y_outlier = load_connect4()
     from mysvm import svmutil
     print "nu_max: {}".format(svmutil.calc_nu_max(y))
 

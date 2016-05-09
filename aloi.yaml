@@ -1,0 +1,11 @@
+data:
+  name: aloi
+
+num_trials: 3
+
+hyper_parameters:
+  nu_max: 0.95
+  nu_min: 0.055
+
+outlier:
+  method: another_class
