@@ -137,7 +137,7 @@ def load_w6a():
 def load_aloi():
     x, y = load_svmlight_file("data/libsvm/aloi/aloi.scale.bz2")
     x = x.todense()
-    x_outlier = x[y == 999]
+    x_outlier = x[y >= 950]
     ind = (1 <= y) * (y <= 100)
     x, y = x[ind], y[ind]
     y[(1 <= y) * (y <= 50)] = 1.
