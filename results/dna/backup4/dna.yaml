@@ -1,0 +1,11 @@
+data:
+  name: dna
+
+num_trials: 10
+
+hyper_parameters:
+  nu_max: 0.55
+  nu_min: 0.055
+
+outlier:
+  method: another_class

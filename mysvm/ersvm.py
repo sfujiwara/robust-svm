@@ -8,7 +8,7 @@ import svmutil
 
 class LinearERSVM:
 
-    def __init__(self, nu=0.5, mu=0.05, max_iter=30, tol=1e-10):
+    def __init__(self, nu=0.5, mu=0.05, max_iter=200, tol=1e-10):
         self.nu = nu
         self.mu = mu
         self.max_iter = max_iter
