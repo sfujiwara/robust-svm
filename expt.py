@@ -65,7 +65,7 @@ svmutil.standard_scale(x)
 # Initial point generated using C-SVM
 clf = svm.SVC(kernel="linear")
 clf.fit(x, y)
-initial_weight = clf.coef_
+initial_weight = np.array(clf.coef_)
 initial_weight /= np.linalg.norm(initial_weight)
 
 # DataFrame for results
