@@ -11,6 +11,7 @@ import pandas as pd
 # Import my modules
 from mysvm import ersvm, ersvmh, enusvm, rampsvm, svmutil
 import data_loader
+from sklearn import svm
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-c", "--conf-file", type=str)
@@ -58,7 +59,13 @@ outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15, 0.2])
 svmutil.standard_scale(x)
 
 # Initial point generated at random
-initial_weight = np.random.normal(size=dim)
+# initial_weight = np.random.normal(size=dim)
+# initial_weight /= np.linalg.norm(initial_weight)
+
+# Initial point generated using C-SVM
+clf = svm.SVC(kernel="linear")
+clf.fit(x, y)
+initial_weight = clf.coef_
 initial_weight /= np.linalg.norm(initial_weight)
 
 # DataFrame for results
