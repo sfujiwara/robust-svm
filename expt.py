@@ -59,13 +59,7 @@ outlier_ratio = np.array([0., 0.03, 0.05, 0.1, 0.15, 0.2])
 svmutil.standard_scale(x)
 
 # Initial point generated at random
-# initial_weight = np.random.normal(size=dim)
-# initial_weight /= np.linalg.norm(initial_weight)
-
-# Initial point generated using C-SVM
-clf = svm.SVC(kernel="linear")
-clf.fit(x, y)
-initial_weight = np.array(clf.coef_)
+initial_weight = np.random.normal(size=dim)
 initial_weight /= np.linalg.norm(initial_weight)
 
 # DataFrame for results
@@ -105,7 +99,12 @@ for i in range(len(outlier_ratio)):
             else:
                 raise ValueError("{} is invalid value as OUTLIER_METHOD".format(OUTLIER_METHOD))
         # Initial point generated at random
-        initial_weight = np.random.normal(size=dim)
+        # initial_weight = np.random.normal(size=dim)
+        # initial_weight /= np.linalg.norm(initial_weight)
+        # Initial point generated using C-SVM
+        clf = svm.SVC(kernel="linear")
+        clf.fit(x_tr, y_tr)
+        initial_weight = np.array(clf.coef_)
         initial_weight /= np.linalg.norm(initial_weight)
         # Loop for hyper parameters tuning
         for k in range(len(nu_list)):
