@@ -104,7 +104,7 @@ for i in range(len(outlier_ratio)):
         # Initial point generated using C-SVM
         clf = svm.SVC(kernel="linear")
         clf.fit(x_tr, y_tr)
-        initial_weight = np.array(clf.coef_)
+        initial_weight = np.array(clf.coef_[0])
         initial_weight /= np.linalg.norm(initial_weight)
         # Loop for hyper parameters tuning
         for k in range(len(nu_list)):
