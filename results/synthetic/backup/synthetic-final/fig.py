@@ -79,6 +79,9 @@ plt.rcParams['lines.markersize'] = 8
 elw = 2
 cs = 3
 
+import sys
+sys.exit(0)
+
 outlier_ratio = np.array([0.0, 0.02, 0.04, 0.06, 0.08, 0.1])
 plt.errorbar(outlier_ratio-0.001, df_dca['comp_time_mean'], yerr=df_dca['comp_time_std'], label='ER-SVM (DCA)', elinewidth=elw, capsize=cs, fmt='-')
 plt.errorbar(outlier_ratio-0.002, df_var['comp_time_mean'], yerr=df_var['comp_time_std'], label='ER-SVM (heuristics)', elinewidth=elw, capsize=cs, fmt='--')

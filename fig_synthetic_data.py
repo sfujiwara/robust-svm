@@ -1,28 +1,36 @@
 # -*- coding: utf-8 -*-
 
+import argparse
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
 
-def flatten_hierarchical_col(col,sep = '_'):
+parser = argparse.ArgumentParser()
+parser.add_argument("-d", "--dir", type=str, default="results/synthetic")
+args = parser.parse_args()
+
+DIR = args.dir + "/"
+
+
+def flatten_hierarchical_col(col, sep='_'):
     if not type(col) is tuple:
         return col
     else:
         new_col = ''
-        for leveli,level in enumerate(col):
+        for leveli, level in enumerate(col):
             if not level == '':
                 if not leveli == 0:
                     new_col += sep
                 new_col += level
         return new_col
 
-#df.columns = df.columns.map(flattenHierarchicalCol)
+# df.columns = df.columns.map(flattenHierarchicalCol)
 
 print 'hello'
 
-## ER-SVM + DCA
-df  = pd.read_csv('dca.csv')
+# ER-SVM + DCA
+df = pd.read_csv(DIR+'dca.csv')
 gb = df.groupby(['outlier_ratio', 'nu'], as_index=False)
 df = gb.aggregate({'test_accuracy': [np.mean, np.std]})
 df.columns = df.columns.map(flatten_hierarchical_col)
@@ -30,8 +38,8 @@ gb = df.groupby(['outlier_ratio'])
 ind = np.array(df.groupby(['outlier_ratio']).agg(np.argmax)['test_accuracy_mean'], dtype=int)
 df_dca = df.iloc[ind]
 
-## ER-SVM + heuristics
-df  = pd.read_csv('var.csv')
+# ER-SVM + heuristics
+df = pd.read_csv(DIR+'var.csv')
 gb = df.groupby(['outlier_ratio', 'nu'], as_index=False)
 df = gb.aggregate({'test_accuracy': [np.mean, np.std]})
 df.columns = df.columns.map(flatten_hierarchical_col)
@@ -39,8 +47,8 @@ gb = df.groupby(['outlier_ratio'])
 ind = np.array(df.groupby(['outlier_ratio']).agg(np.argmax)['test_accuracy_mean'], dtype=int)
 df_var = df.iloc[ind]
 
-## Ramp Loss SVM
-df = pd.read_csv('ramp.csv')
+# Ramp Loss SVM
+df = pd.read_csv(DIR+'ramp.csv')
 gb = df.groupby(['outlier_ratio', 'C'], as_index=False)
 df = gb.aggregate({'test_accuracy': [np.mean, np.std]})
 df.columns = df.columns.map(flatten_hierarchical_col)
@@ -48,8 +56,8 @@ gb = df.groupby(['outlier_ratio'])
 ind = np.array(df.groupby(['outlier_ratio']).agg(np.argmax)['test_accuracy_mean'], dtype=int)
 df_ramp = df.iloc[ind]
 
-## Enu-SVM
-df = pd.read_csv('enusvm.csv')
+# Enu-SVM
+df = pd.read_csv(DIR+'enusvm.csv')
 gb = df.groupby(['outlier_ratio', 'nu'], as_index=False)
 df = gb.aggregate({'test_accuracy': [np.mean, np.std]})
 df.columns = df.columns.map(flatten_hierarchical_col)
@@ -57,8 +65,8 @@ gb = df.groupby(['outlier_ratio'])
 ind = np.array(df.groupby(['outlier_ratio']).agg(np.argmax)['test_accuracy_mean'], dtype=int)
 df_enu = df.iloc[ind]
 
-## Enu-SVM
-df = pd.read_csv('csvm.csv')
+# C-SVM
+df = pd.read_csv(DIR+'csvm.csv')
 gb = df.groupby(['outlier_ratio', 'C'], as_index=False)
 df = gb.aggregate({'test_accuracy': [np.mean, np.std]})
 df.columns = df.columns.map(flatten_hierarchical_col)
@@ -66,7 +74,7 @@ gb = df.groupby(['outlier_ratio'])
 ind = np.array(df.groupby(['outlier_ratio']).agg(np.argmax)['test_accuracy_mean'], dtype=int)
 df_csvm = df.iloc[ind]
 
-## Set parameters
+# Set parameters
 plt.rcParams['axes.labelsize'] = 24
 plt.rcParams['lines.linewidth'] = 3
 plt.rcParams['legend.fontsize'] = 18
@@ -80,19 +88,40 @@ elw = 2
 cs = 3
 
 outlier_ratio = np.array([0.0, 0.02, 0.04, 0.06, 0.08, 0.1])
-plt.errorbar(outlier_ratio-0.001, df_dca['test_accuracy_mean'], yerr=df_dca['test_accuracy_std'], label='ER-SVM (DCA)', elinewidth=elw, capsize=cs, fmt='-')
-plt.errorbar(outlier_ratio-0.002, df_var['test_accuracy_mean'], yerr=df_var['test_accuracy_std'], label='ER-SVM (heuristics)', elinewidth=elw, capsize=cs, fmt='--')
-plt.errorbar(outlier_ratio+0.002, df_enu['test_accuracy_mean'], yerr=df_csvm['test_accuracy_std'], label='Enu-SVM', elinewidth=elw, capsize=cs, fmt='-.')
-plt.errorbar(outlier_ratio+0.001, df_csvm['test_accuracy_mean'], yerr=df_csvm['test_accuracy_std'], label='C-SVM', elinewidth=elw, capsize=cs, fmt=':')
-plt.errorbar(outlier_ratio, df_ramp['test_accuracy_mean'], yerr=df_ramp['test_accuracy_std'], label='Ramp', elinewidth=elw, capsize=cs, fmt='-x')
+plt.errorbar(
+    outlier_ratio-0.001,
+    np.array(df_dca['test_accuracy_mean']),
+    yerr=np.array(df_dca['test_accuracy_std']),
+    label='ER-SVM (DCA)', elinewidth=elw, capsize=cs, fmt='-'
+)
+plt.errorbar(
+    outlier_ratio-0.002,
+    np.array(df_var['test_accuracy_mean']),
+    yerr=np.array(df_var['test_accuracy_std']),
+    label='ER-SVM (heuristics)', elinewidth=elw, capsize=cs, fmt='--'
+)
+plt.errorbar(
+    outlier_ratio+0.002,
+    np.array(df_enu['test_accuracy_mean']),
+    yerr=np.array(df_csvm['test_accuracy_std']),
+    label='Enu-SVM', elinewidth=elw, capsize=cs, fmt='-.'
+)
+plt.errorbar(
+    outlier_ratio+0.001,
+    np.array(df_csvm['test_accuracy_mean']),
+    yerr=np.array(df_csvm['test_accuracy_std']),
+    label='C-SVM', elinewidth=elw, capsize=cs, fmt=':'
+)
+plt.errorbar(
+    outlier_ratio,
+    np.array(df_ramp['test_accuracy_mean']),
+    yerr=np.array(df_ramp['test_accuracy_std']),
+    label='Ramp', elinewidth=elw, capsize=cs, fmt='-x'
+)
 plt.xlabel('Outlier Ratio')
 plt.ylabel('Test Accuracy')
+df = pd.read_csv(DIR+'enusvm.csv')
 plt.xlim([-0.01, 0.11])
 plt.legend(loc='lower left')
 plt.grid()
 plt.show()
-
-
-
-
-
