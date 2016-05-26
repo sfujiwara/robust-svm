@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     ## # Read data set (liver)
     ## name_dataset = 'liver'
-    ## filename = 'datasets/LIBSVM/liver-disorders/liver-disorders_scale.csv'
+    ## filename = 'datasets/libsvm/liver-disorders/liver-disorders_scale.csv'
     ## dir_name_result = "results/performance/liver/"
     ## dataset = np.loadtxt(filename, delimiter=',')
     ## y = dataset[:, 0]
@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     ## # Read data set (heart)
     ## name_dataset = 'heart'
-    ## filename = 'datasets/LIBSVM/heart/heart_scale.csv'
+    ## filename = 'datasets/libsvm/heart/heart_scale.csv'
     ## dir_name_result = 'results/performance/heart/'
     ## dataset = np.loadtxt(filename, delimiter=',')
     ## y = dataset[:, 0]
@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
     ## # Read data set (diabetes)
     ## name_dataset = 'diabetes'
-    ## filename = 'datasets/LIBSVM/diabetes/diabetes_scale.csv'
+    ## filename = 'datasets/libsvm/diabetes/diabetes_scale.csv'
     ## dataset = np.loadtxt(filename, delimiter=',')
     ## y = dataset[:, 0]
     ## x = dataset[:, 1:]
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     ## # Read data set (splice)
     ## name_dataset = 'splice'
-    ## filename = 'datasets/LIBSVM/splice/splice_scale.csv'
+    ## filename = 'datasets/libsvm/splice/splice_scale.csv'
     ## dir_name_result = 'results/performance/splice/'
     ## dataset = np.loadtxt(filename, delimiter=',')
     ## y = dataset[:, 0]
@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
     ## # Read data set (adult)
     ## name_dataset = 'adult'
-    ## filename = 'datasets/LIBSVM/adult/a1a.csv'
+    ## filename = 'datasets/libsvm/adult/a1a.csv'
     ## dir_name_result = 'results/performance/adult/'
     ## dataset = np.loadtxt(filename, delimiter=',')
     ## y = dataset[:, 0]
@@ -118,7 +118,7 @@ if __name__ == '__main__':
 
     ## # Read data set (vehicle)
     ## name_dataset = 'vehicle'
-    ## filename = 'datasets/LIBSVM/vehicle/vehicle_scale.csv'
+    ## filename = 'datasets/libsvm/vehicle/vehicle_scale.csv'
     ## dir_name_result = 'results/performance/vehicle/'
     ## dataset = np.loadtxt(filename, delimiter=',')
     ## y = dataset[:, 0]
@@ -143,9 +143,9 @@ if __name__ == '__main__':
     # Read satimage dataset
     name_dataset = 'satimage'
     dir_name_result = 'results/performance/satimage/'
-    dataset = np.loadtxt('data/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
-    ## dataset_train = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.csv', delimiter=',')
-    ## dataset_test  = np.loadtxt('datasets/LIBSVM/satimage/satimage_scale.t.csv', delimiter=',')
+    dataset = np.loadtxt('data/libsvm/satimage/satimage_scale.csv', delimiter=',')
+    ## dataset_train = np.loadtxt('datasets/libsvm/satimage/satimage_scale.csv', delimiter=',')
+    ## dataset_test  = np.loadtxt('datasets/libsvm/satimage/satimage_scale.t.csv', delimiter=',')
     ## dataset = np.vstack([dataset_train, dataset_test])
     y = dataset[:, 0]
     x = dataset[:, 1:]
@@ -171,7 +171,7 @@ if __name__ == '__main__':
 
     ## # Read data set (svmguide1)
     ## name_dataset = 'svmguide1'
-    ## filename = 'datasets/LIBSVM/svmguide1/svmguide1.csv'
+    ## filename = 'datasets/libsvm/svmguide1/svmguide1.csv'
     ## dir_name_result = 'results/performance/svmguide1/'
     ## dataset = np.loadtxt(filename, delimiter=',')
     ## y = dataset[:, 0]
@@ -193,7 +193,7 @@ if __name__ == '__main__':
 
     ## # Read data set (cod-rna)
     ## name_dataset = 'cod-rna'
-    ## filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
+    ## filename = 'datasets/libsvm/cod-rna/cod-rna.csv'
     ## dir_name_result = 'results/performance/cod-rna/'
     ## dataset = np.loadtxt(filename, delimiter=',')
     ## y = dataset[:, 0]
@@ -367,12 +367,12 @@ if __name__ == '__main__':
                 ##            'comp_time': var.comp_time}
                 ## df_var = df_var.append(pd.Series(row_var, name=pd.datetime.today()))
 
-                ## print 'Start LIBSVM'
+                ## print 'Start libsvm'
                 ## start = time.time()
                 ## libsvm.set_params(**{'C': cost_cand[k]})
                 ## libsvm.fit(x_tr, y_tr)
                 ## end = time.time()
-                ## print 'End LIBSVM'
+                ## print 'End libsvm'
                 ## print 'time:', end - start
                 ## row_libsvm = {'ratio': ol_ratio[i],
                 ##               'trial': j,

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2016-05-04 07:32:10,233 - __main__ - INFO - info test
 2016-05-04 07:32:40,229 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
 2016-05-04 07:32:56,146 - __main__ - INFO - time: 15.9034218788
@@ -1126,3 +1127,6 @@
 2016-05-18 10:24:01,258 - __main__ - INFO - Train Enu-SVM (nu, ratio, trial): (0.40000000000000002, 0.20000000000000001, 0)
 2016-05-18 10:32:04,486 - __main__ - INFO - time: 482.9155159
 2016-05-18 10:32:04,562 - __main__ - INFO - Train ER-SVM with Heuristics (nu, ratio, trial): (0.40000000000000002, 0.20000000000000001, 0)
+=======
+2016-05-04 16:35:38,450 - __main__ - INFO - info test
+>>>>>>> 986bca4310e9c5382070589a51fd20a74a133b81

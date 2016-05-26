@@ -110,6 +110,8 @@ class EnuSVM:
                 w_tilde = self.gamma * w_tilde + (1-self.gamma) * self.weight
             c.linear_constraints.delete('norm')
             c.linear_constraints.add(names=['norm'], lin_expr=[[w_names, list(w_tilde)]], senses='E', rhs=[1.])
+        else:
+            return c
 
     # Training Enu-SVM
     def fit(self, x, y, initial_weight=None):
@@ -184,7 +186,7 @@ class EnuSVM:
 
 if __name__ == '__main__': 
     # Load data set
-    dataset = np.loadtxt('data/LIBSVM/liver-disorders/liver-disorders_scale.csv', delimiter=',')
+    dataset = np.loadtxt('data/libsvm/liver-disorders/liver-disorders_scale.csv', delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
     num, dim = x.shape

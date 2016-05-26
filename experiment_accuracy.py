@@ -12,9 +12,9 @@ if __name__ == '__main__':
     np.random.seed(0)
 
     ## Read data set
-    ## filename = 'datasets/LIBSVM/cod-rna/cod-rna.csv'
-    ## filename = 'datasets/LIBSVM/heart/heart_scale.csv'
-    filename = 'data/LIBSVM/liver-disorders/liver-disorders_scale.csv'
+    ## filename = 'datasets/libsvm/cod-rna/cod-rna.csv'
+    ## filename = 'datasets/libsvm/heart/heart_scale.csv'
+    filename = 'data/libsvm/liver-disorders/liver-disorders_scale.csv'
     dataset = np.loadtxt(filename, delimiter=',')
     ## ind = np.random.choice(59535, 1000, replace=False)
     ## y = dataset[ind, 0]
@@ -108,11 +108,11 @@ if __name__ == '__main__':
             var.show_result()
             acc_var[i, cv] = var.score(x_test, y_test)
 
-            print 'Start LIBSVM'
+            print 'Start libsvm'
             start = time.time()
             libsvm.set_params(**{'C':cost_cand[i]})
             libsvm.fit(x_train, y_train)
             acc_libsvm[i, cv] = libsvm.score(x_test, y_test)
             end = time.time()
-            print 'End LIBSVM'
+            print 'End libsvm'
             print 'time:', end - start

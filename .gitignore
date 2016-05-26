@@ -4,3 +4,5 @@
 src/*.csv
 .idea
 data/LIBSVM/covtype
+
+nohup.out

@@ -7,11 +7,11 @@ Compute nu_min for data sets used in the experiment.
 import numpy as np
 from mysvm import svmutil
 
-filename = 'data/LIBSVM/liver-disorders/liver-disorders_scale.csv'
-filename = 'data/LIBSVM/diabetes/diabetes_scale.csv'
-filename = 'data/LIBSVM/adult/a1a.csv'
-# filename = 'data/LIBSVM/cod-rna/cod-rna.csv'
-# filename = 'datasets/LIBSVM/svmguide1/svmguide1.csv'
+filename = 'data/libsvm/liver-disorders/liver-disorders_scale.csv'
+filename = 'data/libsvm/diabetes/diabetes_scale.csv'
+filename = 'data/libsvm/adult/a1a.csv'
+# filename = 'data/libsvm/cod-rna/cod-rna.csv'
+# filename = 'datasets/libsvm/svmguide1/svmguide1.csv'
 dataset = np.loadtxt(filename, delimiter=',')
 x = dataset[:, 1:]
 y = dataset[:, 0]

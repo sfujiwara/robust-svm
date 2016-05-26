@@ -185,7 +185,7 @@ def robust_ocsvm(x, nu, mu, kernel, gamma):
 
 if __name__ == '__main__':
     ##### Read data set from csv #####
-    dataset = np.loadtxt('Dataset/LIBSVM/housing/housing_scale.csv', delimiter=',')
+    dataset = np.loadtxt('Dataset/libsvm/housing/housing_scale.csv', delimiter=',')
     x = dataset[:, 1:]
     y = dataset[:, 0]
     num, dim = x.shape

@@ -9,7 +9,7 @@ from mysvm import ersvm, rampsvm, enusvm, ersvmh, svmutil
 
 if __name__ == '__main__':
     ## Read a UCI dataset
-    filename = 'data/LIBSVM/cod-rna/cod-rna.csv'
+    filename = 'data/libsvm/cod-rna/cod-rna.csv'
     dataset = np.loadtxt(filename, delimiter=',')
     y = dataset[:, 0]
     x = dataset[:, 1:]
@@ -140,8 +140,8 @@ if __name__ == '__main__':
             time_enusvm5[i,j] = enu.comp_time
             convexity_enu5[i,j] = enu.convexity
 
-            ## LIBSVM (C = 1e0)
-            print '----- LIBSVM -----'
+            ## libsvm (C = 1e0)
+            print '----- libsvm -----'
             print 'C: 1e0', '#sample:', sampling_size[i], 'trial:', j
             start = time.time()
             clf_libsvm = svm.SVC(C=1e0, kernel='linear')
@@ -151,9 +151,9 @@ if __name__ == '__main__':
             print 'time:', end - start
             time_libsvm0[i,j] = end - start
 
-            ## LIBSVM (C = 1e3)
+            ## libsvm (C = 1e3)
             if is_on_time_libsvm1e3:
-                print '----- LIBSVM -----'
+                print '----- libsvm -----'
                 print 'C: 1e0', '#sample:', sampling_size[i], 'trial:', j
                 start = time.time()
                 clf_libsvm = svm.SVC(C=1e3, kernel='linear')
@@ -212,11 +212,11 @@ if __name__ == '__main__':
     plt.errorbar(sampling_size,
                  [np.mean(i) for i in time_libsvm0],
                  yerr=[np.std(i) for i in time_libsvm0],
-                 label='LIBSVM (C = 1e0)', elinewidth=elw, capsize=cs)
+                 label='libsvm (C = 1e0)', elinewidth=elw, capsize=cs)
     plt.errorbar(sampling_size,
                  [np.mean(i) for i in time_libsvm4],
                  yerr=[np.std(i) for i in time_libsvm4],
-                 label='LIBSVM (C = 1e3)', elinewidth=elw, capsize=cs)
+                 label='libsvm (C = 1e3)', elinewidth=elw, capsize=cs)
     plt.errorbar(sampling_size,
                  [np.mean(i) for i in time_enusvm1],
                  yerr=[np.std(i) for i in time_enusvm1],

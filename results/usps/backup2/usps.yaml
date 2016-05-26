@@ -1,0 +1,11 @@
+data:
+  name: usps
+
+num_trials: 3
+
+hyper_parameters:
+  nu_max: 0.3
+  nu_min: 0.051
+
+outlier:
+  method: another_class

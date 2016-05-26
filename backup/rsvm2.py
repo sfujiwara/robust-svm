@@ -69,7 +69,7 @@ def ramp_svm(x, y, cost, s, kernel, gamma=1., coef0=0., degree=2):
 
 if __name__ == '__main__':
     # Read data set from csv
-    filename = 'data/LIBSVM/cod-rna/cod-rna.csv'
+    filename = 'data/libsvm/cod-rna/cod-rna.csv'
     dataset = np.loadtxt(filename, delimiter=',')
     x = dataset[:, 1:]
     y = dataset[:, 0]
