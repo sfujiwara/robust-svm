@@ -165,9 +165,11 @@ for i in range(len(outlier_ratio)):
             # C-SVM (libsvm)
             print 'Start libsvm'
             start = time.time()
-            model_libsvm = svm.SVC(C=c_list[k], kernel='linear', max_iter=-1)
+            model_libsvm = svm.SVC(C=c_list[k], kernel='linear', max_iter=-1, cache_size=4000)
+            logger.info('Train C-SVM (C, ratio, trial): ({0}, {1}, {2})'.format(c_list[k], outlier_ratio[i], j))
             model_libsvm.fit(x_tr, y_tr)
             end = time.time()
+            logger.info('time: {0}, status: {1}'.format(end - start, model_libsvm.fit_status_))
             print 'End libsvm'
             print 'time:', end - start
             row_libsvm = {
