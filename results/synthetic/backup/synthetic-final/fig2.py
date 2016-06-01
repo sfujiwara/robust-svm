@@ -67,30 +67,34 @@ x = range(9)
 outlier_ratio = np.array([0.0, 0.02, 0.04, 0.06, 0.08, 0.1])
 x = outlier_ratio
 df = df_dca[df_dca['nu'] == 0.1]
-plt.errorbar(x, df['comp_time']['mean'],  yerr=df['comp_time']['std'],  label='ER-SVM (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='-')
+plt.errorbar(x, df['comp_time']['mean'],  yerr=np.array(df['comp_time']['std']),  label='ER-SVM (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='-')
 df = df_dca[df_dca['nu'] == 0.5]
-plt.errorbar(x, df['comp_time']['mean'],  yerr=df['comp_time']['std'],  label='ER-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-^')
+plt.errorbar(x, df['comp_time']['mean'],  yerr=np.array(df['comp_time']['std']),  label='ER-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-^')
 # C-SVM
 df = df_csvm[df_csvm['C'] == 1e0]
-plt.errorbar(x, df['comp_time']['mean'], yerr=df['comp_time']['std'], label='C-SVM (C = 1)', elinewidth=elw, capsize=cs, fmt=':')
+plt.errorbar(x, df['comp_time']['mean'], yerr=np.array(df['comp_time']['std']), label='C-SVM (C = 1)', elinewidth=elw, capsize=cs, fmt=':')
 df = df_csvm[df_csvm['C'] == 25]
-plt.errorbar(x, df['comp_time']['mean'], yerr=df['comp_time']['std'], label='C-SVM (C = 25)', elinewidth=elw, capsize=cs, fmt=':^')
+plt.errorbar(
+    x, df['comp_time']['mean'],
+    yerr=np.array(df['comp_time']['std']),
+    label='C-SVM (C = 25)', elinewidth=elw, capsize=cs, fmt=':^'
+)
 # Enu-SVM
-df = df_enu[df_enu['nu'] == 0.1]
-plt.errorbar(x, df['comp_time']['mean'],  yerr=df['comp_time']['std'],  label='Enu-SVM (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='-.')
-df = df_enu[df_enu['nu'] == 0.5]
-plt.errorbar(x, df['comp_time']['mean'],  yerr=df['comp_time']['std'],  label='Enu-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-.^')
-# Heuristics
-df = df_var[df_var['nu'] == 0.1]
-plt.errorbar(x, df['comp_time']['mean'],  yerr=df['comp_time']['std'],  label='Heuristics (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='--')
-df = df_var[df_var['nu'] == 0.5]
-plt.errorbar(x, df['comp_time']['mean'],  yerr=df['comp_time']['std'],  label='Heuristics (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='--^')
-# Ramp SVM
-df = df_ramp[df_ramp['C'] == 1e0]
-plt.errorbar(x, df['comp_time']['mean'], yerr=df['comp_time']['std'], label='Ramp (C = 1)', elinewidth=elw, capsize=cs, fmt='-s')
-df = df_ramp[df_ramp['C'] == 25]
-plt.errorbar(x, df['comp_time']['mean'], yerr=df['comp_time']['std'], label='Ramp (C = 25)', elinewidth=elw, capsize=cs, fmt='-s')
-# plt.xlabel('Outlier Ratio')
+# df = df_enu[df_enu['nu'] == 0.1]
+# plt.errorbar(x, df['comp_time']['mean'],  yerr=df['comp_time']['std'],  label='Enu-SVM (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='-.')
+# df = df_enu[df_enu['nu'] == 0.5]
+# plt.errorbar(x, df['comp_time']['mean'],  yerr=df['comp_time']['std'],  label='Enu-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-.^')
+# # Heuristics
+# df = df_var[df_var['nu'] == 0.1]
+# plt.errorbar(x, df['comp_time']['mean'],  yerr=df['comp_time']['std'],  label='Heuristics (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='--')
+# df = df_var[df_var['nu'] == 0.5]
+# plt.errorbar(x, df['comp_time']['mean'],  yerr=df['comp_time']['std'],  label='Heuristics (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='--^')
+# # Ramp SVM
+# df = df_ramp[df_ramp['C'] == 1e0]
+# plt.errorbar(x, df['comp_time']['mean'], yerr=df['comp_time']['std'], label='Ramp (C = 1)', elinewidth=elw, capsize=cs, fmt='-s')
+# df = df_ramp[df_ramp['C'] == 25]
+# plt.errorbar(x, df['comp_time']['mean'], yerr=df['comp_time']['std'], label='Ramp (C = 25)', elinewidth=elw, capsize=cs, fmt='-s')
+# # plt.xlabel('Outlier Ratio')
 plt.xlabel('Outlier Ratio')
 plt.ylabel('Training Time (sec)')
 plt.xlim([-0.005, 0.105])

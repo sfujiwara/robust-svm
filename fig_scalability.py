@@ -27,6 +27,8 @@ plt.rcParams['ytick.labelsize'] = 14
 elw = 2
 cs = 3
 
+
+
 plt.errorbar(
     sampling_size,
     [np.mean(i) for i in time_ersvm1],
@@ -36,14 +38,21 @@ plt.errorbar(
     ]),
     label='ER-SVM (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='-'
 )
-plt.errorbar(sampling_size,
-             [np.mean(i) for i in time_ersvm5],
-             yerr=[np.std(i) for i in time_ersvm5],
-             label='ER-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-x')
-plt.errorbar(sampling_size,
-             [np.mean(i) for i in time_libsvm0],
-             yerr=[np.std(i) for i in time_libsvm0],
-             label='C-SVM (C = 1e0)', elinewidth=elw, capsize=cs, fmt=':')
+plt.errorbar(
+    sampling_size,
+    [np.mean(i) for i in time_ersvm5],
+    yerr=[np.std(i) for i in time_ersvm5],
+    label='ER-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-x'
+)
+plt.errorbar(
+    sampling_size,
+    [np.mean(i) for i in time_libsvm0],
+    yerr=np.array([
+        np.array([np.percentile(i, 75) for i in time_libsvm0])-np.array([np.mean(i) for i in time_libsvm0]),
+        np.array([np.mean(i) for i in time_libsvm0])-np.array([np.percentile(i, 25) for i in time_libsvm0])
+    ]),
+    label='C-SVM (C = 1e0)', elinewidth=elw, capsize=cs, fmt=':'
+)
 plt.errorbar(sampling_size[:-3],
              [np.mean(i) for i in time_libsvm4[:-3]],
              yerr=[np.std(i) for i in time_libsvm4[:-3]],
