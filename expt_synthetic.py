@@ -190,7 +190,7 @@ if __name__ == '__main__':
                 df_ramp_ws = df_ramp_ws.append(pd.Series(row_ramp_ws, name=pd.datetime.today()))
 
     # Save as csv
-    dir_name_result = 'results/synthetic-final/'
+    dir_name_result = 'results/time/'
     df_dca.to_csv(dir_name_result+'dca.csv', index=False)
     df_enu.to_csv(dir_name_result+'enusvm.csv', index=False)
     df_var.to_csv(dir_name_result+'var.csv', index=False)
