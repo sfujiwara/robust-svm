@@ -1,489 +1,253 @@
-2016-05-29 16:45:54,575 - __main__ - INFO - info test
-2016-05-29 16:46:24,991 - __main__ - INFO - info test
-2016-05-29 16:46:25,705 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:25,808 - __main__ - INFO - time: 0.102426052094
-2016-05-29 16:46:25,963 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:26,066 - __main__ - INFO - time: 0.102530956268
-2016-05-29 16:46:26,218 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:26,320 - __main__ - INFO - time: 0.101349115372
-2016-05-29 16:46:26,471 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:26,572 - __main__ - INFO - time: 0.100499868393
-2016-05-29 16:46:26,724 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:26,824 - __main__ - INFO - time: 0.100424051285
-2016-05-29 16:46:26,975 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:27,075 - __main__ - INFO - time: 0.0996339321136
-2016-05-29 16:46:27,234 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:27,339 - __main__ - INFO - time: 0.104381084442
-2016-05-29 16:46:27,524 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:27,645 - __main__ - INFO - time: 0.121179103851
-2016-05-29 16:46:27,907 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:46:28,087 - __main__ - INFO - time: 0.179471969604
-2016-05-29 16:46:28,564 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:28,691 - __main__ - INFO - time: 0.12717294693
-2016-05-29 16:46:28,867 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:28,995 - __main__ - INFO - time: 0.126935005188
-2016-05-29 16:46:29,175 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:29,303 - __main__ - INFO - time: 0.127980947495
-2016-05-29 16:46:29,480 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:29,608 - __main__ - INFO - time: 0.12811589241
-2016-05-29 16:46:29,786 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:29,913 - __main__ - INFO - time: 0.126703977585
-2016-05-29 16:46:30,090 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:30,226 - __main__ - INFO - time: 0.135215044022
-2016-05-29 16:46:30,403 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:30,519 - __main__ - INFO - time: 0.115752220154
-2016-05-29 16:46:30,729 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:30,866 - __main__ - INFO - time: 0.136824131012
-2016-05-29 16:46:31,161 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:46:31,353 - __main__ - INFO - time: 0.192144870758
-2016-05-29 16:46:31,851 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:31,952 - __main__ - INFO - time: 0.101531982422
-2016-05-29 16:46:32,112 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:32,218 - __main__ - INFO - time: 0.106329917908
-2016-05-29 16:46:32,376 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:32,478 - __main__ - INFO - time: 0.101789951324
-2016-05-29 16:46:32,637 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:32,739 - __main__ - INFO - time: 0.102339029312
-2016-05-29 16:46:32,897 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:32,999 - __main__ - INFO - time: 0.101639986038
-2016-05-29 16:46:33,159 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:33,263 - __main__ - INFO - time: 0.103724956512
-2016-05-29 16:46:33,421 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:33,519 - __main__ - INFO - time: 0.0975649356842
-2016-05-29 16:46:33,697 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:33,817 - __main__ - INFO - time: 0.119669914246
-2016-05-29 16:46:34,074 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:46:34,259 - __main__ - INFO - time: 0.185483932495
-2016-05-29 16:46:34,725 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:34,848 - __main__ - INFO - time: 0.121982812881
-2016-05-29 16:46:35,021 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:35,145 - __main__ - INFO - time: 0.124236106873
-2016-05-29 16:46:35,318 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:35,440 - __main__ - INFO - time: 0.121870040894
-2016-05-29 16:46:35,612 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:35,736 - __main__ - INFO - time: 0.123563766479
-2016-05-29 16:46:35,908 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:36,031 - __main__ - INFO - time: 0.1229159832
-2016-05-29 16:46:36,206 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:36,325 - __main__ - INFO - time: 0.118661880493
-2016-05-29 16:46:36,497 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:36,615 - __main__ - INFO - time: 0.118066072464
-2016-05-29 16:46:36,813 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:36,945 - __main__ - INFO - time: 0.13191986084
-2016-05-29 16:46:37,233 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:46:37,422 - __main__ - INFO - time: 0.188700914383
-2016-05-29 16:46:37,919 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:38,039 - __main__ - INFO - time: 0.119660139084
-2016-05-29 16:46:38,209 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:38,322 - __main__ - INFO - time: 0.112994909286
-2016-05-29 16:46:38,488 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:38,604 - __main__ - INFO - time: 0.115998029709
-2016-05-29 16:46:38,770 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:38,884 - __main__ - INFO - time: 0.113378047943
-2016-05-29 16:46:39,051 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:39,166 - __main__ - INFO - time: 0.114751815796
-2016-05-29 16:46:39,333 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:39,452 - __main__ - INFO - time: 0.119645118713
-2016-05-29 16:46:39,628 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:39,747 - __main__ - INFO - time: 0.118804931641
-2016-05-29 16:46:39,951 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:40,080 - __main__ - INFO - time: 0.128974914551
-2016-05-29 16:46:40,372 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:46:40,564 - __main__ - INFO - time: 0.191848039627
-2016-05-29 16:46:41,063 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:41,173 - __main__ - INFO - time: 0.10936999321
-2016-05-29 16:46:41,343 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:41,451 - __main__ - INFO - time: 0.107246160507
-2016-05-29 16:46:41,621 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:41,729 - __main__ - INFO - time: 0.108563899994
-2016-05-29 16:46:41,899 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:42,006 - __main__ - INFO - time: 0.107303857803
-2016-05-29 16:46:42,178 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:42,287 - __main__ - INFO - time: 0.108313083649
-2016-05-29 16:46:42,457 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:42,567 - __main__ - INFO - time: 0.110342025757
-2016-05-29 16:46:42,737 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:42,850 - __main__ - INFO - time: 0.112864017487
-2016-05-29 16:46:43,059 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:43,191 - __main__ - INFO - time: 0.132240056992
-2016-05-29 16:46:43,475 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:46:43,667 - __main__ - INFO - time: 0.192267894745
-2016-05-29 16:46:44,152 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:44,259 - __main__ - INFO - time: 0.106718063354
-2016-05-29 16:46:44,422 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:44,528 - __main__ - INFO - time: 0.106021165848
-2016-05-29 16:46:44,691 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:44,797 - __main__ - INFO - time: 0.10541510582
-2016-05-29 16:46:44,959 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:45,067 - __main__ - INFO - time: 0.107225894928
-2016-05-29 16:46:45,234 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:45,339 - __main__ - INFO - time: 0.104843854904
-2016-05-29 16:46:45,502 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:45,609 - __main__ - INFO - time: 0.107050895691
-2016-05-29 16:46:45,777 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:45,884 - __main__ - INFO - time: 0.107007980347
-2016-05-29 16:46:46,078 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:46,207 - __main__ - INFO - time: 0.128733158112
-2016-05-29 16:46:46,484 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:46:46,673 - __main__ - INFO - time: 0.18857884407
-2016-05-29 16:46:47,167 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:47,279 - __main__ - INFO - time: 0.112209796906
-2016-05-29 16:46:47,439 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:47,552 - __main__ - INFO - time: 0.112738132477
-2016-05-29 16:46:47,713 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:47,825 - __main__ - INFO - time: 0.111783027649
-2016-05-29 16:46:47,986 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:48,099 - __main__ - INFO - time: 0.112979888916
-2016-05-29 16:46:48,262 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:48,374 - __main__ - INFO - time: 0.111729860306
-2016-05-29 16:46:48,535 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:48,652 - __main__ - INFO - time: 0.117494821548
-2016-05-29 16:46:48,826 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:48,948 - __main__ - INFO - time: 0.121170043945
-2016-05-29 16:46:49,153 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:49,285 - __main__ - INFO - time: 0.131561994553
-2016-05-29 16:46:49,561 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:46:49,746 - __main__ - INFO - time: 0.18524813652
-2016-05-29 16:46:50,229 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:50,332 - __main__ - INFO - time: 0.102237939835
-2016-05-29 16:46:50,490 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:50,594 - __main__ - INFO - time: 0.10381603241
-2016-05-29 16:46:50,753 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:50,855 - __main__ - INFO - time: 0.10223698616
-2016-05-29 16:46:51,013 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:51,118 - __main__ - INFO - time: 0.104511022568
-2016-05-29 16:46:51,277 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:51,380 - __main__ - INFO - time: 0.103147983551
-2016-05-29 16:46:51,538 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:51,642 - __main__ - INFO - time: 0.103640079498
-2016-05-29 16:46:51,800 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:51,916 - __main__ - INFO - time: 0.115442037582
-2016-05-29 16:46:52,113 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:52,249 - __main__ - INFO - time: 0.135723114014
-2016-05-29 16:46:52,522 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:46:52,712 - __main__ - INFO - time: 0.18935418129
-2016-05-29 16:46:53,198 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:53,306 - __main__ - INFO - time: 0.107795000076
-2016-05-29 16:46:53,471 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:53,581 - __main__ - INFO - time: 0.109823942184
-2016-05-29 16:46:53,746 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:53,855 - __main__ - INFO - time: 0.108729839325
-2016-05-29 16:46:54,020 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:54,130 - __main__ - INFO - time: 0.109261035919
-2016-05-29 16:46:54,296 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:54,405 - __main__ - INFO - time: 0.108173847198
-2016-05-29 16:46:54,570 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:54,698 - __main__ - INFO - time: 0.128081083298
-2016-05-29 16:46:54,884 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:54,999 - __main__ - INFO - time: 0.114688873291
-2016-05-29 16:46:55,205 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:55,330 - __main__ - INFO - time: 0.124860048294
-2016-05-29 16:46:55,617 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:46:55,807 - __main__ - INFO - time: 0.19045996666
-2016-05-29 16:46:56,311 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:46:56,659 - __main__ - INFO - time: 0.346984863281
-2016-05-29 16:46:56,849 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:46:57,200 - __main__ - INFO - time: 0.350702047348
-2016-05-29 16:46:57,391 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:46:57,738 - __main__ - INFO - time: 0.347506999969
-2016-05-29 16:46:57,928 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:46:58,295 - __main__ - INFO - time: 0.366608142853
-2016-05-29 16:46:58,487 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:46:58,759 - __main__ - INFO - time: 0.271479845047
-2016-05-29 16:46:58,962 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:46:59,125 - __main__ - INFO - time: 0.162820100784
-2016-05-29 16:46:59,335 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:46:59,472 - __main__ - INFO - time: 0.136362791061
-2016-05-29 16:46:59,718 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:46:59,867 - __main__ - INFO - time: 0.148894071579
-2016-05-29 16:47:00,201 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:47:00,404 - __main__ - INFO - time: 0.203119039536
-2016-05-29 16:47:00,938 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:52:34,546 - __main__ - INFO - time: 333.607395887
-2016-05-29 16:52:34,753 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:53:08,626 - __main__ - INFO - time: 33.8731710911
-2016-05-29 16:53:08,834 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:53:14,848 - __main__ - INFO - time: 6.01357698441
-2016-05-29 16:53:15,060 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:53:16,307 - __main__ - INFO - time: 1.24692201614
-2016-05-29 16:53:16,528 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:53:16,920 - __main__ - INFO - time: 0.392379045486
-2016-05-29 16:53:17,150 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:53:17,388 - __main__ - INFO - time: 0.237891197205
-2016-05-29 16:53:17,624 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:53:17,779 - __main__ - INFO - time: 0.154725074768
-2016-05-29 16:53:18,047 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:53:18,208 - __main__ - INFO - time: 0.160846948624
-2016-05-29 16:53:18,555 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:53:18,761 - __main__ - INFO - time: 0.205707073212
-2016-05-29 16:53:19,303 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:54:58,923 - __main__ - INFO - time: 99.6194210052
-2016-05-29 16:54:59,126 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:55:13,116 - __main__ - INFO - time: 13.9893169403
-2016-05-29 16:55:13,324 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:55:15,082 - __main__ - INFO - time: 1.75754308701
-2016-05-29 16:55:15,289 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:55:15,859 - __main__ - INFO - time: 0.569582939148
-2016-05-29 16:55:16,068 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:55:16,447 - __main__ - INFO - time: 0.37906908989
-2016-05-29 16:55:16,670 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:55:16,858 - __main__ - INFO - time: 0.188266992569
-2016-05-29 16:55:17,090 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:55:17,240 - __main__ - INFO - time: 0.149771928787
-2016-05-29 16:55:17,491 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:55:17,636 - __main__ - INFO - time: 0.145007133484
-2016-05-29 16:55:17,973 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:55:18,185 - __main__ - INFO - time: 0.211863040924
-2016-05-29 16:55:18,721 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:55:21,553 - __main__ - INFO - time: 2.83131098747
-2016-05-29 16:55:21,750 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:55:24,571 - __main__ - INFO - time: 2.82042717934
-2016-05-29 16:55:24,769 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:55:27,111 - __main__ - INFO - time: 2.34122610092
-2016-05-29 16:55:27,320 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:55:28,614 - __main__ - INFO - time: 1.29369997978
-2016-05-29 16:55:28,829 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:55:29,164 - __main__ - INFO - time: 0.335033178329
-2016-05-29 16:55:29,389 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:55:29,584 - __main__ - INFO - time: 0.195107936859
-2016-05-29 16:55:29,815 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:55:29,980 - __main__ - INFO - time: 0.164302110672
-2016-05-29 16:55:30,257 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:55:30,432 - __main__ - INFO - time: 0.17461180687
-2016-05-29 16:55:30,778 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:55:31,002 - __main__ - INFO - time: 0.223891019821
-2016-05-29 16:55:31,560 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:55:32,169 - __main__ - INFO - time: 0.608599901199
-2016-05-29 16:55:32,384 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:55:33,006 - __main__ - INFO - time: 0.622152090073
-2016-05-29 16:55:33,247 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:55:33,862 - __main__ - INFO - time: 0.615011930466
-2016-05-29 16:55:34,076 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:55:34,834 - __main__ - INFO - time: 0.757639884949
-2016-05-29 16:55:35,056 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:55:35,478 - __main__ - INFO - time: 0.42204284668
-2016-05-29 16:55:35,704 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:55:35,904 - __main__ - INFO - time: 0.19994020462
-2016-05-29 16:55:36,195 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:55:36,742 - __main__ - INFO - time: 0.546766996384
-2016-05-29 16:55:37,032 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:55:37,219 - __main__ - INFO - time: 0.187348127365
-2016-05-29 16:55:37,594 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:55:37,809 - __main__ - INFO - time: 0.21430516243
-2016-05-29 16:55:38,368 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:55:39,469 - __main__ - INFO - time: 1.10081005096
-2016-05-29 16:55:39,673 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:55:40,818 - __main__ - INFO - time: 1.14492702484
-2016-05-29 16:55:41,022 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:55:42,570 - __main__ - INFO - time: 1.54809999466
-2016-05-29 16:55:42,784 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:55:43,546 - __main__ - INFO - time: 0.761231899261
-2016-05-29 16:55:43,764 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:55:44,088 - __main__ - INFO - time: 0.323285102844
-2016-05-29 16:55:44,324 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:55:44,552 - __main__ - INFO - time: 0.227723121643
-2016-05-29 16:55:44,776 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:55:44,930 - __main__ - INFO - time: 0.153107881546
-2016-05-29 16:55:45,187 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:55:45,351 - __main__ - INFO - time: 0.163619995117
-2016-05-29 16:55:45,706 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:55:45,977 - __main__ - INFO - time: 0.270096063614
-2016-05-29 16:55:46,547 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 16:58:57,169 - __main__ - INFO - time: 190.621902943
-2016-05-29 16:58:57,390 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 16:59:20,743 - __main__ - INFO - time: 23.3526511192
-2016-05-29 16:59:20,961 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 16:59:25,399 - __main__ - INFO - time: 4.43791699409
-2016-05-29 16:59:25,622 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 16:59:26,821 - __main__ - INFO - time: 1.19801902771
-2016-05-29 16:59:27,040 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 16:59:27,319 - __main__ - INFO - time: 0.279156923294
-2016-05-29 16:59:27,545 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 16:59:27,759 - __main__ - INFO - time: 0.213073015213
-2016-05-29 16:59:27,997 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 16:59:28,163 - __main__ - INFO - time: 0.164644956589
-2016-05-29 16:59:28,423 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 16:59:28,587 - __main__ - INFO - time: 0.16380906105
-2016-05-29 16:59:28,924 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 16:59:29,164 - __main__ - INFO - time: 0.239797830582
-2016-05-29 16:59:29,716 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 17:01:11,937 - __main__ - INFO - time: 102.220005989
-2016-05-29 17:01:12,171 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 17:01:52,391 - __main__ - INFO - time: 40.2199120522
-2016-05-29 17:01:52,621 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 17:02:03,838 - __main__ - INFO - time: 11.2168810368
-2016-05-29 17:02:04,071 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 17:02:05,162 - __main__ - INFO - time: 1.09018707275
-2016-05-29 17:02:05,387 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 17:02:05,699 - __main__ - INFO - time: 0.311572790146
-2016-05-29 17:02:05,932 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 17:02:06,154 - __main__ - INFO - time: 0.222244024277
-2016-05-29 17:02:06,418 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 17:02:06,569 - __main__ - INFO - time: 0.150585889816
-2016-05-29 17:02:06,838 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 17:02:06,998 - __main__ - INFO - time: 0.159515142441
-2016-05-29 17:02:07,373 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 17:02:07,585 - __main__ - INFO - time: 0.212059020996
-2016-05-29 17:02:08,138 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 17:02:11,027 - __main__ - INFO - time: 2.88875794411
-2016-05-29 17:02:11,235 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 17:02:15,061 - __main__ - INFO - time: 3.82544589043
-2016-05-29 17:02:15,271 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 17:02:17,346 - __main__ - INFO - time: 2.07419490814
-2016-05-29 17:02:17,551 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 17:02:18,490 - __main__ - INFO - time: 0.93874001503
-2016-05-29 17:02:18,704 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 17:02:19,061 - __main__ - INFO - time: 0.356554031372
-2016-05-29 17:02:19,286 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 17:02:19,474 - __main__ - INFO - time: 0.187664031982
-2016-05-29 17:02:19,702 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 17:02:19,848 - __main__ - INFO - time: 0.14612197876
-2016-05-29 17:02:20,109 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 17:02:20,286 - __main__ - INFO - time: 0.177159070969
-2016-05-29 17:02:20,635 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 17:02:20,859 - __main__ - INFO - time: 0.224128961563
-2016-05-29 17:02:21,420 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 17:02:54,469 - __main__ - INFO - time: 33.0486409664
-2016-05-29 17:02:54,669 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 17:03:02,908 - __main__ - INFO - time: 8.2390100956
-2016-05-29 17:03:03,108 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 17:03:05,475 - __main__ - INFO - time: 2.36662793159
-2016-05-29 17:03:05,684 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 17:03:06,459 - __main__ - INFO - time: 0.774318933487
-2016-05-29 17:03:06,667 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 17:03:07,167 - __main__ - INFO - time: 0.500220060349
-2016-05-29 17:03:07,386 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 17:03:07,571 - __main__ - INFO - time: 0.184224128723
-2016-05-29 17:03:07,799 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 17:03:07,939 - __main__ - INFO - time: 0.139684915543
-2016-05-29 17:03:08,196 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 17:03:08,359 - __main__ - INFO - time: 0.163228034973
-2016-05-29 17:03:08,695 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 17:03:08,909 - __main__ - INFO - time: 0.213470935822
-2016-05-29 17:03:09,453 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 17:03:59,751 - __main__ - INFO - time: 50.2985630035
-2016-05-29 17:03:59,959 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 17:04:08,023 - __main__ - INFO - time: 8.06358003616
-2016-05-29 17:04:08,231 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 17:04:14,284 - __main__ - INFO - time: 6.05236101151
-2016-05-29 17:04:14,497 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 17:04:15,470 - __main__ - INFO - time: 0.972733974457
-2016-05-29 17:04:15,684 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 17:04:16,119 - __main__ - INFO - time: 0.435236215591
-2016-05-29 17:04:16,342 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 17:04:16,568 - __main__ - INFO - time: 0.22595500946
-2016-05-29 17:04:16,808 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 17:04:16,975 - __main__ - INFO - time: 0.166518211365
-2016-05-29 17:04:17,255 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 17:04:17,430 - __main__ - INFO - time: 0.174960851669
-2016-05-29 17:04:17,799 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 17:04:18,029 - __main__ - INFO - time: 0.229957103729
-2016-05-29 17:04:18,603 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 17:06:07,937 - __main__ - INFO - time: 109.334457874
-2016-05-29 17:06:08,170 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 17:06:33,943 - __main__ - INFO - time: 25.7724089622
-2016-05-29 17:06:34,176 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 17:06:40,227 - __main__ - INFO - time: 6.05036520958
-2016-05-29 17:06:40,448 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 17:06:41,446 - __main__ - INFO - time: 0.997091054916
-2016-05-29 17:06:41,678 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 17:06:42,191 - __main__ - INFO - time: 0.512025117874
-2016-05-29 17:06:42,431 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 17:06:42,674 - __main__ - INFO - time: 0.242254972458
-2016-05-29 17:06:42,935 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 17:06:43,106 - __main__ - INFO - time: 0.170413017273
-2016-05-29 17:06:43,407 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 17:06:43,589 - __main__ - INFO - time: 0.181854009628
-2016-05-29 17:06:43,985 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 17:06:44,220 - __main__ - INFO - time: 0.233274936676
-2016-05-29 17:06:44,808 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 17:07:50,936 - __main__ - INFO - time: 66.128423214
-2016-05-29 17:07:51,178 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 17:08:03,422 - __main__ - INFO - time: 12.2440400124
-2016-05-29 17:08:03,653 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 17:08:24,522 - __main__ - INFO - time: 20.868584156
-2016-05-29 17:08:24,763 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 17:08:26,792 - __main__ - INFO - time: 2.02871084213
-2016-05-29 17:08:27,032 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 17:08:27,555 - __main__ - INFO - time: 0.522983074188
-2016-05-29 17:08:27,805 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 17:08:28,123 - __main__ - INFO - time: 0.317379951477
-2016-05-29 17:08:28,387 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 17:08:28,550 - __main__ - INFO - time: 0.162750005722
-2016-05-29 17:08:28,846 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 17:08:29,008 - __main__ - INFO - time: 0.161271810532
-2016-05-29 17:08:29,387 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 17:08:29,614 - __main__ - INFO - time: 0.227026939392
-2016-05-29 17:08:30,189 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 17:08:58,117 - __main__ - INFO - time: 27.9278290272
-2016-05-29 17:08:58,333 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 17:09:10,097 - __main__ - INFO - time: 11.7636508942
-2016-05-29 17:09:10,312 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 17:09:13,551 - __main__ - INFO - time: 3.23831605911
-2016-05-29 17:09:13,770 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 17:09:15,624 - __main__ - INFO - time: 1.85363698006
-2016-05-29 17:09:15,858 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 17:09:16,362 - __main__ - INFO - time: 0.503042936325
-2016-05-29 17:09:16,609 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 17:09:16,831 - __main__ - INFO - time: 0.221361875534
-2016-05-29 17:09:17,095 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 17:09:17,289 - __main__ - INFO - time: 0.193610191345
-2016-05-29 17:09:17,597 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 17:09:17,780 - __main__ - INFO - time: 0.182594776154
-2016-05-29 17:09:18,178 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 17:09:18,400 - __main__ - INFO - time: 0.22111582756
-2016-05-29 17:09:18,989 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 17:10:39,204 - __main__ - INFO - time: 80.2153501511
-2016-05-29 17:10:39,430 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 17:11:01,733 - __main__ - INFO - time: 22.3034470081
-2016-05-29 17:11:01,959 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 17:11:14,873 - __main__ - INFO - time: 12.9134271145
-2016-05-29 17:11:15,098 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 17:11:16,544 - __main__ - INFO - time: 1.4453420639
-2016-05-29 17:11:16,775 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 17:11:17,135 - __main__ - INFO - time: 0.359496831894
-2016-05-29 17:11:17,381 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 17:11:17,596 - __main__ - INFO - time: 0.215185165405
-2016-05-29 17:11:17,839 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 17:11:17,994 - __main__ - INFO - time: 0.153995037079
-2016-05-29 17:11:18,279 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 17:11:18,444 - __main__ - INFO - time: 0.164155960083
-2016-05-29 17:11:18,803 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 17:11:19,012 - __main__ - INFO - time: 0.209583997726
-2016-05-29 17:11:19,579 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 17:17:04,862 - __main__ - INFO - time: 345.282507896
-2016-05-29 17:17:05,105 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 17:18:08,381 - __main__ - INFO - time: 63.2760231495
-2016-05-29 17:18:08,623 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 17:18:16,970 - __main__ - INFO - time: 8.34700393677
-2016-05-29 17:18:17,222 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 17:18:19,035 - __main__ - INFO - time: 1.81342887878
-2016-05-29 17:18:19,292 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 17:18:19,790 - __main__ - INFO - time: 0.497529029846
-2016-05-29 17:18:20,042 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 17:18:20,306 - __main__ - INFO - time: 0.262856960297
-2016-05-29 17:18:20,572 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 17:18:20,741 - __main__ - INFO - time: 0.169671058655
-2016-05-29 17:18:21,045 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 17:18:21,234 - __main__ - INFO - time: 0.187819957733
-2016-05-29 17:18:21,638 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 17:18:21,866 - __main__ - INFO - time: 0.227859973907
-2016-05-29 17:18:22,445 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
-2016-05-29 17:20:55,630 - __main__ - INFO - time: 153.185094118
-2016-05-29 17:20:55,869 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 125.0
-2016-05-29 17:21:43,128 - __main__ - INFO - time: 47.2585921288
-2016-05-29 17:21:43,370 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 25.0
-2016-05-29 17:21:50,272 - __main__ - INFO - time: 6.90161895752
-2016-05-29 17:21:50,512 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 5.0
-2016-05-29 17:21:53,210 - __main__ - INFO - time: 2.69801998138
-2016-05-29 17:21:53,452 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 1.0
-2016-05-29 17:21:53,922 - __main__ - INFO - time: 0.469987869263
-2016-05-29 17:21:54,172 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.2
-2016-05-29 17:21:54,422 - __main__ - INFO - time: 0.249776124954
-2016-05-29 17:21:54,690 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.04
-2016-05-29 17:21:54,865 - __main__ - INFO - time: 0.175202846527
-2016-05-29 17:21:55,168 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.008
-2016-05-29 17:21:55,354 - __main__ - INFO - time: 0.185311079025
-2016-05-29 17:21:55,742 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 0.0016
-2016-05-29 17:21:55,984 - __main__ - INFO - time: 0.241866827011
-2016-05-29 17:21:56,588 - __main__ - INFO - Train ramp loss SVM (C, ratio, trial): 625.0
+2016-06-06 03:23:23,600 - __main__ - INFO - info test
+2016-06-06 03:23:24,586 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 0)
+2016-06-06 03:23:27,864 - __main__ - INFO - time: 3.2781188488, status: 0
+2016-06-06 03:23:29,457 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 0)
+2016-06-06 03:23:30,448 - __main__ - INFO - time: 0.990298986435, status: 0
+2016-06-06 03:23:31,943 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 0)
+2016-06-06 03:23:32,729 - __main__ - INFO - time: 0.785397052765, status: 0
+2016-06-06 03:23:34,235 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 0)
+2016-06-06 03:23:34,981 - __main__ - INFO - time: 0.745643138885, status: 0
+2016-06-06 03:23:36,440 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 0)
+2016-06-06 03:23:37,156 - __main__ - INFO - time: 0.715842962265, status: 0
+2016-06-06 03:23:38,643 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 0)
+2016-06-06 03:23:39,284 - __main__ - INFO - time: 0.641402006149, status: 0
+2016-06-06 03:23:40,673 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 0)
+2016-06-06 03:23:41,261 - __main__ - INFO - time: 0.587159872055, status: 0
+2016-06-06 03:23:42,686 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 0)
+2016-06-06 03:23:43,303 - __main__ - INFO - time: 0.617331981659, status: 0
+2016-06-06 03:23:44,927 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 0)
+2016-06-06 03:23:45,655 - __main__ - INFO - time: 0.727678060532, status: 0
+2016-06-06 03:23:47,729 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 1)
+2016-06-06 03:23:50,016 - __main__ - INFO - time: 2.28613305092, status: 1
+2016-06-06 03:23:51,025 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 1)
+2016-06-06 03:23:51,539 - __main__ - INFO - time: 0.514564990997, status: 0
+2016-06-06 03:23:52,567 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 1)
+2016-06-06 03:23:53,048 - __main__ - INFO - time: 0.480018138885, status: 0
+2016-06-06 03:23:54,075 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 1)
+2016-06-06 03:23:54,568 - __main__ - INFO - time: 0.49315905571, status: 0
+2016-06-06 03:23:55,604 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 1)
+2016-06-06 03:23:56,098 - __main__ - INFO - time: 0.493463993073, status: 0
+2016-06-06 03:23:57,126 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 1)
+2016-06-06 03:23:57,625 - __main__ - INFO - time: 0.498039960861, status: 0
+2016-06-06 03:23:58,825 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 1)
+2016-06-06 03:23:59,438 - __main__ - INFO - time: 0.612703084946, status: 0
+2016-06-06 03:24:00,928 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 1)
+2016-06-06 03:24:01,587 - __main__ - INFO - time: 0.658241033554, status: 0
+2016-06-06 03:24:03,290 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 1)
+2016-06-06 03:24:03,977 - __main__ - INFO - time: 0.686899900436, status: 0
+2016-06-06 03:24:05,928 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 2)
+2016-06-06 03:24:06,935 - __main__ - INFO - time: 1.00710511208, status: 0
+2016-06-06 03:24:08,615 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 2)
+2016-06-06 03:24:09,419 - __main__ - INFO - time: 0.804357051849, status: 0
+2016-06-06 03:24:11,119 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 2)
+2016-06-06 03:24:11,856 - __main__ - INFO - time: 0.737551927567, status: 0
+2016-06-06 03:24:13,574 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 2)
+2016-06-06 03:24:14,291 - __main__ - INFO - time: 0.7174949646, status: 0
+2016-06-06 03:24:15,999 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 2)
+2016-06-06 03:24:16,722 - __main__ - INFO - time: 0.722465991974, status: 0
+2016-06-06 03:24:18,412 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 2)
+2016-06-06 03:24:19,143 - __main__ - INFO - time: 0.730991125107, status: 0
+2016-06-06 03:24:20,870 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 2)
+2016-06-06 03:24:21,643 - __main__ - INFO - time: 0.772530078888, status: 0
+2016-06-06 03:24:23,625 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 2)
+2016-06-06 03:24:24,344 - __main__ - INFO - time: 0.718136072159, status: 0
+2016-06-06 03:24:26,172 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 2)
+2016-06-06 03:24:26,949 - __main__ - INFO - time: 0.777117967606, status: 0
+2016-06-06 03:24:29,158 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 3)
+2016-06-06 03:24:33,298 - __main__ - INFO - time: 4.13974881172, status: 0
+2016-06-06 03:24:34,786 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 3)
+2016-06-06 03:24:36,927 - __main__ - INFO - time: 2.14080190659, status: 0
+2016-06-06 03:24:38,378 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 3)
+2016-06-06 03:24:40,043 - __main__ - INFO - time: 1.66428613663, status: 0
+2016-06-06 03:24:41,529 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 3)
+2016-06-06 03:24:42,290 - __main__ - INFO - time: 0.760584115982, status: 0
+2016-06-06 03:24:43,771 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 3)
+2016-06-06 03:24:44,500 - __main__ - INFO - time: 0.728229045868, status: 0
+2016-06-06 03:24:45,985 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 3)
+2016-06-06 03:24:46,591 - __main__ - INFO - time: 0.60516500473, status: 0
+2016-06-06 03:24:48,019 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 3)
+2016-06-06 03:24:48,612 - __main__ - INFO - time: 0.592307090759, status: 0
+2016-06-06 03:24:50,032 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 3)
+2016-06-06 03:24:50,654 - __main__ - INFO - time: 0.621738910675, status: 0
+2016-06-06 03:24:52,235 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 3)
+2016-06-06 03:24:52,989 - __main__ - INFO - time: 0.753441095352, status: 0
+2016-06-06 03:24:55,064 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 4)
+2016-06-06 03:24:56,146 - __main__ - INFO - time: 1.08233690262, status: 0
+2016-06-06 03:24:57,731 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 4)
+2016-06-06 03:24:58,498 - __main__ - INFO - time: 0.766726970673, status: 0
+2016-06-06 03:25:00,107 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 4)
+2016-06-06 03:25:00,821 - __main__ - INFO - time: 0.713062047958, status: 0
+2016-06-06 03:25:02,415 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 4)
+2016-06-06 03:25:03,115 - __main__ - INFO - time: 0.700021028519, status: 0
+2016-06-06 03:25:04,732 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 4)
+2016-06-06 03:25:05,425 - __main__ - INFO - time: 0.69252204895, status: 0
+2016-06-06 03:25:06,992 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 4)
+2016-06-06 03:25:07,642 - __main__ - INFO - time: 0.649828910828, status: 0
+2016-06-06 03:25:09,201 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 4)
+2016-06-06 03:25:09,756 - __main__ - INFO - time: 0.554955005646, status: 0
+2016-06-06 03:25:11,117 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 4)
+2016-06-06 03:25:11,691 - __main__ - INFO - time: 0.574030160904, status: 0
+2016-06-06 03:25:13,178 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 4)
+2016-06-06 03:25:13,838 - __main__ - INFO - time: 0.659904003143, status: 0
+2016-06-06 03:25:15,736 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 5)
+2016-06-06 03:25:20,299 - __main__ - INFO - time: 4.56270098686, status: 1
+2016-06-06 03:25:21,787 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 5)
+2016-06-06 03:25:26,303 - __main__ - INFO - time: 4.51586604118, status: 1
+2016-06-06 03:25:27,820 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 5)
+2016-06-06 03:25:28,442 - __main__ - INFO - time: 0.622107028961, status: 0
+2016-06-06 03:25:29,948 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 5)
+2016-06-06 03:25:30,555 - __main__ - INFO - time: 0.607289075851, status: 0
+2016-06-06 03:25:32,052 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 5)
+2016-06-06 03:25:32,674 - __main__ - INFO - time: 0.622051000595, status: 0
+2016-06-06 03:25:34,202 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 5)
+2016-06-06 03:25:34,764 - __main__ - INFO - time: 0.562196016312, status: 0
+2016-06-06 03:25:36,079 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 5)
+2016-06-06 03:25:36,639 - __main__ - INFO - time: 0.559239149094, status: 0
+2016-06-06 03:25:37,996 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 5)
+2016-06-06 03:25:38,633 - __main__ - INFO - time: 0.636669158936, status: 0
+2016-06-06 03:25:40,179 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 5)
+2016-06-06 03:25:40,870 - __main__ - INFO - time: 0.689929008484, status: 0
+2016-06-06 03:25:42,786 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 6)
+2016-06-06 03:25:43,921 - __main__ - INFO - time: 1.13549590111, status: 0
+2016-06-06 03:25:45,550 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 6)
+2016-06-06 03:25:46,332 - __main__ - INFO - time: 0.782483816147, status: 0
+2016-06-06 03:25:47,950 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 6)
+2016-06-06 03:25:48,659 - __main__ - INFO - time: 0.709539890289, status: 0
+2016-06-06 03:25:50,331 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 6)
+2016-06-06 03:25:50,987 - __main__ - INFO - time: 0.655786991119, status: 0
+2016-06-06 03:25:52,571 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 6)
+2016-06-06 03:25:53,236 - __main__ - INFO - time: 0.663928985596, status: 0
+2016-06-06 03:25:54,801 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 6)
+2016-06-06 03:25:55,475 - __main__ - INFO - time: 0.673640012741, status: 0
+2016-06-06 03:25:57,153 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 6)
+2016-06-06 03:25:57,799 - __main__ - INFO - time: 0.644892215729, status: 0
+2016-06-06 03:25:59,451 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 6)
+2016-06-06 03:26:00,161 - __main__ - INFO - time: 0.709622859955, status: 0
+2016-06-06 03:26:01,992 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 6)
+2016-06-06 03:26:02,788 - __main__ - INFO - time: 0.795614004135, status: 0
+2016-06-06 03:26:05,027 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 7)
+2016-06-06 03:26:05,766 - __main__ - INFO - time: 0.738467931747, status: 0
+2016-06-06 03:26:07,162 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 7)
+2016-06-06 03:26:07,784 - __main__ - INFO - time: 0.622260093689, status: 0
+2016-06-06 03:26:09,171 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 7)
+2016-06-06 03:26:09,793 - __main__ - INFO - time: 0.622097969055, status: 0
+2016-06-06 03:26:11,181 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 7)
+2016-06-06 03:26:11,775 - __main__ - INFO - time: 0.593292951584, status: 0
+2016-06-06 03:26:13,141 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 7)
+2016-06-06 03:26:13,749 - __main__ - INFO - time: 0.607046842575, status: 0
+2016-06-06 03:26:15,102 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 7)
+2016-06-06 03:26:15,724 - __main__ - INFO - time: 0.621528148651, status: 0
+2016-06-06 03:26:17,214 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 7)
+2016-06-06 03:26:17,763 - __main__ - INFO - time: 0.548377037048, status: 0
+2016-06-06 03:26:19,095 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 7)
+2016-06-06 03:26:19,629 - __main__ - INFO - time: 0.53382897377, status: 0
+2016-06-06 03:26:21,015 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 7)
+2016-06-06 03:26:21,707 - __main__ - INFO - time: 0.692532062531, status: 0
+2016-06-06 03:26:23,690 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 8)
+2016-06-06 03:26:28,128 - __main__ - INFO - time: 4.43763494492, status: 1
+2016-06-06 03:26:29,779 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 8)
+2016-06-06 03:26:34,082 - __main__ - INFO - time: 4.30273485184, status: 1
+2016-06-06 03:26:35,691 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 8)
+2016-06-06 03:26:36,422 - __main__ - INFO - time: 0.730911016464, status: 0
+2016-06-06 03:26:38,094 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 8)
+2016-06-06 03:26:38,798 - __main__ - INFO - time: 0.704551935196, status: 0
+2016-06-06 03:26:40,415 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 8)
+2016-06-06 03:26:41,137 - __main__ - INFO - time: 0.72119808197, status: 0
+2016-06-06 03:26:42,819 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 8)
+2016-06-06 03:26:43,553 - __main__ - INFO - time: 0.733155012131, status: 0
+2016-06-06 03:26:45,319 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 8)
+2016-06-06 03:26:45,976 - __main__ - INFO - time: 0.656762123108, status: 0
+2016-06-06 03:26:47,602 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 8)
+2016-06-06 03:26:48,239 - __main__ - INFO - time: 0.636255979538, status: 0
+2016-06-06 03:26:49,880 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 8)
+2016-06-06 03:26:50,610 - __main__ - INFO - time: 0.729682922363, status: 0
+2016-06-06 03:26:52,617 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 9)
+2016-06-06 03:26:53,514 - __main__ - INFO - time: 0.896601915359, status: 0
+2016-06-06 03:26:55,132 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 9)
+2016-06-06 03:26:55,845 - __main__ - INFO - time: 0.713016986847, status: 0
+2016-06-06 03:26:57,474 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 9)
+2016-06-06 03:26:58,144 - __main__ - INFO - time: 0.669944047928, status: 0
+2016-06-06 03:26:59,763 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 9)
+2016-06-06 03:27:00,422 - __main__ - INFO - time: 0.659526109695, status: 0
+2016-06-06 03:27:02,040 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 9)
+2016-06-06 03:27:02,728 - __main__ - INFO - time: 0.687736988068, status: 0
+2016-06-06 03:27:04,427 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 9)
+2016-06-06 03:27:05,093 - __main__ - INFO - time: 0.665401935577, status: 0
+2016-06-06 03:27:06,941 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 9)
+2016-06-06 03:27:08,673 - __main__ - INFO - time: 1.73115897179, status: 0
+2016-06-06 03:27:10,853 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 9)
+2016-06-06 03:27:12,518 - __main__ - INFO - time: 1.66481399536, status: 0
+2016-06-06 03:27:14,638 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 9)
+2016-06-06 03:27:16,401 - __main__ - INFO - time: 1.76303005219, status: 0
+2016-06-06 03:27:18,962 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 0)
+2016-06-06 03:27:26,232 - __main__ - INFO - time: 7.2692220211, status: 1
+2016-06-06 03:27:28,613 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 0)
+2016-06-06 03:27:34,216 - __main__ - INFO - time: 5.60250592232, status: 1
+2016-06-06 03:27:36,546 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 0)
+2016-06-06 03:27:40,978 - __main__ - INFO - time: 4.43158102036, status: 0
+2016-06-06 03:27:43,296 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 0)
+2016-06-06 03:27:44,271 - __main__ - INFO - time: 0.974860906601, status: 0
+2016-06-06 03:27:46,850 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 0)
+2016-06-06 03:27:49,212 - __main__ - INFO - time: 2.36134600639, status: 0
+2016-06-06 03:27:52,567 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 0)
+2016-06-06 03:27:54,896 - __main__ - INFO - time: 2.32878899574, status: 0
+2016-06-06 03:27:58,145 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 0)
+2016-06-06 03:28:00,432 - __main__ - INFO - time: 2.28660202026, status: 0
+2016-06-06 03:28:03,776 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 0)
+2016-06-06 03:28:06,046 - __main__ - INFO - time: 2.26984214783, status: 0
+2016-06-06 03:28:09,905 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 0)
+2016-06-06 03:28:12,449 - __main__ - INFO - time: 2.54412603378, status: 0
+2016-06-06 03:28:17,269 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 1)
+2016-06-06 03:28:26,453 - __main__ - INFO - time: 9.18385505676, status: 1
+2016-06-06 03:28:27,938 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 1)
+2016-06-06 03:28:34,796 - __main__ - INFO - time: 6.85801482201, status: 1
+2016-06-06 03:28:37,089 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 1)
+2016-06-06 03:28:38,539 - __main__ - INFO - time: 1.44920277596, status: 0
+2016-06-06 03:28:41,256 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 1)
+2016-06-06 03:28:43,630 - __main__ - INFO - time: 2.37374186516, status: 0
+2016-06-06 03:28:47,058 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 1)
+2016-06-06 03:28:49,210 - __main__ - INFO - time: 2.15136790276, status: 0
+2016-06-06 03:28:52,329 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 1)
+2016-06-06 03:28:54,488 - __main__ - INFO - time: 2.15843200684, status: 0
+2016-06-06 03:28:57,646 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 1)
+2016-06-06 03:28:59,669 - __main__ - INFO - time: 2.02268505096, status: 0
+2016-06-06 03:29:02,718 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 1)
+2016-06-06 03:29:04,997 - __main__ - INFO - time: 2.27835583687, status: 0
+2016-06-06 03:29:08,688 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 1)
+2016-06-06 03:29:11,184 - __main__ - INFO - time: 2.49536299706, status: 0
+2016-06-06 03:29:16,012 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 2)
+2016-06-06 03:29:24,151 - __main__ - INFO - time: 8.13793802261, status: 1
+2016-06-06 03:29:26,986 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 2)
+2016-06-06 03:29:30,925 - __main__ - INFO - time: 3.93892598152, status: 0
+2016-06-06 03:29:34,020 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 2)
+2016-06-06 03:29:36,998 - __main__ - INFO - time: 2.9778110981, status: 0
+2016-06-06 03:29:40,032 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 2)
+2016-06-06 03:29:42,654 - __main__ - INFO - time: 2.62159919739, status: 0
+2016-06-06 03:29:45,702 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 2)
+2016-06-06 03:29:48,005 - __main__ - INFO - time: 2.30227088928, status: 0
+2016-06-06 03:29:50,855 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 2)
+2016-06-06 03:29:53,085 - __main__ - INFO - time: 2.22972583771, status: 0
+2016-06-06 03:29:55,889 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 2)
+2016-06-06 03:29:58,210 - __main__ - INFO - time: 2.3200879097, status: 0
+2016-06-06 03:30:01,602 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 2)
+2016-06-06 03:30:03,868 - __main__ - INFO - time: 2.26531791687, status: 0
+2016-06-06 03:30:07,699 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 2)
+2016-06-06 03:30:10,086 - __main__ - INFO - time: 2.38641309738, status: 0
+2016-06-06 03:30:14,682 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 3)
+2016-06-06 03:30:17,229 - __main__ - INFO - time: 2.54658699036, status: 0
+2016-06-06 03:30:20,405 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 3)
+2016-06-06 03:30:22,764 - __main__ - INFO - time: 2.3583509922, status: 0
+2016-06-06 03:30:25,945 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 3)
+2016-06-06 03:30:28,268 - __main__ - INFO - time: 2.32330107689, status: 0
+2016-06-06 03:30:31,562 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 3)
+2016-06-06 03:30:33,853 - __main__ - INFO - time: 2.29073119164, status: 0
+2016-06-06 03:30:37,059 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 3)
+2016-06-06 03:30:39,341 - __main__ - INFO - time: 2.28128790855, status: 0
+2016-06-06 03:30:42,680 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 3)
+2016-06-06 03:30:44,914 - __main__ - INFO - time: 2.23302602768, status: 0
+2016-06-06 03:30:48,031 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 3)
+2016-06-06 03:30:50,207 - __main__ - INFO - time: 2.17597794533, status: 0
+2016-06-06 03:30:53,614 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 3)
+2016-06-06 03:30:55,849 - __main__ - INFO - time: 2.23504900932, status: 0
+2016-06-06 03:30:59,577 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 3)
+2016-06-06 03:31:02,122 - __main__ - INFO - time: 2.5444560051, status: 0

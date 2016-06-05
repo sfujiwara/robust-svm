@@ -125,7 +125,7 @@ def load_internet_ad():
     df = df.iloc[:, 4:]
     x = np.array(df.iloc[:, :(len(df.columns) - 1)], dtype=float)
     y = np.array(df.iloc[:, len(df.columns) - 1], dtype=float)
-    return x, y, None
+    return x, y, None, None
 
 
 def load_w6a():
