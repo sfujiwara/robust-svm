@@ -180,7 +180,7 @@ for i in range(len(num_ol)):
 logger.info("Training finished")
 
 # Save as csv
-# dir_name_result = 'results/synthetic-final/'
+# dir_name_result = 'results/time/'
 dir_name_result = "results/synthetic/num5000_dim2"
 if not os.path.isdir(dir_name_result):
     os.makedirs(dir_name_result)

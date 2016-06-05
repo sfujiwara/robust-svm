@@ -16,12 +16,14 @@ df_ersvm = pd.read_csv("{}/ersvm.csv".format(DATASET_NAME))
 df_var = pd.read_csv("{}/var.csv".format(DATASET_NAME))
 df_enusvm = pd.read_csv("{}/enusvm.csv".format(DATASET_NAME))
 df_ramp = pd.read_csv("{}/ramp.csv".format(DATASET_NAME))
+df_csvm = pd.read_csv("{}/csvm.csv".format(DATASET_NAME))
 
 # Indices achieving maximum validation performance in each trial
 ind_dca = df_ersvm.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
 ind_var = df_var.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
 ind_enu = df_enusvm.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
 ind_ramp = df_ramp.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
+ind_csvm = df_csvm.groupby(["ratio", "trial"]).agg(np.argmax)[["val-acc", "val-f"]]
 
 tmp = df_ramp.iloc[np.array(ind_ramp["val-acc"], dtype=int)]
 df_acc_ramp = tmp.groupby(['ratio']).agg({'test-acc': [np.mean, np.std]})
@@ -38,6 +40,9 @@ df_acc_var = tmp.groupby('ratio').agg({'test-acc': [np.mean, np.std], 'is_convex
 # Enu-SVM
 tmp = df_enusvm.iloc[np.array(ind_enu["val-acc"], dtype=int)]
 df_acc_enu = tmp.groupby('ratio').agg({'test-acc': [np.mean, np.std], 'is_convex': [np.min, np.max]})
+# C-SVM
+tmp = df_csvm.iloc[np.array(ind_csvm["val-acc"], dtype=int)]
+df_acc_csvm = tmp.groupby("ratio").agg({'test-acc': [np.mean, np.std]})
 
 # DataFrame for f-measure
 # ER-SVM + DCA

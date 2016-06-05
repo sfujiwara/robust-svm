@@ -6,3 +6,4 @@ src/*.csv
 data/LIBSVM/covtype
 
 nohup.out
+.ipynb_checkpoints

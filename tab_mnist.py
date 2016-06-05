@@ -4,21 +4,30 @@ import numpy as np
 import pandas as pd
 
 # Load result csv
-df_ersvm = pd.read_csv("results/mnist/ersvm.csv")
-df_var = pd.read_csv("results/mnist/var.csv")
-df_enusvm = pd.read_csv("results/mnist/enusvm.csv")
-df_ramp = pd.read_csv("results/mnist/ramp.csv")
+df_ersvm = pd.read_csv("results/mnist/ersvm_3rdclass.csv")
+df_var = pd.read_csv("results/mnist/var_3rdclass.csv")
+df_enusvm = pd.read_csv("results/mnist/enusvm_3rdclass.csv")
+df_ramp = pd.read_csv("results/mnist/ramp_3rdclass.csv")
+df_csvm = pd.read_csv("results/mnist/csvm_3rdclass.csv")
 
 # Indices achieving maximum validation performance in each trial
 ind_dca = df_ersvm.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
 ind_var = df_var.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
 ind_enu = df_enusvm.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
 ind_ramp = df_ramp.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
+ind_csvm = df_ramp.groupby(['ratio', 'trial']).agg(np.argmax)[["val-acc", "val-f"]]
 
+# Ramp
 tmp = df_ramp.iloc[np.array(ind_ramp["val-acc"], dtype=int)]
 df_acc_ramp = tmp.groupby(['ratio']).agg({'test-acc': [np.mean, np.std]})
 tmp = df_ramp.iloc[np.array(ind_ramp["val-f"], dtype=int)]
 df_f_ramp = tmp.groupby(['ratio']).agg({'test-f': [np.mean, np.std]})
+
+# C-SVM
+tmp = df_csvm.iloc[np.array(ind_csvm["val-acc"], dtype=int)]
+df_acc_csvm = tmp.groupby(['ratio']).agg({'test-acc': [np.mean, np.std]})
+tmp = df_csvm.iloc[np.array(ind_csvm["val-f"], dtype=int)]
+df_f_csvm = tmp.groupby(['ratio']).agg({'test-f': [np.mean, np.std]})
 
 # DataFrame for accuracy
 # ER-SVM + DCA
