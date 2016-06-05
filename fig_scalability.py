@@ -28,52 +28,27 @@ elw = 2
 cs = 3
 
 
+def plot_percentile(data, label, fmt, length=8):
+    yerr = np.vstack([
+        np.mean(data, axis=1) - np.percentile(data, 25, axis=1),
+        np.percentile(data, 75, axis=1) - np.mean(data, axis=1)
+    ])
+    plt.errorbar(
+        sampling_size[:length],
+        np.mean(data, axis=1)[:length], yerr=yerr[:, :length],
+        label=label, elinewidth=2, capsize=3, fmt=fmt
+    )
 
-plt.errorbar(
-    sampling_size,
-    [np.mean(i) for i in time_ersvm1],
-    yerr=np.array([
-        np.array([np.percentile(i, 75) for i in time_ersvm1])-np.array([np.mean(i) for i in time_ersvm1]),
-        np.array([np.mean(i) for i in time_ersvm1])-np.array([np.percentile(i, 25) for i in time_ersvm1])
-    ]),
-    label='ER-SVM (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='-'
-)
-plt.errorbar(
-    sampling_size,
-    [np.mean(i) for i in time_ersvm5],
-    yerr=[np.std(i) for i in time_ersvm5],
-    label='ER-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-x'
-)
-plt.errorbar(
-    sampling_size,
-    [np.mean(i) for i in time_libsvm0],
-    yerr=np.array([
-        np.array([np.percentile(i, 75) for i in time_libsvm0])-np.array([np.mean(i) for i in time_libsvm0]),
-        np.array([np.mean(i) for i in time_libsvm0])-np.array([np.percentile(i, 25) for i in time_libsvm0])
-    ]),
-    label='C-SVM (C = 1e0)', elinewidth=elw, capsize=cs, fmt=':'
-)
-plt.errorbar(sampling_size[:-3],
-             [np.mean(i) for i in time_libsvm4[:-3]],
-             yerr=[np.std(i) for i in time_libsvm4[:-3]],
-             label='C-SVM (C = 1e3)', elinewidth=elw, capsize=cs, fmt=':x')
-plt.errorbar(sampling_size,
-             [np.mean(i) for i in time_enusvm1],
-             yerr=[np.std(i) for i in time_enusvm1],
-             label='Enu-SVM (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='-.')
-plt.errorbar(sampling_size,
-             [np.mean(i) for i in time_enusvm5],
-             yerr=[np.std(i) for i in time_enusvm5],
-             label='Enu-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-.x')
-plt.errorbar(sampling_size[:-1],
-             [np.mean(i) for i in time_var1[:-1]],
-             yerr=[np.std(i) for i in time_var1[:-1]],
-             label='Heuristics (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='--')
-plt.errorbar(sampling_size[:-1],
-             [np.mean(i) for i in time_var5[:-1]],
-             yerr=[np.std(i) for i in time_var5[:-1]],
-             label='Heuristics (nu = 0.5)', elinewidth=elw, capsize=cs,
-             fmt='--x')
+
+plot_percentile(time_ersvm1, "ER-SVM (nu = 0.1)", "-")
+plot_percentile(time_ersvm5, "ER-SVM (nu = 0.5)", "-x")
+plot_percentile(time_libsvm0, "C-SVM (C = 1e0)", ":")
+plot_percentile(time_libsvm4, "C-SVM (C = 1e3)", ":x", -3)
+plot_percentile(time_enusvm1, "Enu-SVM (nu = 0.1)", "-.")
+plot_percentile(time_enusvm5, "Enu-SVM (nu = 0.5)", "-.x")
+plot_percentile(time_var1, "Heuristics (nu = 0.1)", "--", -1)
+plot_percentile(time_var5, "Heuristics (nu = 0.5)", "--x", -1)
+
 plt.xlabel('# training samples')
 plt.ylabel('training time (sec)')
 plt.legend(loc='upper left')
