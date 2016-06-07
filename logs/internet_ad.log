@@ -1,253 +1,1082 @@
-2016-06-06 03:23:23,600 - __main__ - INFO - info test
-2016-06-06 03:23:24,586 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 0)
-2016-06-06 03:23:27,864 - __main__ - INFO - time: 3.2781188488, status: 0
-2016-06-06 03:23:29,457 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 0)
-2016-06-06 03:23:30,448 - __main__ - INFO - time: 0.990298986435, status: 0
-2016-06-06 03:23:31,943 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 0)
-2016-06-06 03:23:32,729 - __main__ - INFO - time: 0.785397052765, status: 0
-2016-06-06 03:23:34,235 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 0)
-2016-06-06 03:23:34,981 - __main__ - INFO - time: 0.745643138885, status: 0
-2016-06-06 03:23:36,440 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 0)
-2016-06-06 03:23:37,156 - __main__ - INFO - time: 0.715842962265, status: 0
-2016-06-06 03:23:38,643 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 0)
-2016-06-06 03:23:39,284 - __main__ - INFO - time: 0.641402006149, status: 0
-2016-06-06 03:23:40,673 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 0)
-2016-06-06 03:23:41,261 - __main__ - INFO - time: 0.587159872055, status: 0
-2016-06-06 03:23:42,686 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 0)
-2016-06-06 03:23:43,303 - __main__ - INFO - time: 0.617331981659, status: 0
-2016-06-06 03:23:44,927 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 0)
-2016-06-06 03:23:45,655 - __main__ - INFO - time: 0.727678060532, status: 0
-2016-06-06 03:23:47,729 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 1)
-2016-06-06 03:23:50,016 - __main__ - INFO - time: 2.28613305092, status: 1
-2016-06-06 03:23:51,025 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 1)
-2016-06-06 03:23:51,539 - __main__ - INFO - time: 0.514564990997, status: 0
-2016-06-06 03:23:52,567 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 1)
-2016-06-06 03:23:53,048 - __main__ - INFO - time: 0.480018138885, status: 0
-2016-06-06 03:23:54,075 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 1)
-2016-06-06 03:23:54,568 - __main__ - INFO - time: 0.49315905571, status: 0
-2016-06-06 03:23:55,604 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 1)
-2016-06-06 03:23:56,098 - __main__ - INFO - time: 0.493463993073, status: 0
-2016-06-06 03:23:57,126 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 1)
-2016-06-06 03:23:57,625 - __main__ - INFO - time: 0.498039960861, status: 0
-2016-06-06 03:23:58,825 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 1)
-2016-06-06 03:23:59,438 - __main__ - INFO - time: 0.612703084946, status: 0
-2016-06-06 03:24:00,928 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 1)
-2016-06-06 03:24:01,587 - __main__ - INFO - time: 0.658241033554, status: 0
-2016-06-06 03:24:03,290 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 1)
-2016-06-06 03:24:03,977 - __main__ - INFO - time: 0.686899900436, status: 0
-2016-06-06 03:24:05,928 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 2)
-2016-06-06 03:24:06,935 - __main__ - INFO - time: 1.00710511208, status: 0
-2016-06-06 03:24:08,615 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 2)
-2016-06-06 03:24:09,419 - __main__ - INFO - time: 0.804357051849, status: 0
-2016-06-06 03:24:11,119 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 2)
-2016-06-06 03:24:11,856 - __main__ - INFO - time: 0.737551927567, status: 0
-2016-06-06 03:24:13,574 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 2)
-2016-06-06 03:24:14,291 - __main__ - INFO - time: 0.7174949646, status: 0
-2016-06-06 03:24:15,999 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 2)
-2016-06-06 03:24:16,722 - __main__ - INFO - time: 0.722465991974, status: 0
-2016-06-06 03:24:18,412 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 2)
-2016-06-06 03:24:19,143 - __main__ - INFO - time: 0.730991125107, status: 0
-2016-06-06 03:24:20,870 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 2)
-2016-06-06 03:24:21,643 - __main__ - INFO - time: 0.772530078888, status: 0
-2016-06-06 03:24:23,625 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 2)
-2016-06-06 03:24:24,344 - __main__ - INFO - time: 0.718136072159, status: 0
-2016-06-06 03:24:26,172 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 2)
-2016-06-06 03:24:26,949 - __main__ - INFO - time: 0.777117967606, status: 0
-2016-06-06 03:24:29,158 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 3)
-2016-06-06 03:24:33,298 - __main__ - INFO - time: 4.13974881172, status: 0
-2016-06-06 03:24:34,786 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 3)
-2016-06-06 03:24:36,927 - __main__ - INFO - time: 2.14080190659, status: 0
-2016-06-06 03:24:38,378 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 3)
-2016-06-06 03:24:40,043 - __main__ - INFO - time: 1.66428613663, status: 0
-2016-06-06 03:24:41,529 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 3)
-2016-06-06 03:24:42,290 - __main__ - INFO - time: 0.760584115982, status: 0
-2016-06-06 03:24:43,771 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 3)
-2016-06-06 03:24:44,500 - __main__ - INFO - time: 0.728229045868, status: 0
-2016-06-06 03:24:45,985 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 3)
-2016-06-06 03:24:46,591 - __main__ - INFO - time: 0.60516500473, status: 0
-2016-06-06 03:24:48,019 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 3)
-2016-06-06 03:24:48,612 - __main__ - INFO - time: 0.592307090759, status: 0
-2016-06-06 03:24:50,032 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 3)
-2016-06-06 03:24:50,654 - __main__ - INFO - time: 0.621738910675, status: 0
-2016-06-06 03:24:52,235 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 3)
-2016-06-06 03:24:52,989 - __main__ - INFO - time: 0.753441095352, status: 0
-2016-06-06 03:24:55,064 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 4)
-2016-06-06 03:24:56,146 - __main__ - INFO - time: 1.08233690262, status: 0
-2016-06-06 03:24:57,731 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 4)
-2016-06-06 03:24:58,498 - __main__ - INFO - time: 0.766726970673, status: 0
-2016-06-06 03:25:00,107 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 4)
-2016-06-06 03:25:00,821 - __main__ - INFO - time: 0.713062047958, status: 0
-2016-06-06 03:25:02,415 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 4)
-2016-06-06 03:25:03,115 - __main__ - INFO - time: 0.700021028519, status: 0
-2016-06-06 03:25:04,732 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 4)
-2016-06-06 03:25:05,425 - __main__ - INFO - time: 0.69252204895, status: 0
-2016-06-06 03:25:06,992 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 4)
-2016-06-06 03:25:07,642 - __main__ - INFO - time: 0.649828910828, status: 0
-2016-06-06 03:25:09,201 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 4)
-2016-06-06 03:25:09,756 - __main__ - INFO - time: 0.554955005646, status: 0
-2016-06-06 03:25:11,117 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 4)
-2016-06-06 03:25:11,691 - __main__ - INFO - time: 0.574030160904, status: 0
-2016-06-06 03:25:13,178 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 4)
-2016-06-06 03:25:13,838 - __main__ - INFO - time: 0.659904003143, status: 0
-2016-06-06 03:25:15,736 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 5)
-2016-06-06 03:25:20,299 - __main__ - INFO - time: 4.56270098686, status: 1
-2016-06-06 03:25:21,787 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 5)
-2016-06-06 03:25:26,303 - __main__ - INFO - time: 4.51586604118, status: 1
-2016-06-06 03:25:27,820 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 5)
-2016-06-06 03:25:28,442 - __main__ - INFO - time: 0.622107028961, status: 0
-2016-06-06 03:25:29,948 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 5)
-2016-06-06 03:25:30,555 - __main__ - INFO - time: 0.607289075851, status: 0
-2016-06-06 03:25:32,052 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 5)
-2016-06-06 03:25:32,674 - __main__ - INFO - time: 0.622051000595, status: 0
-2016-06-06 03:25:34,202 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 5)
-2016-06-06 03:25:34,764 - __main__ - INFO - time: 0.562196016312, status: 0
-2016-06-06 03:25:36,079 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 5)
-2016-06-06 03:25:36,639 - __main__ - INFO - time: 0.559239149094, status: 0
-2016-06-06 03:25:37,996 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 5)
-2016-06-06 03:25:38,633 - __main__ - INFO - time: 0.636669158936, status: 0
-2016-06-06 03:25:40,179 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 5)
-2016-06-06 03:25:40,870 - __main__ - INFO - time: 0.689929008484, status: 0
-2016-06-06 03:25:42,786 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 6)
-2016-06-06 03:25:43,921 - __main__ - INFO - time: 1.13549590111, status: 0
-2016-06-06 03:25:45,550 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 6)
-2016-06-06 03:25:46,332 - __main__ - INFO - time: 0.782483816147, status: 0
-2016-06-06 03:25:47,950 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 6)
-2016-06-06 03:25:48,659 - __main__ - INFO - time: 0.709539890289, status: 0
-2016-06-06 03:25:50,331 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 6)
-2016-06-06 03:25:50,987 - __main__ - INFO - time: 0.655786991119, status: 0
-2016-06-06 03:25:52,571 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 6)
-2016-06-06 03:25:53,236 - __main__ - INFO - time: 0.663928985596, status: 0
-2016-06-06 03:25:54,801 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 6)
-2016-06-06 03:25:55,475 - __main__ - INFO - time: 0.673640012741, status: 0
-2016-06-06 03:25:57,153 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 6)
-2016-06-06 03:25:57,799 - __main__ - INFO - time: 0.644892215729, status: 0
-2016-06-06 03:25:59,451 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 6)
-2016-06-06 03:26:00,161 - __main__ - INFO - time: 0.709622859955, status: 0
-2016-06-06 03:26:01,992 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 6)
-2016-06-06 03:26:02,788 - __main__ - INFO - time: 0.795614004135, status: 0
-2016-06-06 03:26:05,027 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 7)
-2016-06-06 03:26:05,766 - __main__ - INFO - time: 0.738467931747, status: 0
-2016-06-06 03:26:07,162 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 7)
-2016-06-06 03:26:07,784 - __main__ - INFO - time: 0.622260093689, status: 0
-2016-06-06 03:26:09,171 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 7)
-2016-06-06 03:26:09,793 - __main__ - INFO - time: 0.622097969055, status: 0
-2016-06-06 03:26:11,181 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 7)
-2016-06-06 03:26:11,775 - __main__ - INFO - time: 0.593292951584, status: 0
-2016-06-06 03:26:13,141 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 7)
-2016-06-06 03:26:13,749 - __main__ - INFO - time: 0.607046842575, status: 0
-2016-06-06 03:26:15,102 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 7)
-2016-06-06 03:26:15,724 - __main__ - INFO - time: 0.621528148651, status: 0
-2016-06-06 03:26:17,214 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 7)
-2016-06-06 03:26:17,763 - __main__ - INFO - time: 0.548377037048, status: 0
-2016-06-06 03:26:19,095 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 7)
-2016-06-06 03:26:19,629 - __main__ - INFO - time: 0.53382897377, status: 0
-2016-06-06 03:26:21,015 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 7)
-2016-06-06 03:26:21,707 - __main__ - INFO - time: 0.692532062531, status: 0
-2016-06-06 03:26:23,690 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 8)
-2016-06-06 03:26:28,128 - __main__ - INFO - time: 4.43763494492, status: 1
-2016-06-06 03:26:29,779 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 8)
-2016-06-06 03:26:34,082 - __main__ - INFO - time: 4.30273485184, status: 1
-2016-06-06 03:26:35,691 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 8)
-2016-06-06 03:26:36,422 - __main__ - INFO - time: 0.730911016464, status: 0
-2016-06-06 03:26:38,094 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 8)
-2016-06-06 03:26:38,798 - __main__ - INFO - time: 0.704551935196, status: 0
-2016-06-06 03:26:40,415 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 8)
-2016-06-06 03:26:41,137 - __main__ - INFO - time: 0.72119808197, status: 0
-2016-06-06 03:26:42,819 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 8)
-2016-06-06 03:26:43,553 - __main__ - INFO - time: 0.733155012131, status: 0
-2016-06-06 03:26:45,319 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 8)
-2016-06-06 03:26:45,976 - __main__ - INFO - time: 0.656762123108, status: 0
-2016-06-06 03:26:47,602 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 8)
-2016-06-06 03:26:48,239 - __main__ - INFO - time: 0.636255979538, status: 0
-2016-06-06 03:26:49,880 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 8)
-2016-06-06 03:26:50,610 - __main__ - INFO - time: 0.729682922363, status: 0
-2016-06-06 03:26:52,617 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 9)
-2016-06-06 03:26:53,514 - __main__ - INFO - time: 0.896601915359, status: 0
-2016-06-06 03:26:55,132 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 9)
-2016-06-06 03:26:55,845 - __main__ - INFO - time: 0.713016986847, status: 0
-2016-06-06 03:26:57,474 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 9)
-2016-06-06 03:26:58,144 - __main__ - INFO - time: 0.669944047928, status: 0
-2016-06-06 03:26:59,763 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 9)
-2016-06-06 03:27:00,422 - __main__ - INFO - time: 0.659526109695, status: 0
-2016-06-06 03:27:02,040 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 9)
-2016-06-06 03:27:02,728 - __main__ - INFO - time: 0.687736988068, status: 0
-2016-06-06 03:27:04,427 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 9)
-2016-06-06 03:27:05,093 - __main__ - INFO - time: 0.665401935577, status: 0
-2016-06-06 03:27:06,941 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 9)
-2016-06-06 03:27:08,673 - __main__ - INFO - time: 1.73115897179, status: 0
-2016-06-06 03:27:10,853 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 9)
-2016-06-06 03:27:12,518 - __main__ - INFO - time: 1.66481399536, status: 0
-2016-06-06 03:27:14,638 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 9)
-2016-06-06 03:27:16,401 - __main__ - INFO - time: 1.76303005219, status: 0
-2016-06-06 03:27:18,962 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 0)
-2016-06-06 03:27:26,232 - __main__ - INFO - time: 7.2692220211, status: 1
-2016-06-06 03:27:28,613 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 0)
-2016-06-06 03:27:34,216 - __main__ - INFO - time: 5.60250592232, status: 1
-2016-06-06 03:27:36,546 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 0)
-2016-06-06 03:27:40,978 - __main__ - INFO - time: 4.43158102036, status: 0
-2016-06-06 03:27:43,296 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 0)
-2016-06-06 03:27:44,271 - __main__ - INFO - time: 0.974860906601, status: 0
-2016-06-06 03:27:46,850 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 0)
-2016-06-06 03:27:49,212 - __main__ - INFO - time: 2.36134600639, status: 0
-2016-06-06 03:27:52,567 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 0)
-2016-06-06 03:27:54,896 - __main__ - INFO - time: 2.32878899574, status: 0
-2016-06-06 03:27:58,145 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 0)
-2016-06-06 03:28:00,432 - __main__ - INFO - time: 2.28660202026, status: 0
-2016-06-06 03:28:03,776 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 0)
-2016-06-06 03:28:06,046 - __main__ - INFO - time: 2.26984214783, status: 0
-2016-06-06 03:28:09,905 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 0)
-2016-06-06 03:28:12,449 - __main__ - INFO - time: 2.54412603378, status: 0
-2016-06-06 03:28:17,269 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 1)
-2016-06-06 03:28:26,453 - __main__ - INFO - time: 9.18385505676, status: 1
-2016-06-06 03:28:27,938 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 1)
-2016-06-06 03:28:34,796 - __main__ - INFO - time: 6.85801482201, status: 1
-2016-06-06 03:28:37,089 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 1)
-2016-06-06 03:28:38,539 - __main__ - INFO - time: 1.44920277596, status: 0
-2016-06-06 03:28:41,256 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 1)
-2016-06-06 03:28:43,630 - __main__ - INFO - time: 2.37374186516, status: 0
-2016-06-06 03:28:47,058 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 1)
-2016-06-06 03:28:49,210 - __main__ - INFO - time: 2.15136790276, status: 0
-2016-06-06 03:28:52,329 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 1)
-2016-06-06 03:28:54,488 - __main__ - INFO - time: 2.15843200684, status: 0
-2016-06-06 03:28:57,646 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 1)
-2016-06-06 03:28:59,669 - __main__ - INFO - time: 2.02268505096, status: 0
-2016-06-06 03:29:02,718 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 1)
-2016-06-06 03:29:04,997 - __main__ - INFO - time: 2.27835583687, status: 0
-2016-06-06 03:29:08,688 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 1)
-2016-06-06 03:29:11,184 - __main__ - INFO - time: 2.49536299706, status: 0
-2016-06-06 03:29:16,012 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 2)
-2016-06-06 03:29:24,151 - __main__ - INFO - time: 8.13793802261, status: 1
-2016-06-06 03:29:26,986 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 2)
-2016-06-06 03:29:30,925 - __main__ - INFO - time: 3.93892598152, status: 0
-2016-06-06 03:29:34,020 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 2)
-2016-06-06 03:29:36,998 - __main__ - INFO - time: 2.9778110981, status: 0
-2016-06-06 03:29:40,032 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 2)
-2016-06-06 03:29:42,654 - __main__ - INFO - time: 2.62159919739, status: 0
-2016-06-06 03:29:45,702 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 2)
-2016-06-06 03:29:48,005 - __main__ - INFO - time: 2.30227088928, status: 0
-2016-06-06 03:29:50,855 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 2)
-2016-06-06 03:29:53,085 - __main__ - INFO - time: 2.22972583771, status: 0
-2016-06-06 03:29:55,889 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 2)
-2016-06-06 03:29:58,210 - __main__ - INFO - time: 2.3200879097, status: 0
-2016-06-06 03:30:01,602 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 2)
-2016-06-06 03:30:03,868 - __main__ - INFO - time: 2.26531791687, status: 0
-2016-06-06 03:30:07,699 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 2)
-2016-06-06 03:30:10,086 - __main__ - INFO - time: 2.38641309738, status: 0
-2016-06-06 03:30:14,682 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 3)
-2016-06-06 03:30:17,229 - __main__ - INFO - time: 2.54658699036, status: 0
-2016-06-06 03:30:20,405 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 3)
-2016-06-06 03:30:22,764 - __main__ - INFO - time: 2.3583509922, status: 0
-2016-06-06 03:30:25,945 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 3)
-2016-06-06 03:30:28,268 - __main__ - INFO - time: 2.32330107689, status: 0
-2016-06-06 03:30:31,562 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 3)
-2016-06-06 03:30:33,853 - __main__ - INFO - time: 2.29073119164, status: 0
-2016-06-06 03:30:37,059 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 3)
-2016-06-06 03:30:39,341 - __main__ - INFO - time: 2.28128790855, status: 0
-2016-06-06 03:30:42,680 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 3)
-2016-06-06 03:30:44,914 - __main__ - INFO - time: 2.23302602768, status: 0
-2016-06-06 03:30:48,031 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 3)
-2016-06-06 03:30:50,207 - __main__ - INFO - time: 2.17597794533, status: 0
-2016-06-06 03:30:53,614 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 3)
-2016-06-06 03:30:55,849 - __main__ - INFO - time: 2.23504900932, status: 0
-2016-06-06 03:30:59,577 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 3)
-2016-06-06 03:31:02,122 - __main__ - INFO - time: 2.5444560051, status: 0
+2016-06-06 03:41:01,186 - __main__ - INFO - info test
+2016-06-06 03:41:02,068 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 0)
+2016-06-06 03:41:05,254 - __main__ - INFO - time: 3.18615007401, status: 0
+2016-06-06 03:41:06,485 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 0)
+2016-06-06 03:41:07,319 - __main__ - INFO - time: 0.834072113037, status: 0
+2016-06-06 03:41:08,522 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 0)
+2016-06-06 03:41:09,137 - __main__ - INFO - time: 0.614902973175, status: 0
+2016-06-06 03:41:10,346 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 0)
+2016-06-06 03:41:10,919 - __main__ - INFO - time: 0.573704004288, status: 0
+2016-06-06 03:41:12,095 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 0)
+2016-06-06 03:41:12,644 - __main__ - INFO - time: 0.548443078995, status: 0
+2016-06-06 03:41:13,841 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 0)
+2016-06-06 03:41:14,332 - __main__ - INFO - time: 0.490686178207, status: 0
+2016-06-06 03:41:15,460 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 0)
+2016-06-06 03:41:15,909 - __main__ - INFO - time: 0.448879003525, status: 0
+2016-06-06 03:41:17,064 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 0)
+2016-06-06 03:41:17,537 - __main__ - INFO - time: 0.47247004509, status: 0
+2016-06-06 03:41:18,814 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 0)
+2016-06-06 03:41:19,370 - __main__ - INFO - time: 0.556027889252, status: 0
+2016-06-06 03:41:20,945 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 1)
+2016-06-06 03:41:23,185 - __main__ - INFO - time: 2.23993301392, status: 1
+2016-06-06 03:41:24,012 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 1)
+2016-06-06 03:41:24,410 - __main__ - INFO - time: 0.397812843323, status: 0
+2016-06-06 03:41:25,254 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 1)
+2016-06-06 03:41:25,622 - __main__ - INFO - time: 0.368140935898, status: 0
+2016-06-06 03:41:26,466 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 1)
+2016-06-06 03:41:26,840 - __main__ - INFO - time: 0.374371051788, status: 0
+2016-06-06 03:41:27,678 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 1)
+2016-06-06 03:41:28,056 - __main__ - INFO - time: 0.377394914627, status: 0
+2016-06-06 03:41:28,899 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 1)
+2016-06-06 03:41:29,281 - __main__ - INFO - time: 0.381585836411, status: 0
+2016-06-06 03:41:30,263 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 1)
+2016-06-06 03:41:30,732 - __main__ - INFO - time: 0.46803021431, status: 0
+2016-06-06 03:41:31,924 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 1)
+2016-06-06 03:41:32,427 - __main__ - INFO - time: 0.502840995789, status: 0
+2016-06-06 03:41:33,753 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 1)
+2016-06-06 03:41:34,279 - __main__ - INFO - time: 0.525588989258, status: 0
+2016-06-06 03:41:35,768 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 2)
+2016-06-06 03:41:36,617 - __main__ - INFO - time: 0.848178863525, status: 0
+2016-06-06 03:41:37,932 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 2)
+2016-06-06 03:41:38,566 - __main__ - INFO - time: 0.633790969849, status: 0
+2016-06-06 03:41:39,891 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 2)
+2016-06-06 03:41:40,460 - __main__ - INFO - time: 0.568507909775, status: 0
+2016-06-06 03:41:41,796 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 2)
+2016-06-06 03:41:42,347 - __main__ - INFO - time: 0.550738096237, status: 0
+2016-06-06 03:41:43,677 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 2)
+2016-06-06 03:41:44,232 - __main__ - INFO - time: 0.554924964905, status: 0
+2016-06-06 03:41:45,553 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 2)
+2016-06-06 03:41:46,114 - __main__ - INFO - time: 0.561050891876, status: 0
+2016-06-06 03:41:47,456 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 2)
+2016-06-06 03:41:48,049 - __main__ - INFO - time: 0.592000007629, status: 0
+2016-06-06 03:41:49,555 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 2)
+2016-06-06 03:41:50,107 - __main__ - INFO - time: 0.551443099976, status: 0
+2016-06-06 03:41:51,507 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 2)
+2016-06-06 03:41:52,105 - __main__ - INFO - time: 0.598368883133, status: 0
+2016-06-06 03:41:53,773 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 3)
+2016-06-06 03:41:57,788 - __main__ - INFO - time: 4.01514601707, status: 0
+2016-06-06 03:41:58,981 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 3)
+2016-06-06 03:42:00,959 - __main__ - INFO - time: 1.97833800316, status: 0
+2016-06-06 03:42:02,131 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 3)
+2016-06-06 03:42:03,602 - __main__ - INFO - time: 1.47070407867, status: 0
+2016-06-06 03:42:04,789 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 3)
+2016-06-06 03:42:05,381 - __main__ - INFO - time: 0.591334104538, status: 0
+2016-06-06 03:42:06,564 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 3)
+2016-06-06 03:42:07,127 - __main__ - INFO - time: 0.562466859818, status: 0
+2016-06-06 03:42:08,318 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 3)
+2016-06-06 03:42:08,786 - __main__ - INFO - time: 0.468011856079, status: 0
+2016-06-06 03:42:09,940 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 3)
+2016-06-06 03:42:10,397 - __main__ - INFO - time: 0.457169055939, status: 0
+2016-06-06 03:42:11,545 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 3)
+2016-06-06 03:42:12,027 - __main__ - INFO - time: 0.481230974197, status: 0
+2016-06-06 03:42:13,270 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 3)
+2016-06-06 03:42:13,854 - __main__ - INFO - time: 0.583258152008, status: 0
+2016-06-06 03:42:15,416 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 4)
+2016-06-06 03:42:16,307 - __main__ - INFO - time: 0.890077114105, status: 0
+2016-06-06 03:42:17,555 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 4)
+2016-06-06 03:42:18,157 - __main__ - INFO - time: 0.602289915085, status: 0
+2016-06-06 03:42:19,422 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 4)
+2016-06-06 03:42:19,972 - __main__ - INFO - time: 0.550411939621, status: 0
+2016-06-06 03:42:21,225 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 4)
+2016-06-06 03:42:21,763 - __main__ - INFO - time: 0.537771940231, status: 0
+2016-06-06 03:42:23,032 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 4)
+2016-06-06 03:42:23,564 - __main__ - INFO - time: 0.532006025314, status: 0
+2016-06-06 03:42:24,803 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 4)
+2016-06-06 03:42:25,300 - __main__ - INFO - time: 0.497396945953, status: 0
+2016-06-06 03:42:26,532 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 4)
+2016-06-06 03:42:26,959 - __main__ - INFO - time: 0.426478147507, status: 0
+2016-06-06 03:42:28,059 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 4)
+2016-06-06 03:42:28,500 - __main__ - INFO - time: 0.440804004669, status: 0
+2016-06-06 03:42:29,690 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 4)
+2016-06-06 03:42:30,198 - __main__ - INFO - time: 0.508042812347, status: 0
+2016-06-06 03:42:31,638 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 5)
+2016-06-06 03:42:36,150 - __main__ - INFO - time: 4.511977911, status: 1
+2016-06-06 03:42:37,336 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 5)
+2016-06-06 03:42:41,746 - __main__ - INFO - time: 4.40986204147, status: 1
+2016-06-06 03:42:42,953 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 5)
+2016-06-06 03:42:43,429 - __main__ - INFO - time: 0.476243972778, status: 0
+2016-06-06 03:42:44,630 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 5)
+2016-06-06 03:42:45,095 - __main__ - INFO - time: 0.464304924011, status: 0
+2016-06-06 03:42:46,290 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 5)
+2016-06-06 03:42:46,766 - __main__ - INFO - time: 0.475003957748, status: 0
+2016-06-06 03:42:47,977 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 5)
+2016-06-06 03:42:48,407 - __main__ - INFO - time: 0.430082082748, status: 0
+2016-06-06 03:42:49,476 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 5)
+2016-06-06 03:42:49,902 - __main__ - INFO - time: 0.425990104675, status: 0
+2016-06-06 03:42:51,002 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 5)
+2016-06-06 03:42:51,487 - __main__ - INFO - time: 0.484974861145, status: 0
+2016-06-06 03:42:52,709 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 5)
+2016-06-06 03:42:53,236 - __main__ - INFO - time: 0.526586055756, status: 0
+2016-06-06 03:42:54,687 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 6)
+2016-06-06 03:42:55,683 - __main__ - INFO - time: 0.996140003204, status: 0
+2016-06-06 03:42:56,959 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 6)
+2016-06-06 03:42:57,582 - __main__ - INFO - time: 0.623587846756, status: 0
+2016-06-06 03:42:58,852 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 6)
+2016-06-06 03:42:59,395 - __main__ - INFO - time: 0.542920827866, status: 0
+2016-06-06 03:43:00,697 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 6)
+2016-06-06 03:43:01,199 - __main__ - INFO - time: 0.502113819122, status: 0
+2016-06-06 03:43:02,447 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 6)
+2016-06-06 03:43:02,953 - __main__ - INFO - time: 0.506042003632, status: 0
+2016-06-06 03:43:04,191 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 6)
+2016-06-06 03:43:04,704 - __main__ - INFO - time: 0.513075828552, status: 0
+2016-06-06 03:43:06,005 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 6)
+2016-06-06 03:43:06,498 - __main__ - INFO - time: 0.492383003235, status: 0
+2016-06-06 03:43:07,783 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 6)
+2016-06-06 03:43:08,323 - __main__ - INFO - time: 0.539090871811, status: 0
+2016-06-06 03:43:09,714 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 6)
+2016-06-06 03:43:10,319 - __main__ - INFO - time: 0.604861974716, status: 0
+2016-06-06 03:43:11,998 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 7)
+2016-06-06 03:43:12,592 - __main__ - INFO - time: 0.59419798851, status: 0
+2016-06-06 03:43:13,714 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 7)
+2016-06-06 03:43:14,194 - __main__ - INFO - time: 0.480401992798, status: 0
+2016-06-06 03:43:15,310 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 7)
+2016-06-06 03:43:15,788 - __main__ - INFO - time: 0.476960897446, status: 0
+2016-06-06 03:43:16,909 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 7)
+2016-06-06 03:43:17,364 - __main__ - INFO - time: 0.454960823059, status: 0
+2016-06-06 03:43:18,470 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 7)
+2016-06-06 03:43:18,934 - __main__ - INFO - time: 0.464314222336, status: 0
+2016-06-06 03:43:20,029 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 7)
+2016-06-06 03:43:20,504 - __main__ - INFO - time: 0.474530935287, status: 0
+2016-06-06 03:43:21,694 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 7)
+2016-06-06 03:43:22,115 - __main__ - INFO - time: 0.420372009277, status: 0
+2016-06-06 03:43:23,194 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 7)
+2016-06-06 03:43:23,601 - __main__ - INFO - time: 0.407433986664, status: 0
+2016-06-06 03:43:24,723 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 7)
+2016-06-06 03:43:25,249 - __main__ - INFO - time: 0.525795221329, status: 0
+2016-06-06 03:43:26,748 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 8)
+2016-06-06 03:43:31,111 - __main__ - INFO - time: 4.36263298988, status: 1
+2016-06-06 03:43:32,401 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 8)
+2016-06-06 03:43:36,634 - __main__ - INFO - time: 4.23285913467, status: 1
+2016-06-06 03:43:37,898 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 8)
+2016-06-06 03:43:38,458 - __main__ - INFO - time: 0.559386014938, status: 0
+2016-06-06 03:43:39,759 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 8)
+2016-06-06 03:43:40,297 - __main__ - INFO - time: 0.537935018539, status: 0
+2016-06-06 03:43:41,566 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 8)
+2016-06-06 03:43:42,116 - __main__ - INFO - time: 0.550483942032, status: 0
+2016-06-06 03:43:43,422 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 8)
+2016-06-06 03:43:43,976 - __main__ - INFO - time: 0.553930044174, status: 0
+2016-06-06 03:43:45,325 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 8)
+2016-06-06 03:43:45,829 - __main__ - INFO - time: 0.504194974899, status: 0
+2016-06-06 03:43:47,103 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 8)
+2016-06-06 03:43:47,591 - __main__ - INFO - time: 0.487021207809, status: 0
+2016-06-06 03:43:48,875 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 8)
+2016-06-06 03:43:49,432 - __main__ - INFO - time: 0.557127952576, status: 0
+2016-06-06 03:43:50,946 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.0, 9)
+2016-06-06 03:43:51,697 - __main__ - INFO - time: 0.750373125076, status: 0
+2016-06-06 03:43:52,967 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.0, 9)
+2016-06-06 03:43:53,523 - __main__ - INFO - time: 0.556288957596, status: 0
+2016-06-06 03:43:54,798 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.0, 9)
+2016-06-06 03:43:55,312 - __main__ - INFO - time: 0.513541936874, status: 0
+2016-06-06 03:43:56,581 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.0, 9)
+2016-06-06 03:43:57,085 - __main__ - INFO - time: 0.503259897232, status: 0
+2016-06-06 03:43:58,354 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.0, 9)
+2016-06-06 03:43:58,877 - __main__ - INFO - time: 0.523278951645, status: 0
+2016-06-06 03:44:00,195 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.0, 9)
+2016-06-06 03:44:00,704 - __main__ - INFO - time: 0.508829832077, status: 0
+2016-06-06 03:44:01,989 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.0, 9)
+2016-06-06 03:44:02,522 - __main__ - INFO - time: 0.533611059189, status: 0
+2016-06-06 03:44:03,898 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.0, 9)
+2016-06-06 03:44:04,415 - __main__ - INFO - time: 0.516944169998, status: 0
+2016-06-06 03:44:05,774 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.0, 9)
+2016-06-06 03:44:06,318 - __main__ - INFO - time: 0.543112039566, status: 0
+2016-06-06 03:44:07,858 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 0)
+2016-06-06 03:44:13,744 - __main__ - INFO - time: 5.88571310043, status: 1
+2016-06-06 03:44:15,474 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 0)
+2016-06-06 03:44:20,881 - __main__ - INFO - time: 5.40625500679, status: 1
+2016-06-06 03:44:22,631 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 0)
+2016-06-06 03:44:26,799 - __main__ - INFO - time: 4.16728615761, status: 0
+2016-06-06 03:44:28,539 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 0)
+2016-06-06 03:44:29,286 - __main__ - INFO - time: 0.74715089798, status: 0
+2016-06-06 03:44:31,011 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 0)
+2016-06-06 03:44:31,747 - __main__ - INFO - time: 0.736554145813, status: 0
+2016-06-06 03:44:33,498 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 0)
+2016-06-06 03:44:34,229 - __main__ - INFO - time: 0.730580091476, status: 0
+2016-06-06 03:44:35,964 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 0)
+2016-06-06 03:44:36,677 - __main__ - INFO - time: 0.712678909302, status: 0
+2016-06-06 03:44:38,438 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 0)
+2016-06-06 03:44:39,149 - __main__ - INFO - time: 0.710309028625, status: 0
+2016-06-06 03:44:41,032 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 0)
+2016-06-06 03:44:41,811 - __main__ - INFO - time: 0.779004096985, status: 0
+2016-06-06 03:44:43,934 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 1)
+2016-06-06 03:44:52,552 - __main__ - INFO - time: 8.61781716347, status: 1
+2016-06-06 03:44:53,662 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 1)
+2016-06-06 03:44:59,672 - __main__ - INFO - time: 6.00978112221, status: 1
+2016-06-06 03:45:01,391 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 1)
+2016-06-06 03:45:02,635 - __main__ - INFO - time: 1.24307799339, status: 0
+2016-06-06 03:45:04,359 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 1)
+2016-06-06 03:45:05,203 - __main__ - INFO - time: 0.844255924225, status: 0
+2016-06-06 03:45:06,986 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 1)
+2016-06-06 03:45:07,679 - __main__ - INFO - time: 0.692318201065, status: 0
+2016-06-06 03:45:09,382 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 1)
+2016-06-06 03:45:10,063 - __main__ - INFO - time: 0.680963993073, status: 0
+2016-06-06 03:45:11,766 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 1)
+2016-06-06 03:45:12,399 - __main__ - INFO - time: 0.632509946823, status: 0
+2016-06-06 03:45:14,080 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 1)
+2016-06-06 03:45:14,800 - __main__ - INFO - time: 0.719301939011, status: 0
+2016-06-06 03:45:16,646 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 1)
+2016-06-06 03:45:17,422 - __main__ - INFO - time: 0.775630950928, status: 0
+2016-06-06 03:45:19,561 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 2)
+2016-06-06 03:45:26,224 - __main__ - INFO - time: 6.66333389282, status: 1
+2016-06-06 03:45:27,844 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 2)
+2016-06-06 03:45:30,183 - __main__ - INFO - time: 2.33876085281, status: 0
+2016-06-06 03:45:31,849 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 2)
+2016-06-06 03:45:33,086 - __main__ - INFO - time: 1.23688197136, status: 0
+2016-06-06 03:45:34,763 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 2)
+2016-06-06 03:45:35,650 - __main__ - INFO - time: 0.887006044388, status: 0
+2016-06-06 03:45:37,332 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 2)
+2016-06-06 03:45:38,073 - __main__ - INFO - time: 0.740483045578, status: 0
+2016-06-06 03:45:39,702 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 2)
+2016-06-06 03:45:40,409 - __main__ - INFO - time: 0.707319974899, status: 0
+2016-06-06 03:45:42,022 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 2)
+2016-06-06 03:45:42,744 - __main__ - INFO - time: 0.720884084702, status: 0
+2016-06-06 03:45:44,516 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 2)
+2016-06-06 03:45:45,223 - __main__ - INFO - time: 0.707672119141, status: 0
+2016-06-06 03:45:47,101 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 2)
+2016-06-06 03:45:47,845 - __main__ - INFO - time: 0.742909908295, status: 0
+2016-06-06 03:45:49,915 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 3)
+2016-06-06 03:45:50,883 - __main__ - INFO - time: 0.967257976532, status: 0
+2016-06-06 03:45:52,591 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 3)
+2016-06-06 03:45:53,363 - __main__ - INFO - time: 0.771898031235, status: 0
+2016-06-06 03:45:55,072 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 3)
+2016-06-06 03:45:55,809 - __main__ - INFO - time: 0.736624002457, status: 0
+2016-06-06 03:45:57,555 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 3)
+2016-06-06 03:45:58,270 - __main__ - INFO - time: 0.715375900269, status: 0
+2016-06-06 03:45:59,990 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 3)
+2016-06-06 03:46:00,702 - __main__ - INFO - time: 0.711713075638, status: 0
+2016-06-06 03:46:02,458 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 3)
+2016-06-06 03:46:03,158 - __main__ - INFO - time: 0.69994187355, status: 0
+2016-06-06 03:46:04,846 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 3)
+2016-06-06 03:46:05,520 - __main__ - INFO - time: 0.673955202103, status: 0
+2016-06-06 03:46:07,302 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 3)
+2016-06-06 03:46:07,998 - __main__ - INFO - time: 0.695555210114, status: 0
+2016-06-06 03:46:09,844 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 3)
+2016-06-06 03:46:10,619 - __main__ - INFO - time: 0.774883031845, status: 0
+2016-06-06 03:46:12,790 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 4)
+2016-06-06 03:46:18,205 - __main__ - INFO - time: 5.41490507126, status: 1
+2016-06-06 03:46:20,100 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 4)
+2016-06-06 03:46:25,575 - __main__ - INFO - time: 5.47522497177, status: 1
+2016-06-06 03:46:27,471 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 4)
+2016-06-06 03:46:32,920 - __main__ - INFO - time: 5.44942092896, status: 1
+2016-06-06 03:46:34,824 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 4)
+2016-06-06 03:46:35,570 - __main__ - INFO - time: 0.745256185532, status: 0
+2016-06-06 03:46:37,406 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 4)
+2016-06-06 03:46:38,158 - __main__ - INFO - time: 0.751667022705, status: 0
+2016-06-06 03:46:39,989 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 4)
+2016-06-06 03:46:40,732 - __main__ - INFO - time: 0.741992950439, status: 0
+2016-06-06 03:46:42,584 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 4)
+2016-06-06 03:46:43,305 - __main__ - INFO - time: 0.721244096756, status: 0
+2016-06-06 03:46:45,137 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 4)
+2016-06-06 03:46:45,899 - __main__ - INFO - time: 0.76247215271, status: 0
+2016-06-06 03:46:47,868 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 4)
+2016-06-06 03:46:48,652 - __main__ - INFO - time: 0.784523010254, status: 0
+2016-06-06 03:46:50,819 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 5)
+2016-06-06 03:46:52,043 - __main__ - INFO - time: 1.22386097908, status: 0
+2016-06-06 03:46:53,864 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 5)
+2016-06-06 03:46:54,697 - __main__ - INFO - time: 0.83330988884, status: 0
+2016-06-06 03:46:56,508 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 5)
+2016-06-06 03:46:57,274 - __main__ - INFO - time: 0.766246080399, status: 0
+2016-06-06 03:46:59,042 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 5)
+2016-06-06 03:46:59,812 - __main__ - INFO - time: 0.769971847534, status: 0
+2016-06-06 03:47:01,617 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 5)
+2016-06-06 03:47:02,391 - __main__ - INFO - time: 0.77418589592, status: 0
+2016-06-06 03:47:04,211 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 5)
+2016-06-06 03:47:04,959 - __main__ - INFO - time: 0.747581958771, status: 0
+2016-06-06 03:47:06,732 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 5)
+2016-06-06 03:47:07,472 - __main__ - INFO - time: 0.739963054657, status: 0
+2016-06-06 03:47:09,314 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 5)
+2016-06-06 03:47:10,018 - __main__ - INFO - time: 0.704370975494, status: 0
+2016-06-06 03:47:11,849 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 5)
+2016-06-06 03:47:12,588 - __main__ - INFO - time: 0.738083124161, status: 0
+2016-06-06 03:47:14,638 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 6)
+2016-06-06 03:47:22,487 - __main__ - INFO - time: 7.84925103188, status: 1
+2016-06-06 03:47:24,153 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 6)
+2016-06-06 03:47:26,187 - __main__ - INFO - time: 2.03346896172, status: 0
+2016-06-06 03:47:27,960 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 6)
+2016-06-06 03:47:29,014 - __main__ - INFO - time: 1.05459499359, status: 0
+2016-06-06 03:47:30,750 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 6)
+2016-06-06 03:47:31,548 - __main__ - INFO - time: 0.797749996185, status: 0
+2016-06-06 03:47:33,272 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 6)
+2016-06-06 03:47:34,026 - __main__ - INFO - time: 0.754005908966, status: 0
+2016-06-06 03:47:35,714 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 6)
+2016-06-06 03:47:36,424 - __main__ - INFO - time: 0.710158109665, status: 0
+2016-06-06 03:47:38,107 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 6)
+2016-06-06 03:47:38,850 - __main__ - INFO - time: 0.74357008934, status: 0
+2016-06-06 03:47:40,707 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 6)
+2016-06-06 03:47:41,395 - __main__ - INFO - time: 0.687476873398, status: 0
+2016-06-06 03:47:43,198 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 6)
+2016-06-06 03:47:43,944 - __main__ - INFO - time: 0.745864868164, status: 0
+2016-06-06 03:47:46,005 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 7)
+2016-06-06 03:47:52,190 - __main__ - INFO - time: 6.1855840683, status: 1
+2016-06-06 03:47:53,841 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 7)
+2016-06-06 03:47:59,129 - __main__ - INFO - time: 5.28776288033, status: 1
+2016-06-06 03:48:00,817 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 7)
+2016-06-06 03:48:01,704 - __main__ - INFO - time: 0.886948823929, status: 0
+2016-06-06 03:48:03,413 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 7)
+2016-06-06 03:48:04,169 - __main__ - INFO - time: 0.756608009338, status: 0
+2016-06-06 03:48:05,905 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 7)
+2016-06-06 03:48:06,638 - __main__ - INFO - time: 0.733248949051, status: 0
+2016-06-06 03:48:08,326 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 7)
+2016-06-06 03:48:09,035 - __main__ - INFO - time: 0.709313154221, status: 0
+2016-06-06 03:48:10,765 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 7)
+2016-06-06 03:48:11,425 - __main__ - INFO - time: 0.659133911133, status: 0
+2016-06-06 03:48:13,117 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 7)
+2016-06-06 03:48:13,767 - __main__ - INFO - time: 0.650114059448, status: 0
+2016-06-06 03:48:15,418 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 7)
+2016-06-06 03:48:16,119 - __main__ - INFO - time: 0.700794935226, status: 0
+2016-06-06 03:48:18,084 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 8)
+2016-06-06 03:48:23,923 - __main__ - INFO - time: 5.83954286575, status: 1
+2016-06-06 03:48:25,649 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 8)
+2016-06-06 03:48:27,614 - __main__ - INFO - time: 1.96542787552, status: 0
+2016-06-06 03:48:29,302 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 8)
+2016-06-06 03:48:30,033 - __main__ - INFO - time: 0.730567932129, status: 0
+2016-06-06 03:48:31,657 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 8)
+2016-06-06 03:48:32,406 - __main__ - INFO - time: 0.748845100403, status: 0
+2016-06-06 03:48:34,137 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 8)
+2016-06-06 03:48:34,820 - __main__ - INFO - time: 0.683000087738, status: 0
+2016-06-06 03:48:36,386 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 8)
+2016-06-06 03:48:37,071 - __main__ - INFO - time: 0.684569835663, status: 0
+2016-06-06 03:48:38,721 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 8)
+2016-06-06 03:48:39,352 - __main__ - INFO - time: 0.630225896835, status: 0
+2016-06-06 03:48:40,939 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 8)
+2016-06-06 03:48:41,589 - __main__ - INFO - time: 0.649474859238, status: 0
+2016-06-06 03:48:43,324 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 8)
+2016-06-06 03:48:44,033 - __main__ - INFO - time: 0.708331108093, status: 0
+2016-06-06 03:48:45,998 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.03, 9)
+2016-06-06 03:48:51,636 - __main__ - INFO - time: 5.63786101341, status: 1
+2016-06-06 03:48:53,472 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.03, 9)
+2016-06-06 03:48:58,966 - __main__ - INFO - time: 5.49336099625, status: 1
+2016-06-06 03:49:00,818 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.03, 9)
+2016-06-06 03:49:01,612 - __main__ - INFO - time: 0.793339967728, status: 0
+2016-06-06 03:49:03,416 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.03, 9)
+2016-06-06 03:49:04,204 - __main__ - INFO - time: 0.788470029831, status: 0
+2016-06-06 03:49:06,072 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.03, 9)
+2016-06-06 03:49:06,861 - __main__ - INFO - time: 0.788567066193, status: 0
+2016-06-06 03:49:08,702 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.03, 9)
+2016-06-06 03:49:09,472 - __main__ - INFO - time: 0.769765138626, status: 0
+2016-06-06 03:49:11,282 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.03, 9)
+2016-06-06 03:49:12,022 - __main__ - INFO - time: 0.739989995956, status: 0
+2016-06-06 03:49:13,810 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.03, 9)
+2016-06-06 03:49:14,557 - __main__ - INFO - time: 0.747205972672, status: 0
+2016-06-06 03:49:16,473 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.03, 9)
+2016-06-06 03:49:17,248 - __main__ - INFO - time: 0.774924039841, status: 0
+2016-06-06 03:49:19,361 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.05, 0)
+2016-06-06 03:49:26,926 - __main__ - INFO - time: 7.56509804726, status: 1
+2016-06-06 03:49:28,630 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.05, 0)
+2016-06-06 03:49:33,561 - __main__ - INFO - time: 4.93108201027, status: 1
+2016-06-06 03:49:35,285 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.05, 0)
+2016-06-06 03:49:39,596 - __main__ - INFO - time: 4.31005692482, status: 1
+2016-06-06 03:49:41,251 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.05, 0)
+2016-06-06 03:49:42,218 - __main__ - INFO - time: 0.966534137726, status: 0
+2016-06-06 03:49:43,921 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.05, 0)
+2016-06-06 03:49:44,757 - __main__ - INFO - time: 0.835499048233, status: 0
+2016-06-06 03:49:46,582 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.05, 0)
+2016-06-06 03:49:47,385 - __main__ - INFO - time: 0.802420139313, status: 0
+2016-06-06 03:49:49,183 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.05, 0)
+2016-06-06 03:49:49,955 - __main__ - INFO - time: 0.771207809448, status: 0
+2016-06-06 03:49:51,944 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.05, 0)
+2016-06-06 03:49:52,701 - __main__ - INFO - time: 0.75640296936, status: 0
+2016-06-06 03:49:54,695 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.05, 0)
+2016-06-06 03:49:55,480 - __main__ - INFO - time: 0.784609079361, status: 0
+2016-06-06 03:49:57,624 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.05, 1)
+2016-06-06 03:50:03,579 - __main__ - INFO - time: 5.95471000671, status: 1
+2016-06-06 03:50:05,659 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.05, 1)
+2016-06-06 03:50:06,840 - __main__ - INFO - time: 1.18133807182, status: 0
+2016-06-06 03:50:08,840 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.05, 1)
+2016-06-06 03:50:09,836 - __main__ - INFO - time: 0.996387958527, status: 0
+2016-06-06 03:50:11,842 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.05, 1)
+2016-06-06 03:50:12,798 - __main__ - INFO - time: 0.956078052521, status: 0
+2016-06-06 03:50:14,798 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.05, 1)
+2016-06-06 03:50:15,727 - __main__ - INFO - time: 0.929141998291, status: 0
+2016-06-06 03:50:17,727 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.05, 1)
+2016-06-06 03:50:18,602 - __main__ - INFO - time: 0.874851942062, status: 0
+2016-06-06 03:50:20,671 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.05, 1)
+2016-06-06 03:50:21,517 - __main__ - INFO - time: 0.846143960953, status: 0
+2016-06-06 03:50:23,628 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.05, 1)
+2016-06-06 03:50:24,496 - __main__ - INFO - time: 0.867728948593, status: 0
+2016-06-06 03:50:26,734 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.05, 1)
+2016-06-06 03:50:27,627 - __main__ - INFO - time: 0.893148899078, status: 0
+2016-06-06 03:50:30,011 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.05, 2)
+2016-06-06 03:50:38,422 - __main__ - INFO - time: 8.4116961956, status: 1
+2016-06-06 03:50:40,142 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.05, 2)
+2016-06-06 03:50:44,385 - __main__ - INFO - time: 4.24258899689, status: 0
+2016-06-06 03:50:46,296 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.05, 2)
+2016-06-06 03:50:47,457 - __main__ - INFO - time: 1.1613471508, status: 0
+2016-06-06 03:50:49,383 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.05, 2)
+2016-06-06 03:50:50,279 - __main__ - INFO - time: 0.895706892014, status: 0
+2016-06-06 03:50:52,206 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.05, 2)
+2016-06-06 03:50:53,023 - __main__ - INFO - time: 0.817253828049, status: 0
+2016-06-06 03:50:54,891 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.05, 2)
+2016-06-06 03:50:55,684 - __main__ - INFO - time: 0.793448209763, status: 0
+2016-06-06 03:50:57,590 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.05, 2)
+2016-06-06 03:50:58,444 - __main__ - INFO - time: 0.853855133057, status: 0
+2016-06-06 03:51:00,567 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.05, 2)
+2016-06-06 03:51:01,383 - __main__ - INFO - time: 0.816263914108, status: 0
+2016-06-06 03:51:03,495 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.05, 2)
+2016-06-06 03:51:04,371 - __main__ - INFO - time: 0.875435113907, status: 0
+2016-06-06 03:51:06,665 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.05, 3)
+2016-06-06 03:51:15,098 - __main__ - INFO - time: 8.43309593201, status: 1
+2016-06-06 03:51:17,030 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.05, 3)
+2016-06-06 03:51:20,880 - __main__ - INFO - time: 3.84945607185, status: 0
+2016-06-06 03:51:22,965 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.05, 3)
+2016-06-06 03:51:24,525 - __main__ - INFO - time: 1.56007695198, status: 0
+2016-06-06 03:51:26,574 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.05, 3)
+2016-06-06 03:51:27,680 - __main__ - INFO - time: 1.1058011055, status: 0
+2016-06-06 03:51:29,728 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.05, 3)
+2016-06-06 03:51:30,673 - __main__ - INFO - time: 0.945104837418, status: 0
+2016-06-06 03:51:32,742 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.05, 3)
+2016-06-06 03:51:33,614 - __main__ - INFO - time: 0.871249198914, status: 0
+2016-06-06 03:51:35,646 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.05, 3)
+2016-06-06 03:51:36,444 - __main__ - INFO - time: 0.797904968262, status: 0
+2016-06-06 03:51:38,465 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.05, 3)
+2016-06-06 03:51:39,270 - __main__ - INFO - time: 0.804771184921, status: 0
+2016-06-06 03:51:41,377 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.05, 3)
+2016-06-06 03:51:42,215 - __main__ - INFO - time: 0.837870836258, status: 0
+2016-06-06 03:51:44,477 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.05, 4)
+2016-06-06 03:51:52,929 - __main__ - INFO - time: 8.45255613327, status: 1
+2016-06-06 03:51:55,109 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.05, 4)
+2016-06-06 03:52:01,670 - __main__ - INFO - time: 6.55994796753, status: 1
+2016-06-06 03:52:03,797 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.05, 4)
+2016-06-06 03:52:07,121 - __main__ - INFO - time: 3.3241648674, status: 0
+2016-06-06 03:52:09,254 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.05, 4)
+2016-06-06 03:52:10,340 - __main__ - INFO - time: 1.08634591103, status: 0
+2016-06-06 03:52:12,489 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.05, 4)
+2016-06-06 03:52:13,495 - __main__ - INFO - time: 1.00616693497, status: 0
+2016-06-06 03:52:15,618 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.05, 4)
+2016-06-06 03:52:16,556 - __main__ - INFO - time: 0.938149929047, status: 0
+2016-06-06 03:52:18,667 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.05, 4)
+2016-06-06 03:52:19,578 - __main__ - INFO - time: 0.910010099411, status: 0
+2016-06-06 03:52:21,806 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.05, 4)
+2016-06-06 03:52:22,640 - __main__ - INFO - time: 0.834099054337, status: 0
+2016-06-06 03:52:24,815 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.05, 4)
+2016-06-06 03:52:25,716 - __main__ - INFO - time: 0.900933980942, status: 0
+2016-06-06 03:52:28,146 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.05, 5)
+2016-06-06 03:52:33,964 - __main__ - INFO - time: 5.81785583496, status: 1
+2016-06-06 03:52:35,779 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.05, 5)
+2016-06-06 03:52:40,604 - __main__ - INFO - time: 4.82463002205, status: 1
+2016-06-06 03:52:42,456 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.05, 5)
+2016-06-06 03:52:43,394 - __main__ - INFO - time: 0.938343048096, status: 0
+2016-06-06 03:52:45,225 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.05, 5)
+2016-06-06 03:52:46,095 - __main__ - INFO - time: 0.869848012924, status: 0
+2016-06-06 03:52:47,909 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.05, 5)
+2016-06-06 03:52:48,757 - __main__ - INFO - time: 0.847294807434, status: 0
+2016-06-06 03:52:50,678 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.05, 5)
+2016-06-06 03:52:51,562 - __main__ - INFO - time: 0.884381055832, status: 0
+2016-06-06 03:52:53,668 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.05, 5)
+2016-06-06 03:52:54,514 - __main__ - INFO - time: 0.845458030701, status: 0
+2016-06-06 03:52:56,578 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.05, 5)
+2016-06-06 03:52:57,452 - __main__ - INFO - time: 0.873552083969, status: 0
+2016-06-06 03:52:59,695 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.05, 5)
+2016-06-06 03:53:00,581 - __main__ - INFO - time: 0.885510206223, status: 0
+2016-06-06 03:53:03,011 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.05, 6)
+2016-06-06 03:53:11,045 - __main__ - INFO - time: 8.033244133, status: 1
+2016-06-06 03:53:12,981 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.05, 6)
+2016-06-06 03:53:19,069 - __main__ - INFO - time: 6.08769702911, status: 1
+2016-06-06 03:53:21,080 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.05, 6)
+2016-06-06 03:53:22,722 - __main__ - INFO - time: 1.64207100868, status: 0
+2016-06-06 03:53:24,722 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.05, 6)
+2016-06-06 03:53:25,659 - __main__ - INFO - time: 0.936774969101, status: 0
+2016-06-06 03:53:27,643 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.05, 6)
+2016-06-06 03:53:28,529 - __main__ - INFO - time: 0.88533115387, status: 0
+2016-06-06 03:53:30,507 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.05, 6)
+2016-06-06 03:53:31,378 - __main__ - INFO - time: 0.870411872864, status: 0
+2016-06-06 03:53:33,420 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.05, 6)
+2016-06-06 03:53:34,209 - __main__ - INFO - time: 0.788480043411, status: 0
+2016-06-06 03:53:36,193 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.05, 6)
+2016-06-06 03:53:36,962 - __main__ - INFO - time: 0.768915891647, status: 0
+2016-06-06 03:53:38,999 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.05, 6)
+2016-06-06 03:53:39,823 - __main__ - INFO - time: 0.823453187943, status: 0
+2016-06-06 03:53:42,084 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.05, 7)
+2016-06-06 03:53:49,710 - __main__ - INFO - time: 7.62539410591, status: 1
+2016-06-06 03:53:51,742 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.05, 7)
+2016-06-06 03:53:58,078 - __main__ - INFO - time: 6.33551311493, status: 1
+2016-06-06 03:54:00,200 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.05, 7)
+2016-06-06 03:54:06,089 - __main__ - INFO - time: 5.88950490952, status: 1
+2016-06-06 03:54:08,195 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.05, 7)
+2016-06-06 03:54:09,131 - __main__ - INFO - time: 0.935050964355, status: 0
+2016-06-06 03:54:11,205 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.05, 7)
+2016-06-06 03:54:12,086 - __main__ - INFO - time: 0.880697965622, status: 0
+2016-06-06 03:54:14,155 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.05, 7)
+2016-06-06 03:54:15,060 - __main__ - INFO - time: 0.904635906219, status: 0
+2016-06-06 03:54:17,250 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.05, 7)
+2016-06-06 03:54:18,081 - __main__ - INFO - time: 0.830101013184, status: 0
+2016-06-06 03:54:20,128 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.05, 7)
+2016-06-06 03:54:20,966 - __main__ - INFO - time: 0.837112903595, status: 0
+2016-06-06 03:54:23,178 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.05, 7)
+2016-06-06 03:54:24,068 - __main__ - INFO - time: 0.890128135681, status: 0
+2016-06-06 03:54:26,574 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.05, 8)
+2016-06-06 03:54:34,371 - __main__ - INFO - time: 7.79707407951, status: 1
+2016-06-06 03:54:36,430 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.05, 8)
+2016-06-06 03:54:42,465 - __main__ - INFO - time: 6.03478193283, status: 1
+2016-06-06 03:54:44,534 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.05, 8)
+2016-06-06 03:54:45,699 - __main__ - INFO - time: 1.16533899307, status: 0
+2016-06-06 03:54:47,795 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.05, 8)
+2016-06-06 03:54:48,708 - __main__ - INFO - time: 0.913182020187, status: 0
+2016-06-06 03:54:50,761 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.05, 8)
+2016-06-06 03:54:51,635 - __main__ - INFO - time: 0.873060941696, status: 0
+2016-06-06 03:54:53,704 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.05, 8)
+2016-06-06 03:54:54,557 - __main__ - INFO - time: 0.853471040726, status: 0
+2016-06-06 03:54:56,610 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.05, 8)
+2016-06-06 03:54:57,447 - __main__ - INFO - time: 0.836009979248, status: 0
+2016-06-06 03:54:59,515 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.05, 8)
+2016-06-06 03:55:00,330 - __main__ - INFO - time: 0.814934015274, status: 0
+2016-06-06 03:55:02,485 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.05, 8)
+2016-06-06 03:55:03,360 - __main__ - INFO - time: 0.87496805191, status: 0
+2016-06-06 03:55:05,743 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.05, 9)
+2016-06-06 03:55:14,033 - __main__ - INFO - time: 8.28971815109, status: 1
+2016-06-06 03:55:15,768 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.05, 9)
+2016-06-06 03:55:19,409 - __main__ - INFO - time: 3.64094185829, status: 0
+2016-06-06 03:55:21,394 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.05, 9)
+2016-06-06 03:55:22,787 - __main__ - INFO - time: 1.39254021645, status: 0
+2016-06-06 03:55:24,739 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.05, 9)
+2016-06-06 03:55:25,764 - __main__ - INFO - time: 1.02507901192, status: 0
+2016-06-06 03:55:27,674 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.05, 9)
+2016-06-06 03:55:28,526 - __main__ - INFO - time: 0.85124707222, status: 0
+2016-06-06 03:55:30,472 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.05, 9)
+2016-06-06 03:55:31,255 - __main__ - INFO - time: 0.782088041306, status: 0
+2016-06-06 03:55:33,202 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.05, 9)
+2016-06-06 03:55:33,948 - __main__ - INFO - time: 0.745560884476, status: 0
+2016-06-06 03:55:35,831 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.05, 9)
+2016-06-06 03:55:36,603 - __main__ - INFO - time: 0.772330999374, status: 0
+2016-06-06 03:55:38,667 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.05, 9)
+2016-06-06 03:55:39,440 - __main__ - INFO - time: 0.772933959961, status: 0
+2016-06-06 03:55:41,585 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.1, 0)
+2016-06-06 03:55:51,157 - __main__ - INFO - time: 9.57189488411, status: 1
+2016-06-06 03:55:53,771 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.1, 0)
+2016-06-06 03:56:00,980 - __main__ - INFO - time: 7.20897698402, status: 1
+2016-06-06 03:56:03,537 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.1, 0)
+2016-06-06 03:56:10,236 - __main__ - INFO - time: 6.69929504395, status: 1
+2016-06-06 03:56:12,862 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.1, 0)
+2016-06-06 03:56:19,388 - __main__ - INFO - time: 6.52562212944, status: 1
+2016-06-06 03:56:21,971 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.1, 0)
+2016-06-06 03:56:23,170 - __main__ - INFO - time: 1.19900679588, status: 0
+2016-06-06 03:56:25,737 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.1, 0)
+2016-06-06 03:56:26,884 - __main__ - INFO - time: 1.1474108696, status: 0
+2016-06-06 03:56:29,583 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.1, 0)
+2016-06-06 03:56:30,708 - __main__ - INFO - time: 1.12483215332, status: 0
+2016-06-06 03:56:33,456 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.1, 0)
+2016-06-06 03:56:34,567 - __main__ - INFO - time: 1.11059308052, status: 0
+2016-06-06 03:56:37,457 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.1, 0)
+2016-06-06 03:56:38,574 - __main__ - INFO - time: 1.11667704582, status: 0
+2016-06-06 03:56:41,610 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.1, 1)
+2016-06-06 03:56:50,784 - __main__ - INFO - time: 9.17422199249, status: 1
+2016-06-06 03:56:53,045 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.1, 1)
+2016-06-06 03:57:00,360 - __main__ - INFO - time: 7.31569981575, status: 1
+2016-06-06 03:57:02,917 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.1, 1)
+2016-06-06 03:57:09,406 - __main__ - INFO - time: 6.48805904388, status: 1
+2016-06-06 03:57:11,994 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.1, 1)
+2016-06-06 03:57:13,193 - __main__ - INFO - time: 1.19864797592, status: 0
+2016-06-06 03:57:15,803 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.1, 1)
+2016-06-06 03:57:16,901 - __main__ - INFO - time: 1.0982029438, status: 0
+2016-06-06 03:57:19,473 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.1, 1)
+2016-06-06 03:57:20,546 - __main__ - INFO - time: 1.07278513908, status: 0
+2016-06-06 03:57:23,125 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.1, 1)
+2016-06-06 03:57:24,182 - __main__ - INFO - time: 1.05687189102, status: 0
+2016-06-06 03:57:26,839 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.1, 1)
+2016-06-06 03:57:27,875 - __main__ - INFO - time: 1.03537797928, status: 0
+2016-06-06 03:57:30,622 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.1, 1)
+2016-06-06 03:57:31,724 - __main__ - INFO - time: 1.10161519051, status: 0
+2016-06-06 03:57:34,749 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.1, 2)
+2016-06-06 03:57:43,903 - __main__ - INFO - time: 9.15347290039, status: 1
+2016-06-06 03:57:46,328 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.1, 2)
+2016-06-06 03:57:53,358 - __main__ - INFO - time: 7.03030395508, status: 1
+2016-06-06 03:57:55,878 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.1, 2)
+2016-06-06 03:58:02,367 - __main__ - INFO - time: 6.48902416229, status: 1
+2016-06-06 03:58:04,849 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.1, 2)
+2016-06-06 03:58:06,123 - __main__ - INFO - time: 1.27364397049, status: 0
+2016-06-06 03:58:08,733 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.1, 2)
+2016-06-06 03:58:09,954 - __main__ - INFO - time: 1.22175216675, status: 0
+2016-06-06 03:58:12,506 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.1, 2)
+2016-06-06 03:58:13,621 - __main__ - INFO - time: 1.11470508575, status: 0
+2016-06-06 03:58:16,183 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.1, 2)
+2016-06-06 03:58:17,228 - __main__ - INFO - time: 1.04471898079, status: 0
+2016-06-06 03:58:19,842 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.1, 2)
+2016-06-06 03:58:20,876 - __main__ - INFO - time: 1.03377604485, status: 0
+2016-06-06 03:58:23,592 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.1, 2)
+2016-06-06 03:58:24,684 - __main__ - INFO - time: 1.09247899055, status: 0
+2016-06-06 03:58:27,624 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.1, 3)
+2016-06-06 03:58:37,268 - __main__ - INFO - time: 9.6433429718, status: 1
+2016-06-06 03:58:39,544 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.1, 3)
+2016-06-06 03:58:46,799 - __main__ - INFO - time: 7.25444507599, status: 1
+2016-06-06 03:58:49,201 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.1, 3)
+2016-06-06 03:58:50,751 - __main__ - INFO - time: 1.55000114441, status: 0
+2016-06-06 03:58:53,128 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.1, 3)
+2016-06-06 03:58:54,281 - __main__ - INFO - time: 1.15229296684, status: 0
+2016-06-06 03:58:56,678 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.1, 3)
+2016-06-06 03:58:57,797 - __main__ - INFO - time: 1.11922192574, status: 0
+2016-06-06 03:59:00,168 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.1, 3)
+2016-06-06 03:59:01,301 - __main__ - INFO - time: 1.13260507584, status: 0
+2016-06-06 03:59:03,799 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.1, 3)
+2016-06-06 03:59:04,880 - __main__ - INFO - time: 1.08098101616, status: 0
+2016-06-06 03:59:07,554 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.1, 3)
+2016-06-06 03:59:08,632 - __main__ - INFO - time: 1.07815384865, status: 0
+2016-06-06 03:59:11,439 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.1, 3)
+2016-06-06 03:59:12,553 - __main__ - INFO - time: 1.11431789398, status: 0
+2016-06-06 03:59:15,632 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.1, 4)
+2016-06-06 03:59:24,524 - __main__ - INFO - time: 8.89212989807, status: 1
+2016-06-06 03:59:26,997 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.1, 4)
+2016-06-06 03:59:33,922 - __main__ - INFO - time: 6.92471599579, status: 1
+2016-06-06 03:59:36,516 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.1, 4)
+2016-06-06 03:59:38,439 - __main__ - INFO - time: 1.9230120182, status: 0
+2016-06-06 03:59:41,101 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.1, 4)
+2016-06-06 03:59:42,376 - __main__ - INFO - time: 1.27446699142, status: 0
+2016-06-06 03:59:45,097 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.1, 4)
+2016-06-06 03:59:46,259 - __main__ - INFO - time: 1.16184186935, status: 0
+2016-06-06 03:59:48,928 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.1, 4)
+2016-06-06 03:59:50,063 - __main__ - INFO - time: 1.13549995422, status: 0
+2016-06-06 03:59:52,753 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.1, 4)
+2016-06-06 03:59:53,872 - __main__ - INFO - time: 1.11887001991, status: 0
+2016-06-06 03:59:56,673 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.1, 4)
+2016-06-06 03:59:57,782 - __main__ - INFO - time: 1.10870599747, status: 0
+2016-06-06 04:00:00,721 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.1, 4)
+2016-06-06 04:00:01,887 - __main__ - INFO - time: 1.16604399681, status: 0
+2016-06-06 04:00:05,071 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.1, 5)
+2016-06-06 04:00:14,639 - __main__ - INFO - time: 9.5674598217, status: 1
+2016-06-06 04:00:17,153 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.1, 5)
+2016-06-06 04:00:24,306 - __main__ - INFO - time: 7.15253901482, status: 1
+2016-06-06 04:00:26,836 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.1, 5)
+2016-06-06 04:00:28,787 - __main__ - INFO - time: 1.95047211647, status: 0
+2016-06-06 04:00:31,370 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.1, 5)
+2016-06-06 04:00:32,897 - __main__ - INFO - time: 1.52671813965, status: 0
+2016-06-06 04:00:35,432 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.1, 5)
+2016-06-06 04:00:36,883 - __main__ - INFO - time: 1.45108699799, status: 0
+2016-06-06 04:00:39,413 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.1, 5)
+2016-06-06 04:00:40,602 - __main__ - INFO - time: 1.18859004974, status: 0
+2016-06-06 04:00:43,313 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.1, 5)
+2016-06-06 04:00:44,410 - __main__ - INFO - time: 1.09724497795, status: 0
+2016-06-06 04:00:47,098 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.1, 5)
+2016-06-06 04:00:48,226 - __main__ - INFO - time: 1.12772893906, status: 0
+2016-06-06 04:00:51,158 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.1, 5)
+2016-06-06 04:00:52,270 - __main__ - INFO - time: 1.11157917976, status: 0
+2016-06-06 04:00:55,327 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.1, 6)
+2016-06-06 04:01:04,923 - __main__ - INFO - time: 9.59631800652, status: 1
+2016-06-06 04:01:07,464 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.1, 6)
+2016-06-06 04:01:14,981 - __main__ - INFO - time: 7.51689100266, status: 1
+2016-06-06 04:01:17,564 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.1, 6)
+2016-06-06 04:01:24,268 - __main__ - INFO - time: 6.7029311657, status: 1
+2016-06-06 04:01:26,957 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.1, 6)
+2016-06-06 04:01:28,313 - __main__ - INFO - time: 1.35528302193, status: 0
+2016-06-06 04:01:30,949 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.1, 6)
+2016-06-06 04:01:32,206 - __main__ - INFO - time: 1.25693702698, status: 0
+2016-06-06 04:01:34,816 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.1, 6)
+2016-06-06 04:01:35,971 - __main__ - INFO - time: 1.15565896034, status: 0
+2016-06-06 04:01:38,651 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.1, 6)
+2016-06-06 04:01:39,761 - __main__ - INFO - time: 1.10930681229, status: 0
+2016-06-06 04:01:42,557 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.1, 6)
+2016-06-06 04:01:43,633 - __main__ - INFO - time: 1.07601308823, status: 0
+2016-06-06 04:01:46,481 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.1, 6)
+2016-06-06 04:01:47,623 - __main__ - INFO - time: 1.14167809486, status: 0
+2016-06-06 04:01:50,760 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.1, 7)
+2016-06-06 04:01:59,201 - __main__ - INFO - time: 8.44099807739, status: 1
+2016-06-06 04:02:01,663 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.1, 7)
+2016-06-06 04:02:08,677 - __main__ - INFO - time: 7.01353120804, status: 1
+2016-06-06 04:02:11,255 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.1, 7)
+2016-06-06 04:02:17,726 - __main__ - INFO - time: 6.47116994858, status: 1
+2016-06-06 04:02:20,250 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.1, 7)
+2016-06-06 04:02:21,709 - __main__ - INFO - time: 1.45844912529, status: 0
+2016-06-06 04:02:24,244 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.1, 7)
+2016-06-06 04:02:25,355 - __main__ - INFO - time: 1.11071491241, status: 0
+2016-06-06 04:02:27,953 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.1, 7)
+2016-06-06 04:02:29,092 - __main__ - INFO - time: 1.13811707497, status: 0
+2016-06-06 04:02:31,787 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.1, 7)
+2016-06-06 04:02:32,876 - __main__ - INFO - time: 1.08917307854, status: 0
+2016-06-06 04:02:35,634 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.1, 7)
+2016-06-06 04:02:36,713 - __main__ - INFO - time: 1.07902097702, status: 0
+2016-06-06 04:02:39,556 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.1, 7)
+2016-06-06 04:02:40,665 - __main__ - INFO - time: 1.10865092278, status: 0
+2016-06-06 04:02:43,754 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.1, 8)
+2016-06-06 04:02:52,757 - __main__ - INFO - time: 9.00238895416, status: 1
+2016-06-06 04:02:55,344 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.1, 8)
+2016-06-06 04:03:02,334 - __main__ - INFO - time: 6.98999905586, status: 1
+2016-06-06 04:03:04,937 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.1, 8)
+2016-06-06 04:03:06,878 - __main__ - INFO - time: 1.94021201134, status: 0
+2016-06-06 04:03:09,518 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.1, 8)
+2016-06-06 04:03:10,746 - __main__ - INFO - time: 1.22818183899, status: 0
+2016-06-06 04:03:13,281 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.1, 8)
+2016-06-06 04:03:14,487 - __main__ - INFO - time: 1.20574998856, status: 0
+2016-06-06 04:03:17,139 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.1, 8)
+2016-06-06 04:03:18,295 - __main__ - INFO - time: 1.15541386604, status: 0
+2016-06-06 04:03:20,941 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.1, 8)
+2016-06-06 04:03:21,990 - __main__ - INFO - time: 1.04881501198, status: 0
+2016-06-06 04:03:24,672 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.1, 8)
+2016-06-06 04:03:25,776 - __main__ - INFO - time: 1.10341382027, status: 0
+2016-06-06 04:03:28,592 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.1, 8)
+2016-06-06 04:03:29,707 - __main__ - INFO - time: 1.11544489861, status: 0
+2016-06-06 04:03:32,731 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.1, 9)
+2016-06-06 04:03:42,359 - __main__ - INFO - time: 9.62761616707, status: 1
+2016-06-06 04:03:44,784 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.1, 9)
+2016-06-06 04:03:52,808 - __main__ - INFO - time: 8.02362990379, status: 1
+2016-06-06 04:03:55,454 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.1, 9)
+2016-06-06 04:03:57,404 - __main__ - INFO - time: 1.94945287704, status: 0
+2016-06-06 04:04:00,018 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.1, 9)
+2016-06-06 04:04:01,538 - __main__ - INFO - time: 1.51986908913, status: 0
+2016-06-06 04:04:04,159 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.1, 9)
+2016-06-06 04:04:05,338 - __main__ - INFO - time: 1.1791870594, status: 0
+2016-06-06 04:04:08,023 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.1, 9)
+2016-06-06 04:04:09,198 - __main__ - INFO - time: 1.17527103424, status: 0
+2016-06-06 04:04:11,946 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.1, 9)
+2016-06-06 04:04:13,021 - __main__ - INFO - time: 1.07475185394, status: 0
+2016-06-06 04:04:15,806 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.1, 9)
+2016-06-06 04:04:16,906 - __main__ - INFO - time: 1.0995361805, status: 0
+2016-06-06 04:04:19,823 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.1, 9)
+2016-06-06 04:04:20,958 - __main__ - INFO - time: 1.13456988335, status: 0
+2016-06-06 04:04:24,111 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.15, 0)
+2016-06-06 04:04:34,073 - __main__ - INFO - time: 9.96154689789, status: 1
+2016-06-06 04:04:37,058 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.15, 0)
+2016-06-06 04:04:46,143 - __main__ - INFO - time: 9.08459210396, status: 1
+2016-06-06 04:04:49,415 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.15, 0)
+2016-06-06 04:04:57,124 - __main__ - INFO - time: 7.70889902115, status: 1
+2016-06-06 04:05:00,385 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.15, 0)
+2016-06-06 04:05:02,298 - __main__ - INFO - time: 1.91337895393, status: 0
+2016-06-06 04:05:05,580 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.15, 0)
+2016-06-06 04:05:07,154 - __main__ - INFO - time: 1.57395386696, status: 0
+2016-06-06 04:05:10,505 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.15, 0)
+2016-06-06 04:05:11,944 - __main__ - INFO - time: 1.43875694275, status: 0
+2016-06-06 04:05:15,269 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.15, 0)
+2016-06-06 04:05:16,626 - __main__ - INFO - time: 1.35723590851, status: 0
+2016-06-06 04:05:19,988 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.15, 0)
+2016-06-06 04:05:21,294 - __main__ - INFO - time: 1.30578112602, status: 0
+2016-06-06 04:05:24,783 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.15, 0)
+2016-06-06 04:05:26,154 - __main__ - INFO - time: 1.37062191963, status: 0
+2016-06-06 04:05:29,969 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.15, 1)
+2016-06-06 04:05:40,019 - __main__ - INFO - time: 10.0493788719, status: 1
+2016-06-06 04:05:43,032 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.15, 1)
+2016-06-06 04:05:51,988 - __main__ - INFO - time: 8.95615100861, status: 1
+2016-06-06 04:05:55,122 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.15, 1)
+2016-06-06 04:06:03,015 - __main__ - INFO - time: 7.89257597923, status: 1
+2016-06-06 04:06:06,277 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.15, 1)
+2016-06-06 04:06:13,898 - __main__ - INFO - time: 7.6209628582, status: 1
+2016-06-06 04:06:17,144 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.15, 1)
+2016-06-06 04:06:18,809 - __main__ - INFO - time: 1.66529417038, status: 0
+2016-06-06 04:06:22,044 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.15, 1)
+2016-06-06 04:06:23,532 - __main__ - INFO - time: 1.48758983612, status: 0
+2016-06-06 04:06:26,794 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.15, 1)
+2016-06-06 04:06:28,157 - __main__ - INFO - time: 1.36313796043, status: 0
+2016-06-06 04:06:31,515 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.15, 1)
+2016-06-06 04:06:32,834 - __main__ - INFO - time: 1.31894111633, status: 0
+2016-06-06 04:06:36,314 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.15, 1)
+2016-06-06 04:06:37,639 - __main__ - INFO - time: 1.32544493675, status: 0
+2016-06-06 04:06:41,390 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.15, 2)
+2016-06-06 04:06:51,551 - __main__ - INFO - time: 10.1608219147, status: 1
+2016-06-06 04:06:54,432 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.15, 2)
+2016-06-06 04:07:03,468 - __main__ - INFO - time: 9.0364279747, status: 1
+2016-06-06 04:07:06,459 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.15, 2)
+2016-06-06 04:07:13,976 - __main__ - INFO - time: 7.51618599892, status: 1
+2016-06-06 04:07:17,004 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.15, 2)
+2016-06-06 04:07:20,009 - __main__ - INFO - time: 3.00515985489, status: 0
+2016-06-06 04:07:23,235 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.15, 2)
+2016-06-06 04:07:24,904 - __main__ - INFO - time: 1.66928505898, status: 0
+2016-06-06 04:07:28,061 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.15, 2)
+2016-06-06 04:07:29,450 - __main__ - INFO - time: 1.3892660141, status: 0
+2016-06-06 04:07:32,628 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.15, 2)
+2016-06-06 04:07:33,922 - __main__ - INFO - time: 1.29409790039, status: 0
+2016-06-06 04:07:37,142 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.15, 2)
+2016-06-06 04:07:38,430 - __main__ - INFO - time: 1.28801488876, status: 0
+2016-06-06 04:07:41,830 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.15, 2)
+2016-06-06 04:07:43,139 - __main__ - INFO - time: 1.30880904198, status: 0
+2016-06-06 04:07:46,726 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.15, 3)
+2016-06-06 04:07:56,525 - __main__ - INFO - time: 9.79874300957, status: 1
+2016-06-06 04:07:58,880 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.15, 3)
+2016-06-06 04:08:08,359 - __main__ - INFO - time: 9.47827410698, status: 1
+2016-06-06 04:08:11,535 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.15, 3)
+2016-06-06 04:08:19,232 - __main__ - INFO - time: 7.69723010063, status: 1
+2016-06-06 04:08:22,420 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.15, 3)
+2016-06-06 04:08:27,114 - __main__ - INFO - time: 4.69459986687, status: 0
+2016-06-06 04:08:30,297 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.15, 3)
+2016-06-06 04:08:31,719 - __main__ - INFO - time: 1.4210999012, status: 0
+2016-06-06 04:08:34,933 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.15, 3)
+2016-06-06 04:08:36,322 - __main__ - INFO - time: 1.38925004005, status: 0
+2016-06-06 04:08:39,542 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.15, 3)
+2016-06-06 04:08:40,862 - __main__ - INFO - time: 1.31974577904, status: 0
+2016-06-06 04:08:44,177 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.15, 3)
+2016-06-06 04:08:45,470 - __main__ - INFO - time: 1.29305100441, status: 0
+2016-06-06 04:08:48,859 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.15, 3)
+2016-06-06 04:08:50,129 - __main__ - INFO - time: 1.26997900009, status: 0
+2016-06-06 04:08:53,674 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.15, 4)
+2016-06-06 04:09:03,700 - __main__ - INFO - time: 10.0262649059, status: 1
+2016-06-06 04:09:06,696 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.15, 4)
+2016-06-06 04:09:16,111 - __main__ - INFO - time: 9.41394495964, status: 1
+2016-06-06 04:09:19,309 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.15, 4)
+2016-06-06 04:09:26,853 - __main__ - INFO - time: 7.54379320145, status: 1
+2016-06-06 04:09:30,078 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.15, 4)
+2016-06-06 04:09:37,339 - __main__ - INFO - time: 7.26045799255, status: 1
+2016-06-06 04:09:40,654 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.15, 4)
+2016-06-06 04:09:42,533 - __main__ - INFO - time: 1.87870311737, status: 0
+2016-06-06 04:09:45,858 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.15, 4)
+2016-06-06 04:09:47,305 - __main__ - INFO - time: 1.44611406326, status: 0
+2016-06-06 04:09:50,636 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.15, 4)
+2016-06-06 04:09:51,977 - __main__ - INFO - time: 1.34060001373, status: 0
+2016-06-06 04:09:55,350 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.15, 4)
+2016-06-06 04:09:56,666 - __main__ - INFO - time: 1.31569504738, status: 0
+2016-06-06 04:10:00,216 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.15, 4)
+2016-06-06 04:10:01,560 - __main__ - INFO - time: 1.34346294403, status: 0
+2016-06-06 04:10:05,301 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.15, 5)
+2016-06-06 04:10:15,293 - __main__ - INFO - time: 9.99194478989, status: 1
+2016-06-06 04:10:18,194 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.15, 5)
+2016-06-06 04:10:26,902 - __main__ - INFO - time: 8.70734786987, status: 1
+2016-06-06 04:10:29,868 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.15, 5)
+2016-06-06 04:10:37,289 - __main__ - INFO - time: 7.42115688324, status: 1
+2016-06-06 04:10:40,169 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.15, 5)
+2016-06-06 04:10:42,095 - __main__ - INFO - time: 1.9257581234, status: 0
+2016-06-06 04:10:45,070 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.15, 5)
+2016-06-06 04:10:47,011 - __main__ - INFO - time: 1.94002890587, status: 0
+2016-06-06 04:10:50,065 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.15, 5)
+2016-06-06 04:10:51,586 - __main__ - INFO - time: 1.52058005333, status: 0
+2016-06-06 04:10:54,646 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.15, 5)
+2016-06-06 04:10:55,971 - __main__ - INFO - time: 1.3243830204, status: 0
+2016-06-06 04:10:59,217 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.15, 5)
+2016-06-06 04:11:00,515 - __main__ - INFO - time: 1.29849100113, status: 0
+2016-06-06 04:11:03,867 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.15, 5)
+2016-06-06 04:11:05,176 - __main__ - INFO - time: 1.30935502052, status: 0
+2016-06-06 04:11:08,784 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.15, 6)
+2016-06-06 04:11:19,109 - __main__ - INFO - time: 10.3245818615, status: 1
+2016-06-06 04:11:21,978 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.15, 6)
+2016-06-06 04:11:31,459 - __main__ - INFO - time: 9.48131990433, status: 1
+2016-06-06 04:11:34,625 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.15, 6)
+2016-06-06 04:11:38,502 - __main__ - INFO - time: 3.8764591217, status: 0
+2016-06-06 04:11:41,737 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.15, 6)
+2016-06-06 04:11:43,975 - __main__ - INFO - time: 2.23822402954, status: 0
+2016-06-06 04:11:47,241 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.15, 6)
+2016-06-06 04:11:48,895 - __main__ - INFO - time: 1.65294313431, status: 0
+2016-06-06 04:11:52,134 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.15, 6)
+2016-06-06 04:11:53,555 - __main__ - INFO - time: 1.42022204399, status: 0
+2016-06-06 04:11:56,842 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.15, 6)
+2016-06-06 04:11:58,159 - __main__ - INFO - time: 1.31582283974, status: 0
+2016-06-06 04:12:01,403 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.15, 6)
+2016-06-06 04:12:02,730 - __main__ - INFO - time: 1.32639789581, status: 0
+2016-06-06 04:12:06,220 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.15, 6)
+2016-06-06 04:12:07,549 - __main__ - INFO - time: 1.32908415794, status: 0
+2016-06-06 04:12:11,225 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.15, 7)
+2016-06-06 04:12:21,229 - __main__ - INFO - time: 10.0031080246, status: 1
+2016-06-06 04:12:23,701 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.15, 7)
+2016-06-06 04:12:32,959 - __main__ - INFO - time: 9.25799012184, status: 1
+2016-06-06 04:12:36,131 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.15, 7)
+2016-06-06 04:12:44,007 - __main__ - INFO - time: 7.87592697144, status: 1
+2016-06-06 04:12:47,221 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.15, 7)
+2016-06-06 04:12:49,739 - __main__ - INFO - time: 2.51786804199, status: 0
+2016-06-06 04:12:53,118 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.15, 7)
+2016-06-06 04:12:55,087 - __main__ - INFO - time: 1.96932005882, status: 0
+2016-06-06 04:12:58,428 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.15, 7)
+2016-06-06 04:13:00,005 - __main__ - INFO - time: 1.57682299614, status: 0
+2016-06-06 04:13:03,333 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.15, 7)
+2016-06-06 04:13:04,757 - __main__ - INFO - time: 1.42362904549, status: 0
+2016-06-06 04:13:08,195 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.15, 7)
+2016-06-06 04:13:09,485 - __main__ - INFO - time: 1.29012107849, status: 0
+2016-06-06 04:13:12,964 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.15, 7)
+2016-06-06 04:13:14,285 - __main__ - INFO - time: 1.32127308846, status: 0
+2016-06-06 04:13:18,024 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.15, 8)
+2016-06-06 04:13:27,950 - __main__ - INFO - time: 9.92541885376, status: 1
+2016-06-06 04:13:30,984 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.15, 8)
+2016-06-06 04:13:39,426 - __main__ - INFO - time: 8.44189119339, status: 1
+2016-06-06 04:13:42,646 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.15, 8)
+2016-06-06 04:13:50,417 - __main__ - INFO - time: 7.77048993111, status: 1
+2016-06-06 04:13:53,743 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.15, 8)
+2016-06-06 04:13:59,660 - __main__ - INFO - time: 5.91616296768, status: 0
+2016-06-06 04:14:02,980 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.15, 8)
+2016-06-06 04:14:04,602 - __main__ - INFO - time: 1.62148189545, status: 0
+2016-06-06 04:14:07,917 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.15, 8)
+2016-06-06 04:14:09,577 - __main__ - INFO - time: 1.65884900093, status: 0
+2016-06-06 04:14:12,929 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.15, 8)
+2016-06-06 04:14:14,284 - __main__ - INFO - time: 1.35485601425, status: 0
+2016-06-06 04:14:17,636 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.15, 8)
+2016-06-06 04:14:18,991 - __main__ - INFO - time: 1.35484099388, status: 0
+2016-06-06 04:14:22,561 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.15, 8)
+2016-06-06 04:14:23,970 - __main__ - INFO - time: 1.40939497948, status: 0
+2016-06-06 04:14:27,845 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.15, 9)
+2016-06-06 04:14:37,943 - __main__ - INFO - time: 10.0973289013, status: 1
+2016-06-06 04:14:40,902 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.15, 9)
+2016-06-06 04:14:50,915 - __main__ - INFO - time: 10.0137660503, status: 1
+2016-06-06 04:14:53,975 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.15, 9)
+2016-06-06 04:15:01,942 - __main__ - INFO - time: 7.96677517891, status: 1
+2016-06-06 04:15:04,933 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.15, 9)
+2016-06-06 04:15:11,530 - __main__ - INFO - time: 6.59647107124, status: 0
+2016-06-06 04:15:14,728 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.15, 9)
+2016-06-06 04:15:16,318 - __main__ - INFO - time: 1.59014201164, status: 0
+2016-06-06 04:15:19,500 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.15, 9)
+2016-06-06 04:15:20,868 - __main__ - INFO - time: 1.36786794662, status: 0
+2016-06-06 04:15:23,992 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.15, 9)
+2016-06-06 04:15:25,298 - __main__ - INFO - time: 1.30646014214, status: 0
+2016-06-06 04:15:28,555 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.15, 9)
+2016-06-06 04:15:29,881 - __main__ - INFO - time: 1.32529401779, status: 0
+2016-06-06 04:15:33,285 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.15, 9)
+2016-06-06 04:15:34,599 - __main__ - INFO - time: 1.31407403946, status: 0
+2016-06-06 04:15:38,205 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.2, 0)
+2016-06-06 04:15:48,656 - __main__ - INFO - time: 10.4512000084, status: 1
+2016-06-06 04:15:52,193 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.2, 0)
+2016-06-06 04:16:02,003 - __main__ - INFO - time: 9.80958795547, status: 1
+2016-06-06 04:16:05,614 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.2, 0)
+2016-06-06 04:16:13,951 - __main__ - INFO - time: 8.33638191223, status: 1
+2016-06-06 04:16:17,530 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.2, 0)
+2016-06-06 04:16:20,438 - __main__ - INFO - time: 2.90762782097, status: 0
+2016-06-06 04:16:24,070 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.2, 0)
+2016-06-06 04:16:26,267 - __main__ - INFO - time: 2.19605112076, status: 0
+2016-06-06 04:16:29,899 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.2, 0)
+2016-06-06 04:16:31,580 - __main__ - INFO - time: 1.68084287643, status: 0
+2016-06-06 04:16:35,170 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.2, 0)
+2016-06-06 04:16:36,672 - __main__ - INFO - time: 1.50158810616, status: 0
+2016-06-06 04:16:40,394 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.2, 0)
+2016-06-06 04:16:41,875 - __main__ - INFO - time: 1.48085284233, status: 0
+2016-06-06 04:16:45,782 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.2, 0)
+2016-06-06 04:16:47,268 - __main__ - INFO - time: 1.4851911068, status: 0
+2016-06-06 04:16:51,413 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.2, 1)
+2016-06-06 04:17:01,961 - __main__ - INFO - time: 10.5481221676, status: 1
+2016-06-06 04:17:05,254 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.2, 1)
+2016-06-06 04:17:15,012 - __main__ - INFO - time: 9.75724101067, status: 1
+2016-06-06 04:17:18,474 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.2, 1)
+2016-06-06 04:17:26,783 - __main__ - INFO - time: 8.30862689018, status: 1
+2016-06-06 04:17:30,290 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.2, 1)
+2016-06-06 04:17:38,141 - __main__ - INFO - time: 7.85060310364, status: 1
+2016-06-06 04:17:41,616 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.2, 1)
+2016-06-06 04:17:43,875 - __main__ - INFO - time: 2.25880002975, status: 0
+2016-06-06 04:17:47,332 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.2, 1)
+2016-06-06 04:17:49,009 - __main__ - INFO - time: 1.67662501335, status: 0
+2016-06-06 04:17:52,558 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.2, 1)
+2016-06-06 04:17:54,139 - __main__ - INFO - time: 1.58034396172, status: 0
+2016-06-06 04:17:57,878 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.2, 1)
+2016-06-06 04:17:59,359 - __main__ - INFO - time: 1.48034000397, status: 0
+2016-06-06 04:18:03,310 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.2, 1)
+2016-06-06 04:18:04,816 - __main__ - INFO - time: 1.50628995895, status: 0
+2016-06-06 04:18:09,050 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.2, 2)
+2016-06-06 04:18:19,491 - __main__ - INFO - time: 10.4405591488, status: 1
+2016-06-06 04:18:22,640 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.2, 2)
+2016-06-06 04:18:32,608 - __main__ - INFO - time: 9.96757411957, status: 1
+2016-06-06 04:18:36,180 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.2, 2)
+2016-06-06 04:18:44,334 - __main__ - INFO - time: 8.15390992165, status: 1
+2016-06-06 04:18:47,900 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.2, 2)
+2016-06-06 04:18:50,793 - __main__ - INFO - time: 2.89293718338, status: 0
+2016-06-06 04:18:54,412 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.2, 2)
+2016-06-06 04:18:56,229 - __main__ - INFO - time: 1.81682610512, status: 0
+2016-06-06 04:18:59,844 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.2, 2)
+2016-06-06 04:19:01,496 - __main__ - INFO - time: 1.65234398842, status: 0
+2016-06-06 04:19:05,126 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.2, 2)
+2016-06-06 04:19:06,689 - __main__ - INFO - time: 1.56214809418, status: 0
+2016-06-06 04:19:10,398 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.2, 2)
+2016-06-06 04:19:11,856 - __main__ - INFO - time: 1.45759701729, status: 0
+2016-06-06 04:19:15,766 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.2, 2)
+2016-06-06 04:19:17,246 - __main__ - INFO - time: 1.47914886475, status: 0
+2016-06-06 04:19:21,397 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.2, 3)
+2016-06-06 04:19:31,909 - __main__ - INFO - time: 10.5124161243, status: 1
+2016-06-06 04:19:35,425 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.2, 3)
+2016-06-06 04:19:45,001 - __main__ - INFO - time: 9.57609701157, status: 1
+2016-06-06 04:19:48,469 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.2, 3)
+2016-06-06 04:19:56,606 - __main__ - INFO - time: 8.13697504997, status: 1
+2016-06-06 04:20:00,101 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.2, 3)
+2016-06-06 04:20:03,608 - __main__ - INFO - time: 3.50748491287, status: 0
+2016-06-06 04:20:07,229 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.2, 3)
+2016-06-06 04:20:08,921 - __main__ - INFO - time: 1.69173979759, status: 0
+2016-06-06 04:20:12,425 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.2, 3)
+2016-06-06 04:20:13,969 - __main__ - INFO - time: 1.54373002052, status: 0
+2016-06-06 04:20:17,579 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.2, 3)
+2016-06-06 04:20:19,071 - __main__ - INFO - time: 1.49108910561, status: 0
+2016-06-06 04:20:22,835 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.2, 3)
+2016-06-06 04:20:24,302 - __main__ - INFO - time: 1.46677279472, status: 0
+2016-06-06 04:20:28,236 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.2, 3)
+2016-06-06 04:20:29,676 - __main__ - INFO - time: 1.4402320385, status: 0
+2016-06-06 04:20:33,756 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.2, 4)
+2016-06-06 04:20:44,096 - __main__ - INFO - time: 10.3395469189, status: 1
+2016-06-06 04:20:47,261 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.2, 4)
+2016-06-06 04:20:56,875 - __main__ - INFO - time: 9.61412000656, status: 1
+2016-06-06 04:21:00,184 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.2, 4)
+2016-06-06 04:21:08,265 - __main__ - INFO - time: 8.08056783676, status: 1
+2016-06-06 04:21:11,639 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.2, 4)
+2016-06-06 04:21:19,283 - __main__ - INFO - time: 7.64459609985, status: 1
+2016-06-06 04:21:22,646 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.2, 4)
+2016-06-06 04:21:24,891 - __main__ - INFO - time: 2.2451851368, status: 0
+2016-06-06 04:21:28,365 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.2, 4)
+2016-06-06 04:21:30,065 - __main__ - INFO - time: 1.69935894012, status: 0
+2016-06-06 04:21:33,532 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.2, 4)
+2016-06-06 04:21:35,082 - __main__ - INFO - time: 1.54975819588, status: 0
+2016-06-06 04:21:38,793 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.2, 4)
+2016-06-06 04:21:40,238 - __main__ - INFO - time: 1.44526314735, status: 0
+2016-06-06 04:21:44,097 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.2, 4)
+2016-06-06 04:21:45,526 - __main__ - INFO - time: 1.42918109894, status: 0
+2016-06-06 04:21:49,558 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.2, 5)
+2016-06-06 04:22:00,079 - __main__ - INFO - time: 10.5207660198, status: 1
+2016-06-06 04:22:03,324 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.2, 5)
+2016-06-06 04:22:13,014 - __main__ - INFO - time: 9.69066905975, status: 1
+2016-06-06 04:22:16,651 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.2, 5)
+2016-06-06 04:22:24,942 - __main__ - INFO - time: 8.29110312462, status: 1
+2016-06-06 04:22:28,547 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.2, 5)
+2016-06-06 04:22:36,423 - __main__ - INFO - time: 7.87565612793, status: 1
+2016-06-06 04:22:40,012 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.2, 5)
+2016-06-06 04:22:42,109 - __main__ - INFO - time: 2.09686183929, status: 0
+2016-06-06 04:22:45,795 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.2, 5)
+2016-06-06 04:22:47,480 - __main__ - INFO - time: 1.68510913849, status: 0
+2016-06-06 04:22:51,197 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.2, 5)
+2016-06-06 04:22:52,751 - __main__ - INFO - time: 1.55393099785, status: 0
+2016-06-06 04:22:56,611 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.2, 5)
+2016-06-06 04:22:58,188 - __main__ - INFO - time: 1.57697916031, status: 0
+2016-06-06 04:23:02,314 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.2, 5)
+2016-06-06 04:23:03,898 - __main__ - INFO - time: 1.58349299431, status: 0
+2016-06-06 04:23:08,270 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.2, 6)
+2016-06-06 04:23:19,134 - __main__ - INFO - time: 10.8641529083, status: 1
+2016-06-06 04:23:22,698 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.2, 6)
+2016-06-06 04:23:33,369 - __main__ - INFO - time: 10.670623064, status: 1
+2016-06-06 04:23:37,040 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.2, 6)
+2016-06-06 04:23:45,460 - __main__ - INFO - time: 8.41936397552, status: 1
+2016-06-06 04:23:49,001 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.2, 6)
+2016-06-06 04:23:56,800 - __main__ - INFO - time: 7.79913878441, status: 1
+2016-06-06 04:24:00,406 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.2, 6)
+2016-06-06 04:24:03,189 - __main__ - INFO - time: 2.78258395195, status: 0
+2016-06-06 04:24:06,884 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.2, 6)
+2016-06-06 04:24:08,869 - __main__ - INFO - time: 1.98487710953, status: 0
+2016-06-06 04:24:12,671 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.2, 6)
+2016-06-06 04:24:14,374 - __main__ - INFO - time: 1.70275807381, status: 0
+2016-06-06 04:24:18,254 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.2, 6)
+2016-06-06 04:24:19,762 - __main__ - INFO - time: 1.50786089897, status: 0
+2016-06-06 04:24:23,711 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.2, 6)
+2016-06-06 04:24:25,195 - __main__ - INFO - time: 1.48383998871, status: 0
+2016-06-06 04:24:29,339 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.2, 7)
+2016-06-06 04:24:39,911 - __main__ - INFO - time: 10.5721008778, status: 1
+2016-06-06 04:24:43,406 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.2, 7)
+2016-06-06 04:24:53,336 - __main__ - INFO - time: 9.92972183228, status: 1
+2016-06-06 04:24:56,852 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.2, 7)
+2016-06-06 04:25:01,346 - __main__ - INFO - time: 4.49325299263, status: 0
+2016-06-06 04:25:04,881 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.2, 7)
+2016-06-06 04:25:07,082 - __main__ - INFO - time: 2.2012348175, status: 0
+2016-06-06 04:25:10,666 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.2, 7)
+2016-06-06 04:25:12,435 - __main__ - INFO - time: 1.76968002319, status: 0
+2016-06-06 04:25:15,976 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.2, 7)
+2016-06-06 04:25:17,592 - __main__ - INFO - time: 1.61553692818, status: 0
+2016-06-06 04:25:21,218 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.2, 7)
+2016-06-06 04:25:22,687 - __main__ - INFO - time: 1.46870112419, status: 0
+2016-06-06 04:25:26,435 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.2, 7)
+2016-06-06 04:25:27,893 - __main__ - INFO - time: 1.45693802834, status: 0
+2016-06-06 04:25:31,748 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.2, 7)
+2016-06-06 04:25:33,195 - __main__ - INFO - time: 1.44683098793, status: 0
+2016-06-06 04:25:37,258 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.2, 8)
+2016-06-06 04:25:47,692 - __main__ - INFO - time: 10.4333310127, status: 1
+2016-06-06 04:25:50,698 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.2, 8)
+2016-06-06 04:26:00,566 - __main__ - INFO - time: 9.86838197708, status: 1
+2016-06-06 04:26:04,124 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.2, 8)
+2016-06-06 04:26:12,243 - __main__ - INFO - time: 8.11924386024, status: 1
+2016-06-06 04:26:15,802 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.2, 8)
+2016-06-06 04:26:23,669 - __main__ - INFO - time: 7.86723995209, status: 1
+2016-06-06 04:26:27,281 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.2, 8)
+2016-06-06 04:26:29,757 - __main__ - INFO - time: 2.47539591789, status: 0
+2016-06-06 04:26:33,459 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.2, 8)
+2016-06-06 04:26:35,207 - __main__ - INFO - time: 1.74784708023, status: 0
+2016-06-06 04:26:38,945 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.2, 8)
+2016-06-06 04:26:40,496 - __main__ - INFO - time: 1.55008506775, status: 0
+2016-06-06 04:26:44,400 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.2, 8)
+2016-06-06 04:26:45,886 - __main__ - INFO - time: 1.48582100868, status: 0
+2016-06-06 04:26:49,895 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.2, 8)
+2016-06-06 04:26:51,406 - __main__ - INFO - time: 1.51032495499, status: 0
+2016-06-06 04:26:55,671 - __main__ - INFO - Train C-SVM (C, ratio, trial): (625.0, 0.2, 9)
+2016-06-06 04:27:06,319 - __main__ - INFO - time: 10.6472439766, status: 1
+2016-06-06 04:27:09,851 - __main__ - INFO - Train C-SVM (C, ratio, trial): (125.0, 0.2, 9)
+2016-06-06 04:27:19,587 - __main__ - INFO - time: 9.73601698875, status: 1
+2016-06-06 04:27:23,229 - __main__ - INFO - Train C-SVM (C, ratio, trial): (25.0, 0.2, 9)
+2016-06-06 04:27:31,491 - __main__ - INFO - time: 8.26151800156, status: 1
+2016-06-06 04:27:35,092 - __main__ - INFO - Train C-SVM (C, ratio, trial): (5.0, 0.2, 9)
+2016-06-06 04:27:41,967 - __main__ - INFO - time: 6.87519001961, status: 0
+2016-06-06 04:27:45,695 - __main__ - INFO - Train C-SVM (C, ratio, trial): (1.0, 0.2, 9)
+2016-06-06 04:27:47,690 - __main__ - INFO - time: 1.99516296387, status: 0
+2016-06-06 04:27:51,433 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.2, 0.2, 9)
+2016-06-06 04:27:53,131 - __main__ - INFO - time: 1.69771814346, status: 0
+2016-06-06 04:27:56,924 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.04, 0.2, 9)
+2016-06-06 04:27:58,494 - __main__ - INFO - time: 1.57073116302, status: 0
+2016-06-06 04:28:02,411 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.008, 0.2, 9)
+2016-06-06 04:28:03,948 - __main__ - INFO - time: 1.53677082062, status: 0
+2016-06-06 04:28:08,015 - __main__ - INFO - Train C-SVM (C, ratio, trial): (0.0016, 0.2, 9)
+2016-06-06 04:28:09,538 - __main__ - INFO - time: 1.52366495132, status: 0
+2016-06-06 04:28:13,705 - __main__ - INFO - Training finished
