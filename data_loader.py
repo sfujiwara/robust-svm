@@ -33,7 +33,7 @@ def load_mushrooms():
     x = data["data"].todense()
     y = data["target"].astype(float)
     y[y > 1.5] = -1.
-    return x, y, None
+    return x, y, None, None
 
 
 def load_gisette():
