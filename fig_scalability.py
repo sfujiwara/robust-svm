@@ -28,23 +28,23 @@ elw = 2
 cs = 3
 
 
-def plot_percentile(data, label, fmt, length=8):
+def plot_percentile(data, label, fmt, length=8, position=0.):
     yerr = np.vstack([
         np.mean(data, axis=1) - np.percentile(data, 25, axis=1),
         np.percentile(data, 75, axis=1) - np.mean(data, axis=1)
     ])
     plt.errorbar(
-        sampling_size[:length],
+        sampling_size[:length] + position,
         np.mean(data, axis=1)[:length], yerr=yerr[:, :length],
         label=label, elinewidth=2, capsize=3, fmt=fmt
     )
 
 
 plot_percentile(time_ersvm1, "ER-SVM (nu = 0.1)", "-")
-plot_percentile(time_ersvm5, "ER-SVM (nu = 0.5)", "-x")
+plot_percentile(time_ersvm5, "ER-SVM (nu = 0.5)", "-x", position=-500)
 plot_percentile(time_libsvm0, "C-SVM (C = 1e0)", ":")
 plot_percentile(time_libsvm4, "C-SVM (C = 1e3)", ":x", -3)
-plot_percentile(time_enusvm1, "Enu-SVM (nu = 0.1)", "-.")
+plot_percentile(time_enusvm1, "Enu-SVM (nu = 0.1)", "-.", position=500)
 plot_percentile(time_enusvm5, "Enu-SVM (nu = 0.5)", "-.x")
 plot_percentile(time_var1, "Heuristics (nu = 0.1)", "--", -1)
 plot_percentile(time_var5, "Heuristics (nu = 0.5)", "--x", -1)

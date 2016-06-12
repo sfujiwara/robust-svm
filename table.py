@@ -54,3 +54,6 @@ df_f_var = tmp.groupby('ratio').agg({'test-f': [np.mean, np.std], 'is_convex': [
 # Enu-SVM
 tmp = df_enusvm.iloc[np.array(ind_enu["val-f"], dtype=int)]
 df_f_enu = tmp.groupby('ratio').agg({'test-f': [np.mean, np.std], 'is_convex': [np.min, np.max]})
+# C-SVM
+tmp = df_csvm.iloc[np.array(ind_csvm["val-f"], dtype=int)]
+df_f_csvm = tmp.groupby("ratio").agg({'test-f': [np.mean, np.std]})

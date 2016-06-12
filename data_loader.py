@@ -149,7 +149,8 @@ def load_aloi():
 
 
 if __name__ == "__main__":
-    x, y, x_outlier, y_outlier = load_usps()
+    x, y, x_outlier, y_outlier = load_mushrooms()
     from mysvm import svmutil
     print "nu_max: {}".format(svmutil.calc_nu_max(y))
+    print "nu_min: {}".format(svmutil.calc_nu_min(x, y))
 

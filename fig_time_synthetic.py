@@ -169,7 +169,7 @@ yerr_u = np.array(df_dca_nu05["75percentile"] - df_dca_nu05["mean"])
 yerr_l = np.array(df_dca_nu05["mean"] - df_dca_nu05["25percentile"])
 
 plt.errorbar(
-    df_dca_nu05["outlier_ratio"],
+    df_dca_nu05["outlier_ratio"] - 0.001,
     df_dca_nu05["mean"],
     yerr=np.array([yerr_l, yerr_u]),
     label='ER-SVM (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='-^'
@@ -197,7 +197,7 @@ yerr_u = np.array(df_csvm_c25["75percentile"] - df_csvm_c25["mean"])
 yerr_l = np.array(df_csvm_c25["mean"] - df_csvm_c25["25percentile"])
 
 plt.errorbar(
-    df_csvm_c25["outlier_ratio"],
+    df_csvm_c25["outlier_ratio"]+0.001,
     df_csvm_c25["mean"],
     yerr=np.array([yerr_l, yerr_u]),
     label='C-SVM (C = 25)', elinewidth=elw, capsize=cs, fmt=':^'
@@ -225,7 +225,7 @@ yerr_u = np.array(df_enusvm_nu05["75percentile"] - df_enusvm_nu05["mean"])
 yerr_l = np.array(df_enusvm_nu05["mean"] - df_enusvm_nu05["25percentile"])
 
 plt.errorbar(
-    df_enusvm_nu05["outlier_ratio"],
+    df_enusvm_nu05["outlier_ratio"] + 0.001,
     df_enusvm_nu05["mean"],
     yerr=np.array([yerr_l, yerr_u]),
     label='Enu-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-.^'
@@ -239,7 +239,7 @@ yerr_u = np.array(df_var_nu01["75percentile"] - df_var_nu01["mean"])
 yerr_l = np.array(df_var_nu01["mean"] - df_var_nu01["25percentile"])
 
 plt.errorbar(
-    df_var_nu01["outlier_ratio"],
+    df_var_nu01["outlier_ratio"] + 0.001,
     df_var_nu01["mean"],
     yerr=np.array([yerr_l, yerr_u]),
     label='Heuristics (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='--'
@@ -253,7 +253,7 @@ yerr_u = np.array(df_var_nu05["75percentile"] - df_var_nu05["mean"])
 yerr_l = np.array(df_var_nu05["mean"] - df_var_nu05["25percentile"])
 
 plt.errorbar(
-    df_var_nu05["outlier_ratio"],
+    df_var_nu05["outlier_ratio"] - 0.001,
     df_var_nu05["mean"],
     yerr=np.array([yerr_l, yerr_u]),
     label='Heuristics (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='--^'
@@ -281,7 +281,7 @@ yerr_u = np.array(df_ramp_c25["75percentile"] - df_ramp_c25["mean"])
 yerr_l = np.array(df_ramp_c25["mean"] - df_ramp_c25["25percentile"])
 
 plt.errorbar(
-    df_ramp_c25["outlier_ratio"],
+    df_ramp_c25["outlier_ratio"] + 0.002,
     df_ramp_c25["mean"],
     yerr=np.array([yerr_l, yerr_u]),
     label='Ramp (C = 25)', elinewidth=elw, capsize=cs, fmt='-s'
@@ -293,7 +293,7 @@ plt.errorbar(
 plt.xlabel('Outlier Ratio')
 plt.ylabel('Training Time (sec)')
 plt.xlim([-0.005, 0.105])
-plt.ylim([-0.05, 0.3])
+plt.ylim([-0.01, 0.33])
 plt.legend(loc='upper left')
 plt.grid()
 plt.show()
