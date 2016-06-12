@@ -23,6 +23,7 @@ args = parser.parse_args()
 config = yaml.load(open(args.conf_file).read())
 DATASET_NAME = config["data"]["name"]
 OUTLIER_METHOD = config["outlier"]["method"]
+radius = config["outlier"]["radius"]
 
 # Logging
 logging.basicConfig(
@@ -92,6 +93,11 @@ for i in range(len(outlier_ratio)):
                 x_tr[:num_ol_tr] = x_outlier[ind_ol_tr]
                 x_val[:num_ol_val] = x_outlier[ind_ol_val]
                 y_tr[:num_ol_tr], y_val[:num_ol_val] = y_outlier[ind_ol_tr], y_outlier[ind_ol_val]
+            elif OUTLIER_METHOD == "hyper_sphere":
+                outliers = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_tr)
+                x_tr[:num_ol_tr] = outliers
+                outliers = svmutil.runif_sphere(radius=radius, dim=dim, size=num_ol_val)
+                x_val[:num_ol_val] = outliers
             else:
                 raise ValueError("{} is invalid value as OUTLIER_METHOD".format(OUTLIER_METHOD))
         # Loop for hyper parameters tuning

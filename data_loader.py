@@ -26,6 +26,8 @@ def load_data(name):
         return load_connect4()
     if name == "aloi":
         return load_aloi()
+    if name == "svmguide1":
+        return load_svmguide1()
 
 
 def load_mushrooms():
@@ -148,9 +150,10 @@ def load_aloi():
     return np.array(x), y, np.array(x_outlier), y_outlier
 
 
+def load_svmguide1():
+    x, y = load_svmlight_file("data/libsvm/svmguide1/svmguide1")
+    return x.todense(), y, None, None
+
 if __name__ == "__main__":
-    x, y, x_outlier, y_outlier = load_mushrooms()
-    from mysvm import svmutil
-    print "nu_max: {}".format(svmutil.calc_nu_max(y))
-    print "nu_min: {}".format(svmutil.calc_nu_min(x, y))
+    x, y, _, _ = load_svmguide1()
 
