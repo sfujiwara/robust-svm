@@ -29,6 +29,8 @@ def load_data(name):
         return load_aloi()
     if name == "svmguide1":
         return load_svmguide1()
+    if name == "a1a":
+        return load_a1a()
 
 
 def load_mushrooms():
@@ -158,7 +160,7 @@ def load_svmguide1():
 
 def load_a1a():
     x, y, _, _ = load_svmlight_files(["data/libsvm/adult/a1a", "data/libsvm/adult/a1a.t"])
-    return x.todense(), y, None, None
+    return x.toarray(), y, None, None
 
 if __name__ == "__main__":
     x, y, _, _ = load_a1a()
