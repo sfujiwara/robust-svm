@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from sklearn.datasets import load_svmlight_file
+from sklearn.datasets import load_svmlight_files
 from sklearn.datasets.mldata import fetch_mldata
 from sklearn import svm
 import numpy as np
@@ -154,6 +155,11 @@ def load_svmguide1():
     x, y = load_svmlight_file("data/libsvm/svmguide1/svmguide1")
     return x.todense(), y, None, None
 
+
+def load_a1a():
+    x, y, _, _ = load_svmlight_files(["data/libsvm/adult/a1a", "data/libsvm/adult/a1a.t"])
+    return x.todense(), y, None, None
+
 if __name__ == "__main__":
-    x, y, _, _ = load_svmguide1()
+    x, y, _, _ = load_a1a()
 
