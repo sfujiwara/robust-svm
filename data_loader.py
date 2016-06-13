@@ -31,6 +31,8 @@ def load_data(name):
         return load_svmguide1()
     if name == "a1a":
         return load_a1a()
+    if name == "diabetes":
+        return load_diabetes()
 
 
 def load_mushrooms():
@@ -162,6 +164,14 @@ def load_a1a():
     x, y, _, _ = load_svmlight_files(["data/libsvm/adult/a1a", "data/libsvm/adult/a1a.t"])
     return x.toarray(), y, None, None
 
+
+def load_diabetes():
+    diabetes = fetch_mldata("diabetes_scale")
+    x = diabetes["data"]
+    y = diabetes["target"]
+    return x, y, None, None
+
+
 if __name__ == "__main__":
-    x, y, _, _ = load_a1a()
+    x, y, _, _ = load_diabetes()
 
