@@ -33,6 +33,8 @@ def load_data(name):
         return load_a1a()
     if name == "diabetes":
         return load_diabetes()
+    if name == "splice":
+        return load_splice()
 
 
 def load_mushrooms():
@@ -172,6 +174,13 @@ def load_diabetes():
     return x, y, None, None
 
 
+def load_splice():
+    diabetes = fetch_mldata("splice_scale")
+    x = diabetes["data"]
+    y = diabetes["target"]
+    return x, y, None, None
+
+
 if __name__ == "__main__":
-    x, y, _, _ = load_diabetes()
+    x, y, _, _ = load_splice()
 
