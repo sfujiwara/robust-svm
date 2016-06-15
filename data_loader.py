@@ -33,6 +33,12 @@ def load_data(name):
         return load_a1a()
     if name == "diabetes":
         return load_diabetes()
+    if name == "splice":
+        return load_splice()
+    if name == "vehicle":
+        return load_vehicle()
+    if name == "satimage":
+        return load_satimage()
 
 
 def load_mushrooms():
@@ -172,6 +178,27 @@ def load_diabetes():
     return x, y, None, None
 
 
+def load_splice():
+    diabetes = fetch_mldata("splice_scale")
+    x = diabetes["data"]
+    y = diabetes["target"]
+    return x, y, None, None
+
+
+def load_vehicle():
+    x, y = load_svmlight_file("data/libsvm/vehicle/vehicle.scale")
+    y[np.where(y != 1)] = -1.
+    y[np.where(y != -1)] = 1.
+    return x.toarray(), y, None, None
+
+
+def load_satimage():
+    x, y = load_svmlight_file("data/libsvm/satimage/satimage.scale")
+    y[np.where(y != 6)] = -1.
+    y[np.where(y != -1)] = 1.
+    return x.toarray(), y, None, None
+
+
 if __name__ == "__main__":
-    x, y, _, _ = load_diabetes()
+    x, y, _, _ = load_satimage()
 
