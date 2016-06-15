@@ -37,6 +37,8 @@ def load_data(name):
         return load_splice()
     if name == "vehicle":
         return load_vehicle()
+    if name == "satimage":
+        return load_satimage()
 
 
 def load_mushrooms():
@@ -190,6 +192,13 @@ def load_vehicle():
     return x.toarray(), y, None, None
 
 
+def load_satimage():
+    x, y = load_svmlight_file("data/libsvm/satimage/satimage.scale")
+    y[np.where(y != 6)] = -1.
+    y[np.where(y != -1)] = 1.
+    return x.toarray(), y, None, None
+
+
 if __name__ == "__main__":
-    x, y, _, _ = load_vehicle()
+    x, y, _, _ = load_satimage()
 
