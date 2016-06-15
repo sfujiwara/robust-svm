@@ -35,6 +35,8 @@ def load_data(name):
         return load_diabetes()
     if name == "splice":
         return load_splice()
+    if name == "vehicle":
+        return load_vehicle()
 
 
 def load_mushrooms():
@@ -181,6 +183,13 @@ def load_splice():
     return x, y, None, None
 
 
+def load_vehicle():
+    x, y = load_svmlight_file("data/libsvm/vehicle/vehicle.scale")
+    y[np.where(y != 1)] = -1.
+    y[np.where(y != -1)] = 1.
+    return x.toarray(), y, None, None
+
+
 if __name__ == "__main__":
-    x, y, _, _ = load_splice()
+    x, y, _, _ = load_vehicle()
 
