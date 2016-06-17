@@ -39,6 +39,9 @@ def load_data(name):
         return load_vehicle()
     if name == "satimage":
         return load_satimage()
+    if name == "cod-rna":
+        return load_cod_rna()
+
 
 
 def load_mushrooms():
@@ -199,6 +202,12 @@ def load_satimage():
     return x.toarray(), y, None, None
 
 
+def load_cod_rna():
+    x, y = load_svmlight_file("data/libsvm/cod-rna/cod-rna")
+    y[y==0] = -1
+    return x.toarray(), y, None, None
+
+
 if __name__ == "__main__":
-    x, y, _, _ = load_satimage()
+    x, y, _, _ = load_cod_rna()
 
