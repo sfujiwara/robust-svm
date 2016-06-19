@@ -158,7 +158,7 @@ plt.errorbar(
     df_dca_nu01["outlier_ratio"],
     df_dca_nu01["mean"],
     yerr=np.array([yerr_l, yerr_u]),
-    label='ER-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-'
+    label='ER-SVM (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='-'
 )
 
 
@@ -172,7 +172,7 @@ plt.errorbar(
     df_dca_nu05["outlier_ratio"] - 0.001,
     df_dca_nu05["mean"],
     yerr=np.array([yerr_l, yerr_u]),
-    label='ER-SVM (nu = 0.1)', elinewidth=elw, capsize=cs, fmt='-^'
+    label='ER-SVM (nu = 0.5)', elinewidth=elw, capsize=cs, fmt='-^'
 )
 
 
